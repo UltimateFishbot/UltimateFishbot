@@ -1,0 +1,23 @@
+﻿Public Class Hands
+
+    ' ToDo:  Let users control this in the GUI        
+    Private Const CASTKEY As String = "1"
+
+    ''' <summary>
+    ''' Performs the 'cast'
+    ''' </summary>    
+    Public Sub Cast()
+        Win32.ActivateWoW()
+        Threading.Thread.Sleep(My.Settings.CastingDelay)
+        Win32.SendKey(CASTKEY)
+    End Sub
+
+    ''' <summary>
+    ''' Performs the looting of the fish
+    ''' </summary>    
+    Public Sub Loot()
+        Win32.SendMouseClick()
+        Threading.Thread.Sleep(My.Settings.LootingDelay)
+    End Sub
+
+End Class
