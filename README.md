@@ -40,6 +40,13 @@ maybe someone will get a chance.
 Thanks to everyone who supported the project and thanks to anyone reading this
 for your interest.
 
+Updated for Mists of Pandaria
+=============================
+
+Updated by justanotherprogrammer to support MoP items such as the Ancient
+Pandaren Fishing Charm and the Angler's Fishing Raft.  Also added support for
+people who don't use Auto-loot.
+
 Happy Fishing!
 
 Gorden
