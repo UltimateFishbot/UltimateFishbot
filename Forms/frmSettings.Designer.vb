@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmSettings
     Inherits System.Windows.Forms.Form
 
@@ -50,6 +50,13 @@ Partial Class frmSettings
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.cbApplyCharm = New System.Windows.Forms.CheckBox()
+        Me.cbApplyRaft = New System.Windows.Forms.CheckBox()
+        Me.txtCharmKey = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtRaftKey = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txtHearthTime = New System.Windows.Forms.TextBox()
         Me.cbAlt = New System.Windows.Forms.CheckBox()
         Me.cbHearth = New System.Windows.Forms.CheckBox()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -63,7 +70,7 @@ Partial Class frmSettings
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtFishKey = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.txtHearthTime = New System.Windows.Forms.TextBox()
+        Me.cbShiftLoot = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -74,7 +81,7 @@ Partial Class frmSettings
         'btnSave
         '
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.Location = New System.Drawing.Point(135, 225)
+        Me.btnSave.Location = New System.Drawing.Point(135, 270)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(92, 23)
         Me.btnSave.TabIndex = 10
@@ -84,7 +91,7 @@ Partial Class frmSettings
         'btnCancel
         '
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Location = New System.Drawing.Point(233, 225)
+        Me.btnCancel.Location = New System.Drawing.Point(233, 270)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(92, 23)
         Me.btnCancel.TabIndex = 5
@@ -101,7 +108,7 @@ Partial Class frmSettings
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(460, 219)
+        Me.TabControl1.Size = New System.Drawing.Size(460, 264)
         Me.TabControl1.TabIndex = 7
         '
         'TabPage2
@@ -118,7 +125,7 @@ Partial Class frmSettings
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(452, 193)
+        Me.TabPage2.Size = New System.Drawing.Size(452, 238)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "General Fishing"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -220,7 +227,7 @@ Partial Class frmSettings
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(452, 193)
+        Me.TabPage1.Size = New System.Drawing.Size(452, 238)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Finding The Cursor"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -315,7 +322,7 @@ Partial Class frmSettings
         Me.TabPage3.Controls.Add(Me.Label14)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(452, 193)
+        Me.TabPage3.Size = New System.Drawing.Size(452, 238)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Hearing The Fish"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -351,6 +358,13 @@ Partial Class frmSettings
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.cbShiftLoot)
+        Me.TabPage4.Controls.Add(Me.cbApplyCharm)
+        Me.TabPage4.Controls.Add(Me.cbApplyRaft)
+        Me.TabPage4.Controls.Add(Me.txtCharmKey)
+        Me.TabPage4.Controls.Add(Me.Label22)
+        Me.TabPage4.Controls.Add(Me.txtRaftKey)
+        Me.TabPage4.Controls.Add(Me.Label20)
         Me.TabPage4.Controls.Add(Me.txtHearthTime)
         Me.TabPage4.Controls.Add(Me.cbAlt)
         Me.TabPage4.Controls.Add(Me.cbHearth)
@@ -367,10 +381,77 @@ Partial Class frmSettings
         Me.TabPage4.Controls.Add(Me.Label15)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(452, 193)
+        Me.TabPage4.Size = New System.Drawing.Size(452, 238)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Premium Settings"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'cbApplyCharm
+        '
+        Me.cbApplyCharm.AutoSize = True
+        Me.cbApplyCharm.Location = New System.Drawing.Point(198, 114)
+        Me.cbApplyCharm.Name = "cbApplyCharm"
+        Me.cbApplyCharm.Size = New System.Drawing.Size(180, 17)
+        Me.cbApplyCharm.TabIndex = 33
+        Me.cbApplyCharm.Text = "Refresh Charm Every 60 minutes"
+        Me.cbApplyCharm.UseVisualStyleBackColor = True
+        '
+        'cbApplyRaft
+        '
+        Me.cbApplyRaft.AutoSize = True
+        Me.cbApplyRaft.Location = New System.Drawing.Point(8, 114)
+        Me.cbApplyRaft.Name = "cbApplyRaft"
+        Me.cbApplyRaft.Size = New System.Drawing.Size(164, 17)
+        Me.cbApplyRaft.TabIndex = 32
+        Me.cbApplyRaft.Text = "Refresh Raft Every 8 minutes"
+        Me.cbApplyRaft.UseVisualStyleBackColor = True
+        '
+        'txtCharmKey
+        '
+        Me.txtCharmKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCharmKey.Location = New System.Drawing.Point(240, 38)
+        Me.txtCharmKey.Name = "txtCharmKey"
+        Me.txtCharmKey.Size = New System.Drawing.Size(22, 20)
+        Me.txtCharmKey.TabIndex = 31
+        Me.txtCharmKey.Text = "5"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(134, 41)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(100, 13)
+        Me.Label22.TabIndex = 30
+        Me.Label22.Text = "MoP Charm Key:"
+        '
+        'txtRaftKey
+        '
+        Me.txtRaftKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtRaftKey.Location = New System.Drawing.Point(100, 38)
+        Me.txtRaftKey.Name = "txtRaftKey"
+        Me.txtRaftKey.Size = New System.Drawing.Size(22, 20)
+        Me.txtRaftKey.TabIndex = 29
+        Me.txtRaftKey.Text = "4"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(5, 41)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(89, 13)
+        Me.Label20.TabIndex = 28
+        Me.Label20.Text = "MoP Raft Key:"
+        '
+        'txtHearthTime
+        '
+        Me.txtHearthTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtHearthTime.Location = New System.Drawing.Point(374, 89)
+        Me.txtHearthTime.Name = "txtHearthTime"
+        Me.txtHearthTime.Size = New System.Drawing.Size(30, 20)
+        Me.txtHearthTime.TabIndex = 27
+        Me.txtHearthTime.Text = "3"
         '
         'cbAlt
         '
@@ -395,7 +476,7 @@ Partial Class frmSettings
         'Label21
         '
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(5, 39)
+        Me.Label21.Location = New System.Drawing.Point(5, 69)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(423, 17)
         Me.Label21.TabIndex = 26
@@ -404,7 +485,7 @@ Partial Class frmSettings
         'txtProcName
         '
         Me.txtProcName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtProcName.Location = New System.Drawing.Point(149, 137)
+        Me.txtProcName.Location = New System.Drawing.Point(138, 177)
         Me.txtProcName.Name = "txtProcName"
         Me.txtProcName.Size = New System.Drawing.Size(255, 20)
         Me.txtProcName.TabIndex = 9
@@ -413,7 +494,7 @@ Partial Class frmSettings
         'Label19
         '
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(8, 160)
+        Me.Label19.Location = New System.Drawing.Point(5, 207)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(423, 31)
         Me.Label19.TabIndex = 23
@@ -424,7 +505,7 @@ Partial Class frmSettings
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(8, 140)
+        Me.Label18.Location = New System.Drawing.Point(5, 180)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(127, 13)
         Me.Label18.TabIndex = 22
@@ -497,20 +578,21 @@ Partial Class frmSettings
         Me.Label15.TabIndex = 15
         Me.Label15.Text = "Cast Key:"
         '
-        'txtHearthTime
+        'cbShiftLoot
         '
-        Me.txtHearthTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtHearthTime.Location = New System.Drawing.Point(374, 89)
-        Me.txtHearthTime.Name = "txtHearthTime"
-        Me.txtHearthTime.Size = New System.Drawing.Size(30, 20)
-        Me.txtHearthTime.TabIndex = 27
-        Me.txtHearthTime.Text = "3"
+        Me.cbShiftLoot.AutoSize = True
+        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 154)
+        Me.cbShiftLoot.Name = "cbShiftLoot"
+        Me.cbShiftLoot.Size = New System.Drawing.Size(254, 17)
+        Me.cbShiftLoot.TabIndex = 34
+        Me.cbShiftLoot.Text = "Shift-Loot? (If AutoLoot is Disabled, Enable This)"
+        Me.cbShiftLoot.UseVisualStyleBackColor = True
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 261)
+        Me.ClientSize = New System.Drawing.Size(460, 305)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
@@ -574,4 +656,11 @@ Partial Class frmSettings
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents txtHearthTime As System.Windows.Forms.TextBox
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents txtRaftKey As System.Windows.Forms.TextBox
+    Friend WithEvents txtCharmKey As System.Windows.Forms.TextBox
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents cbApplyCharm As System.Windows.Forms.CheckBox
+    Friend WithEvents cbApplyRaft As System.Windows.Forms.CheckBox
+    Friend WithEvents cbShiftLoot As System.Windows.Forms.CheckBox
 End Class
