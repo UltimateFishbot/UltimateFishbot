@@ -56,7 +56,7 @@ Partial Class frmMain
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImage = Global.Gordenv21.My.Resources.Resources.fisherman
+        Me.PictureBox1.BackgroundImage = Global.Gordenv30.My.Resources.Resources.fisherman
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(-2, 12)
@@ -121,7 +121,7 @@ Partial Class frmMain
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "frmMain"
-        Me.Text = "Ultimate Fishbot - v 2.1"
+        Me.Text = "Ultimate Fishbot - v 3.0"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

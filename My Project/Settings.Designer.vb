@@ -365,6 +365,18 @@ Namespace My
                 Me("FishWait") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AudioDevice() As String
+            Get
+                Return CType(Me("AudioDevice"),String)
+            End Get
+            Set
+                Me("AudioDevice") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
@@ -375,10 +387,10 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Gordenv21.My.MySettings
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        Friend ReadOnly Property Settings() As Global.Gordenv30.My.MySettings
             Get
-                Return Global.Gordenv21.My.MySettings.Default
+                Return Global.Gordenv30.My.MySettings.Default
             End Get
         End Property
     End Module

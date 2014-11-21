@@ -9,12 +9,11 @@ Public Class Ears
     Public Event HearsAFish()
 
     Private WithEvents SndDevice As MMDevice
-    Private WithEvents tmeTimer As System.Windows.Forms.Timer
+    Private WithEvents tmeTimer As Windows.Forms.Timer
     Private VolumeQueue As New Queue(Of Integer)
 
     ' ToDo - Allow the user to set these values through the GUI
     Private Const MAX_VOLUME_QUEUE_LENGTH As Integer = 5
-    Private Const SOUND_TOLERANCE_LEVEL As Integer = 15
 
     ''' <summary>
     ''' Create a new 'set of ears' for listening
@@ -23,10 +22,16 @@ Public Class Ears
 
         ' Setup our sound listener
         Dim SndDevEnum As New MMDeviceEnumerator()
-        SndDevice = SndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia)
+
+        ' Get the sound device - either the default or the one specified by the users.
+        If String.IsNullOrEmpty(My.Settings.AudioDevice) Then
+            SndDevice = SndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia)
+        Else
+            SndDevice = SndDevEnum.GetDevice(My.Settings.AudioDevice)
+        End If
 
         ' Setup our timer
-        tmeTimer = New System.Windows.Forms.Timer
+        tmeTimer = New Windows.Forms.Timer
         tmeTimer.Interval = 500
         AddHandler tmeTimer.Tick, AddressOf tmeTimer_Tick
         tmeTimer.Enabled = True

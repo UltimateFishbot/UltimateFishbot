@@ -80,5 +80,8 @@
     <Setting Name="FishWait" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">22000</Value>
     </Setting>
+    <Setting Name="AudioDevice" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

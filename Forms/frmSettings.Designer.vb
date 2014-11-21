@@ -22,9 +22,10 @@ Partial Class frmSettings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tabSettings = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.txtFishWait = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -46,10 +47,16 @@ Partial Class frmSettings
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.lblAudioLevel = New System.Windows.Forms.Label()
+        Me.pgbSoundLevel = New System.Windows.Forms.ProgressBar()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.cmbAudio = New System.Windows.Forms.ComboBox()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.txtSplash = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.cbShiftLoot = New System.Windows.Forms.CheckBox()
         Me.cbApplyCharm = New System.Windows.Forms.CheckBox()
         Me.cbApplyRaft = New System.Windows.Forms.CheckBox()
         Me.txtCharmKey = New System.Windows.Forms.TextBox()
@@ -70,11 +77,11 @@ Partial Class frmSettings
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtFishKey = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.cbShiftLoot = New System.Windows.Forms.CheckBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.txtBaitKey = New System.Windows.Forms.TextBox()
         Me.cbAutoBait = New System.Windows.Forms.CheckBox()
-        Me.TabControl1.SuspendLayout()
+        Me.tmeAudio = New System.Windows.Forms.Timer(Me.components)
+        Me.tabSettings.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -101,18 +108,18 @@ Partial Class frmSettings
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'TabControl1
+        'tabSettings
         '
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(460, 264)
-        Me.TabControl1.TabIndex = 7
+        Me.tabSettings.Controls.Add(Me.TabPage2)
+        Me.tabSettings.Controls.Add(Me.TabPage1)
+        Me.tabSettings.Controls.Add(Me.TabPage3)
+        Me.tabSettings.Controls.Add(Me.TabPage4)
+        Me.tabSettings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tabSettings.Location = New System.Drawing.Point(0, 0)
+        Me.tabSettings.Name = "tabSettings"
+        Me.tabSettings.SelectedIndex = 0
+        Me.tabSettings.Size = New System.Drawing.Size(460, 264)
+        Me.tabSettings.TabIndex = 7
         '
         'TabPage2
         '
@@ -148,8 +155,8 @@ Partial Class frmSettings
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(423, 31)
         Me.Label11.TabIndex = 19
-        Me.Label11.Text = "The number of milliseconds to listen for a fish before giving up. Too long decrease bots effective" & _
-    "ness, too short and you miss fish."
+        Me.Label11.Text = "The number of milliseconds to listen for a fish before giving up. Too long decrea" & _
+    "se bots effectiveness, too short and you miss fish."
         '
         'Label12
         '
@@ -203,8 +210,8 @@ Partial Class frmSettings
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(423, 31)
         Me.Label7.TabIndex = 13
-        Me.Label7.Text = "The number of milliseconds to wait after the cast before searching. Too short and you'll" & _
-    " skip the bobber, too long and you'll waste time."
+        Me.Label7.Text = "The number of milliseconds to wait after the cast before searching. Too short and" & _
+    " you'll skip the bobber, too long and you'll waste time."
         '
         'Label8
         '
@@ -277,8 +284,8 @@ Partial Class frmSettings
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(423, 31)
         Me.Label3.TabIndex = 13
-        Me.Label3.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To " & _
-    "slow and you might not detect the bobber; but a bigger number goes slower."
+        Me.Label3.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To" & _
+    " slow and you might not detect the bobber; but a bigger number goes slower."
         '
         'Label4
         '
@@ -320,6 +327,11 @@ Partial Class frmSettings
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.lblAudioLevel)
+        Me.TabPage3.Controls.Add(Me.pgbSoundLevel)
+        Me.TabPage3.Controls.Add(Me.Label25)
+        Me.TabPage3.Controls.Add(Me.cmbAudio)
+        Me.TabPage3.Controls.Add(Me.Label24)
         Me.TabPage3.Controls.Add(Me.txtSplash)
         Me.TabPage3.Controls.Add(Me.Label13)
         Me.TabPage3.Controls.Add(Me.Label14)
@@ -329,6 +341,53 @@ Partial Class frmSettings
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Hearing The Fish"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'lblAudioLevel
+        '
+        Me.lblAudioLevel.AutoSize = True
+        Me.lblAudioLevel.Location = New System.Drawing.Point(421, 76)
+        Me.lblAudioLevel.Name = "lblAudioLevel"
+        Me.lblAudioLevel.Size = New System.Drawing.Size(13, 13)
+        Me.lblAudioLevel.TabIndex = 19
+        Me.lblAudioLevel.Text = "0"
+        '
+        'pgbSoundLevel
+        '
+        Me.pgbSoundLevel.Location = New System.Drawing.Point(219, 73)
+        Me.pgbSoundLevel.Name = "pgbSoundLevel"
+        Me.pgbSoundLevel.Size = New System.Drawing.Size(182, 21)
+        Me.pgbSoundLevel.TabIndex = 18
+        '
+        'Label25
+        '
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(11, 97)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(423, 46)
+        Me.Label25.TabIndex = 17
+        Me.Label25.Text = "Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it" & _
+    " will never catch any fish.  If you are unsure, play some music and select each " & _
+    "device until you find the right one." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'cmbAudio
+        '
+        Me.cmbAudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbAudio.FormattingEnabled = True
+        Me.cmbAudio.Items.AddRange(New Object() {"Default"})
+        Me.cmbAudio.Location = New System.Drawing.Point(102, 73)
+        Me.cmbAudio.Name = "cmbAudio"
+        Me.cmbAudio.Size = New System.Drawing.Size(99, 21)
+        Me.cmbAudio.TabIndex = 16
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(8, 76)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(87, 13)
+        Me.Label24.TabIndex = 15
+        Me.Label24.Text = "Audio Device:"
         '
         'txtSplash
         '
@@ -392,6 +451,16 @@ Partial Class frmSettings
         Me.TabPage4.Text = "Premium Settings"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'cbShiftLoot
+        '
+        Me.cbShiftLoot.AutoSize = True
+        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 158)
+        Me.cbShiftLoot.Name = "cbShiftLoot"
+        Me.cbShiftLoot.Size = New System.Drawing.Size(254, 17)
+        Me.cbShiftLoot.TabIndex = 34
+        Me.cbShiftLoot.Text = "Shift-Loot? (If AutoLoot is Disabled, Enable This)"
+        Me.cbShiftLoot.UseVisualStyleBackColor = True
+        '
         'cbApplyCharm
         '
         Me.cbApplyCharm.AutoSize = True
@@ -412,16 +481,6 @@ Partial Class frmSettings
         Me.cbApplyRaft.Text = "Refresh Raft Every 8 minutes"
         Me.cbApplyRaft.UseVisualStyleBackColor = True
         '
-        'cbAutoBait
-        '
-        Me.cbAutoBait.AutoSize = True
-        Me.cbAutoBait.Location = New System.Drawing.Point(8, 136)
-        Me.cbAutoBait.Name = "cbAutoBait"
-        Me.cbAutoBait.Size = New System.Drawing.Size(164, 17)
-        Me.cbAutoBait.TabIndex = 32
-        Me.cbAutoBait.Text = "Apply Bait Every 5 minutes"
-        Me.cbAutoBait.UseVisualStyleBackColor = True
-        '
         'txtCharmKey
         '
         Me.txtCharmKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -440,25 +499,6 @@ Partial Class frmSettings
         Me.Label22.Size = New System.Drawing.Size(100, 13)
         Me.Label22.TabIndex = 30
         Me.Label22.Text = "MoP Charm Key:"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(270, 41)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(100, 13)
-        Me.Label23.TabIndex = 35
-        Me.Label23.Text = "WoD Bait Key:"
-        '
-        'txtBaitKey
-        '
-        Me.txtBaitKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtBaitKey.Location = New System.Drawing.Point(370, 38)
-        Me.txtBaitKey.Name = "txtBaitKey"
-        Me.txtBaitKey.Size = New System.Drawing.Size(22, 20)
-        Me.txtBaitKey.TabIndex = 29
-        Me.txtBaitKey.Text = "6"
         '
         'txtRaftKey
         '
@@ -613,22 +653,45 @@ Partial Class frmSettings
         Me.Label15.TabIndex = 15
         Me.Label15.Text = "Cast Key:"
         '
-        'cbShiftLoot
+        'Label23
         '
-        Me.cbShiftLoot.AutoSize = True
-        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 158)
-        Me.cbShiftLoot.Name = "cbShiftLoot"
-        Me.cbShiftLoot.Size = New System.Drawing.Size(254, 17)
-        Me.cbShiftLoot.TabIndex = 34
-        Me.cbShiftLoot.Text = "Shift-Loot? (If AutoLoot is Disabled, Enable This)"
-        Me.cbShiftLoot.UseVisualStyleBackColor = True
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(270, 41)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(90, 13)
+        Me.Label23.TabIndex = 35
+        Me.Label23.Text = "WoD Bait Key:"
+        '
+        'txtBaitKey
+        '
+        Me.txtBaitKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey.Location = New System.Drawing.Point(370, 38)
+        Me.txtBaitKey.Name = "txtBaitKey"
+        Me.txtBaitKey.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey.TabIndex = 29
+        Me.txtBaitKey.Text = "6"
+        '
+        'cbAutoBait
+        '
+        Me.cbAutoBait.AutoSize = True
+        Me.cbAutoBait.Location = New System.Drawing.Point(8, 136)
+        Me.cbAutoBait.Name = "cbAutoBait"
+        Me.cbAutoBait.Size = New System.Drawing.Size(151, 17)
+        Me.cbAutoBait.TabIndex = 32
+        Me.cbAutoBait.Text = "Apply Bait Every 5 minutes"
+        Me.cbAutoBait.UseVisualStyleBackColor = True
+        '
+        'tmeAudio
+        '
+        Me.tmeAudio.Interval = 250
         '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(460, 305)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.tabSettings)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -637,7 +700,7 @@ Partial Class frmSettings
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "   Customize Settings"
         Me.TopMost = True
-        Me.TabControl1.ResumeLayout(False)
+        Me.tabSettings.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -651,7 +714,7 @@ Partial Class frmSettings
     End Sub
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents tabSettings As System.Windows.Forms.TabControl
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents txtCastDelay As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
@@ -701,4 +764,10 @@ Partial Class frmSettings
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents txtBaitKey As System.Windows.Forms.TextBox
     Friend WithEvents cbAutoBait As System.Windows.Forms.CheckBox
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents cmbAudio As System.Windows.Forms.ComboBox
+    Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents lblAudioLevel As System.Windows.Forms.Label
+    Friend WithEvents pgbSoundLevel As System.Windows.Forms.ProgressBar
+    Friend WithEvents tmeAudio As System.Windows.Forms.Timer
 End Class
