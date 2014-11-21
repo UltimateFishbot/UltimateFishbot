@@ -17,9 +17,6 @@
     <Setting Name="LootingDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>
     </Setting>
-    <Setting Name="FishWait" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20000</Value>
-    </Setting>
     <Setting Name="SplashLimit" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
@@ -79,6 +76,9 @@
     </Setting>
     <Setting Name="AutoBait" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FishWait" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">22000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

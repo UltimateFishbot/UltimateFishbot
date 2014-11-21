@@ -116,18 +116,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("20000")>  _
-        Public Property FishWait() As Integer
-            Get
-                Return CType(Me("FishWait"),Integer)
-            End Get
-            Set
-                Me("FishWait") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("15")>  _
         Public Property SplashLimit() As Integer
             Get
@@ -363,6 +351,18 @@ Namespace My
             End Get
             Set
                 Me("AutoBait") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("22000")>  _
+        Public Property FishWait() As Integer
+            Get
+                Return CType(Me("FishWait"),Integer)
+            End Get
+            Set
+                Me("FishWait") = value
             End Set
         End Property
     End Class
