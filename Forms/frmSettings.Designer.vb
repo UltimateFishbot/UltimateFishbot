@@ -71,6 +71,9 @@ Partial Class frmSettings
         Me.txtFishKey = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.cbShiftLoot = New System.Windows.Forms.CheckBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtBaitKey = New System.Windows.Forms.TextBox()
+        Me.cbAutoBait = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -145,8 +148,8 @@ Partial Class frmSettings
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(423, 31)
         Me.Label11.TabIndex = 19
-        Me.Label11.Text = "How long to listen for a fish before giving up.  Too long decrease bots effective" & _
-    "ness, too low and you miss fish."
+        Me.Label11.Text = "The number of milliseconds to listen for a fish before giving up. Too long decrease bots effective" & _
+    "ness, too short and you miss fish."
         '
         'Label12
         '
@@ -173,7 +176,7 @@ Partial Class frmSettings
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(423, 20)
         Me.Label9.TabIndex = 16
-        Me.Label9.Text = "How long to wait after looting a fish.  "
+        Me.Label9.Text = "The number of milliseconds to wait after looting a fish."
         '
         'Label10
         '
@@ -200,8 +203,8 @@ Partial Class frmSettings
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(423, 31)
         Me.Label7.TabIndex = 13
-        Me.Label7.Text = "The amount of time to wait after the cast before searching.  Too small and you'll" & _
-    " skip the bobber, too high and you'll waste time."
+        Me.Label7.Text = "The number of milliseconds to wait after the cast before searching. Too short and you'll" & _
+    " skip the bobber, too long and you'll waste time."
         '
         'Label8
         '
@@ -274,7 +277,7 @@ Partial Class frmSettings
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(423, 31)
         Me.Label3.TabIndex = 13
-        Me.Label3.Text = "The number of miliseconds to wait before checking if the cursor has changed.  To " & _
+        Me.Label3.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To " & _
     "slow and you might not detect the bobber; but a bigger number goes slower."
         '
         'Label4
@@ -379,6 +382,9 @@ Partial Class frmSettings
         Me.TabPage4.Controls.Add(Me.Label16)
         Me.TabPage4.Controls.Add(Me.txtFishKey)
         Me.TabPage4.Controls.Add(Me.Label15)
+        Me.TabPage4.Controls.Add(Me.Label23)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey)
+        Me.TabPage4.Controls.Add(Me.cbAutoBait)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Size = New System.Drawing.Size(452, 238)
@@ -406,6 +412,16 @@ Partial Class frmSettings
         Me.cbApplyRaft.Text = "Refresh Raft Every 8 minutes"
         Me.cbApplyRaft.UseVisualStyleBackColor = True
         '
+        'cbAutoBait
+        '
+        Me.cbAutoBait.AutoSize = True
+        Me.cbAutoBait.Location = New System.Drawing.Point(8, 136)
+        Me.cbAutoBait.Name = "cbAutoBait"
+        Me.cbAutoBait.Size = New System.Drawing.Size(164, 17)
+        Me.cbAutoBait.TabIndex = 32
+        Me.cbAutoBait.Text = "Apply Bait Every 5 minutes"
+        Me.cbAutoBait.UseVisualStyleBackColor = True
+        '
         'txtCharmKey
         '
         Me.txtCharmKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -424,6 +440,25 @@ Partial Class frmSettings
         Me.Label22.Size = New System.Drawing.Size(100, 13)
         Me.Label22.TabIndex = 30
         Me.Label22.Text = "MoP Charm Key:"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(270, 41)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(100, 13)
+        Me.Label23.TabIndex = 35
+        Me.Label23.Text = "WoD Bait Key:"
+        '
+        'txtBaitKey
+        '
+        Me.txtBaitKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey.Location = New System.Drawing.Point(370, 38)
+        Me.txtBaitKey.Name = "txtBaitKey"
+        Me.txtBaitKey.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey.TabIndex = 29
+        Me.txtBaitKey.Text = "6"
         '
         'txtRaftKey
         '
@@ -476,7 +511,7 @@ Partial Class frmSettings
         'Label21
         '
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(5, 69)
+        Me.Label21.Location = New System.Drawing.Point(5, 64)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(423, 17)
         Me.Label21.TabIndex = 26
@@ -485,7 +520,7 @@ Partial Class frmSettings
         'txtProcName
         '
         Me.txtProcName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtProcName.Location = New System.Drawing.Point(138, 177)
+        Me.txtProcName.Location = New System.Drawing.Point(138, 185)
         Me.txtProcName.Name = "txtProcName"
         Me.txtProcName.Size = New System.Drawing.Size(255, 20)
         Me.txtProcName.TabIndex = 9
@@ -505,7 +540,7 @@ Partial Class frmSettings
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(5, 180)
+        Me.Label18.Location = New System.Drawing.Point(5, 188)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(127, 13)
         Me.Label18.TabIndex = 22
@@ -524,7 +559,7 @@ Partial Class frmSettings
         'txtHearthKey
         '
         Me.txtHearthKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtHearthKey.Location = New System.Drawing.Point(266, 16)
+        Me.txtHearthKey.Location = New System.Drawing.Point(275, 16)
         Me.txtHearthKey.Name = "txtHearthKey"
         Me.txtHearthKey.Size = New System.Drawing.Size(22, 20)
         Me.txtHearthKey.TabIndex = 3
@@ -581,7 +616,7 @@ Partial Class frmSettings
         'cbShiftLoot
         '
         Me.cbShiftLoot.AutoSize = True
-        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 154)
+        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 158)
         Me.cbShiftLoot.Name = "cbShiftLoot"
         Me.cbShiftLoot.Size = New System.Drawing.Size(254, 17)
         Me.cbShiftLoot.TabIndex = 34
@@ -663,4 +698,7 @@ Partial Class frmSettings
     Friend WithEvents cbApplyCharm As System.Windows.Forms.CheckBox
     Friend WithEvents cbApplyRaft As System.Windows.Forms.CheckBox
     Friend WithEvents cbShiftLoot As System.Windows.Forms.CheckBox
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey As System.Windows.Forms.TextBox
+    Friend WithEvents cbAutoBait As System.Windows.Forms.CheckBox
 End Class

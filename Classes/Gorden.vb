@@ -13,6 +13,7 @@ Public Class Gorden
     Private WithEvents HearthStoneTimer As New System.Windows.Forms.Timer
     Private WithEvents RaftTimer As New System.Windows.Forms.Timer
     Private WithEvents CharmTimer As New System.Windows.Forms.Timer
+    Private WithEvents BaitTimer As New System.Windows.Forms.Timer
 
     Private GordenIs As FishingStates = FishingStates.Idle
     Private FriendlyStatusText As String = "Doing nothing"
@@ -20,7 +21,6 @@ Public Class Gorden
     Private WaitTime As Integer = 0
     Private NeedsToStone As Boolean = False
 
-    Private Const WAITLIMIT As Integer = 35
     Private Const ACTIONTIMERLENGTH As Integer = 500
 
     Public Event DoneFishing()
@@ -31,24 +31,25 @@ Public Class Gorden
 
     Public Sub New(ByVal lblOut As System.Windows.Forms.Label)
         GordensMouth = New Mouth(lblOut)
-        MainTimer.Interval = ACTIONTIMERLENGTH
         AddHandler MainTimer.Tick, AddressOf TakeNextAction
         MainTimer.Enabled = False
 
-        BobberTimer.Interval = 1000 * 60 * 10
         AddHandler BobberTimer.Tick, AddressOf BobberTimerTick
         BobberTimer.Enabled = False
 
-        RaftTimer.Interval = 1000 * 60 * 8
         AddHandler RaftTimer.Tick, AddressOf RaftTimerTick
         RaftTimer.Enabled = False
 
-        CharmTimer.Interval = 1000 * 60 * 60
         AddHandler CharmTimer.Tick, AddressOf CharmTimerTick
         CharmTimer.Enabled = False
 
+        AddHandler BaitTimer.Tick, AddressOf BaitTimerTick
+        BaitTimer.Enabled = False
+
         AddHandler HearthStoneTimer.Tick, AddressOf HearthStoneTimerTick
         HearthStoneTimer.Enabled = False
+
+        ResetTimers()
 
     End Sub
 
@@ -100,8 +101,12 @@ Public Class Gorden
                     BobberTimer.Enabled = True
                 End If
 
+                If My.Settings.AutoBait Then
+                    BaitTimer.Enabled = True
+                End If
+
                 If My.Settings.AutoHearth Then
-                    HearthStoneTimer.Interval = My.Settings.HearthTime * 60 * 1000
+                    HearthStoneTimer.Interval = Minutes(My.Settings.HearthTime)
                     HearthStoneTimer.Enabled = True
                 End If
 
@@ -109,11 +114,36 @@ Public Class Gorden
         End Set
     End Property
 
-    Public Sub ResetMoPTimers()
-        RaftTimer.Interval = 1000 * 60 * 8
-        CharmTimer.Interval = 1000 * 60 * 60
+    Private Function Minutes(ByVal min As Integer) As Integer
+        Return 1000 * 60 * min
+    End Function
+
+    Public Sub ResetTimers()
+        ResetMainTimer()
+        ResetBobberTimer()
+        ResetRaftTimer()
+        ResetCharmTimer()
+        ResetBaitTimer()
+        _NeedsBobber = True
         _NeedsRaft = True
         _NeedsCharm = True
+        _NeedsBait = True
+    End Sub
+
+    Private Sub ResetMainTimer()
+        MainTimer.Interval = ACTIONTIMERLENGTH
+    End Sub
+    Private Sub ResetBobberTimer()
+        BobberTimer.Interval = Minutes(10) + 22 * 1000
+    End Sub
+    Private Sub ResetRaftTimer()
+        RaftTimer.Interval = Minutes(8)
+    End Sub
+    Private Sub ResetCharmTimer()
+        CharmTimer.Interval = Minutes(60)
+    End Sub
+    Private Sub ResetBaitTimer()
+        BaitTimer.Interval = Minutes(5)
     End Sub
 
     Private _NeedsRaft As Boolean = True
@@ -138,15 +168,26 @@ Public Class Gorden
         _NeedsCharm = True
     End Sub
 
-    Private _NeedsBoober As Boolean = True
-    Private ReadOnly Property NeedsBoober() As Boolean
+    Private _NeedsBobber As Boolean = True
+    Private ReadOnly Property NeedsBobber() As Boolean
         Get
-            Return _NeedsBoober AndAlso My.Settings.AutoLure
+            Return _NeedsBobber AndAlso My.Settings.AutoLure
         End Get
     End Property
 
     Private Sub BobberTimerTick()
-        _NeedsBoober = True
+        _NeedsBobber = True
+    End Sub
+
+    Private _NeedsBait As Boolean = True
+    Private ReadOnly Property NeedsBait() As Boolean
+        Get
+            Return _NeedsBait AndAlso My.Settings.AutoBait
+        End Get
+    End Property
+
+    Private Sub BaitTimerTick()
+        _NeedsBait = True
     End Sub
 
     Private Sub HearthStoneTimerTick()
@@ -165,11 +206,11 @@ Public Class Gorden
                     GordensHands.Hearth()
                     GordenIs = FishingStates.Stopped
                     RaiseEvent DoneFishing()
-                ElseIf NeedsBoober Then
+                ElseIf NeedsBobber Then
                     GordensMouth.Say("Applying Lure...")
                     GordenIs = FishingStates.AddingLure
                     GordensHands.ApplyLure()
-                    _NeedsBoober = False
+                    _NeedsBobber = False
                     GordenIs = FishingStates.Idle
                 ElseIf NeedsCharm Then
                     GordensMouth.Say("Applying Charm...")
@@ -182,6 +223,12 @@ Public Class Gorden
                     GordenIs = FishingStates.AddingRaft
                     GordensHands.ApplyRaft()
                     _NeedsRaft = False
+                    GordenIs = FishingStates.Idle
+                ElseIf NeedsBait Then
+                    GordensMouth.Say("Applying Bait...")
+                    GordenIs = FishingStates.AddingBait
+                    GordensHands.ApplyBait()
+                    _NeedsBait = False
                     GordenIs = FishingStates.Idle
                 Else
                     GordensMouth.Say("Casting...")
@@ -201,10 +248,10 @@ Public Class Gorden
             Case FishingStates.WaitingForFish
                 GordensMouth.Say("Waiting for Fish...")
                 GordenIs = FishingStates.WaitingForFish
-                WaitTime += 1
+                WaitTime += 500
 
                 ' No fish to be found, give up
-                If WaitTime >= WAITLIMIT Then
+                If WaitTime >= My.Settings.FishWait Then
                     GordenIs = FishingStates.Idle
                 End If
         End Select
@@ -217,6 +264,7 @@ Public Enum FishingStates
     AddingLure
     AddingCharm
     AddingRaft
+    AddingBait
     Casting
     SearchingForBobber
     WaitingForFish

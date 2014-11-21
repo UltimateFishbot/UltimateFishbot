@@ -3,7 +3,7 @@ Public Class frmMain
 
     Private Sub btnStart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
         If Win32.ActivateWoW Then
-            myGorden.ResetMoPTimers()
+            myGorden.ResetTimers()
             myGorden.Enabled = True
             btnStart.Enabled = False
             btnSettings.Enabled = False
