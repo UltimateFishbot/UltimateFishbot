@@ -34,6 +34,10 @@ Public Class frmSettings
         cbApplyCharm.Checked = My.Settings.AutoCharm
         cbShiftLoot.Checked = My.Settings.ShiftLoot
 
+        ' WoD Premium (Bait)
+        txtBaitKey.Text = My.Settings.BaitKey
+        cbAutoBait.Checked = My.Settings.AutoBait
+
     End Sub
 
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
@@ -73,6 +77,10 @@ Public Class frmSettings
         My.Settings.AutoRaft = cbApplyRaft.Checked
         My.Settings.AutoCharm = cbApplyCharm.Checked
         My.Settings.ShiftLoot = cbShiftLoot.Checked
+
+        ' WoD Premium (Bait)
+        My.Settings.BaitKey = txtBaitKey.Text
+        My.Settings.AutoBait = cbAutoBait.Checked
 
         Me.Close()
     End Sub

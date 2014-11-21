@@ -4,6 +4,7 @@ Public Class Hands
     Private LUREKEY As String
     Private CHARMKEY As String
     Private RAFTKEY As String
+    Private BAITKEY As String
     Private HEARTHKEY As String
 
     Public Sub New()
@@ -16,6 +17,7 @@ Public Class Hands
             LUREKEY = "%(" + My.Settings.LureKey + ")"
             CHARMKEY = "%(" + My.Settings.CharmKey + ")"
             RAFTKEY = "%(" + My.Settings.RaftKey + ")"
+            BAITKEY = "%(" + My.Settings.BaitKey + ")"
             HEARTHKEY = "%(" + My.Settings.HearthKey + ")"
         Else
             CASTKEY = My.Settings.FishKey
@@ -23,6 +25,7 @@ Public Class Hands
             CHARMKEY = My.Settings.CharmKey
             RAFTKEY = My.Settings.RaftKey
             HEARTHKEY = My.Settings.HearthKey
+            BAITKEY = My.Settings.BaitKey
         End If
     End Sub
 
@@ -58,6 +61,12 @@ Public Class Hands
     Public Sub ApplyRaft()
         Win32.ActivateWoW()
         Win32.SendKey(RAFTKEY)
+        Threading.Thread.Sleep(2 * 1000)
+    End Sub
+
+    Public Sub ApplyBait()
+        Win32.ActivateWoW()
+        Win32.SendKey(BAITKEY)
         Threading.Thread.Sleep(2 * 1000)
     End Sub
 

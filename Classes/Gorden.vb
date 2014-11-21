@@ -13,6 +13,7 @@ Public Class Gorden
     Private WithEvents HearthStoneTimer As New System.Windows.Forms.Timer
     Private WithEvents RaftTimer As New System.Windows.Forms.Timer
     Private WithEvents CharmTimer As New System.Windows.Forms.Timer
+    Private WithEvents BaitTimer As New System.Windows.Forms.Timer
 
     Private GordenIs As FishingStates = FishingStates.Idle
     Private FriendlyStatusText As String = "Doing nothing"
@@ -35,17 +36,21 @@ Public Class Gorden
         AddHandler MainTimer.Tick, AddressOf TakeNextAction
         MainTimer.Enabled = False
 
-        BobberTimer.Interval = 1000 * 60 * 10
+        BobberTimer.Interval = Minutes(10)
         AddHandler BobberTimer.Tick, AddressOf BobberTimerTick
         BobberTimer.Enabled = False
 
-        RaftTimer.Interval = 1000 * 60 * 8
+        RaftTimer.Interval = Minutes(8)
         AddHandler RaftTimer.Tick, AddressOf RaftTimerTick
         RaftTimer.Enabled = False
 
-        CharmTimer.Interval = 1000 * 60 * 60
+        CharmTimer.Interval = Minutes(60)
         AddHandler CharmTimer.Tick, AddressOf CharmTimerTick
         CharmTimer.Enabled = False
+
+        BaitTimer.Interval = Minutes(5)
+        AddHandler BaitTimer.Tick, AddressOf BaitTimerTick
+        BaitTimer.Enabled = False
 
         AddHandler HearthStoneTimer.Tick, AddressOf HearthStoneTimerTick
         HearthStoneTimer.Enabled = False
@@ -100,6 +105,10 @@ Public Class Gorden
                     BobberTimer.Enabled = True
                 End If
 
+                If My.Settings.AutoBait Then
+                    BaitTimer.Enabled = True
+                End If
+
                 If My.Settings.AutoHearth Then
                     HearthStoneTimer.Interval = My.Settings.HearthTime * 60 * 1000
                     HearthStoneTimer.Enabled = True
@@ -109,11 +118,20 @@ Public Class Gorden
         End Set
     End Property
 
-    Public Sub ResetMoPTimers()
-        RaftTimer.Interval = 1000 * 60 * 8
-        CharmTimer.Interval = 1000 * 60 * 60
+    Private Function Minutes(ByVal min As Integer) As Integer
+        Return 1000 * 60 * min
+    End Function
+
+    Public Sub ResetTimers()
+        MainTimer.Interval = ACTIONTIMERLENGTH
+        BobberTimer.Interval = Minutes(10)
+        RaftTimer.Interval = Minutes(8)
+        CharmTimer.Interval = Minutes(60)
+        BaitTimer.Interval = Minutes(5)
+        _NeedsBobber = True
         _NeedsRaft = True
         _NeedsCharm = True
+        _NeedsBait = True
     End Sub
 
     Private _NeedsRaft As Boolean = True
@@ -138,15 +156,26 @@ Public Class Gorden
         _NeedsCharm = True
     End Sub
 
-    Private _NeedsBoober As Boolean = True
+    Private _NeedsBobber As Boolean = True
     Private ReadOnly Property NeedsBoober() As Boolean
         Get
-            Return _NeedsBoober AndAlso My.Settings.AutoLure
+            Return _NeedsBobber AndAlso My.Settings.AutoLure
         End Get
     End Property
 
     Private Sub BobberTimerTick()
-        _NeedsBoober = True
+        _NeedsBobber = True
+    End Sub
+
+    Private _NeedsBait As Boolean = True
+    Private ReadOnly Property NeedsBait() As Boolean
+        Get
+            Return _NeedsBait AndAlso My.Settings.AutoBait
+        End Get
+    End Property
+
+    Private Sub BaitTimerTick()
+        _NeedsBait = True
     End Sub
 
     Private Sub HearthStoneTimerTick()
@@ -169,7 +198,7 @@ Public Class Gorden
                     GordensMouth.Say("Applying Lure...")
                     GordenIs = FishingStates.AddingLure
                     GordensHands.ApplyLure()
-                    _NeedsBoober = False
+                    _NeedsBobber = False
                     GordenIs = FishingStates.Idle
                 ElseIf NeedsCharm Then
                     GordensMouth.Say("Applying Charm...")
@@ -182,6 +211,12 @@ Public Class Gorden
                     GordenIs = FishingStates.AddingRaft
                     GordensHands.ApplyRaft()
                     _NeedsRaft = False
+                    GordenIs = FishingStates.Idle
+                ElseIf NeedsBait Then
+                    GordensMouth.Say("Applying Bait...")
+                    GordenIs = FishingStates.AddingBait
+                    GordensHands.ApplyBait()
+                    _NeedsBait = False
                     GordenIs = FishingStates.Idle
                 Else
                     GordensMouth.Say("Casting...")
@@ -217,6 +252,7 @@ Public Enum FishingStates
     AddingLure
     AddingCharm
     AddingRaft
+    AddingBait
     Casting
     SearchingForBobber
     WaitingForFish
