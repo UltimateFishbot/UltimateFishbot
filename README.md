@@ -47,6 +47,11 @@ Updated by justanotherprogrammer to support MoP items such as the Ancient
 Pandaren Fishing Charm and the Angler's Fishing Raft.  Also added support for
 people who don't use Auto-loot.
 
+Updated for Warlords of Draenor
+===============================
+
+Updated by Henrik Hermansen to support WoD bait.
+
 Happy Fishing!
 
 Gorden
