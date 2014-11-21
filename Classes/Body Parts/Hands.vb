@@ -1,7 +1,9 @@
-﻿Public Class Hands
+Public Class Hands
 
     Private CASTKEY As String
     Private LUREKEY As String
+    Private CHARMKEY As String
+    Private RAFTKEY As String
     Private HEARTHKEY As String
 
     Public Sub New()
@@ -12,10 +14,14 @@
         If My.Settings.UseAltKey Then
             CASTKEY = "%(" + My.Settings.FishKey + ")"
             LUREKEY = "%(" + My.Settings.LureKey + ")"
+            CHARMKEY = "%(" + My.Settings.CharmKey + ")"
+            RAFTKEY = "%(" + My.Settings.RaftKey + ")"
             HEARTHKEY = "%(" + My.Settings.HearthKey + ")"
         Else
             CASTKEY = My.Settings.FishKey
             LUREKEY = My.Settings.LureKey
+            CHARMKEY = My.Settings.CharmKey
+            RAFTKEY = My.Settings.RaftKey
             HEARTHKEY = My.Settings.HearthKey
         End If
     End Sub
@@ -40,6 +46,18 @@
     Public Sub ApplyLure()
         Win32.ActivateWoW()
         Win32.SendKey(LUREKEY)
+        Threading.Thread.Sleep(3 * 1000)
+    End Sub
+
+    Public Sub ApplyCharm()
+        Win32.ActivateWoW()
+        Win32.SendKey(CHARMKEY)
+        Threading.Thread.Sleep(3 * 1000)
+    End Sub
+
+    Public Sub ApplyRaft()
+        Win32.ActivateWoW()
+        Win32.SendKey(RAFTKEY)
         Threading.Thread.Sleep(2 * 1000)
     End Sub
 

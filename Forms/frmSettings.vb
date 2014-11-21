@@ -1,4 +1,4 @@
-﻿Public Class frmSettings
+Public Class frmSettings
 
     Private Sub frmSettings_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -27,6 +27,12 @@
         cbHearth.Checked = My.Settings.AutoHearth
         txtHearthTime.Text = My.Settings.HearthTime
 
+        ' MoP Premium (Angler's Raft & Ancient Pandaren Fishing Charm)
+        txtCharmKey.Text = My.Settings.CharmKey
+        txtRaftKey.Text = My.Settings.RaftKey
+        cbApplyRaft.Checked = My.Settings.AutoRaft
+        cbApplyCharm.Checked = My.Settings.AutoCharm
+        cbShiftLoot.Checked = My.Settings.ShiftLoot
 
     End Sub
 
@@ -60,6 +66,13 @@
         My.Settings.HearthKey = txtHearthKey.Text
         My.Settings.AutoHearth = cbHearth.Checked
         My.Settings.HearthTime = CType(txtHearthTime.Text, Integer)
+
+        ' MoP Premium (Angler's Raft & Ancient Pandaren Fishing Charm)
+        My.Settings.CharmKey = txtCharmKey.Text
+        My.Settings.RaftKey = txtRaftKey.Text
+        My.Settings.AutoRaft = cbApplyRaft.Checked
+        My.Settings.AutoCharm = cbApplyCharm.Checked
+        My.Settings.ShiftLoot = cbShiftLoot.Checked
 
         Me.Close()
     End Sub

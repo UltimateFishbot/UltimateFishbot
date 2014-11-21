@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.InteropServices
+Imports System.Runtime.InteropServices
 
 Public Class Win32
 
@@ -18,6 +18,8 @@ Public Class Win32
     Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As IntPtr, ByVal wMsg As Long, _
                                                                             ByVal wParam As Long, ByVal lParam As Long) As IntPtr
 
+    Private Declare Sub keybd_event Lib "user32.dll" (ByVal bVk As Byte, ByVal bScan As Byte, ByVal dwFlags As Long, ByVal dwExtraInfo As Long)
+
     Private Const WM_LBUTTONUP As Long = &H202
     Private Const WM_RBUTTONUP As Long = &H205
 
@@ -36,9 +38,17 @@ Public Class Win32
         Dim Wow As Long = FindWindow("GxWindowClass", "World Of Warcraft")
         Dim dWord As Long = MakeDWord(LastX - LastRectX, LastY - LastRectY)
 
+        If (My.Settings.ShiftLoot) Then
+            keybd_event(16, 0, 0, 0)
+        End If
+
         SendMessage(Wow, WM_RBUTTONDOWN, 1&, dWord)
         Threading.Thread.Sleep(100)
         SendMessage(Wow, WM_RBUTTONUP, 1&, dWord)
+
+        If (My.Settings.ShiftLoot) Then
+            keybd_event(16, 0, 2, 0)
+        End If
 
     End Sub
 
@@ -58,7 +68,7 @@ Public Class Win32
         Catch ex As Exception
             Return False
         End Try
-        
+
     End Function
 
     Public Shared Sub MoveMouse(ByVal x As Long, ByVal y As Long)
