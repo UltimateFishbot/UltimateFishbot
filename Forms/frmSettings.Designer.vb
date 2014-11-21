@@ -148,8 +148,8 @@ Partial Class frmSettings
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(423, 31)
         Me.Label11.TabIndex = 19
-        Me.Label11.Text = "How long to listen for a fish before giving up.  Too long decrease bots effective" & _
-    "ness, too low and you miss fish."
+        Me.Label11.Text = "The number of milliseconds to listen for a fish before giving up. Too long decrease bots effective" & _
+    "ness, too short and you miss fish."
         '
         'Label12
         '
@@ -176,7 +176,7 @@ Partial Class frmSettings
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(423, 20)
         Me.Label9.TabIndex = 16
-        Me.Label9.Text = "How long to wait after looting a fish.  "
+        Me.Label9.Text = "The number of milliseconds to wait after looting a fish."
         '
         'Label10
         '
@@ -203,8 +203,8 @@ Partial Class frmSettings
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(423, 31)
         Me.Label7.TabIndex = 13
-        Me.Label7.Text = "The amount of time to wait after the cast before searching.  Too small and you'll" & _
-    " skip the bobber, too high and you'll waste time."
+        Me.Label7.Text = "The number of milliseconds to wait after the cast before searching. Too short and you'll" & _
+    " skip the bobber, too long and you'll waste time."
         '
         'Label8
         '
@@ -277,7 +277,7 @@ Partial Class frmSettings
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(423, 31)
         Me.Label3.TabIndex = 13
-        Me.Label3.Text = "The number of miliseconds to wait before checking if the cursor has changed.  To " & _
+        Me.Label3.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To " & _
     "slow and you might not detect the bobber; but a bigger number goes slower."
         '
         'Label4
