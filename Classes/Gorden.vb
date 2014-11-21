@@ -21,7 +21,6 @@ Public Class Gorden
     Private WaitTime As Integer = 0
     Private NeedsToStone As Boolean = False
 
-    Private Const WAITLIMIT As Integer = 35
     Private Const ACTIONTIMERLENGTH As Integer = 500
 
     Public Event DoneFishing()
@@ -32,28 +31,25 @@ Public Class Gorden
 
     Public Sub New(ByVal lblOut As System.Windows.Forms.Label)
         GordensMouth = New Mouth(lblOut)
-        MainTimer.Interval = ACTIONTIMERLENGTH
         AddHandler MainTimer.Tick, AddressOf TakeNextAction
         MainTimer.Enabled = False
 
-        BobberTimer.Interval = Minutes(10)
         AddHandler BobberTimer.Tick, AddressOf BobberTimerTick
         BobberTimer.Enabled = False
 
-        RaftTimer.Interval = Minutes(8)
         AddHandler RaftTimer.Tick, AddressOf RaftTimerTick
         RaftTimer.Enabled = False
 
-        CharmTimer.Interval = Minutes(60)
         AddHandler CharmTimer.Tick, AddressOf CharmTimerTick
         CharmTimer.Enabled = False
 
-        BaitTimer.Interval = Minutes(5)
         AddHandler BaitTimer.Tick, AddressOf BaitTimerTick
         BaitTimer.Enabled = False
 
         AddHandler HearthStoneTimer.Tick, AddressOf HearthStoneTimerTick
         HearthStoneTimer.Enabled = False
+
+        ResetTimers()
 
     End Sub
 
@@ -110,7 +106,7 @@ Public Class Gorden
                 End If
 
                 If My.Settings.AutoHearth Then
-                    HearthStoneTimer.Interval = My.Settings.HearthTime * 60 * 1000
+                    HearthStoneTimer.Interval = Minutes(My.Settings.HearthTime)
                     HearthStoneTimer.Enabled = True
                 End If
 
@@ -123,15 +119,31 @@ Public Class Gorden
     End Function
 
     Public Sub ResetTimers()
-        MainTimer.Interval = ACTIONTIMERLENGTH
-        BobberTimer.Interval = Minutes(10)
-        RaftTimer.Interval = Minutes(8)
-        CharmTimer.Interval = Minutes(60)
-        BaitTimer.Interval = Minutes(5)
+        ResetMainTimer()
+        ResetBobberTimer()
+        ResetRaftTimer()
+        ResetCharmTimer()
+        ResetBaitTimer()
         _NeedsBobber = True
         _NeedsRaft = True
         _NeedsCharm = True
         _NeedsBait = True
+    End Sub
+
+    Private Sub ResetMainTimer()
+        MainTimer.Interval = ACTIONTIMERLENGTH
+    End Sub
+    Private Sub ResetBobberTimer()
+        BobberTimer.Interval = Minutes(10) + 22 * 1000
+    End Sub
+    Private Sub ResetRaftTimer()
+        RaftTimer.Interval = Minutes(8)
+    End Sub
+    Private Sub ResetCharmTimer()
+        CharmTimer.Interval = Minutes(60)
+    End Sub
+    Private Sub ResetBaitTimer()
+        BaitTimer.Interval = Minutes(5)
     End Sub
 
     Private _NeedsRaft As Boolean = True
@@ -157,7 +169,7 @@ Public Class Gorden
     End Sub
 
     Private _NeedsBobber As Boolean = True
-    Private ReadOnly Property NeedsBoober() As Boolean
+    Private ReadOnly Property NeedsBobber() As Boolean
         Get
             Return _NeedsBobber AndAlso My.Settings.AutoLure
         End Get
@@ -194,7 +206,7 @@ Public Class Gorden
                     GordensHands.Hearth()
                     GordenIs = FishingStates.Stopped
                     RaiseEvent DoneFishing()
-                ElseIf NeedsBoober Then
+                ElseIf NeedsBobber Then
                     GordensMouth.Say("Applying Lure...")
                     GordenIs = FishingStates.AddingLure
                     GordensHands.ApplyLure()
@@ -236,10 +248,10 @@ Public Class Gorden
             Case FishingStates.WaitingForFish
                 GordensMouth.Say("Waiting for Fish...")
                 GordenIs = FishingStates.WaitingForFish
-                WaitTime += 1
+                WaitTime += 500
 
                 ' No fish to be found, give up
-                If WaitTime >= WAITLIMIT Then
+                If WaitTime >= My.Settings.FishWait Then
                     GordenIs = FishingStates.Idle
                 End If
         End Select
