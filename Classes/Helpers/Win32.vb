@@ -63,6 +63,11 @@ Public Class Win32
                 WoW = Process.GetProcessesByName(My.Settings.ProcName + "-64").FirstOrDefault()
             End If
 
+            ' If we haven't found it, let's just try anything with a title of World Of Warcraft...
+            If WoW Is Nothing Then
+                WoW = Process.GetProcesses().FirstOrDefault(Function(p) p.MainWindowTitle.ToUpper() = "WORLD OF WARCRAFT")
+            End If
+
             AppActivate(WoW.Id)
             Return True
         Catch ex As Exception
