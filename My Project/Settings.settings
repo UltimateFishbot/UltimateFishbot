@@ -71,7 +71,7 @@
     <Setting Name="ShiftLoot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="BaitKey" Type="System.String" Scope="User">
+    <Setting Name="BaitKey1" Type="System.String" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="AutoBait" Type="System.Boolean" Scope="User">
@@ -82,6 +82,27 @@
     </Setting>
     <Setting Name="AudioDevice" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BaitKey2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="BaitKey3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="BaitKey4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="BaitKey5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="BaitKey6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">)</Value>
+    </Setting>
+    <Setting Name="BaitKey7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">=</Value>
+    </Setting>
+    <Setting Name="randomBait" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

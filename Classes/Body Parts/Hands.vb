@@ -4,8 +4,15 @@ Public Class Hands
     Private LUREKEY As String
     Private CHARMKEY As String
     Private RAFTKEY As String
-    Private BAITKEY As String
+    Private BAITKEY1 As String
+    Private BAITKEY2 As String
+    Private BAITKEY3 As String
+    Private BAITKEY4 As String
+    Private BAITKEY5 As String
+    Private BAITKEY6 As String
+    Private BAITKEY7 As String
     Private HEARTHKEY As String
+    Private BAITKEYS As String()
 
     Public Sub New()
         UpdateKeys()
@@ -17,7 +24,13 @@ Public Class Hands
             LUREKEY = "%(" + My.Settings.LureKey + ")"
             CHARMKEY = "%(" + My.Settings.CharmKey + ")"
             RAFTKEY = "%(" + My.Settings.RaftKey + ")"
-            BAITKEY = "%(" + My.Settings.BaitKey + ")"
+            BAITKEY1 = "%(" + My.Settings.BaitKey1 + ")"
+            BAITKEY2 = "%(" + My.Settings.BaitKey2 + ")"
+            BAITKEY3 = "%(" + My.Settings.BaitKey3 + ")"
+            BAITKEY4 = "%(" + My.Settings.BaitKey4 + ")"
+            BAITKEY5 = "%(" + My.Settings.BaitKey5 + ")"
+            BAITKEY6 = "%(" + My.Settings.BaitKey6 + ")"
+            BAITKEY7 = "%(" + My.Settings.BaitKey7 + ")"
             HEARTHKEY = "%(" + My.Settings.HearthKey + ")"
         Else
             CASTKEY = My.Settings.FishKey
@@ -25,8 +38,16 @@ Public Class Hands
             CHARMKEY = My.Settings.CharmKey
             RAFTKEY = My.Settings.RaftKey
             HEARTHKEY = My.Settings.HearthKey
-            BAITKEY = My.Settings.BaitKey
+            BAITKEY1 = "{" + My.Settings.BaitKey1 + "}"
+            BAITKEY2 = "{" + My.Settings.BaitKey2 + "}"
+            BAITKEY3 = "{" + My.Settings.BaitKey3 + "}"
+            BAITKEY4 = "{" + My.Settings.BaitKey4 + "}"
+            BAITKEY5 = "{" + My.Settings.BaitKey5 + "}"
+            BAITKEY6 = "{" + My.Settings.BaitKey6 + "}"
+            BAITKEY7 = "{" + My.Settings.BaitKey7 + "}"
         End If
+
+        BAITKEYS = {BAITKEY1, BAITKEY2, BAITKEY3, BAITKEY4, BAITKEY5, BAITKEY6, BAITKEY7}
     End Sub
 
     ''' <summary>
@@ -65,6 +86,12 @@ Public Class Hands
     End Sub
 
     Public Sub ApplyBait()
+        Dim BAITKEY As String = BAITKEY1
+
+        If My.Settings.randomBait Then
+            BAITKEY = BAITKEYS(New Random().Next(0, BAITKEYS.Length - 1))
+        End If
+
         Win32.ActivateWoW()
         Win32.SendKey(BAITKEY)
         Threading.Thread.Sleep(2 * 1000)
