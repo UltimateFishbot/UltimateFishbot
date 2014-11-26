@@ -56,6 +56,18 @@ Partial Class frmSettings
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.txtBaitKey7 = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.txtBaitKey6 = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.txtBaitKey5 = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.txtBaitKey4 = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.txtBaitKey3 = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.txtBaitKey2 = New System.Windows.Forms.TextBox()
         Me.cbShiftLoot = New System.Windows.Forms.CheckBox()
         Me.cbApplyCharm = New System.Windows.Forms.CheckBox()
         Me.cbApplyRaft = New System.Windows.Forms.CheckBox()
@@ -78,9 +90,10 @@ Partial Class frmSettings
         Me.txtFishKey = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.txtBaitKey = New System.Windows.Forms.TextBox()
+        Me.txtBaitKey1 = New System.Windows.Forms.TextBox()
         Me.cbAutoBait = New System.Windows.Forms.CheckBox()
         Me.tmeAudio = New System.Windows.Forms.Timer(Me.components)
+        Me.cbRandomBait = New System.Windows.Forms.CheckBox()
         Me.tabSettings.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -91,7 +104,7 @@ Partial Class frmSettings
         'btnSave
         '
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.Location = New System.Drawing.Point(135, 270)
+        Me.btnSave.Location = New System.Drawing.Point(130, 341)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(92, 23)
         Me.btnSave.TabIndex = 10
@@ -101,7 +114,7 @@ Partial Class frmSettings
         'btnCancel
         '
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Location = New System.Drawing.Point(233, 270)
+        Me.btnCancel.Location = New System.Drawing.Point(228, 341)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(92, 23)
         Me.btnCancel.TabIndex = 5
@@ -118,7 +131,7 @@ Partial Class frmSettings
         Me.tabSettings.Location = New System.Drawing.Point(0, 0)
         Me.tabSettings.Name = "tabSettings"
         Me.tabSettings.SelectedIndex = 0
-        Me.tabSettings.Size = New System.Drawing.Size(460, 264)
+        Me.tabSettings.Size = New System.Drawing.Size(460, 335)
         Me.tabSettings.TabIndex = 7
         '
         'TabPage2
@@ -135,7 +148,7 @@ Partial Class frmSettings
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(452, 238)
+        Me.TabPage2.Size = New System.Drawing.Size(452, 357)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "General Fishing"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -237,7 +250,7 @@ Partial Class frmSettings
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(452, 238)
+        Me.TabPage1.Size = New System.Drawing.Size(452, 357)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Finding The Cursor"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -337,7 +350,7 @@ Partial Class frmSettings
         Me.TabPage3.Controls.Add(Me.Label14)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(452, 238)
+        Me.TabPage3.Size = New System.Drawing.Size(452, 357)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Hearing The Fish"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -420,6 +433,19 @@ Partial Class frmSettings
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.cbRandomBait)
+        Me.TabPage4.Controls.Add(Me.Label29)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey7)
+        Me.TabPage4.Controls.Add(Me.Label30)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey6)
+        Me.TabPage4.Controls.Add(Me.Label31)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey5)
+        Me.TabPage4.Controls.Add(Me.Label28)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey4)
+        Me.TabPage4.Controls.Add(Me.Label27)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey3)
+        Me.TabPage4.Controls.Add(Me.Label26)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey2)
         Me.TabPage4.Controls.Add(Me.cbShiftLoot)
         Me.TabPage4.Controls.Add(Me.cbApplyCharm)
         Me.TabPage4.Controls.Add(Me.cbApplyRaft)
@@ -442,19 +468,133 @@ Partial Class frmSettings
         Me.TabPage4.Controls.Add(Me.txtFishKey)
         Me.TabPage4.Controls.Add(Me.Label15)
         Me.TabPage4.Controls.Add(Me.Label23)
-        Me.TabPage4.Controls.Add(Me.txtBaitKey)
+        Me.TabPage4.Controls.Add(Me.txtBaitKey1)
         Me.TabPage4.Controls.Add(Me.cbAutoBait)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(452, 238)
+        Me.TabPage4.Size = New System.Drawing.Size(452, 309)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Premium Settings"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(144, 115)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(101, 13)
+        Me.Label29.TabIndex = 47
+        Me.Label29.Text = "WoD Bait Key 7:"
+        '
+        'txtBaitKey7
+        '
+        Me.txtBaitKey7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey7.Location = New System.Drawing.Point(244, 112)
+        Me.txtBaitKey7.Name = "txtBaitKey7"
+        Me.txtBaitKey7.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey7.TabIndex = 46
+        Me.txtBaitKey7.Text = "="
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(144, 93)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(101, 13)
+        Me.Label30.TabIndex = 45
+        Me.Label30.Text = "WoD Bait Key 6:"
+        '
+        'txtBaitKey6
+        '
+        Me.txtBaitKey6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey6.Location = New System.Drawing.Point(244, 90)
+        Me.txtBaitKey6.Name = "txtBaitKey6"
+        Me.txtBaitKey6.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey6.TabIndex = 44
+        Me.txtBaitKey6.Text = ")"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(144, 71)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(101, 13)
+        Me.Label31.TabIndex = 43
+        Me.Label31.Text = "WoD Bait Key 5:"
+        '
+        'txtBaitKey5
+        '
+        Me.txtBaitKey5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey5.Location = New System.Drawing.Point(244, 68)
+        Me.txtBaitKey5.Name = "txtBaitKey5"
+        Me.txtBaitKey5.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey5.TabIndex = 42
+        Me.txtBaitKey5.Text = "0"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(8, 115)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(101, 13)
+        Me.Label28.TabIndex = 41
+        Me.Label28.Text = "WoD Bait Key 4:"
+        '
+        'txtBaitKey4
+        '
+        Me.txtBaitKey4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey4.Location = New System.Drawing.Point(108, 112)
+        Me.txtBaitKey4.Name = "txtBaitKey4"
+        Me.txtBaitKey4.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey4.TabIndex = 40
+        Me.txtBaitKey4.Text = "9"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(8, 93)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(101, 13)
+        Me.Label27.TabIndex = 39
+        Me.Label27.Text = "WoD Bait Key 3:"
+        '
+        'txtBaitKey3
+        '
+        Me.txtBaitKey3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey3.Location = New System.Drawing.Point(108, 90)
+        Me.txtBaitKey3.Name = "txtBaitKey3"
+        Me.txtBaitKey3.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey3.TabIndex = 38
+        Me.txtBaitKey3.Text = "8"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(8, 71)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(101, 13)
+        Me.Label26.TabIndex = 37
+        Me.Label26.Text = "WoD Bait Key 2:"
+        '
+        'txtBaitKey2
+        '
+        Me.txtBaitKey2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey2.Location = New System.Drawing.Point(108, 68)
+        Me.txtBaitKey2.Name = "txtBaitKey2"
+        Me.txtBaitKey2.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey2.TabIndex = 36
+        Me.txtBaitKey2.Text = "7"
+        '
         'cbShiftLoot
         '
         Me.cbShiftLoot.AutoSize = True
-        Me.cbShiftLoot.Location = New System.Drawing.Point(8, 158)
+        Me.cbShiftLoot.Location = New System.Drawing.Point(11, 229)
         Me.cbShiftLoot.Name = "cbShiftLoot"
         Me.cbShiftLoot.Size = New System.Drawing.Size(254, 17)
         Me.cbShiftLoot.TabIndex = 34
@@ -464,7 +604,7 @@ Partial Class frmSettings
         'cbApplyCharm
         '
         Me.cbApplyCharm.AutoSize = True
-        Me.cbApplyCharm.Location = New System.Drawing.Point(198, 114)
+        Me.cbApplyCharm.Location = New System.Drawing.Point(201, 185)
         Me.cbApplyCharm.Name = "cbApplyCharm"
         Me.cbApplyCharm.Size = New System.Drawing.Size(180, 17)
         Me.cbApplyCharm.TabIndex = 33
@@ -474,7 +614,7 @@ Partial Class frmSettings
         'cbApplyRaft
         '
         Me.cbApplyRaft.AutoSize = True
-        Me.cbApplyRaft.Location = New System.Drawing.Point(8, 114)
+        Me.cbApplyRaft.Location = New System.Drawing.Point(11, 185)
         Me.cbApplyRaft.Name = "cbApplyRaft"
         Me.cbApplyRaft.Size = New System.Drawing.Size(164, 17)
         Me.cbApplyRaft.TabIndex = 32
@@ -522,7 +662,7 @@ Partial Class frmSettings
         'txtHearthTime
         '
         Me.txtHearthTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtHearthTime.Location = New System.Drawing.Point(374, 89)
+        Me.txtHearthTime.Location = New System.Drawing.Point(377, 160)
         Me.txtHearthTime.Name = "txtHearthTime"
         Me.txtHearthTime.Size = New System.Drawing.Size(30, 20)
         Me.txtHearthTime.TabIndex = 27
@@ -541,7 +681,7 @@ Partial Class frmSettings
         'cbHearth
         '
         Me.cbHearth.AutoSize = True
-        Me.cbHearth.Location = New System.Drawing.Point(198, 92)
+        Me.cbHearth.Location = New System.Drawing.Point(201, 163)
         Me.cbHearth.Name = "cbHearth"
         Me.cbHearth.Size = New System.Drawing.Size(170, 17)
         Me.cbHearth.TabIndex = 8
@@ -551,7 +691,7 @@ Partial Class frmSettings
         'Label21
         '
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(5, 64)
+        Me.Label21.Location = New System.Drawing.Point(8, 135)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(423, 17)
         Me.Label21.TabIndex = 26
@@ -560,7 +700,7 @@ Partial Class frmSettings
         'txtProcName
         '
         Me.txtProcName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtProcName.Location = New System.Drawing.Point(138, 185)
+        Me.txtProcName.Location = New System.Drawing.Point(141, 256)
         Me.txtProcName.Name = "txtProcName"
         Me.txtProcName.Size = New System.Drawing.Size(255, 20)
         Me.txtProcName.TabIndex = 9
@@ -569,7 +709,7 @@ Partial Class frmSettings
         'Label19
         '
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(5, 207)
+        Me.Label19.Location = New System.Drawing.Point(8, 278)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(423, 31)
         Me.Label19.TabIndex = 23
@@ -580,7 +720,7 @@ Partial Class frmSettings
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(5, 188)
+        Me.Label18.Location = New System.Drawing.Point(8, 259)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(127, 13)
         Me.Label18.TabIndex = 22
@@ -589,7 +729,7 @@ Partial Class frmSettings
         'cbAutoLure
         '
         Me.cbAutoLure.AutoSize = True
-        Me.cbAutoLure.Location = New System.Drawing.Point(8, 92)
+        Me.cbAutoLure.Location = New System.Drawing.Point(11, 163)
         Me.cbAutoLure.Name = "cbAutoLure"
         Me.cbAutoLure.Size = New System.Drawing.Size(160, 17)
         Me.cbAutoLure.TabIndex = 7
@@ -659,23 +799,23 @@ Partial Class frmSettings
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.Location = New System.Drawing.Point(270, 41)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(90, 13)
+        Me.Label23.Size = New System.Drawing.Size(101, 13)
         Me.Label23.TabIndex = 35
-        Me.Label23.Text = "WoD Bait Key:"
+        Me.Label23.Text = "WoD Bait Key 1:"
         '
-        'txtBaitKey
+        'txtBaitKey1
         '
-        Me.txtBaitKey.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtBaitKey.Location = New System.Drawing.Point(370, 38)
-        Me.txtBaitKey.Name = "txtBaitKey"
-        Me.txtBaitKey.Size = New System.Drawing.Size(22, 20)
-        Me.txtBaitKey.TabIndex = 29
-        Me.txtBaitKey.Text = "6"
+        Me.txtBaitKey1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBaitKey1.Location = New System.Drawing.Point(370, 38)
+        Me.txtBaitKey1.Name = "txtBaitKey1"
+        Me.txtBaitKey1.Size = New System.Drawing.Size(22, 20)
+        Me.txtBaitKey1.TabIndex = 29
+        Me.txtBaitKey1.Text = "6"
         '
         'cbAutoBait
         '
         Me.cbAutoBait.AutoSize = True
-        Me.cbAutoBait.Location = New System.Drawing.Point(8, 136)
+        Me.cbAutoBait.Location = New System.Drawing.Point(11, 207)
         Me.cbAutoBait.Name = "cbAutoBait"
         Me.cbAutoBait.Size = New System.Drawing.Size(151, 17)
         Me.cbAutoBait.TabIndex = 32
@@ -686,11 +826,21 @@ Partial Class frmSettings
         '
         Me.tmeAudio.Interval = 250
         '
+        'cbRandomBait
+        '
+        Me.cbRandomBait.AutoSize = True
+        Me.cbRandomBait.Location = New System.Drawing.Point(201, 206)
+        Me.cbRandomBait.Name = "cbRandomBait"
+        Me.cbRandomBait.Size = New System.Drawing.Size(203, 17)
+        Me.cbRandomBait.TabIndex = 48
+        Me.cbRandomBait.Text = "Random bait between the 7 possibles"
+        Me.cbRandomBait.UseVisualStyleBackColor = True
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 305)
+        Me.ClientSize = New System.Drawing.Size(460, 370)
         Me.Controls.Add(Me.tabSettings)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
@@ -762,7 +912,7 @@ Partial Class frmSettings
     Friend WithEvents cbApplyRaft As System.Windows.Forms.CheckBox
     Friend WithEvents cbShiftLoot As System.Windows.Forms.CheckBox
     Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents txtBaitKey As System.Windows.Forms.TextBox
+    Friend WithEvents txtBaitKey1 As System.Windows.Forms.TextBox
     Friend WithEvents cbAutoBait As System.Windows.Forms.CheckBox
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents cmbAudio As System.Windows.Forms.ComboBox
@@ -770,4 +920,17 @@ Partial Class frmSettings
     Friend WithEvents lblAudioLevel As System.Windows.Forms.Label
     Friend WithEvents pgbSoundLevel As System.Windows.Forms.ProgressBar
     Friend WithEvents tmeAudio As System.Windows.Forms.Timer
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey3 As System.Windows.Forms.TextBox
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey7 As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey6 As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey5 As System.Windows.Forms.TextBox
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents txtBaitKey4 As System.Windows.Forms.TextBox
+    Friend WithEvents cbRandomBait As System.Windows.Forms.CheckBox
 End Class
