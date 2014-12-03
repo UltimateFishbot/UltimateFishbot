@@ -17,7 +17,7 @@ Public Class frmSettings
 
         ' Splash 
         txtSplash.Text = My.Settings.SplashLimit.ToString
-        LoadAudioDevices()        
+        LoadAudioDevices()
 
         ' Premium
         txtProcName.Text = My.Settings.ProcName
