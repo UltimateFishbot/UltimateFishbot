@@ -39,8 +39,15 @@ Public Class frmSettings
         cbShiftLoot.Checked = My.Settings.ShiftLoot
 
         ' WoD Premium (Bait)
-        txtBaitKey.Text = My.Settings.BaitKey
+        txtBaitKey1.Text = My.Settings.BaitKey1
+        txtBaitKey2.Text = My.Settings.BaitKey2
+        txtBaitKey3.Text = My.Settings.BaitKey3
+        txtBaitKey4.Text = My.Settings.BaitKey4
+        txtBaitKey5.Text = My.Settings.BaitKey5
+        txtBaitKey6.Text = My.Settings.BaitKey6
+        txtBaitKey7.Text = My.Settings.BaitKey7
         cbAutoBait.Checked = My.Settings.AutoBait
+        cbRandomBait.Checked = My.Settings.randomBait
 
     End Sub
 
@@ -84,8 +91,15 @@ Public Class frmSettings
         My.Settings.ShiftLoot = cbShiftLoot.Checked
 
         ' WoD Premium (Bait)
-        My.Settings.BaitKey = txtBaitKey.Text
+        My.Settings.BaitKey1 = txtBaitKey1.Text
+        My.Settings.BaitKey2 = txtBaitKey2.Text
+        My.Settings.BaitKey3 = txtBaitKey3.Text
+        My.Settings.BaitKey4 = txtBaitKey4.Text
+        My.Settings.BaitKey5 = txtBaitKey5.Text
+        My.Settings.BaitKey6 = txtBaitKey6.Text
+        My.Settings.BaitKey7 = txtBaitKey7.Text
         My.Settings.AutoBait = cbAutoBait.Checked
+        My.Settings.randomBait = cbRandomBait.Checked
 
         Me.Close()
     End Sub
