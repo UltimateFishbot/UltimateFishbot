@@ -79,7 +79,38 @@ Public Class Gorden
         WaitTime = 0
     End Sub
 
-    Public Property Enabled() As Boolean
+    Public Sub Start()
+        BotIs = BotStates.Running
+        ResetTimers()
+        Enabled = True
+    End Sub
+
+    Public Sub Pause()
+        BotIs = BotStates.Paused
+        Enabled = False
+    End Sub
+
+    Public Sub Unpause()
+        BotIs = BotStates.Running
+        Enabled = True
+    End Sub
+
+    Public Sub StopBot()
+        BotIs = BotStates.Stopped
+        Enabled = False
+    End Sub
+
+    Private _BotIs As BotStates = BotStates.Stopped
+    Public Property BotIs() As BotStates
+        Get
+            Return _BotIs
+        End Get
+        Private Set(value As BotStates)
+            _BotIs = value
+        End Set
+    End Property
+
+    Private Property Enabled() As Boolean
         Get
             Return MainTimer.Enabled
         End Get
@@ -89,25 +120,15 @@ Public Class Gorden
             If Not value Then
                 GordenIs = FishingStates.Idle
             Else
-                If My.Settings.AutoRaft Then
-                    RaftTimer.Enabled = True
-                End If
+                UpdateSettings()
+                RaftTimer.Enabled = My.Settings.AutoRaft
+                CharmTimer.Enabled = My.Settings.AutoCharm
+                BobberTimer.Enabled = My.Settings.AutoLure
+                BaitTimer.Enabled = My.Settings.AutoBait
 
-                If My.Settings.AutoCharm Then
-                    CharmTimer.Enabled = True
-                End If
-
-                If My.Settings.AutoLure Then
-                    BobberTimer.Enabled = True
-                End If
-
-                If My.Settings.AutoBait Then
-                    BaitTimer.Enabled = True
-                End If
-
+                HearthStoneTimer.Enabled = My.Settings.AutoHearth
                 If My.Settings.AutoHearth Then
                     HearthStoneTimer.Interval = Minutes(My.Settings.HearthTime)
-                    HearthStoneTimer.Enabled = True
                 End If
 
             End If
@@ -118,16 +139,16 @@ Public Class Gorden
         Return 1000 * 60 * min
     End Function
 
-    Public Sub ResetTimers()
+    Private Sub ResetTimers()
+        _NeedsBobber = True
+        _NeedsRaft = True
+        _NeedsCharm = True
+        _NeedsBait = True
         ResetMainTimer()
         ResetBobberTimer()
         ResetRaftTimer()
         ResetCharmTimer()
         ResetBaitTimer()
-        _NeedsBobber = True
-        _NeedsRaft = True
-        _NeedsCharm = True
-        _NeedsBait = True
     End Sub
 
     Private Sub ResetMainTimer()
@@ -258,6 +279,12 @@ Public Class Gorden
 
     End Sub
 End Class
+
+Public Enum BotStates
+    Running
+    Paused
+    Stopped
+End Enum
 
 Public Enum FishingStates
     Idle

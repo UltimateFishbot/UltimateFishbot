@@ -3,24 +3,34 @@ Public Class frmMain
 
     Private Sub btnStart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
         If Win32.ActivateWoW Then
-            myGorden.ResetTimers()
-            myGorden.Enabled = True
-            btnStart.Enabled = False
             btnSettings.Enabled = False
             btnStop.Enabled = True
-            lblStatus.Text = "Starting"
+            If myGorden.BotIs = BotStates.Stopped Then
+                lblStatus.Text = "Starting"
+                btnStart.Text = "Pause"
+                myGorden.Start()
+            ElseIf myGorden.BotIs = BotStates.Running Then
+                lblStatus.Text = "Paused"
+                btnStart.Text = "Resume"
+                btnSettings.Enabled = True
+                myGorden.Pause()
+            ElseIf myGorden.BotIs = BotStates.Paused Then
+                lblStatus.Text = "Resuming"
+                btnStart.Text = "Pause"
+                myGorden.Unpause()
+            End If
         Else
             Windows.Forms.MessageBox.Show("Error Finding Game.  Make sure you start the game before clicking 'Start' on the bot")
         End If
-        
+
     End Sub
 
     Private Sub btnStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStop.Click
-        myGorden.Enabled = False
-        btnStart.Enabled = True
+        myGorden.StopBot()
         btnSettings.Enabled = True
         btnStop.Enabled = False
         lblStatus.Text = "Stopped"
+        btnStart.Text = "Start"
     End Sub
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
