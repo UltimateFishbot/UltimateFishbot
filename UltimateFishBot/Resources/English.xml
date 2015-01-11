@@ -1,0 +1,136 @@
+<translation>
+    <frmCode>
+        <TITLE>Thanks for using the UltimateFishBot</TITLE>
+        <LIBELLE_TITLE>Relax... It's still free !</LIBELLE_TITLE>
+        <LIBELLE_DESC>You've used the Ultimate Fishbot {0} times. To continue using it; you need to visit the Fishbot website and enter the 3-5 digit code in the box below.  If a browser window didn't open, you can find it at www.fishbot.net/code.html - or click the link below.  I promise, it's quick and painless.</LIBELLE_DESC>
+        <LIBELLE_TRY_AGAIN>Try again!</LIBELLE_TRY_AGAIN>
+        <LIBELLE_ENTER>Enter</LIBELLE_ENTER>
+    </frmCode>
+    <frmDirections>
+        <TITLE>How to Use</TITLE>
+        <LABEL_SETTING_WOW_TITLE>1.)  Setting Up WoW</LABEL_SETTING_WOW_TITLE>
+        <LABEL_SETTING_WOW_DESC>
+            * Equip your Fishing Pole
+            * Place Fishing in the #1 Slot on your action bar
+            * Set the Master Volume to 100%.  Sound to High, Music to Low, Ambience to Low
+            * Put WoW into Windowed mode and shrink the screen as much as possible
+        </LABEL_SETTING_WOW_DESC>
+        <LABEL_FIND_LOCATION_TITLE>2.)  Find a Location</LABEL_FIND_LOCATION_TITLE>
+        <LABEL_FIND_LOCATION_DESC>
+            * Walk to some lake/water
+            * Zoom in as much as possible
+            * Find a location with as little sound as possible
+            * Avoid locations with anything that changes the mouse icon
+        </LABEL_FIND_LOCATION_DESC>
+        <LABEL_FISH_TITLE>3.)  Fish!</LABEL_FISH_TITLE>
+        <LABEL_FISH_DESC>
+            * Press Start, sit back, and let The Gorton's Fisherman handle things.
+        </LABEL_FISH_DESC>
+    </frmDirections>
+    <frmMain>
+        <BUTTON_START>Start</BUTTON_START>
+        <BUTTON_RESUME>Resume</BUTTON_RESUME>
+        <BUTTON_STOP>Stop</BUTTON_STOP>
+        <BUTTON_PAUSE>Pause</BUTTON_PAUSE>
+        <BUTTON_SETTINGS>Settings</BUTTON_SETTINGS>
+        <BUTTON_HTU>How to Use</BUTTON_HTU>
+        <BUTTON_EXIT>Exit</BUTTON_EXIT>
+
+        <LABEL_STARTED>Started</LABEL_STARTED>
+        <LABEL_RESUMED>Resumed</LABEL_RESUMED>
+        <LABEL_PAUSED>Paused</LABEL_PAUSED>
+        <LABEL_STOPPED>Stopped</LABEL_STOPPED>
+    </frmMain>
+    <manager>
+        <LABEL_HEAR_FISH>I Hear a Fish !</LABEL_HEAR_FISH>
+        <LABEL_CASTING>Casting...</LABEL_CASTING>
+        <LABEL_START_FINDING>Start Finding Bobber...</LABEL_START_FINDING>
+        <LABEL_FINDING>Finding Bobber...</LABEL_FINDING>
+        <LABEL_WAITING>Waiting for Fish ({0}/{1}s) ...</LABEL_WAITING>
+
+        <LABEL_HEARTHSTONE>Done Fishing - Hearthing...</LABEL_HEARTHSTONE>
+        <LABEL_APPLY_LURE>Applying Lure...</LABEL_APPLY_LURE>
+        <LABEL_APPLY_CHARM> Applying Charm...</LABEL_APPLY_CHARM>
+        <LABEL_APPLY_RAFT>Applying Raft...</LABEL_APPLY_RAFT>
+        <LABEL_APPLY_BAIT>Applying Bait {0}...</LABEL_APPLY_BAIT>
+    </manager>
+    <frmSettings>
+        <TITLE>Settings</TITLE>
+
+        <!-- Tabs Titles -->
+        <TAB_TITLE_GENERAL_FISHING>General Fishing</TAB_TITLE_GENERAL_FISHING>
+        <TAB_TITLE_FIND_CURSOR>Finding the Cursor</TAB_TITLE_FIND_CURSOR>
+        <TAB_TITLE_HEARING_FISH>Hearing the Fish</TAB_TITLE_HEARING_FISH>
+        <TAB_TITLE_PREMIUM>Premium Settings</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_LANGUAGE>Language</TAB_TITLE_LANGUAGE>
+
+        <!-- General Fishing -->
+        <LABEL_DELAY_AFTER_CAST>Delay After Cast:</LABEL_DELAY_AFTER_CAST>
+        <LABEL_DELAY_AFTER_CAST_DESC>The number of milliseconds to wait after the cast before searching. Too short and you'll skip the bobber, too long and you'll waste time.</LABEL_DELAY_AFTER_CAST_DESC>
+
+        <LABEL_FISH_WAIT_LIMIT>Fish Wait Limit:</LABEL_FISH_WAIT_LIMIT>
+        <LABEL_FISH_WAIT_LIMIT_DESC>The number of milliseconds to listen for a fish before giving up. Too long decrease bots effectiveness, too short and you miss fish.</LABEL_FISH_WAIT_LIMIT_DESC>
+
+        <LABEL_DELAY_AFTER_LOOTING>Delay After Looting:</LABEL_DELAY_AFTER_LOOTING>
+        <LABEL_DELAY_AFTER_LOOTING_DESC>The number of milliseconds to wait after looting a fish.</LABEL_DELAY_AFTER_LOOTING_DESC>
+
+        <!-- Finding the Cursor -->
+
+        <LABEL_SCANNING_STEPS>Scanning Steps:</LABEL_SCANNING_STEPS>
+        <LABEL_SCANNING_STEPS_DESC>The greater number of steps, the less likely you are to miss the cursor; but the slower your scan will be.</LABEL_SCANNING_STEPS_DESC>
+
+        <LABEL_SCANNING_DELAY>Scanning Delay:</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY_DESC>The number of milliseconds to wait before checking if the cursor has changed.  To slow and you might not detect the bobber; but a bigger number goes slower.</LABEL_SCANNING_DELAY_DESC>
+
+        <LABEL_SCANNING_RETRIES>Scanning Retries:</LABEL_SCANNING_RETRIES>
+        <LABEL_SCANNING_RETRIES_DESC>How many times to run the search pattern.</LABEL_SCANNING_RETRIES_DESC>
+
+        <LABEL_CHECK_ICON>Check Cursor Icon</LABEL_CHECK_ICON>
+        <LABEL_CHECK_ICON_DESC>Specify if the bot must check the icon before fishing. Avoid clicking when it's not a bobber. May not work on some computer, disable if the bot don't find your bobber.</LABEL_CHECK_ICON_DESC>
+
+        <!-- Hearing the Fish -->
+
+        <LABEL_SPLASH_THRESHOLD>Splash Threshold:</LABEL_SPLASH_THRESHOLD>
+        <LABEL_SPLASH_THRESHOLD_DESC>Determines if a given sound is loud enough to be a fish or not.  Too low and the bot will mistake non-fish for fish.  Too high and the bot will ignore the real fish.</LABEL_SPLASH_THRESHOLD_DESC>
+
+        <LABEL_SCANNING_DELAY>Audio Device:</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_SCANNING_DELAY_DESC>
+
+        <!-- Premium Settings -->
+        <LABEL_CAST_KEY>Cast Key:</LABEL_CAST_KEY>
+        <LABEL_LURE_KEY>Lure Key:</LABEL_LURE_KEY>
+        <LABEL_HEARTHSTONE_KEY>Hearth Key:</LABEL_HEARTHSTONE_KEY>
+        <LABEL_RAFT_KEY>MoP Raft Key:</LABEL_RAFT_KEY>
+        <LABEL_CHARM_KEY>MoP Charm Key:</LABEL_CHARM_KEY>
+        <LABEL_BAIT_KEY_1>WoD Bait Key 1:</LABEL_BAIT_KEY_1>
+        <LABEL_BAIT_KEY_2>WoD Bait Key 2:</LABEL_BAIT_KEY_2>
+        <LABEL_BAIT_KEY_3>WoD Bait Key 3:</LABEL_BAIT_KEY_3>
+        <LABEL_BAIT_KEY_4>WoD Bait Key 4:</LABEL_BAIT_KEY_4>
+        <LABEL_BAIT_KEY_5>WoD Bait Key 5:</LABEL_BAIT_KEY_5>
+        <LABEL_BAIT_KEY_6>WoD Bait Key 6:</LABEL_BAIT_KEY_6>
+        <LABEL_BAIT_KEY_7>WoD Bait Key 7:</LABEL_BAIT_KEY_7>
+
+        <LABEL_CUSTOMIZE_DESC>Customize shortkeys to avoid rearranging your bars before/after fishing.</LABEL_CUSTOMIZE_DESC>
+
+        <CB_ALT_KEY>Use Alt-Key Modifer</CB_ALT_KEY>
+        <CB_AUTO_LURE>Apply Lure Every X minutes</CB_AUTO_LURE>
+        <CB_AUTO_HEARTHSTONE>Hearth To Inn After X Minutes:</CB_AUTO_HEARTHSTONE>
+        <CB_AUTO_RAFT>Refresh Raft Every X minutes</CB_AUTO_RAFT>
+        <CB_AUTO_CHARM>Refresh Charm Every X minutes</CB_AUTO_CHARM>
+        <CB_AUTO_BAIT>Apply Bait Every X minutes</CB_AUTO_BAIT>
+        <CB_RANDOM_BAIT>Random bait between the 7 possibles</CB_RANDOM_BAIT>
+        <CB_SHIFT_LOOT>Shift-Loot? (If AutoLoot is Disabled, Enable This)</CB_SHIFT_LOOT>
+
+        <LABEL_PROCESS_NAME>WoW Process Name:</LABEL_PROCESS_NAME>
+        <LABEL_PROCESS_NAME_DESC>The name of the process to activate (this rarely changes) but has been updated with new expansions in the past.</LABEL_PROCESS_NAME_DESC>
+
+        <!-- Language  -->
+        <LABEL_LANGUAGE>Language :</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE_DESC>
+          Select the language that you want to use.
+          Language XML Files must be found in Resources folder.
+        </LABEL_LANGUAGE_DESC>
+        <TITLE_LANGUAGE_CHANGE>Restart Required.</TITLE_LANGUAGE_CHANGE>
+        <LABEL_LANGUAGE_CHANGE>The application will restart in order to apply the language change.</LABEL_LANGUAGE_CHANGE>
+    </frmSettings>
+</translation>
