@@ -1,6 +1,7 @@
 UltimateFishbot
 ===============
 [![Build status](https://ci.appveyor.com/api/projects/status/rjlp159797lfbf72?svg=true)](https://ci.appveyor.com/project/RobPaulson/ultimatefishbot)
+
 A simple World of Warcraft fishbot written in C#.
 
 Introduction
