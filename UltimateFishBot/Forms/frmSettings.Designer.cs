@@ -43,6 +43,10 @@
             this.LabelSplashThresholdDesc = new System.Windows.Forms.Label();
             this.LabelSplashThreshold = new System.Windows.Forms.Label();
             this.TabPage4 = new System.Windows.Forms.TabPage();
+            this.txtCharmTime = new System.Windows.Forms.TextBox();
+            this.txtBaitTime = new System.Windows.Forms.TextBox();
+            this.txtRaftTime = new System.Windows.Forms.TextBox();
+            this.txtLureTime = new System.Windows.Forms.TextBox();
             this.cbRandomBait = new System.Windows.Forms.CheckBox();
             this.LabelBaitKey7 = new System.Windows.Forms.Label();
             this.txtBaitKey7 = new System.Windows.Forms.TextBox();
@@ -82,7 +86,7 @@
             this.cbAutoBait = new System.Windows.Forms.CheckBox();
             this.LabelScanningDelay = new System.Windows.Forms.Label();
             this.tmeAudio = new System.Windows.Forms.Timer(this.components);
-            this.btnSave = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.txtDelay = new System.Windows.Forms.TextBox();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.TabPage2 = new System.Windows.Forms.TabPage();
@@ -105,11 +109,7 @@
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguageDesc = new System.Windows.Forms.Label();
             this.labelLanguage = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtLureTime = new System.Windows.Forms.TextBox();
-            this.txtRaftTime = new System.Windows.Forms.TextBox();
-            this.txtBaitTime = new System.Windows.Forms.TextBox();
-            this.txtCharmTime = new System.Windows.Forms.TextBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -300,6 +300,42 @@
             this.TabPage4.TabIndex = 3;
             this.TabPage4.Text = "Premium Settings";
             this.TabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtCharmTime
+            // 
+            this.txtCharmTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCharmTime.Location = new System.Drawing.Point(449, 183);
+            this.txtCharmTime.Name = "txtCharmTime";
+            this.txtCharmTime.Size = new System.Drawing.Size(30, 20);
+            this.txtCharmTime.TabIndex = 52;
+            this.txtCharmTime.Text = "60";
+            // 
+            // txtBaitTime
+            // 
+            this.txtBaitTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBaitTime.Location = new System.Drawing.Point(205, 205);
+            this.txtBaitTime.Name = "txtBaitTime";
+            this.txtBaitTime.Size = new System.Drawing.Size(30, 20);
+            this.txtBaitTime.TabIndex = 51;
+            this.txtBaitTime.Text = "5";
+            // 
+            // txtRaftTime
+            // 
+            this.txtRaftTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRaftTime.Location = new System.Drawing.Point(205, 183);
+            this.txtRaftTime.Name = "txtRaftTime";
+            this.txtRaftTime.Size = new System.Drawing.Size(30, 20);
+            this.txtRaftTime.TabIndex = 50;
+            this.txtRaftTime.Text = "8";
+            // 
+            // txtLureTime
+            // 
+            this.txtLureTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLureTime.Location = new System.Drawing.Point(205, 161);
+            this.txtLureTime.Name = "txtLureTime";
+            this.txtLureTime.Size = new System.Drawing.Size(30, 20);
+            this.txtLureTime.TabIndex = 49;
+            this.txtLureTime.Text = "10";
             // 
             // cbRandomBait
             // 
@@ -670,16 +706,16 @@
             // 
             this.tmeAudio.Interval = 250;
             // 
-            // btnSave
+            // buttonSave
             // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(157, 341);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(92, 23);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Location = new System.Drawing.Point(157, 341);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(92, 23);
+            this.buttonSave.TabIndex = 13;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // txtDelay
             // 
@@ -918,61 +954,25 @@
             this.labelLanguage.TabIndex = 0;
             this.labelLanguage.Text = "Language :";
             // 
-            // btnCancel
+            // buttonCancel
             // 
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(255, 341);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(92, 23);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // txtLureTime
-            // 
-            this.txtLureTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLureTime.Location = new System.Drawing.Point(205, 161);
-            this.txtLureTime.Name = "txtLureTime";
-            this.txtLureTime.Size = new System.Drawing.Size(30, 20);
-            this.txtLureTime.TabIndex = 49;
-            this.txtLureTime.Text = "10";
-            // 
-            // txtRaftTime
-            // 
-            this.txtRaftTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRaftTime.Location = new System.Drawing.Point(205, 183);
-            this.txtRaftTime.Name = "txtRaftTime";
-            this.txtRaftTime.Size = new System.Drawing.Size(30, 20);
-            this.txtRaftTime.TabIndex = 50;
-            this.txtRaftTime.Text = "8";
-            // 
-            // txtBaitTime
-            // 
-            this.txtBaitTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitTime.Location = new System.Drawing.Point(205, 205);
-            this.txtBaitTime.Name = "txtBaitTime";
-            this.txtBaitTime.Size = new System.Drawing.Size(30, 20);
-            this.txtBaitTime.TabIndex = 51;
-            this.txtBaitTime.Text = "5";
-            // 
-            // txtCharmTime
-            // 
-            this.txtCharmTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCharmTime.Location = new System.Drawing.Point(449, 183);
-            this.txtCharmTime.Name = "txtCharmTime";
-            this.txtCharmTime.Size = new System.Drawing.Size(30, 20);
-            this.txtCharmTime.TabIndex = 52;
-            this.txtCharmTime.Text = "60";
+            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancel.Location = new System.Drawing.Point(255, 341);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(92, 23);
+            this.buttonCancel.TabIndex = 11;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 371);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.tabSettings);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.buttonCancel);
             this.Name = "frmSettings";
             this.Load += new System.EventHandler(this.frmSettings_Load);
             this.TabPage3.ResumeLayout(false);
@@ -1045,7 +1045,7 @@
         internal System.Windows.Forms.CheckBox cbAutoBait;
         internal System.Windows.Forms.Label LabelScanningDelay;
         internal System.Windows.Forms.Timer tmeAudio;
-        internal System.Windows.Forms.Button btnSave;
+        internal System.Windows.Forms.Button buttonSave;
         internal System.Windows.Forms.TextBox txtDelay;
         internal System.Windows.Forms.TabControl tabSettings;
         internal System.Windows.Forms.TabPage TabPage2;
@@ -1062,7 +1062,7 @@
         internal System.Windows.Forms.TextBox txtRetries;
         internal System.Windows.Forms.Label LabelScanningRetriesDesc;
         internal System.Windows.Forms.Label LabelScanningRetries;
-        internal System.Windows.Forms.Button btnCancel;
+        internal System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TabPage TabPage5;
         private System.Windows.Forms.Label labelLanguage;
         private System.Windows.Forms.Label labelLanguageDesc;

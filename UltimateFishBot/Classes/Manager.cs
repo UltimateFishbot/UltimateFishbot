@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.BodyParts;
+using UltimateFishBot.Forms;
 using UltimateFishBot.Properties;
 
 namespace UltimateFishBot.Classes
 {
-    class Manager
+    public class Manager
     {
         public enum FishingState
         {
@@ -34,6 +35,18 @@ namespace UltimateFishBot.Classes
             Bait        = 0x10
         }
 
+        public struct FishingStats
+        {
+            public int totalSuccessFishing { get; set; }
+            public int totalMissedFishing  { get; set; }
+
+            public void Reset()
+            {
+                totalSuccessFishing = 0;
+                totalMissedFishing  = 0;
+            }
+        }
+
         private Timer m_nextActionTimer;
         private Timer m_LureTimer;
         private Timer m_HearthStoneTimer;
@@ -52,6 +65,7 @@ namespace UltimateFishBot.Classes
 
         private NeededAction m_neededActions;
         private FishingState m_actualState;
+        private FishingStats m_fishingStats;
 
         private const int SECOND                = 1000;
         private const int MINUTE                = 60 * SECOND;
@@ -68,6 +82,8 @@ namespace UltimateFishBot.Classes
 
             m_actualState   = FishingState.Stopped;
             m_neededActions = NeededAction.None;
+
+            m_fishingStats.Reset();
 
             //InitializeTimer(Timer,                Handler);
             InitializeTimer(ref m_nextActionTimer,  TakeNextAction);
@@ -131,18 +147,52 @@ namespace UltimateFishBot.Classes
             SetActualState(FishingState.Paused);
         }
 
-        public void SetActualState(FishingState state)
+        public void SetActualState(FishingState newState)
         {
             if (m_actualState == FishingState.Stopped || m_actualState == FishingState.Paused)
-                if (state != FishingState.Start)
+                if (newState != FishingState.Start)
                     return;
 
-            m_actualState = state;
+            UpdateStats(newState);
+
+            m_actualState = newState;
+        }
+
+        private void UpdateStats(FishingState newState)
+        {
+            if (newState == FishingState.Idle) // If we start a new loop, check why and increase stats according
+            {
+                switch (m_actualState)
+                {
+                    case FishingState.Looting:
+                    {
+                        ++m_fishingStats.totalSuccessFishing;
+                        break;
+                    }
+                    case FishingState.Casting:
+                    case FishingState.SearchingForBobber:
+                    case FishingState.WaitingForFish:
+                    {
+                        ++m_fishingStats.totalMissedFishing;
+                        break;
+                    }
+                }
+            }
         }
 
         public FishingState GetActualState()
         {
             return m_actualState;
+        }
+
+        public FishingStats GetFishingStats()
+        {
+            return m_fishingStats;
+        }
+
+        public void ResetFishingStats()
+        {
+            m_fishingStats.Reset();
         }
 
         public int GetFishWaitTime()
@@ -261,7 +311,7 @@ namespace UltimateFishBot.Classes
 
                     if ((m_fishWaitTime += ACTION_TIMER_LENGTH) >= Properties.Settings.Default.FishWait)
                     {
-                        m_actualState = FishingState.Idle;
+                        SetActualState(FishingState.Idle);
                         m_fishWaitTime = 0;
                     }
 

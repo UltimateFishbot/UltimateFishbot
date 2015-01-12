@@ -35,6 +35,7 @@
         <BUTTON_STOP>Stop</BUTTON_STOP>
         <BUTTON_PAUSE>Pause</BUTTON_PAUSE>
         <BUTTON_SETTINGS>Paramètres</BUTTON_SETTINGS>
+        <BUTTON_STATISTICS>Statistiques</BUTTON_STATISTICS>
         <BUTTON_HTU>Mode d'Emploi</BUTTON_HTU>
         <BUTTON_EXIT>Quitter</BUTTON_EXIT>
 
@@ -134,5 +135,17 @@
         </LABEL_LANGUAGE_DESC>
         <TITLE_LANGUAGE_CHANGE>Redémarrage Requis</TITLE_LANGUAGE_CHANGE>
         <LABEL_LANGUAGE_CHANGE>L'application va redémarrer afin prendre en compte le changement de langue.</LABEL_LANGUAGE_CHANGE>
+
+        <!-- Buttons -->
+        <BUTTON_SAVE>Sauvegarder</BUTTON_SAVE>
+        <BUTTON_CANCEL>Annuler</BUTTON_CANCEL>
     </frmSettings>
+    <frmStats>
+        <TITLE>Statistiques</TITLE>
+        <LABEL_SUCCESS>Poisson(s) Pêché(s) :</LABEL_SUCCESS>
+        <LABEL_MISSED>Poisson(s) Manqué(s) :</LABEL_MISSED>
+        <LABEL_TOTAL>Total :</LABEL_TOTAL>
+        <BUTTON_RESET>Reset</BUTTON_RESET>
+        <BUTTON_CLOSE>Fermer</BUTTON_CLOSE>
+    </frmStats>
 </translation>

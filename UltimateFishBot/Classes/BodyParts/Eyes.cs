@@ -100,19 +100,10 @@ namespace UltimateFishBot.Classes.BodyParts
             if (firstImage.Width != secondImage.Width || firstImage.Height != secondImage.Height)
                 return false;
 
-            string firstPixel = "";
-            string secondPixel = "";
-
             for (int i = 0; i < firstImage.Width; i++)
-            {
                 for (int j = 0; j < firstImage.Height; j++)
-                {
-                    firstPixel = firstImage.GetPixel(i, j).ToString();
-                    secondPixel = secondImage.GetPixel(i, j).ToString();
-                    if (firstPixel != secondPixel)
+                    if (firstImage.GetPixel(i, j).ToString() != secondImage.GetPixel(i, j).ToString())
                         return false;
-                }
-            }
 
             return true;
         }

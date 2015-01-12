@@ -36,13 +36,14 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnStatistics = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSettings
             // 
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(227, 80);
+            this.btnSettings.Location = new System.Drawing.Point(227, 63);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(92, 23);
             this.btnSettings.TabIndex = 15;
@@ -63,7 +64,7 @@
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(227, 138);
+            this.btnClose.Location = new System.Drawing.Point(227, 150);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(92, 23);
             this.btnClose.TabIndex = 13;
@@ -74,7 +75,7 @@
             // btnHowTo
             // 
             this.btnHowTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHowTo.Location = new System.Drawing.Point(227, 109);
+            this.btnHowTo.Location = new System.Drawing.Point(227, 121);
             this.btnHowTo.Name = "btnHowTo";
             this.btnHowTo.Size = new System.Drawing.Size(92, 23);
             this.btnHowTo.TabIndex = 12;
@@ -85,7 +86,7 @@
             // btnStop
             // 
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.Location = new System.Drawing.Point(227, 51);
+            this.btnStop.Location = new System.Drawing.Point(227, 34);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(92, 23);
             this.btnStop.TabIndex = 10;
@@ -96,7 +97,7 @@
             // btnStart
             // 
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Location = new System.Drawing.Point(227, 22);
+            this.btnStart.Location = new System.Drawing.Point(227, 5);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(92, 23);
             this.btnStart.TabIndex = 9;
@@ -115,11 +116,23 @@
             this.PictureBox1.TabIndex = 16;
             this.PictureBox1.TabStop = false;
             // 
+            // btnStatistics
+            // 
+            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatistics.Location = new System.Drawing.Point(227, 92);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(92, 23);
+            this.btnStatistics.TabIndex = 17;
+            this.btnStatistics.Text = "Statistics";
+            this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 194);
+            this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.lblStatus);
@@ -129,8 +142,8 @@
             this.Controls.Add(this.btnStart);
             this.Name = "frmMain";
             this.Text = "UltimateFishBot - v 4.0";
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -145,6 +158,7 @@
         internal System.Windows.Forms.Button btnStop;
         internal System.Windows.Forms.Button btnStart;
         internal System.Windows.Forms.PictureBox PictureBox1;
+        internal System.Windows.Forms.Button btnStatistics;
     }
 }
 

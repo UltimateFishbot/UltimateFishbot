@@ -33,6 +33,7 @@
         <BUTTON_STOP>Stop</BUTTON_STOP>
         <BUTTON_PAUSE>Pause</BUTTON_PAUSE>
         <BUTTON_SETTINGS>Settings</BUTTON_SETTINGS>
+        <BUTTON_STATISTICS>Statistics</BUTTON_STATISTICS>
         <BUTTON_HTU>How to Use</BUTTON_HTU>
         <BUTTON_EXIT>Exit</BUTTON_EXIT>
 
@@ -132,5 +133,17 @@
         </LABEL_LANGUAGE_DESC>
         <TITLE_LANGUAGE_CHANGE>Restart Required.</TITLE_LANGUAGE_CHANGE>
         <LABEL_LANGUAGE_CHANGE>The application will restart in order to apply the language change.</LABEL_LANGUAGE_CHANGE>
+
+        <!-- Buttons -->
+        <BUTTON_SAVE>Save</BUTTON_SAVE>
+        <BUTTON_CANCEL>Cancel</BUTTON_CANCEL>
     </frmSettings>
+    <frmStats>
+        <TITLE>Statistics</TITLE>
+        <LABEL_SUCCESS>Successful Fishing :</LABEL_SUCCESS>
+        <LABEL_MISSED>Missed Fish :</LABEL_MISSED>
+        <LABEL_TOTAL>Total :</LABEL_TOTAL>
+        <BUTTON_RESET>Reset</BUTTON_RESET>
+        <BUTTON_CLOSE>Close</BUTTON_CLOSE>
+    </frmStats>
 </translation>

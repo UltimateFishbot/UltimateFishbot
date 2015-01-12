@@ -116,6 +116,11 @@ namespace UltimateFishBot.Forms
             labelLanguage.Text              = Translate.GetTranslate("frmSettings", "LABEL_LANGUAGE");
             labelLanguageDesc.Text          = Translate.GetTranslate("frmSettings", "LABEL_LANGUAGE_DESC");
 
+            /// Buttons
+
+            buttonSave.Text                 = Translate.GetTranslate("frmSettings", "BUTTON_SAVE");
+            buttonCancel.Text               = Translate.GetTranslate("frmSettings", "BUTTON_CANCEL");
+
             /*
              * Set Settings from save
              */
@@ -175,12 +180,12 @@ namespace UltimateFishBot.Forms
             LoadLanguages();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             /// General
             Properties.Settings.Default.CastingDelay    = int.Parse(txtCastDelay.Text);

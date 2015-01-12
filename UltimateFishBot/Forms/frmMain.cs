@@ -41,6 +41,7 @@ namespace UltimateFishBot
             btnStart.Text       = Translate.GetTranslate("frmMain", "BUTTON_START");
             btnStop.Text        = Translate.GetTranslate("frmMain", "BUTTON_STOP");
             btnSettings.Text    = Translate.GetTranslate("frmMain", "BUTTON_SETTINGS");
+            btnStatistics.Text  = Translate.GetTranslate("frmMain", "BUTTON_STATISTICS");
             btnHowTo.Text       = Translate.GetTranslate("frmMain", "BUTTON_HTU");
             btnClose.Text       = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
             lblStatus.Text      = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
@@ -96,14 +97,20 @@ namespace UltimateFishBot
             new frmSettings().Show();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnStatistics_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            new frmStats(m_manager).Show();
         }
 
         private void btnHowTo_Click(object sender, EventArgs e)
         {
             new frmDirections().Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
