@@ -70,6 +70,9 @@ namespace UltimateFishBot.Classes.BodyParts
                 {
                     for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
                     {
+                        if (m_manager.IsStoppedOrPaused())
+                            throw new Exception("Bot paused or stopped");
+
                         Win32.MoveMouse(wowRectangle.X + x, wowRectangle.Y + y);
 
                         // Sleep (give the OS a chance to change the cursor)
