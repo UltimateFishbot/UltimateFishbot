@@ -155,7 +155,7 @@ namespace UltimateFishBot.Classes
 
         public void SetActualState(FishingState newState)
         {
-            if (m_actualState == FishingState.Stopped || m_actualState == FishingState.Paused)
+            if (IsStoppedOrPaused())
                 if (newState != FishingState.Start)
                     return;
 

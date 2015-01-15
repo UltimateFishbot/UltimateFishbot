@@ -51,8 +51,7 @@ namespace UltimateFishBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (   m_manager.GetActualState() != Manager.FishingState.Stopped
-                && m_manager.GetActualState() != Manager.FishingState.Paused)
+            if (!m_manager.IsStoppedOrPaused())
                 return;
 
             if (m_manager.GetActualState() == Manager.FishingState.Stopped)
@@ -137,8 +136,7 @@ namespace UltimateFishBot
 
                 if (id == (int)HotKey.StartStop)
                 {
-                    if (m_manager.GetActualState() == Manager.FishingState.Paused ||
-                        m_manager.GetActualState() == Manager.FishingState.Stopped)
+                    if (m_manager.IsStoppedOrPaused())
                         btnStart_Click(null, null);
                     else
                         btnStop_Click(null, null);
