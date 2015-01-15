@@ -4,7 +4,7 @@ A simple World of Warcraft fishbot written in C#.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rjlp159797lfbf72?svg=true)](https://ci.appveyor.com/project/RobPaulson/ultimatefishbot)
 
-Introduction
+Introduction 
 
 I started this project during my freshman year of college…many, many years ago.
 It’s been years since I’ve played Wow and I no longer have the amounts of free
