@@ -65,6 +65,7 @@
         <TAB_TITLE_FIND_CURSOR>Recherche du Curseur</TAB_TITLE_FIND_CURSOR>
         <TAB_TITLE_HEARING_FISH>Audio</TAB_TITLE_HEARING_FISH>
         <TAB_TITLE_PREMIUM>Paramètres Premium</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_ANTI_AFK>Anti-Afk</TAB_TITLE_ANTI_AFK>
         <TAB_TITLE_LANGUAGE>Langue</TAB_TITLE_LANGUAGE>
 
         <!-- General Fishing -->
@@ -126,6 +127,12 @@
 
         <LABEL_PROCESS_NAME>Nom processus WoW:</LABEL_PROCESS_NAME>
         <LABEL_PROCESS_NAME_DESC>Le nom du processus à mettre au premier plan (change rarement mais a déjà été changé lors de nouvelles extensions par le passé).</LABEL_PROCESS_NAME_DESC>
+
+        <!-- Anti-Afk  -->
+        <CB_ANTI_AFK>Activer l'Anti-Afk toutes les X minutes</CB_ANTI_AFK>
+        <CMB_ANTIAFK_MOVE>Avant - Arrière</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Gauche - Droite</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Saut</CMB_ANTIAFK_MOVE>
 
         <!-- Language  -->
         <LABEL_LANGUAGE>Langue :</LABEL_LANGUAGE>

@@ -105,6 +105,10 @@
             this.txtRetries = new System.Windows.Forms.TextBox();
             this.LabelScanningRetriesDesc = new System.Windows.Forms.Label();
             this.LabelScanningRetries = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.cmbMovements = new System.Windows.Forms.ComboBox();
+            this.txtAntiAfkTimer = new System.Windows.Forms.TextBox();
+            this.cbAntiAfk = new System.Windows.Forms.CheckBox();
             this.TabPage5 = new System.Windows.Forms.TabPage();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguageDesc = new System.Windows.Forms.Label();
@@ -115,6 +119,7 @@
             this.tabSettings.SuspendLayout();
             this.TabPage2.SuspendLayout();
             this.TabPage1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.TabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,7 +173,7 @@
             this.TabPage3.Controls.Add(this.LabelSplashThreshold);
             this.TabPage3.Location = new System.Drawing.Point(4, 22);
             this.TabPage3.Name = "TabPage3";
-            this.TabPage3.Size = new System.Drawing.Size(487, 309);
+            this.TabPage3.Size = new System.Drawing.Size(519, 309);
             this.TabPage3.TabIndex = 2;
             this.TabPage3.Text = "Hearing The Fish";
             this.TabPage3.UseVisualStyleBackColor = true;
@@ -296,7 +301,7 @@
             this.TabPage4.Controls.Add(this.cbAutoBait);
             this.TabPage4.Location = new System.Drawing.Point(4, 22);
             this.TabPage4.Name = "TabPage4";
-            this.TabPage4.Size = new System.Drawing.Size(487, 309);
+            this.TabPage4.Size = new System.Drawing.Size(519, 309);
             this.TabPage4.TabIndex = 3;
             this.TabPage4.Text = "Premium Settings";
             this.TabPage4.UseVisualStyleBackColor = true;
@@ -731,12 +736,13 @@
             this.tabSettings.Controls.Add(this.TabPage1);
             this.tabSettings.Controls.Add(this.TabPage3);
             this.tabSettings.Controls.Add(this.TabPage4);
+            this.tabSettings.Controls.Add(this.tabPage6);
             this.tabSettings.Controls.Add(this.TabPage5);
             this.tabSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabSettings.Location = new System.Drawing.Point(0, 0);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(495, 335);
+            this.tabSettings.Size = new System.Drawing.Size(527, 335);
             this.tabSettings.TabIndex = 12;
             this.tabSettings.SelectedIndexChanged += new System.EventHandler(this.tabSettings_SelectedIndexChanged);
             // 
@@ -754,7 +760,7 @@
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage2.Size = new System.Drawing.Size(487, 309);
+            this.TabPage2.Size = new System.Drawing.Size(519, 309);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "General Fishing";
             this.TabPage2.UseVisualStyleBackColor = true;
@@ -858,7 +864,7 @@
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(487, 309);
+            this.TabPage1.Size = new System.Drawing.Size(519, 309);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -911,6 +917,50 @@
             this.LabelScanningRetries.TabIndex = 15;
             this.LabelScanningRetries.Text = "Scanning Retries:";
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.cmbMovements);
+            this.tabPage6.Controls.Add(this.txtAntiAfkTimer);
+            this.tabPage6.Controls.Add(this.cbAntiAfk);
+            this.tabPage6.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(519, 309);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Anti-Afk";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // cmbMovements
+            // 
+            this.cmbMovements.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMovements.FormattingEnabled = true;
+            this.cmbMovements.Items.AddRange(new object[] {
+            "Default"});
+            this.cmbMovements.Location = new System.Drawing.Point(153, 130);
+            this.cmbMovements.Name = "cmbMovements";
+            this.cmbMovements.Size = new System.Drawing.Size(99, 21);
+            this.cmbMovements.TabIndex = 51;
+            // 
+            // txtAntiAfkTimer
+            // 
+            this.txtAntiAfkTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAntiAfkTimer.Location = new System.Drawing.Point(361, 105);
+            this.txtAntiAfkTimer.Name = "txtAntiAfkTimer";
+            this.txtAntiAfkTimer.Size = new System.Drawing.Size(30, 20);
+            this.txtAntiAfkTimer.TabIndex = 50;
+            this.txtAntiAfkTimer.Text = "10";
+            // 
+            // cbAntiAfk
+            // 
+            this.cbAntiAfk.AutoSize = true;
+            this.cbAntiAfk.Location = new System.Drawing.Point(153, 107);
+            this.cbAntiAfk.Name = "cbAntiAfk";
+            this.cbAntiAfk.Size = new System.Drawing.Size(177, 17);
+            this.cbAntiAfk.TabIndex = 9;
+            this.cbAntiAfk.Text = "Enable Anti-Afk every X minutes";
+            this.cbAntiAfk.UseVisualStyleBackColor = true;
+            // 
             // TabPage5
             // 
             this.TabPage5.Controls.Add(this.cmbLanguage);
@@ -919,7 +969,7 @@
             this.TabPage5.Location = new System.Drawing.Point(4, 22);
             this.TabPage5.Name = "TabPage5";
             this.TabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage5.Size = new System.Drawing.Size(487, 309);
+            this.TabPage5.Size = new System.Drawing.Size(519, 309);
             this.TabPage5.TabIndex = 4;
             this.TabPage5.Text = "Language";
             this.TabPage5.UseVisualStyleBackColor = true;
@@ -969,7 +1019,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 371);
+            this.ClientSize = new System.Drawing.Size(527, 371);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.buttonCancel);
@@ -984,6 +1034,8 @@
             this.TabPage2.PerformLayout();
             this.TabPage1.ResumeLayout(false);
             this.TabPage1.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.TabPage5.ResumeLayout(false);
             this.TabPage5.PerformLayout();
             this.ResumeLayout(false);
@@ -1073,6 +1125,10 @@
         internal System.Windows.Forms.TextBox txtBaitTime;
         internal System.Windows.Forms.TextBox txtRaftTime;
         internal System.Windows.Forms.TextBox txtLureTime;
+        private System.Windows.Forms.TabPage tabPage6;
+        internal System.Windows.Forms.ComboBox cmbMovements;
+        internal System.Windows.Forms.TextBox txtAntiAfkTimer;
+        internal System.Windows.Forms.CheckBox cbAntiAfk;
 
     }
 }

@@ -154,10 +154,13 @@ namespace UltimateFishBot.Classes.Helpers
 
         public static void SendKey(string sKeys)
         {
-            if (Properties.Settings.Default.UseAltKey)
-                sKeys = "%(" + sKeys + ")"; // %(X) : Use the alt key
-            else
-                sKeys = "{" + sKeys + "}";  // {X} : Avoid UTF-8 errors (é, è, ...)
+            if (sKeys != " ")
+            {
+                if (Properties.Settings.Default.UseAltKey)
+                    sKeys = "%(" + sKeys + ")"; // %(X) : Use the alt key
+                else
+                    sKeys = "{" + sKeys + "}";  // {X} : Avoid UTF-8 errors (é, è, ...)
+            }
 
             SendKeys.Send(sKeys);
         }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.BodyParts;
+using UltimateFishBot.Classes.Helpers;
 using UltimateFishBot.Forms;
 using UltimateFishBot.Properties;
 
@@ -32,7 +33,8 @@ namespace UltimateFishBot.Classes
             Lure        = 0x02,
             Charm       = 0x04,
             Raft        = 0x08,
-            Bait        = 0x10
+            Bait        = 0x10,
+            AntiAfkMove = 0x20
         }
 
         public struct FishingStats
@@ -53,6 +55,7 @@ namespace UltimateFishBot.Classes
         private Timer m_RaftTimer;
         private Timer m_CharmTimer;
         private Timer m_BaitTimer;
+        private Timer m_AntiAfkTimer;
 
         private int   m_fishWaitTime;
 
@@ -62,6 +65,7 @@ namespace UltimateFishBot.Classes
         private Hands m_hands;
         private Ears  m_ears;
         private Mouth m_mouth;
+        private Legs  m_legs;
 
         private NeededAction m_neededActions;
         private FishingState m_actualState;
@@ -79,6 +83,7 @@ namespace UltimateFishBot.Classes
             m_hands         = new Hands();
             m_ears          = new Ears(this);
             m_mouth         = new Mouth(m_mainForm);
+            m_legs          = new Legs();
 
             m_actualState   = FishingState.Stopped;
             m_neededActions = NeededAction.None;
@@ -92,6 +97,7 @@ namespace UltimateFishBot.Classes
             InitializeTimer(ref m_RaftTimer,        RaftTimerTick);
             InitializeTimer(ref m_BaitTimer,        BaitTimerTick);
             InitializeTimer(ref m_HearthStoneTimer, HearthStoneTimerTick);
+            InitializeTimer(ref m_AntiAfkTimer,     AntiAfkTimerTick);
 
             ResetTimers();
         }
@@ -185,6 +191,11 @@ namespace UltimateFishBot.Classes
             return m_actualState;
         }
 
+        public bool IsStoppedOrPaused()
+        {
+            return GetActualState() == FishingState.Stopped || GetActualState() == FishingState.Paused;
+        }
+
         public FishingStats GetFishingStats()
         {
             return m_fishingStats;
@@ -221,6 +232,9 @@ namespace UltimateFishBot.Classes
 
                 if (Properties.Settings.Default.AutoHearth)
                     m_HearthStoneTimer.Enabled = true;
+
+                if (Properties.Settings.Default.AntiAfk)
+                    m_AntiAfkTimer.Enabled = true;
             }
             // On deactivation, we don't care
             else
@@ -237,11 +251,12 @@ namespace UltimateFishBot.Classes
         private void ResetTimers()
         {
             m_nextActionTimer.Interval  = ACTION_TIMER_LENGTH;
-            m_LureTimer.Interval        = Properties.Settings.Default.LureTime   * MINUTE;
-            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime   * MINUTE;
-            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime  * MINUTE;
-            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime   * MINUTE;
-            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
+            m_LureTimer.Interval        = Properties.Settings.Default.LureTime      * MINUTE;
+            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime      * MINUTE;
+            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime     * MINUTE;
+            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime      * MINUTE;
+            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime    * MINUTE;
+            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime   * MINUTE;
 
             m_fishWaitTime              = 0;
         }
@@ -275,12 +290,7 @@ namespace UltimateFishBot.Classes
                     {
                         if (HasNeededAction(neededAction))
                         {
-                            m_hands.DoAction(neededAction, m_mouth);
-                            RemoveNeededAction(neededAction);
-
-                            if (neededAction == NeededAction.HearthStone)
-                                m_mainForm.StopFishing();
-
+                            HandleNeededAction(neededAction);
                             return;
                         }
                     }
@@ -320,6 +330,27 @@ namespace UltimateFishBot.Classes
             }
         }
 
+        private void HandleNeededAction(NeededAction action)
+        {
+            switch (action)
+            {
+                case NeededAction.HearthStone:
+                    m_mainForm.StopFishing();
+                    goto case NeededAction.Lure; // We continue, Hearthstone need m_hands.DoAction
+                case NeededAction.Lure:
+                case NeededAction.Charm:
+                case NeededAction.Raft:
+                case NeededAction.Bait:
+                    m_hands.DoAction(action, m_mouth);
+                    break;
+                case NeededAction.AntiAfkMove:
+                    m_legs.DoMovement();
+                    break;
+            }
+
+            RemoveNeededAction(action);
+        }
+
         private void LureTimerTick(Object myObject, EventArgs myEventArgs)
         {
             AddNeededAction(NeededAction.Lure);
@@ -343,6 +374,11 @@ namespace UltimateFishBot.Classes
         private void HearthStoneTimerTick(Object myObject, EventArgs myEventArgs)
         {
             AddNeededAction(NeededAction.HearthStone);
+        }
+
+        private void AntiAfkTimerTick(Object myObject, EventArgs myEventArgs)
+        {
+            AddNeededAction(NeededAction.AntiAfkMove);
         }
 
         private void AddNeededAction(NeededAction action)

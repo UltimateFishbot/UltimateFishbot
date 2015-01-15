@@ -51,6 +51,7 @@
     <Compile Include="Classes\BodyParts\Ears.cs" />
     <Compile Include="Classes\BodyParts\Eyes.cs" />
     <Compile Include="Classes\BodyParts\Hands.cs" />
+    <Compile Include="Classes\BodyParts\Legs.cs" />
     <Compile Include="Classes\BodyParts\Mouth.cs" />
     <Compile Include="Classes\Helpers\Win32.cs" />
     <Compile Include="Classes\Manager.cs" />

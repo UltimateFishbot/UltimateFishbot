@@ -502,5 +502,41 @@ namespace UltimateFishBot.Properties {
                 this["BaitTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AntiAfk {
+            get {
+                return ((bool)(this["AntiAfk"]));
+            }
+            set {
+                this["AntiAfk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int AntiAfkTime {
+            get {
+                return ((int)(this["AntiAfkTime"]));
+            }
+            set {
+                this["AntiAfkTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AntiAfkMoves {
+            get {
+                return ((int)(this["AntiAfkMoves"]));
+            }
+            set {
+                this["AntiAfkMoves"] = value;
+            }
+        }
     }
 }

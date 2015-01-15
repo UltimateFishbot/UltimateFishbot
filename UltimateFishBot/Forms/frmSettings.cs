@@ -22,7 +22,8 @@ namespace UltimateFishBot.Forms
             FindCursor      = 1,
             HearingFishing  = 2,
             Premium         = 3,
-            Language        = 4
+            AntiAfk         = 4,
+            Language        = 5
         };
 
         private MMDevice SndDevice;
@@ -47,6 +48,7 @@ namespace UltimateFishBot.Forms
             tabSettings.TabPages[(int)TabulationIndex.FindCursor].Text      = Translate.GetTranslate("frmSettings", "TAB_TITLE_FIND_CURSOR");
             tabSettings.TabPages[(int)TabulationIndex.HearingFishing].Text  = Translate.GetTranslate("frmSettings", "TAB_TITLE_HEARING_FISH");
             tabSettings.TabPages[(int)TabulationIndex.Premium].Text         = Translate.GetTranslate("frmSettings", "TAB_TITLE_PREMIUM");
+            tabSettings.TabPages[(int)TabulationIndex.AntiAfk].Text         = Translate.GetTranslate("frmSettings", "TAB_TITLE_ANTI_AFK");
             tabSettings.TabPages[(int)TabulationIndex.Language].Text        = Translate.GetTranslate("frmSettings", "TAB_TITLE_LANGUAGE");
 
             /// General
@@ -110,6 +112,11 @@ namespace UltimateFishBot.Forms
 
             LabelProcessName.Text           = Translate.GetTranslate("frmSettings", "LABEL_PROCESS_NAME");
             LabelProcessNameDesc.Text       = Translate.GetTranslate("frmSettings", "LABEL_PROCESS_NAME_DESC");
+
+            /// Anti Afk
+
+            LoadAntiAfkMovements();
+            cbAntiAfk.Text                  = Translate.GetTranslate("frmSettings", "CB_ANTI_AFK");
 
             /// Language Settings
 
@@ -177,6 +184,12 @@ namespace UltimateFishBot.Forms
             txtCharmTime.Text       = Properties.Settings.Default.CharmTime.ToString();
             txtBaitTime.Text        = Properties.Settings.Default.BaitTime.ToString();
 
+            /// Anti Afk
+            cbAntiAfk.Checked       = Properties.Settings.Default.AntiAfk;
+            txtAntiAfkTimer.Text    = Properties.Settings.Default.AntiAfkTime.ToString();
+            cmbMovements.SelectedIndex  = Properties.Settings.Default.AntiAfkMoves;
+
+            /// Languages
             LoadLanguages();
         }
 
@@ -238,6 +251,11 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.RaftTime        = int.Parse(txtRaftTime.Text);
             Properties.Settings.Default.CharmTime       = int.Parse(txtCharmTime.Text);
             Properties.Settings.Default.BaitTime        = int.Parse(txtBaitTime.Text);
+
+            /// Anti Afk
+            Properties.Settings.Default.AntiAfk         = cbAntiAfk.Checked;
+            Properties.Settings.Default.AntiAfkTime     = int.Parse(txtAntiAfkTimer.Text);
+            Properties.Settings.Default.AntiAfkMoves    = cmbMovements.SelectedIndex;
 
             if ((string)cmbLanguage.SelectedItem != Properties.Settings.Default.Language)
             {
@@ -303,6 +321,14 @@ namespace UltimateFishBot.Forms
             }
 
             cmbLanguage.SelectedItem = Properties.Settings.Default.Language;
+        }
+
+        private void LoadAntiAfkMovements()
+        {
+            cmbMovements.Items.Clear();
+
+            foreach (string movements in Translate.GetTranslates("frmSettings", "CMB_ANTIAFK_MOVE"))
+                cmbMovements.Items.Add(movements);
         }
         
         private void tmeAudio_Tick(Object sender, EventArgs e)
