@@ -18,66 +18,39 @@ namespace UltimateFishBot.Classes.BodyParts
             JUMP        = 2
         }
 
-        private enum Movement
-        {
-            FRONT   = 0,
-            BACK    = 1,
-            LEFT    = 2,
-            RIGHT   = 3,
-            JUMP    = 4
-        }
-
         public void DoMovement()
         {
             switch ((Path)Properties.Settings.Default.AntiAfkMoves)
             {
                 case Path.FRONT_BACK:
-                    MovePath(new Movement[] { Movement.FRONT, Movement.BACK });
+                    MovePath(new Keys[] { Keys.Up, Keys.Down });
                     break;
                 case Path.LEFT_RIGHT:
-                    MovePath(new Movement[] { Movement.LEFT, Movement.RIGHT });
+                    MovePath(new Keys[] { Keys.Left, Keys.Right });
                     break;
                 case Path.JUMP:
-                    MovePath(new Movement[] { Movement.JUMP });
+                    MovePath(new Keys[] { Keys.Space });
                     break;
                 default:
-                    MovePath(new Movement[] { Movement.LEFT, Movement.RIGHT });
+                    MovePath(new Keys[] { Keys.Left, Keys.Right });
                     break;
             }
         }
 
-        private void MovePath(Movement[] moves)
+        private void MovePath(Keys[] moves)
         {
-            foreach (Movement move in moves)
+            foreach (Keys move in moves)
             {
                 SingleMove(move);
                 Thread.Sleep(250);
             }
         }
 
-        private void SingleMove(Movement move)
+        private void SingleMove(Keys move)
         {
-            byte key = GetKeyFromMovement(move);
-
-            if (key == 0)
-                return;
-
-            Win32.SendKeyboardAction(key, Win32.keyState.KEYDOWN);
+            Win32.SendKeyboardAction(move, Win32.keyState.KEYDOWN);
             Thread.Sleep(250);
-            Win32.SendKeyboardAction(key, Win32.keyState.KEYUP);
-        }
-
-        private byte GetKeyFromMovement(Movement move)
-        {
-            switch (move)
-            {
-                case Movement.FRONT:    return 0x26;
-                case Movement.BACK:     return 0x28;
-                case Movement.LEFT:     return 0x25;
-                case Movement.RIGHT:    return 0x27;
-                case Movement.JUMP:     return 0x20;
-                default:                return 0;
-            }
+            Win32.SendKeyboardAction(move, Win32.keyState.KEYUP);
         }
     }
 }

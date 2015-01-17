@@ -181,6 +181,11 @@ namespace UltimateFishBot.Classes.Helpers
                 SendKeyboardAction(16, keyState.KEYUP);
         }
 
+        public static bool SendKeyboardAction(Keys key, keyState state)
+        {
+            return SendKeyboardAction((byte)key.GetHashCode(), state);
+        }
+
         public static bool SendKeyboardAction(byte key, keyState state)
         {
             return keybd_event(key, 0, (uint)state, (UIntPtr)0);
