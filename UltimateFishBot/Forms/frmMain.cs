@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +49,33 @@ namespace UltimateFishBot
             lblStatus.Text      = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
 
             Win32.RegisterHotKey(this.Handle, (int)HotKey.StartStop, (int)KeyModifier.Shift + (int)KeyModifier.Control, Keys.S.GetHashCode());
+            CheckStatus();
+        }
+
+        private void CheckStatus()
+        {
+            lblWarn.Text = "Checking Status...";
+            lblWarn.Parent = PictureBox1;
+
+            try
+            {
+                Task.Factory.StartNew(() => (new WebClient()).DownloadString("http://www.fishbot.net/status.txt"),
+                    TaskCreationOptions.LongRunning).ContinueWith(x =>
+                    {
+                        if (x.Result.ToLower().Trim() != "sadfe")
+                        {
+                            lblWarn.Text = "This bot is no longer safe.  Do not use on public servers!";
+                            lblWarn.ForeColor = Color.Red;
+                            lblWarn.BackColor = Color.Black;
+                        }
+                        else
+                            lblWarn.Visible = false;
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            catch (Exception)
+            {
+                lblWarn.Text = "Could Not Verify Status!  Use at own risk...";
+            }                        
         }
 
         private void btnStart_Click(object sender, EventArgs e)

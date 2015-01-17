@@ -56,12 +56,6 @@
     <Compile Include="Classes\Helpers\Win32.cs" />
     <Compile Include="Classes\Manager.cs" />
     <Compile Include="Classes\Translate.cs" />
-    <Compile Include="Forms\frmCode.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmCode.Designer.cs">
-      <DependentUpon>frmCode.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmDirections.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,9 +82,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\frmCode.resx">
-      <DependentUpon>frmCode.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmDirections.resx">
       <DependentUpon>frmDirections.cs</DependentUpon>
     </EmbeddedResource>

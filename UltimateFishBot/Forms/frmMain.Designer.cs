@@ -37,6 +37,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
+            this.lblWarn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,11 +128,23 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
+            // lblWarn
+            // 
+            this.lblWarn.BackColor = System.Drawing.Color.Transparent;
+            this.lblWarn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarn.Location = new System.Drawing.Point(12, 5);
+            this.lblWarn.Name = "lblWarn";
+            this.lblWarn.Size = new System.Drawing.Size(196, 62);
+            this.lblWarn.TabIndex = 18;
+            this.lblWarn.Text = "** Potential Warnings **";
+            this.lblWarn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 194);
+            this.Controls.Add(this.lblWarn);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.btnSettings);
@@ -159,6 +172,7 @@
         internal System.Windows.Forms.Button btnStart;
         internal System.Windows.Forms.PictureBox PictureBox1;
         internal System.Windows.Forms.Button btnStatistics;
+        private System.Windows.Forms.Label lblWarn;
     }
 }
 
