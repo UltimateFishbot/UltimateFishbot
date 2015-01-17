@@ -538,5 +538,17 @@ namespace UltimateFishBot.Properties {
                 this["AntiAfkMoves"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Maj+S")]
+        public global::System.Windows.Forms.Keys StartStopHotKey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
+            }
+            set {
+                this["StartStopHotKey"] = value;
+            }
+        }
     }
 }

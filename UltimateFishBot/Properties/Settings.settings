@@ -131,5 +131,8 @@
     <Setting Name="AntiAfkMoves" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="StartStopHotKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Ctrl+Maj+S</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

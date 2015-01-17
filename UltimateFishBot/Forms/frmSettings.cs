@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes;
+using UltimateFishBot.Classes.Helpers;
 
 namespace UltimateFishBot.Forms
 {
@@ -26,12 +27,15 @@ namespace UltimateFishBot.Forms
             Language        = 5
         };
 
-        private MMDevice SndDevice;
+        private frmMain m_mainForm;
+        private MMDevice m_SndDevice;
+        private Keys m_hotkey;
 
-        public frmSettings()
+        public frmSettings(frmMain mainForm)
         {
             InitializeComponent();
-            SndDevice = null;
+            m_mainForm = mainForm;
+            m_SndDevice = null;
 
             tmeAudio.Tick += new EventHandler(tmeAudio_Tick);
         }
@@ -98,6 +102,8 @@ namespace UltimateFishBot.Forms
             LabelBaitKey5.Text              = Translate.GetTranslate("frmSettings", "LABEL_BAIT_KEY_5");
             LabelBaitKey6.Text              = Translate.GetTranslate("frmSettings", "LABEL_BAIT_KEY_6");
             LabelBaitKey7.Text              = Translate.GetTranslate("frmSettings", "LABEL_BAIT_KEY_7");
+
+            LoadHotKeys();
 
             LabelCustomizeDesc.Text         = Translate.GetTranslate("frmSettings", "LABEL_CUSTOMIZE_DESC");
 
@@ -245,6 +251,8 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.AutoBait        = cbAutoBait.Checked;
             Properties.Settings.Default.randomBait      = cbRandomBait.Checked;
 
+            SaveHotKeys();
+
             //Times
             Properties.Settings.Default.LureTime        = int.Parse(txtLureTime.Text);
             Properties.Settings.Default.HearthTime      = int.Parse(txtHearthTime.Text);
@@ -333,11 +341,11 @@ namespace UltimateFishBot.Forms
         
         private void tmeAudio_Tick(Object sender, EventArgs e)
         {
-            if (SndDevice != null)
+            if (m_SndDevice != null)
             {
                 try
                 {
-                    int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * 100);
+                    int currentVolumnLevel = (int)(m_SndDevice.AudioMeterInformation.MasterPeakValue * 100);
                     pgbSoundLevel.Value = currentVolumnLevel;
                     lblAudioLevel.Text = currentVolumnLevel.ToString();
                 }
@@ -359,9 +367,27 @@ namespace UltimateFishBot.Forms
             MMDeviceEnumerator sndDevEnum = new MMDeviceEnumerator();
 
             if (!string.IsNullOrEmpty((string)cmbAudio.SelectedValue))
-                SndDevice = sndDevEnum.GetDevice((string)cmbAudio.SelectedValue);
+                m_SndDevice = sndDevEnum.GetDevice((string)cmbAudio.SelectedValue);
             else
-                SndDevice = sndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
+                m_SndDevice = sndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
+        }
+
+        private void LoadHotKeys()
+        {
+            m_hotkey = Properties.Settings.Default.StartStopHotKey;
+            txtHotKey.Text = new KeysConverter().ConvertToString(m_hotkey);
+        }
+
+        private void SaveHotKeys()
+        {
+            Properties.Settings.Default.StartStopHotKey = m_hotkey;
+            m_mainForm.ReloadHotkeys();
+        }
+
+        private void txtHotKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            m_hotkey = e.KeyData;
+            txtHotKey.Text = new KeysConverter().ConvertToString(m_hotkey);
         }
     }
 }

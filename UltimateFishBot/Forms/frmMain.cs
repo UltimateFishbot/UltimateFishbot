@@ -17,7 +17,7 @@ namespace UltimateFishBot
 {
     public partial class frmMain : Form
     {
-        enum KeyModifier
+        public enum KeyModifier
         {
             None    = 0,
             Alt     = 1,
@@ -26,7 +26,7 @@ namespace UltimateFishBot
             WinKey  = 8
         }
 
-        enum HotKey
+        public enum HotKey
         {
             StartStop   = 0
         }
@@ -48,7 +48,7 @@ namespace UltimateFishBot
             btnClose.Text       = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
             lblStatus.Text      = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
 
-            Win32.RegisterHotKey(this.Handle, (int)HotKey.StartStop, (int)KeyModifier.Shift + (int)KeyModifier.Control, Keys.S.GetHashCode());
+            ReloadHotkeys();
             CheckStatus();
         }
 
@@ -122,7 +122,7 @@ namespace UltimateFishBot
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            new frmSettings().Show();
+            new frmSettings(this).Show();
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
@@ -139,13 +139,6 @@ namespace UltimateFishBot
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Unregister all hotkeys before closing the form.
-            foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey)))
-                Win32.UnregisterHotKey(this.Handle, (int)hotKey);
         }
 
         public void StopFishing()
@@ -171,6 +164,62 @@ namespace UltimateFishBot
                         btnStop_Click(null, null);
                 }
             }
+        }
+
+        public void ReloadHotkeys()
+        {
+            UnregisterHotKeys();
+
+            foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey)))
+            {
+                Keys key = Keys.None;
+
+                switch (hotKey)
+                {
+                    case HotKey.StartStop: key = Properties.Settings.Default.StartStopHotKey; break;
+                    default: continue;
+                }
+
+                KeyModifier modifiers = RemoveAndReturnModifiers(ref key);
+                Win32.RegisterHotKey(this.Handle, (int)hotKey, (int)modifiers, (int)key);
+            }
+        }
+
+        private void UnregisterHotKeys()
+        {
+            // Unregister all hotkeys before closing the form.
+            foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey)))
+                Win32.UnregisterHotKey(this.Handle, (int)hotKey);
+        }
+
+        private KeyModifier RemoveAndReturnModifiers(ref Keys key)
+        {
+            KeyModifier modifiers = KeyModifier.None;
+
+            if ((key & Keys.Shift) != 0)
+            {
+                modifiers |= KeyModifier.Shift;
+                key &= ~Keys.Shift;
+            }
+
+            if ((key & Keys.Control) != 0)
+            {
+                modifiers |= KeyModifier.Control;
+                key &= ~Keys.Control;
+            }
+
+            if ((key & Keys.Alt) != 0)
+            {
+                modifiers |= KeyModifier.Alt;
+                key &= ~Keys.Alt;
+            }
+
+            return modifiers;
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UnregisterHotKeys();
         }
 
         private Manager m_manager;

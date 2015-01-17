@@ -43,6 +43,8 @@
             this.LabelSplashThresholdDesc = new System.Windows.Forms.Label();
             this.LabelSplashThreshold = new System.Windows.Forms.Label();
             this.TabPage4 = new System.Windows.Forms.TabPage();
+            this.txtHotKey = new System.Windows.Forms.TextBox();
+            this.labelHotKey = new System.Windows.Forms.Label();
             this.txtCharmTime = new System.Windows.Forms.TextBox();
             this.txtBaitTime = new System.Windows.Forms.TextBox();
             this.txtRaftTime = new System.Windows.Forms.TextBox();
@@ -258,6 +260,8 @@
             // 
             // TabPage4
             // 
+            this.TabPage4.Controls.Add(this.txtHotKey);
+            this.TabPage4.Controls.Add(this.labelHotKey);
             this.TabPage4.Controls.Add(this.txtCharmTime);
             this.TabPage4.Controls.Add(this.txtBaitTime);
             this.TabPage4.Controls.Add(this.txtRaftTime);
@@ -305,6 +309,26 @@
             this.TabPage4.TabIndex = 3;
             this.TabPage4.Text = "Premium Settings";
             this.TabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtHotKey
+            // 
+            this.txtHotKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHotKey.Location = new System.Drawing.Point(419, 68);
+            this.txtHotKey.Name = "txtHotKey";
+            this.txtHotKey.ReadOnly = true;
+            this.txtHotKey.Size = new System.Drawing.Size(92, 20);
+            this.txtHotKey.TabIndex = 54;
+            this.txtHotKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHotKey_KeyDown);
+            // 
+            // labelHotKey
+            // 
+            this.labelHotKey.AutoSize = true;
+            this.labelHotKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHotKey.Location = new System.Drawing.Point(295, 71);
+            this.labelHotKey.Name = "labelHotKey";
+            this.labelHotKey.Size = new System.Drawing.Size(118, 13);
+            this.labelHotKey.TabIndex = 53;
+            this.labelHotKey.Text = "Start/Stop Hotkey :";
             // 
             // txtCharmTime
             // 
@@ -356,7 +380,7 @@
             // 
             this.LabelBaitKey7.AutoSize = true;
             this.LabelBaitKey7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBaitKey7.Location = new System.Drawing.Point(144, 115);
+            this.LabelBaitKey7.Location = new System.Drawing.Point(150, 115);
             this.LabelBaitKey7.Name = "LabelBaitKey7";
             this.LabelBaitKey7.Size = new System.Drawing.Size(101, 13);
             this.LabelBaitKey7.TabIndex = 47;
@@ -365,7 +389,7 @@
             // txtBaitKey7
             // 
             this.txtBaitKey7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey7.Location = new System.Drawing.Point(244, 112);
+            this.txtBaitKey7.Location = new System.Drawing.Point(257, 112);
             this.txtBaitKey7.Name = "txtBaitKey7";
             this.txtBaitKey7.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey7.TabIndex = 46;
@@ -375,7 +399,7 @@
             // 
             this.LabelBaitKey6.AutoSize = true;
             this.LabelBaitKey6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBaitKey6.Location = new System.Drawing.Point(144, 93);
+            this.LabelBaitKey6.Location = new System.Drawing.Point(150, 93);
             this.LabelBaitKey6.Name = "LabelBaitKey6";
             this.LabelBaitKey6.Size = new System.Drawing.Size(101, 13);
             this.LabelBaitKey6.TabIndex = 45;
@@ -384,7 +408,7 @@
             // txtBaitKey6
             // 
             this.txtBaitKey6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey6.Location = new System.Drawing.Point(244, 90);
+            this.txtBaitKey6.Location = new System.Drawing.Point(257, 90);
             this.txtBaitKey6.Name = "txtBaitKey6";
             this.txtBaitKey6.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey6.TabIndex = 44;
@@ -394,7 +418,7 @@
             // 
             this.LabelBaitKey5.AutoSize = true;
             this.LabelBaitKey5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBaitKey5.Location = new System.Drawing.Point(144, 71);
+            this.LabelBaitKey5.Location = new System.Drawing.Point(150, 71);
             this.LabelBaitKey5.Name = "LabelBaitKey5";
             this.LabelBaitKey5.Size = new System.Drawing.Size(101, 13);
             this.LabelBaitKey5.TabIndex = 43;
@@ -403,7 +427,7 @@
             // txtBaitKey5
             // 
             this.txtBaitKey5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey5.Location = new System.Drawing.Point(244, 68);
+            this.txtBaitKey5.Location = new System.Drawing.Point(257, 68);
             this.txtBaitKey5.Name = "txtBaitKey5";
             this.txtBaitKey5.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey5.TabIndex = 42;
@@ -422,7 +446,7 @@
             // txtBaitKey4
             // 
             this.txtBaitKey4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey4.Location = new System.Drawing.Point(108, 112);
+            this.txtBaitKey4.Location = new System.Drawing.Point(118, 112);
             this.txtBaitKey4.Name = "txtBaitKey4";
             this.txtBaitKey4.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey4.TabIndex = 40;
@@ -441,7 +465,7 @@
             // txtBaitKey3
             // 
             this.txtBaitKey3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey3.Location = new System.Drawing.Point(108, 90);
+            this.txtBaitKey3.Location = new System.Drawing.Point(118, 90);
             this.txtBaitKey3.Name = "txtBaitKey3";
             this.txtBaitKey3.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey3.TabIndex = 38;
@@ -460,7 +484,7 @@
             // txtBaitKey2
             // 
             this.txtBaitKey2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaitKey2.Location = new System.Drawing.Point(108, 68);
+            this.txtBaitKey2.Location = new System.Drawing.Point(118, 68);
             this.txtBaitKey2.Name = "txtBaitKey2";
             this.txtBaitKey2.Size = new System.Drawing.Size(22, 20);
             this.txtBaitKey2.TabIndex = 36;
@@ -579,7 +603,7 @@
             this.txtProcName.Name = "txtProcName";
             this.txtProcName.Size = new System.Drawing.Size(255, 20);
             this.txtProcName.TabIndex = 9;
-            this.txtProcName.Text = "Wow-64";
+            this.txtProcName.Text = "Wow";
             // 
             // LabelProcessNameDesc
             // 
@@ -1129,6 +1153,8 @@
         internal System.Windows.Forms.ComboBox cmbMovements;
         internal System.Windows.Forms.TextBox txtAntiAfkTimer;
         internal System.Windows.Forms.CheckBox cbAntiAfk;
+        internal System.Windows.Forms.TextBox txtHotKey;
+        internal System.Windows.Forms.Label labelHotKey;
 
     }
 }
