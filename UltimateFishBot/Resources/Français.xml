@@ -43,6 +43,10 @@
         <LABEL_RESUMED>Repris</LABEL_RESUMED>
         <LABEL_PAUSED>En Pause</LABEL_PAUSED>
         <LABEL_STOPPED>Arreté</LABEL_STOPPED>
+
+        <LABEL_CHECKING_STATUS>Vérification du Statut...</LABEL_CHECKING_STATUS>
+        <LABEL_NO_LONGER_SAFE>Ce bot n'est plus sûr. Ne pas utiliser sur les serveurs officiels !</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>Vérification du statut impossible.</LABEL_COULD_NOT_CHECK_STATUS>
     </frmMain>
     <manager>
         <LABEL_HEAR_FISH>Poisson Entendu !</LABEL_HEAR_FISH>

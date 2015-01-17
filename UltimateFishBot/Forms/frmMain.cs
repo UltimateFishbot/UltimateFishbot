@@ -54,7 +54,7 @@ namespace UltimateFishBot
 
         private void CheckStatus()
         {
-            lblWarn.Text = "Checking Status...";
+            lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_CHECKING_STATUS");
             lblWarn.Parent = PictureBox1;
 
             try
@@ -64,7 +64,7 @@ namespace UltimateFishBot
                     {
                         if (x.Result.ToLower().Trim() != "safe")
                         {
-                            lblWarn.Text = "This bot is no longer safe.  Do not use on public servers!";
+                            lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
                             lblWarn.ForeColor = Color.Red;
                             lblWarn.BackColor = Color.Black;
                         }
@@ -74,7 +74,7 @@ namespace UltimateFishBot
             }
             catch (Exception)
             {
-                lblWarn.Text = "Could Not Verify Status!  Use at own risk...";
+                lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_COULD_NOT_CHECK_STATUS");
             }                        
         }
 

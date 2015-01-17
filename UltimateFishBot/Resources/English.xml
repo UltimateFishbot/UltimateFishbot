@@ -41,6 +41,10 @@
         <LABEL_RESUMED>Resumed</LABEL_RESUMED>
         <LABEL_PAUSED>Paused</LABEL_PAUSED>
         <LABEL_STOPPED>Stopped</LABEL_STOPPED>
+
+        <LABEL_CHECKING_STATUS>Checking Status...</LABEL_CHECKING_STATUS>
+        <LABEL_NO_LONGER_SAFE>This bot is no longer safe.  Do not use on public servers!</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>Could Not Verify Status!  Use at own risk...</LABEL_COULD_NOT_CHECK_STATUS>
     </frmMain>
     <manager>
         <LABEL_HEAR_FISH>I Hear a Fish !</LABEL_HEAR_FISH>
