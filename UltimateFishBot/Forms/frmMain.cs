@@ -62,7 +62,7 @@ namespace UltimateFishBot
                 Task.Factory.StartNew(() => (new WebClient()).DownloadString("http://www.fishbot.net/status.txt"),
                     TaskCreationOptions.LongRunning).ContinueWith(x =>
                     {
-                        if (x.Result.ToLower().Trim() != "sadfe")
+                        if (x.Result.ToLower().Trim() != "safe")
                         {
                             lblWarn.Text = "This bot is no longer safe.  Do not use on public servers!";
                             lblWarn.ForeColor = Color.Red;
