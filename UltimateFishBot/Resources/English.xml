@@ -94,6 +94,9 @@
         <LABEL_CHECK_ICON>Check Cursor Icon</LABEL_CHECK_ICON>
         <LABEL_CHECK_ICON_DESC>Specify if the bot must check the icon before fishing. Avoid clicking when it's not a bobber. May not work on some computer, disable if the bot don't find your bobber.</LABEL_CHECK_ICON_DESC>
 
+        <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
+        <LABEL_ALTERNATIVE_ROUTE_DESC>An alternative route for bobber searching.</LABEL_ALTERNATIVE_ROUTE_DESC>
+
         <!-- Hearing the Fish -->
 
         <LABEL_SPLASH_THRESHOLD>Splash Threshold:</LABEL_SPLASH_THRESHOLD>
