@@ -270,6 +270,7 @@ namespace UltimateFishBot.Classes
 
             SetActualState(FishingState.Looting);
             m_hands.Loot();
+            m_fishWaitTime = 0;
             SetActualState(FishingState.Idle);
         }
 

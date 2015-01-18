@@ -127,7 +127,7 @@ namespace UltimateFishBot.Classes.BodyParts
                 int x = (int)((xPosMin + xPosMax) / 2) + XOFFSET * tryCount;
                 int y = (int)((yPosMin + yPosMax) / 2) + YOFFSET * tryCount;
 
-                for (int i = 0; i <= Properties.Settings.Default.ScanningSteps; i++)
+                for (int i = 0; i <= 2*Properties.Settings.Default.ScanningSteps; i++)
                 {
                     for (int j = 0; j <= (i / 2); j++)
                     {
