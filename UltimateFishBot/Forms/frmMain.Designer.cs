@@ -47,7 +47,7 @@
             this.btnSettings.Location = new System.Drawing.Point(227, 63);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(92, 23);
-            this.btnSettings.TabIndex = 15;
+            this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
@@ -68,7 +68,7 @@
             this.btnClose.Location = new System.Drawing.Point(227, 150);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(92, 23);
-            this.btnClose.TabIndex = 13;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Exit";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -79,7 +79,7 @@
             this.btnHowTo.Location = new System.Drawing.Point(227, 121);
             this.btnHowTo.Name = "btnHowTo";
             this.btnHowTo.Size = new System.Drawing.Size(92, 23);
-            this.btnHowTo.TabIndex = 12;
+            this.btnHowTo.TabIndex = 5;
             this.btnHowTo.Text = "How To Use";
             this.btnHowTo.UseVisualStyleBackColor = true;
             this.btnHowTo.Click += new System.EventHandler(this.btnHowTo_Click);
@@ -90,7 +90,7 @@
             this.btnStop.Location = new System.Drawing.Point(227, 34);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(92, 23);
-            this.btnStop.TabIndex = 10;
+            this.btnStop.TabIndex = 2;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -101,7 +101,7 @@
             this.btnStart.Location = new System.Drawing.Point(227, 5);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(92, 23);
-            this.btnStart.TabIndex = 9;
+            this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -123,7 +123,7 @@
             this.btnStatistics.Location = new System.Drawing.Point(227, 92);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(92, 23);
-            this.btnStatistics.TabIndex = 17;
+            this.btnStatistics.TabIndex = 4;
             this.btnStatistics.Text = "Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);

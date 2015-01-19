@@ -48,7 +48,7 @@
             this.labelSuccess.Location = new System.Drawing.Point(13, 13);
             this.labelSuccess.Name = "labelSuccess";
             this.labelSuccess.Size = new System.Drawing.Size(101, 13);
-            this.labelSuccess.TabIndex = 0;
+            this.labelSuccess.TabIndex = 50;
             this.labelSuccess.Text = "Successful Fishing :";
             // 
             // labelNotFoundCount
@@ -83,7 +83,7 @@
             this.buttonClose.Location = new System.Drawing.Point(89, 81);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 4;
+            this.buttonClose.TabIndex = 2;
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
@@ -111,7 +111,7 @@
             this.buttonReset.Location = new System.Drawing.Point(8, 81);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(75, 23);
-            this.buttonReset.TabIndex = 7;
+            this.buttonReset.TabIndex = 1;
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);

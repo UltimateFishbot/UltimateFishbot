@@ -141,7 +141,7 @@
             this.txtScanSteps.Location = new System.Drawing.Point(129, 9);
             this.txtScanSteps.Name = "txtScanSteps";
             this.txtScanSteps.Size = new System.Drawing.Size(32, 20);
-            this.txtScanSteps.TabIndex = 11;
+            this.txtScanSteps.TabIndex = 2;
             // 
             // LabelScanningStepsDesc
             // 
@@ -216,7 +216,7 @@
             this.cmbAudio.Location = new System.Drawing.Point(173, 99);
             this.cmbAudio.Name = "cmbAudio";
             this.cmbAudio.Size = new System.Drawing.Size(99, 21);
-            this.cmbAudio.TabIndex = 16;
+            this.cmbAudio.TabIndex = 3;
             this.cmbAudio.SelectedIndexChanged += new System.EventHandler(this.cmbAudio_SelectedIndexChanged);
             // 
             // LabelAudioDevice
@@ -235,7 +235,7 @@
             this.txtSplash.Location = new System.Drawing.Point(173, 8);
             this.txtSplash.Name = "txtSplash";
             this.txtSplash.Size = new System.Drawing.Size(32, 20);
-            this.txtSplash.TabIndex = 14;
+            this.txtSplash.TabIndex = 2;
             // 
             // LabelSplashThresholdDesc
             // 
@@ -317,7 +317,7 @@
             this.txtHotKey.Name = "txtHotKey";
             this.txtHotKey.ReadOnly = true;
             this.txtHotKey.Size = new System.Drawing.Size(92, 20);
-            this.txtHotKey.TabIndex = 54;
+            this.txtHotKey.TabIndex = 15;
             this.txtHotKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHotKey_KeyDown);
             // 
             // labelHotKey
@@ -336,7 +336,7 @@
             this.txtCharmTime.Location = new System.Drawing.Point(449, 183);
             this.txtCharmTime.Name = "txtCharmTime";
             this.txtCharmTime.Size = new System.Drawing.Size(30, 20);
-            this.txtCharmTime.TabIndex = 52;
+            this.txtCharmTime.TabIndex = 23;
             this.txtCharmTime.Text = "60";
             // 
             // txtBaitTime
@@ -345,7 +345,7 @@
             this.txtBaitTime.Location = new System.Drawing.Point(205, 205);
             this.txtBaitTime.Name = "txtBaitTime";
             this.txtBaitTime.Size = new System.Drawing.Size(30, 20);
-            this.txtBaitTime.TabIndex = 51;
+            this.txtBaitTime.TabIndex = 25;
             this.txtBaitTime.Text = "5";
             // 
             // txtRaftTime
@@ -354,7 +354,7 @@
             this.txtRaftTime.Location = new System.Drawing.Point(205, 183);
             this.txtRaftTime.Name = "txtRaftTime";
             this.txtRaftTime.Size = new System.Drawing.Size(30, 20);
-            this.txtRaftTime.TabIndex = 50;
+            this.txtRaftTime.TabIndex = 21;
             this.txtRaftTime.Text = "8";
             // 
             // txtLureTime
@@ -363,7 +363,7 @@
             this.txtLureTime.Location = new System.Drawing.Point(205, 161);
             this.txtLureTime.Name = "txtLureTime";
             this.txtLureTime.Size = new System.Drawing.Size(30, 20);
-            this.txtLureTime.TabIndex = 49;
+            this.txtLureTime.TabIndex = 17;
             this.txtLureTime.Text = "10";
             // 
             // cbRandomBait
@@ -372,7 +372,7 @@
             this.cbRandomBait.Location = new System.Drawing.Point(244, 207);
             this.cbRandomBait.Name = "cbRandomBait";
             this.cbRandomBait.Size = new System.Drawing.Size(203, 17);
-            this.cbRandomBait.TabIndex = 48;
+            this.cbRandomBait.TabIndex = 26;
             this.cbRandomBait.Text = "Random bait between the 7 possibles";
             this.cbRandomBait.UseVisualStyleBackColor = true;
             // 
@@ -392,7 +392,7 @@
             this.txtBaitKey7.Location = new System.Drawing.Point(257, 112);
             this.txtBaitKey7.Name = "txtBaitKey7";
             this.txtBaitKey7.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey7.TabIndex = 46;
+            this.txtBaitKey7.TabIndex = 14;
             this.txtBaitKey7.Text = "=";
             // 
             // LabelBaitKey6
@@ -411,7 +411,7 @@
             this.txtBaitKey6.Location = new System.Drawing.Point(257, 90);
             this.txtBaitKey6.Name = "txtBaitKey6";
             this.txtBaitKey6.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey6.TabIndex = 44;
+            this.txtBaitKey6.TabIndex = 13;
             this.txtBaitKey6.Text = ")";
             // 
             // LabelBaitKey5
@@ -430,7 +430,7 @@
             this.txtBaitKey5.Location = new System.Drawing.Point(257, 68);
             this.txtBaitKey5.Name = "txtBaitKey5";
             this.txtBaitKey5.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey5.TabIndex = 42;
+            this.txtBaitKey5.TabIndex = 12;
             this.txtBaitKey5.Text = "0";
             // 
             // LabelBaitKey4
@@ -449,7 +449,7 @@
             this.txtBaitKey4.Location = new System.Drawing.Point(118, 112);
             this.txtBaitKey4.Name = "txtBaitKey4";
             this.txtBaitKey4.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey4.TabIndex = 40;
+            this.txtBaitKey4.TabIndex = 11;
             this.txtBaitKey4.Text = "9";
             // 
             // LabelBaitKey3
@@ -468,7 +468,7 @@
             this.txtBaitKey3.Location = new System.Drawing.Point(118, 90);
             this.txtBaitKey3.Name = "txtBaitKey3";
             this.txtBaitKey3.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey3.TabIndex = 38;
+            this.txtBaitKey3.TabIndex = 10;
             this.txtBaitKey3.Text = "8";
             // 
             // LabelBaitKey2
@@ -487,7 +487,7 @@
             this.txtBaitKey2.Location = new System.Drawing.Point(118, 68);
             this.txtBaitKey2.Name = "txtBaitKey2";
             this.txtBaitKey2.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey2.TabIndex = 36;
+            this.txtBaitKey2.TabIndex = 9;
             this.txtBaitKey2.Text = "7";
             // 
             // cbShiftLoot
@@ -496,7 +496,7 @@
             this.cbShiftLoot.Location = new System.Drawing.Point(11, 229);
             this.cbShiftLoot.Name = "cbShiftLoot";
             this.cbShiftLoot.Size = new System.Drawing.Size(254, 17);
-            this.cbShiftLoot.TabIndex = 34;
+            this.cbShiftLoot.TabIndex = 27;
             this.cbShiftLoot.Text = "Shift-Loot? (If AutoLoot is Disabled, Enable This)";
             this.cbShiftLoot.UseVisualStyleBackColor = true;
             // 
@@ -506,7 +506,7 @@
             this.cbApplyCharm.Location = new System.Drawing.Point(244, 185);
             this.cbApplyCharm.Name = "cbApplyCharm";
             this.cbApplyCharm.Size = new System.Drawing.Size(175, 17);
-            this.cbApplyCharm.TabIndex = 33;
+            this.cbApplyCharm.TabIndex = 22;
             this.cbApplyCharm.Text = "Refresh Charm Every X minutes";
             this.cbApplyCharm.UseVisualStyleBackColor = true;
             // 
@@ -516,7 +516,7 @@
             this.cbApplyRaft.Location = new System.Drawing.Point(11, 185);
             this.cbApplyRaft.Name = "cbApplyRaft";
             this.cbApplyRaft.Size = new System.Drawing.Size(165, 17);
-            this.cbApplyRaft.TabIndex = 32;
+            this.cbApplyRaft.TabIndex = 20;
             this.cbApplyRaft.Text = "Refresh Raft Every X minutes";
             this.cbApplyRaft.UseVisualStyleBackColor = true;
             // 
@@ -526,7 +526,7 @@
             this.txtCharmKey.Location = new System.Drawing.Point(267, 38);
             this.txtCharmKey.Name = "txtCharmKey";
             this.txtCharmKey.Size = new System.Drawing.Size(22, 20);
-            this.txtCharmKey.TabIndex = 31;
+            this.txtCharmKey.TabIndex = 7;
             this.txtCharmKey.Text = "5";
             // 
             // LabelCharmKey
@@ -545,7 +545,7 @@
             this.txtRaftKey.Location = new System.Drawing.Point(108, 38);
             this.txtRaftKey.Name = "txtRaftKey";
             this.txtRaftKey.Size = new System.Drawing.Size(22, 20);
-            this.txtRaftKey.TabIndex = 29;
+            this.txtRaftKey.TabIndex = 6;
             this.txtRaftKey.Text = "4";
             // 
             // LabelRaftKey
@@ -564,7 +564,7 @@
             this.txtHearthTime.Location = new System.Drawing.Point(449, 161);
             this.txtHearthTime.Name = "txtHearthTime";
             this.txtHearthTime.Size = new System.Drawing.Size(30, 20);
-            this.txtHearthTime.TabIndex = 27;
+            this.txtHearthTime.TabIndex = 19;
             this.txtHearthTime.Text = "3";
             // 
             // cbAlt
@@ -573,7 +573,7 @@
             this.cbAlt.Location = new System.Drawing.Point(365, 17);
             this.cbAlt.Name = "cbAlt";
             this.cbAlt.Size = new System.Drawing.Size(119, 17);
-            this.cbAlt.TabIndex = 6;
+            this.cbAlt.TabIndex = 5;
             this.cbAlt.Text = "Use Alt-Key Modifer";
             this.cbAlt.UseVisualStyleBackColor = true;
             // 
@@ -583,7 +583,7 @@
             this.cbHearth.Location = new System.Drawing.Point(244, 163);
             this.cbHearth.Name = "cbHearth";
             this.cbHearth.Size = new System.Drawing.Size(170, 17);
-            this.cbHearth.TabIndex = 8;
+            this.cbHearth.TabIndex = 18;
             this.cbHearth.Text = "Hearth To Inn After X Minutes:";
             this.cbHearth.UseVisualStyleBackColor = true;
             // 
@@ -602,7 +602,7 @@
             this.txtProcName.Location = new System.Drawing.Point(141, 256);
             this.txtProcName.Name = "txtProcName";
             this.txtProcName.Size = new System.Drawing.Size(255, 20);
-            this.txtProcName.TabIndex = 9;
+            this.txtProcName.TabIndex = 28;
             this.txtProcName.Text = "Wow";
             // 
             // LabelProcessNameDesc
@@ -631,7 +631,7 @@
             this.cbAutoLure.Location = new System.Drawing.Point(11, 163);
             this.cbAutoLure.Name = "cbAutoLure";
             this.cbAutoLure.Size = new System.Drawing.Size(155, 17);
-            this.cbAutoLure.TabIndex = 7;
+            this.cbAutoLure.TabIndex = 16;
             this.cbAutoLure.Text = "Apply Lure Every X minutes";
             this.cbAutoLure.UseVisualStyleBackColor = true;
             // 
@@ -641,7 +641,7 @@
             this.txtHearthKey.Location = new System.Drawing.Point(337, 16);
             this.txtHearthKey.Name = "txtHearthKey";
             this.txtHearthKey.Size = new System.Drawing.Size(22, 20);
-            this.txtHearthKey.TabIndex = 3;
+            this.txtHearthKey.TabIndex = 4;
             this.txtHearthKey.Text = "3";
             // 
             // LabelHearthKey
@@ -660,7 +660,7 @@
             this.txtLureKey.Location = new System.Drawing.Point(213, 16);
             this.txtLureKey.Name = "txtLureKey";
             this.txtLureKey.Size = new System.Drawing.Size(22, 20);
-            this.txtLureKey.TabIndex = 2;
+            this.txtLureKey.TabIndex = 3;
             this.txtLureKey.Text = "2";
             // 
             // LabelLureKey
@@ -679,7 +679,7 @@
             this.txtFishKey.Location = new System.Drawing.Point(87, 15);
             this.txtFishKey.Name = "txtFishKey";
             this.txtFishKey.Size = new System.Drawing.Size(22, 20);
-            this.txtFishKey.TabIndex = 1;
+            this.txtFishKey.TabIndex = 2;
             this.txtFishKey.Text = "1";
             // 
             // LabelCastKey
@@ -708,7 +708,7 @@
             this.txtBaitKey1.Location = new System.Drawing.Point(402, 38);
             this.txtBaitKey1.Name = "txtBaitKey1";
             this.txtBaitKey1.Size = new System.Drawing.Size(22, 20);
-            this.txtBaitKey1.TabIndex = 29;
+            this.txtBaitKey1.TabIndex = 8;
             this.txtBaitKey1.Text = "6";
             // 
             // cbAutoBait
@@ -717,7 +717,7 @@
             this.cbAutoBait.Location = new System.Drawing.Point(11, 207);
             this.cbAutoBait.Name = "cbAutoBait";
             this.cbAutoBait.Size = new System.Drawing.Size(152, 17);
-            this.cbAutoBait.TabIndex = 32;
+            this.cbAutoBait.TabIndex = 24;
             this.cbAutoBait.Text = "Apply Bait Every X minutes";
             this.cbAutoBait.UseVisualStyleBackColor = true;
             // 
@@ -741,7 +741,7 @@
             this.buttonSave.Location = new System.Drawing.Point(157, 341);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(92, 23);
-            this.buttonSave.TabIndex = 13;
+            this.buttonSave.TabIndex = 50;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -752,7 +752,7 @@
             this.txtDelay.Location = new System.Drawing.Point(128, 79);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(32, 20);
-            this.txtDelay.TabIndex = 14;
+            this.txtDelay.TabIndex = 3;
             // 
             // tabSettings
             // 
@@ -767,7 +767,7 @@
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
             this.tabSettings.Size = new System.Drawing.Size(527, 335);
-            this.tabSettings.TabIndex = 12;
+            this.tabSettings.TabIndex = 1;
             this.tabSettings.SelectedIndexChanged += new System.EventHandler(this.tabSettings_SelectedIndexChanged);
             // 
             // TabPage2
@@ -795,7 +795,7 @@
             this.txtFishWait.Location = new System.Drawing.Point(153, 77);
             this.txtFishWait.Name = "txtFishWait";
             this.txtFishWait.Size = new System.Drawing.Size(53, 20);
-            this.txtFishWait.TabIndex = 20;
+            this.txtFishWait.TabIndex = 3;
             // 
             // LabelFishWaitDesc
             // 
@@ -823,7 +823,7 @@
             this.txtLootingDelay.Location = new System.Drawing.Point(153, 141);
             this.txtLootingDelay.Name = "txtLootingDelay";
             this.txtLootingDelay.Size = new System.Drawing.Size(53, 20);
-            this.txtLootingDelay.TabIndex = 17;
+            this.txtLootingDelay.TabIndex = 4;
             // 
             // LabelDelayLootingDesc
             // 
@@ -850,7 +850,7 @@
             this.txtCastDelay.Location = new System.Drawing.Point(153, 12);
             this.txtCastDelay.Name = "txtCastDelay";
             this.txtCastDelay.Size = new System.Drawing.Size(53, 20);
-            this.txtCastDelay.TabIndex = 14;
+            this.txtCastDelay.TabIndex = 2;
             // 
             // LabelDelayCastDesc
             // 
@@ -910,7 +910,7 @@
             this.cmbCompareIcon.Location = new System.Drawing.Point(5, 228);
             this.cmbCompareIcon.Name = "cmbCompareIcon";
             this.cmbCompareIcon.Size = new System.Drawing.Size(114, 17);
-            this.cmbCompareIcon.TabIndex = 18;
+            this.cmbCompareIcon.TabIndex = 5;
             this.cmbCompareIcon.Text = "Check Cursor Icon";
             this.cmbCompareIcon.UseVisualStyleBackColor = true;
             // 
@@ -920,7 +920,7 @@
             this.txtRetries.Location = new System.Drawing.Point(129, 154);
             this.txtRetries.Name = "txtRetries";
             this.txtRetries.Size = new System.Drawing.Size(32, 20);
-            this.txtRetries.TabIndex = 17;
+            this.txtRetries.TabIndex = 4;
             // 
             // LabelScanningRetriesDesc
             // 
@@ -964,7 +964,7 @@
             this.cmbMovements.Location = new System.Drawing.Point(153, 130);
             this.cmbMovements.Name = "cmbMovements";
             this.cmbMovements.Size = new System.Drawing.Size(99, 21);
-            this.cmbMovements.TabIndex = 51;
+            this.cmbMovements.TabIndex = 4;
             // 
             // txtAntiAfkTimer
             // 
@@ -972,7 +972,7 @@
             this.txtAntiAfkTimer.Location = new System.Drawing.Point(361, 105);
             this.txtAntiAfkTimer.Name = "txtAntiAfkTimer";
             this.txtAntiAfkTimer.Size = new System.Drawing.Size(30, 20);
-            this.txtAntiAfkTimer.TabIndex = 50;
+            this.txtAntiAfkTimer.TabIndex = 3;
             this.txtAntiAfkTimer.Text = "10";
             // 
             // cbAntiAfk
@@ -981,7 +981,7 @@
             this.cbAntiAfk.Location = new System.Drawing.Point(153, 107);
             this.cbAntiAfk.Name = "cbAntiAfk";
             this.cbAntiAfk.Size = new System.Drawing.Size(177, 17);
-            this.cbAntiAfk.TabIndex = 9;
+            this.cbAntiAfk.TabIndex = 2;
             this.cbAntiAfk.Text = "Enable Anti-Afk every X minutes";
             this.cbAntiAfk.UseVisualStyleBackColor = true;
             // 
@@ -1007,7 +1007,7 @@
             this.cmbLanguage.Location = new System.Drawing.Point(181, 133);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(99, 21);
-            this.cmbLanguage.TabIndex = 17;
+            this.cmbLanguage.TabIndex = 2;
             // 
             // labelLanguageDesc
             // 
@@ -1034,7 +1034,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(255, 341);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(92, 23);
-            this.buttonCancel.TabIndex = 11;
+            this.buttonCancel.TabIndex = 51;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
