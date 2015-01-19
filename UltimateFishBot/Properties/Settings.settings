@@ -134,5 +134,8 @@
     <Setting Name="StartStopHotKey" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">Ctrl+Shift+S</Value>
     </Setting>
+    <Setting Name="AlternativeRoute" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

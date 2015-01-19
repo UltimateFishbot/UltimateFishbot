@@ -116,6 +116,8 @@
             this.labelLanguageDesc = new System.Windows.Forms.Label();
             this.labelLanguage = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.cmbAlternativeRoute = new System.Windows.Forms.CheckBox();
+            this.LabelAlternativeRoute = new System.Windows.Forms.Label();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -874,6 +876,8 @@
             // 
             // TabPage1
             // 
+            this.TabPage1.Controls.Add(this.LabelAlternativeRoute);
+            this.TabPage1.Controls.Add(this.cmbAlternativeRoute);
             this.TabPage1.Controls.Add(this.LabelCheckCursorIcon);
             this.TabPage1.Controls.Add(this.cmbCompareIcon);
             this.TabPage1.Controls.Add(this.txtRetries);
@@ -896,9 +900,9 @@
             // LabelCheckCursorIcon
             // 
             this.LabelCheckCursorIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCheckCursorIcon.Location = new System.Drawing.Point(3, 248);
+            this.LabelCheckCursorIcon.Location = new System.Drawing.Point(3, 264);
             this.LabelCheckCursorIcon.Name = "LabelCheckCursorIcon";
-            this.LabelCheckCursorIcon.Size = new System.Drawing.Size(423, 58);
+            this.LabelCheckCursorIcon.Size = new System.Drawing.Size(423, 29);
             this.LabelCheckCursorIcon.TabIndex = 19;
             this.LabelCheckCursorIcon.Text = "Specify if the bot must check the icon before fishing. Avoid clicking when it\'s n" +
     "ot a bobber. May not work on some computer, disable if the bot don\'t find your b" +
@@ -907,7 +911,7 @@
             // cmbCompareIcon
             // 
             this.cmbCompareIcon.AutoSize = true;
-            this.cmbCompareIcon.Location = new System.Drawing.Point(5, 228);
+            this.cmbCompareIcon.Location = new System.Drawing.Point(5, 244);
             this.cmbCompareIcon.Name = "cmbCompareIcon";
             this.cmbCompareIcon.Size = new System.Drawing.Size(114, 17);
             this.cmbCompareIcon.TabIndex = 5;
@@ -1039,6 +1043,25 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // cmbAlternativeRoute
+            // 
+            this.cmbAlternativeRoute.AutoSize = true;
+            this.cmbAlternativeRoute.Location = new System.Drawing.Point(5, 204);
+            this.cmbAlternativeRoute.Name = "cmbAlternativeRoute";
+            this.cmbAlternativeRoute.Size = new System.Drawing.Size(79, 17);
+            this.cmbAlternativeRoute.TabIndex = 20;
+            this.cmbAlternativeRoute.Text = "Spiral route";
+            this.cmbAlternativeRoute.UseVisualStyleBackColor = true;
+            // 
+            // LabelAlternativeRoute
+            // 
+            this.LabelAlternativeRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAlternativeRoute.Location = new System.Drawing.Point(3, 224);
+            this.LabelAlternativeRoute.Name = "LabelAlternativeRoute";
+            this.LabelAlternativeRoute.Size = new System.Drawing.Size(423, 17);
+            this.LabelAlternativeRoute.TabIndex = 21;
+            this.LabelAlternativeRoute.Text = "An alternative route for bobber searching.";
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1155,6 +1178,8 @@
         internal System.Windows.Forms.CheckBox cbAntiAfk;
         internal System.Windows.Forms.TextBox txtHotKey;
         internal System.Windows.Forms.Label labelHotKey;
+        internal System.Windows.Forms.Label LabelAlternativeRoute;
+        private System.Windows.Forms.CheckBox cmbAlternativeRoute;
 
     }
 }
