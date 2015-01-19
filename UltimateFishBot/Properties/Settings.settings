@@ -132,7 +132,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="StartStopHotKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Ctrl+Maj+S</Value>
+      <Value Profile="(Default)">Ctrl+Shift+S</Value>
     </Setting>
   </Settings>
 </SettingsFile>
