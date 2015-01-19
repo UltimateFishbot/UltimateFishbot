@@ -22,8 +22,7 @@ namespace UltimateFishBot
             None    = 0,
             Alt     = 1,
             Control = 2,
-            Shift   = 4,
-            WinKey  = 8
+            Shift   = 4
         }
 
         public enum HotKey
@@ -196,25 +195,22 @@ namespace UltimateFishBot
         {
             KeyModifier modifiers = KeyModifier.None;
 
-            if ((key & Keys.Shift) != 0)
-            {
-                modifiers |= KeyModifier.Shift;
-                key &= ~Keys.Shift;
-            }
-
-            if ((key & Keys.Control) != 0)
-            {
-                modifiers |= KeyModifier.Control;
-                key &= ~Keys.Control;
-            }
-
-            if ((key & Keys.Alt) != 0)
-            {
-                modifiers |= KeyModifier.Alt;
-                key &= ~Keys.Alt;
-            }
+            modifiers |= RemoveAndReturnModifier(ref key, Keys.Shift,   KeyModifier.Shift);
+            modifiers |= RemoveAndReturnModifier(ref key, Keys.Control, KeyModifier.Control);
+            modifiers |= RemoveAndReturnModifier(ref key, Keys.Alt,     KeyModifier.Alt);
 
             return modifiers;
+        }
+
+        private KeyModifier RemoveAndReturnModifier(ref Keys key, Keys keyModifier, KeyModifier modifier)
+        {
+            if ((key & keyModifier) != 0)
+            {
+                key &= ~keyModifier;
+                return modifier;
+            }
+
+            return KeyModifier.None;
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)

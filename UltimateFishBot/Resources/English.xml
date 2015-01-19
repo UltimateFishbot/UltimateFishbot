@@ -152,7 +152,8 @@
     <frmStats>
         <TITLE>Statistics</TITLE>
         <LABEL_SUCCESS>Successful Fishing :</LABEL_SUCCESS>
-        <LABEL_MISSED>Missed Fish :</LABEL_MISSED>
+        <LABEL_NOT_FOUND>Fish not found :</LABEL_NOT_FOUND>
+        <LABEL_NOT_EARED>Fish not eared :</LABEL_NOT_EARED>
         <LABEL_TOTAL>Total :</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Close</BUTTON_CLOSE>

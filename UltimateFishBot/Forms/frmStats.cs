@@ -25,7 +25,8 @@ namespace UltimateFishBot.Forms
         {
             this.Text           = Translate.GetTranslate("frmStats", "TITLE");
             labelSuccess.Text   = Translate.GetTranslate("frmStats", "LABEL_SUCCESS");
-            labelMissed.Text    = Translate.GetTranslate("frmStats", "LABEL_MISSED");
+            labelNotFound.Text  = Translate.GetTranslate("frmStats", "LABEL_NOT_FOUND");
+            labelNotEared.Text  = Translate.GetTranslate("frmStats", "LABEL_NOT_EARED");
             labelTotal.Text     = Translate.GetTranslate("frmStats", "LABEL_TOTAL");
             buttonReset.Text    = Translate.GetTranslate("frmStats", "BUTTON_RESET");
             buttonClose.Text    = Translate.GetTranslate("frmStats", "BUTTON_CLOSE");
@@ -34,7 +35,8 @@ namespace UltimateFishBot.Forms
         private void buttonReset_Click(object sender, EventArgs e)
         {
             labelSuccessCount.Text  = "0";
-            labelMissedCount.Text   = "0";
+            labelNotFoundCount.Text = "0";
+            labelNotEaredCount.Text = "0";
             labelTotalCount.Text    = "0";
 
             m_manager.ResetFishingStats();
@@ -52,10 +54,11 @@ namespace UltimateFishBot.Forms
 
         private void UpdateStats()
         {
-            Manager.FishingStats stats = m_manager.GetFishingStats();
-            labelSuccessCount.Text = stats.totalSuccessFishing.ToString();
-            labelMissedCount.Text = stats.totalMissedFishing.ToString();
-            labelTotalCount.Text = (stats.totalSuccessFishing + stats.totalMissedFishing).ToString();
+            Manager.FishingStats stats  = m_manager.GetFishingStats();
+            labelSuccessCount.Text      = stats.totalSuccessFishing.ToString();
+            labelNotFoundCount.Text     = stats.totalNotFoundFish.ToString();
+            labelNotEaredCount.Text     = stats.totalNotEaredFish.ToString();
+            labelTotalCount.Text        = stats.Total().ToString();
         }
 
         Manager m_manager;

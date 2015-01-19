@@ -39,13 +39,20 @@ namespace UltimateFishBot.Classes
 
         public struct FishingStats
         {
-            public int totalSuccessFishing { get; set; }
-            public int totalMissedFishing  { get; set; }
+            public int totalSuccessFishing  { get; set; }
+            public int totalNotFoundFish    { get; set; }
+            public int totalNotEaredFish    { get; set; }
 
             public void Reset()
             {
                 totalSuccessFishing = 0;
-                totalMissedFishing  = 0;
+                totalNotFoundFish   = 0;
+                totalNotEaredFish   = 0;
+            }
+
+            public int Total()
+            {
+                return totalSuccessFishing + totalNotFoundFish + totalNotEaredFish;
             }
         }
 
@@ -177,9 +184,13 @@ namespace UltimateFishBot.Classes
                     }
                     case FishingState.Casting:
                     case FishingState.SearchingForBobber:
+                    {
+                        ++m_fishingStats.totalNotFoundFish;
+                        break;
+                    }
                     case FishingState.WaitingForFish:
                     {
-                        ++m_fishingStats.totalMissedFishing;
+                        ++m_fishingStats.totalNotEaredFish;
                         break;
                     }
                 }
