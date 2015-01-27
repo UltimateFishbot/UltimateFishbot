@@ -11,18 +11,20 @@ namespace UltimateFishBot.Classes.BodyParts
 {
     class Hands
     {
-        private Cursor cursor;
-        private string[] baitKeys;
+        private Cursor m_cursor;
+        private int m_baitIndex;
+        private string[] m_baitKeys;
 
         public Hands()
         {
-            cursor = new Cursor(Cursor.Current.Handle);
+            m_baitIndex = 0;
+            m_cursor = new Cursor(Cursor.Current.Handle);
             UpdateKeys();
         }
 
         public void UpdateKeys()
         {
-            baitKeys = new string[7]
+            m_baitKeys = new string[7]
             {
                 Properties.Settings.Default.BaitKey1,
                 Properties.Settings.Default.BaitKey2,
@@ -47,6 +49,11 @@ namespace UltimateFishBot.Classes.BodyParts
             Thread.Sleep(Properties.Settings.Default.LootingDelay);
         }
 
+        public void ResetBaitIndex()
+        {
+            m_baitIndex = 0;
+        }
+
         public void DoAction(Manager.NeededAction action, Mouth mouth)
         {
             string actionKey = "";
@@ -56,29 +63,29 @@ namespace UltimateFishBot.Classes.BodyParts
             {
                 case Manager.NeededAction.HearthStone:
                 {
-                    mouth.Say(Translate.GetTranslate("manager", "LABEL_HEARTHSTONE"));
                     actionKey = Properties.Settings.Default.HearthKey;
+                    mouth.Say(Translate.GetTranslate("manager", "LABEL_HEARTHSTONE"));
                     sleepTime = 0;
                     break;
                 }
                 case Manager.NeededAction.Lure:
                 {
-                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_LURE"));
                     actionKey = Properties.Settings.Default.LureKey;
+                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_LURE"));
                     sleepTime = 3;
                     break;
                 }
                 case Manager.NeededAction.Charm:
                 {
-                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_CHARM"));
                     actionKey = Properties.Settings.Default.CharmKey;
+                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_CHARM"));
                     sleepTime = 3;
                     break;
                 }
                 case Manager.NeededAction.Raft:
                 {
-                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_RAFT"));
                     actionKey = Properties.Settings.Default.RaftKey;
+                    mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_RAFT"));
                     sleepTime = 2;
                     break;
                 }
@@ -86,11 +93,16 @@ namespace UltimateFishBot.Classes.BodyParts
                 {
                     int baitIndex = 0;
 
-                    if (Properties.Settings.Default.randomBait)
-                        baitIndex = new Random().Next(0, 7);
+                    if (Properties.Settings.Default.CycleThroughBaitList)
+                    {
+                        if (m_baitIndex >= 6)
+                            m_baitIndex = 0;
 
+                        baitIndex = m_baitIndex++;
+                    }
+
+                    actionKey = m_baitKeys[baitIndex];
                     mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_BAIT", baitIndex));
-                    actionKey = baitKeys[baitIndex];
                     sleepTime = 3;
                     break;
                 }

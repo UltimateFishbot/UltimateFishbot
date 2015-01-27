@@ -338,12 +338,12 @@ namespace UltimateFishBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool randomBait {
+        public bool CycleThroughBaitList {
             get {
-                return ((bool)(this["randomBait"]));
+                return ((bool)(this["CycleThroughBaitList"]));
             }
             set {
-                this["randomBait"] = value;
+                this["CycleThroughBaitList"] = value;
             }
         }
         

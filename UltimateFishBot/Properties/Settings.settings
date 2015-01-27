@@ -80,7 +80,7 @@
     <Setting Name="AutoBait" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="randomBait" Type="System.Boolean" Scope="User">
+    <Setting Name="CycleThroughBaitList" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BaitKey1" Type="System.String" Scope="User">

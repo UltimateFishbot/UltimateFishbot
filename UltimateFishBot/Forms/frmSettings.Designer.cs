@@ -49,7 +49,7 @@
             this.txtBaitTime = new System.Windows.Forms.TextBox();
             this.txtRaftTime = new System.Windows.Forms.TextBox();
             this.txtLureTime = new System.Windows.Forms.TextBox();
-            this.cbRandomBait = new System.Windows.Forms.CheckBox();
+            this.cbCycleThroughBaitList = new System.Windows.Forms.CheckBox();
             this.LabelBaitKey7 = new System.Windows.Forms.Label();
             this.txtBaitKey7 = new System.Windows.Forms.TextBox();
             this.LabelBaitKey6 = new System.Windows.Forms.Label();
@@ -102,6 +102,8 @@
             this.LabelDelayCastDesc = new System.Windows.Forms.Label();
             this.LabelDelayCast = new System.Windows.Forms.Label();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.LabelAlternativeRoute = new System.Windows.Forms.Label();
+            this.cmbAlternativeRoute = new System.Windows.Forms.CheckBox();
             this.LabelCheckCursorIcon = new System.Windows.Forms.Label();
             this.cmbCompareIcon = new System.Windows.Forms.CheckBox();
             this.txtRetries = new System.Windows.Forms.TextBox();
@@ -116,8 +118,6 @@
             this.labelLanguageDesc = new System.Windows.Forms.Label();
             this.labelLanguage = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.cmbAlternativeRoute = new System.Windows.Forms.CheckBox();
-            this.LabelAlternativeRoute = new System.Windows.Forms.Label();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -268,7 +268,7 @@
             this.TabPage4.Controls.Add(this.txtBaitTime);
             this.TabPage4.Controls.Add(this.txtRaftTime);
             this.TabPage4.Controls.Add(this.txtLureTime);
-            this.TabPage4.Controls.Add(this.cbRandomBait);
+            this.TabPage4.Controls.Add(this.cbCycleThroughBaitList);
             this.TabPage4.Controls.Add(this.LabelBaitKey7);
             this.TabPage4.Controls.Add(this.txtBaitKey7);
             this.TabPage4.Controls.Add(this.LabelBaitKey6);
@@ -368,15 +368,16 @@
             this.txtLureTime.TabIndex = 17;
             this.txtLureTime.Text = "10";
             // 
-            // cbRandomBait
+            // cbCycleThroughBaitList
             // 
-            this.cbRandomBait.AutoSize = true;
-            this.cbRandomBait.Location = new System.Drawing.Point(244, 207);
-            this.cbRandomBait.Name = "cbRandomBait";
-            this.cbRandomBait.Size = new System.Drawing.Size(203, 17);
-            this.cbRandomBait.TabIndex = 26;
-            this.cbRandomBait.Text = "Random bait between the 7 possibles";
-            this.cbRandomBait.UseVisualStyleBackColor = true;
+            this.cbCycleThroughBaitList.AutoSize = true;
+            this.cbCycleThroughBaitList.Location = new System.Drawing.Point(244, 207);
+            this.cbCycleThroughBaitList.Name = "cbCycleThroughBaitList";
+            this.cbCycleThroughBaitList.Size = new System.Drawing.Size(189, 17);
+            this.cbCycleThroughBaitList.TabIndex = 26;
+            this.cbCycleThroughBaitList.Text = "Cycle through the 7 possibles baits";
+            this.cbCycleThroughBaitList.ThreeState = true;
+            this.cbCycleThroughBaitList.UseVisualStyleBackColor = true;
             // 
             // LabelBaitKey7
             // 
@@ -897,6 +898,25 @@
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
             // 
+            // LabelAlternativeRoute
+            // 
+            this.LabelAlternativeRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAlternativeRoute.Location = new System.Drawing.Point(3, 224);
+            this.LabelAlternativeRoute.Name = "LabelAlternativeRoute";
+            this.LabelAlternativeRoute.Size = new System.Drawing.Size(423, 17);
+            this.LabelAlternativeRoute.TabIndex = 21;
+            this.LabelAlternativeRoute.Text = "An alternative route for bobber searching.";
+            // 
+            // cmbAlternativeRoute
+            // 
+            this.cmbAlternativeRoute.AutoSize = true;
+            this.cmbAlternativeRoute.Location = new System.Drawing.Point(5, 204);
+            this.cmbAlternativeRoute.Name = "cmbAlternativeRoute";
+            this.cmbAlternativeRoute.Size = new System.Drawing.Size(79, 17);
+            this.cmbAlternativeRoute.TabIndex = 20;
+            this.cmbAlternativeRoute.Text = "Spiral route";
+            this.cmbAlternativeRoute.UseVisualStyleBackColor = true;
+            // 
             // LabelCheckCursorIcon
             // 
             this.LabelCheckCursorIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1043,25 +1063,6 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // cmbAlternativeRoute
-            // 
-            this.cmbAlternativeRoute.AutoSize = true;
-            this.cmbAlternativeRoute.Location = new System.Drawing.Point(5, 204);
-            this.cmbAlternativeRoute.Name = "cmbAlternativeRoute";
-            this.cmbAlternativeRoute.Size = new System.Drawing.Size(79, 17);
-            this.cmbAlternativeRoute.TabIndex = 20;
-            this.cmbAlternativeRoute.Text = "Spiral route";
-            this.cmbAlternativeRoute.UseVisualStyleBackColor = true;
-            // 
-            // LabelAlternativeRoute
-            // 
-            this.LabelAlternativeRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelAlternativeRoute.Location = new System.Drawing.Point(3, 224);
-            this.LabelAlternativeRoute.Name = "LabelAlternativeRoute";
-            this.LabelAlternativeRoute.Size = new System.Drawing.Size(423, 17);
-            this.LabelAlternativeRoute.TabIndex = 21;
-            this.LabelAlternativeRoute.Text = "An alternative route for bobber searching.";
-            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1105,7 +1106,7 @@
         internal System.Windows.Forms.Label LabelSplashThresholdDesc;
         internal System.Windows.Forms.Label LabelSplashThreshold;
         internal System.Windows.Forms.TabPage TabPage4;
-        internal System.Windows.Forms.CheckBox cbRandomBait;
+        internal System.Windows.Forms.CheckBox cbCycleThroughBaitList;
         internal System.Windows.Forms.Label LabelBaitKey7;
         internal System.Windows.Forms.TextBox txtBaitKey7;
         internal System.Windows.Forms.Label LabelBaitKey6;

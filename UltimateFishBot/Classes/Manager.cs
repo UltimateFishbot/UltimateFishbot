@@ -128,7 +128,8 @@ namespace UltimateFishBot.Classes
         {
             ResetTimers();
             SwitchTimerState(true);
-            
+            m_hands.ResetBaitIndex();
+
             if (Properties.Settings.Default.AutoLure)
                 AddNeededAction(NeededAction.Lure);
 

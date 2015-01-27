@@ -127,7 +127,7 @@
         <CB_AUTO_RAFT>Refresh Raft Every X minutes</CB_AUTO_RAFT>
         <CB_AUTO_CHARM>Refresh Charm Every X minutes</CB_AUTO_CHARM>
         <CB_AUTO_BAIT>Apply Bait Every X minutes</CB_AUTO_BAIT>
-        <CB_RANDOM_BAIT>Random bait between the 7 possibles</CB_RANDOM_BAIT>
+        <CB_CYCLE_THROUGH_BAIT_LIST>Cycle through the 7 possibles baits</CB_CYCLE_THROUGH_BAIT_LIST>
         <CB_SHIFT_LOOT>Shift-Loot? (If AutoLoot is Disabled, Enable This)</CB_SHIFT_LOOT>
 
         <LABEL_PROCESS_NAME>WoW Process Name:</LABEL_PROCESS_NAME>
