@@ -102,8 +102,8 @@
         <LABEL_SPLASH_THRESHOLD>Splash Threshold:</LABEL_SPLASH_THRESHOLD>
         <LABEL_SPLASH_THRESHOLD_DESC>Determines if a given sound is loud enough to be a fish or not.  Too low and the bot will mistake non-fish for fish.  Too high and the bot will ignore the real fish.</LABEL_SPLASH_THRESHOLD_DESC>
 
-        <LABEL_SCANNING_DELAY>Audio Device:</LABEL_SCANNING_DELAY>
-        <LABEL_SCANNING_DELAY_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_SCANNING_DELAY_DESC>
+        <LABEL_AUDIO_DEVICE>Audio Device:</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_AUDIO_DEVICE_DESC>
 
         <!-- Premium Settings -->
         <LABEL_CAST_KEY>Cast Key:</LABEL_CAST_KEY>
