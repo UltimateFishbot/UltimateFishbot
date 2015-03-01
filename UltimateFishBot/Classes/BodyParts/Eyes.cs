@@ -137,7 +137,7 @@ namespace UltimateFishBot.Classes.BodyParts
                         x += dx;
                         y += dy;
 
-                        if (MoveMouseAndCheckCursor(x, y))
+                        if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
                             return;
                     }
                 }
