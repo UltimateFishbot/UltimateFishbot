@@ -13,6 +13,17 @@ namespace UltimateFishBot.Forms
 {
     public partial class frmDirections : Form
     {
+        private static frmDirections inst;
+        public static frmDirections GetForm
+        {
+            get
+            {
+                if (inst == null || inst.IsDisposed)
+                    inst = new frmDirections();
+                return inst;
+            }
+        }
+
         public frmDirections()
         {
             InitializeComponent();

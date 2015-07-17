@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.LabelScanningDelayDesc = new System.Windows.Forms.Label();
             this.txtScanSteps = new System.Windows.Forms.TextBox();
             this.LabelScanningStepsDesc = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@
             this.txtBaitTime = new System.Windows.Forms.TextBox();
             this.txtRaftTime = new System.Windows.Forms.TextBox();
             this.txtLureTime = new System.Windows.Forms.TextBox();
-            this.cbCycleThroughBaitList = new System.Windows.Forms.CheckBox();
+            this.cbRandomBait = new System.Windows.Forms.CheckBox();
             this.LabelBaitKey7 = new System.Windows.Forms.Label();
             this.txtBaitKey7 = new System.Windows.Forms.TextBox();
             this.LabelBaitKey6 = new System.Windows.Forms.Label();
@@ -102,6 +103,13 @@
             this.LabelDelayCastDesc = new System.Windows.Forms.Label();
             this.LabelDelayCast = new System.Windows.Forms.Label();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.LabelMaxXY = new System.Windows.Forms.Label();
+            this.txtMaxXY = new System.Windows.Forms.TextBox();
+            this.txtMinXY = new System.Windows.Forms.TextBox();
+            this.LabelMinXY = new System.Windows.Forms.Label();
+            this.btnSetScanArea = new System.Windows.Forms.Button();
+            this.customAreaCheckbox = new System.Windows.Forms.CheckBox();
+            this.LabelScanArea = new System.Windows.Forms.Label();
             this.LabelAlternativeRoute = new System.Windows.Forms.Label();
             this.cmbAlternativeRoute = new System.Windows.Forms.CheckBox();
             this.LabelCheckCursorIcon = new System.Windows.Forms.Label();
@@ -130,7 +138,7 @@
             // LabelScanningDelayDesc
             // 
             this.LabelScanningDelayDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelScanningDelayDesc.Location = new System.Drawing.Point(8, 102);
+            this.LabelScanningDelayDesc.Location = new System.Drawing.Point(9, 81);
             this.LabelScanningDelayDesc.Name = "LabelScanningDelayDesc";
             this.LabelScanningDelayDesc.Size = new System.Drawing.Size(423, 51);
             this.LabelScanningDelayDesc.TabIndex = 13;
@@ -268,7 +276,7 @@
             this.TabPage4.Controls.Add(this.txtBaitTime);
             this.TabPage4.Controls.Add(this.txtRaftTime);
             this.TabPage4.Controls.Add(this.txtLureTime);
-            this.TabPage4.Controls.Add(this.cbCycleThroughBaitList);
+            this.TabPage4.Controls.Add(this.cbRandomBait);
             this.TabPage4.Controls.Add(this.LabelBaitKey7);
             this.TabPage4.Controls.Add(this.txtBaitKey7);
             this.TabPage4.Controls.Add(this.LabelBaitKey6);
@@ -368,16 +376,15 @@
             this.txtLureTime.TabIndex = 17;
             this.txtLureTime.Text = "10";
             // 
-            // cbCycleThroughBaitList
+            // cbRandomBait
             // 
-            this.cbCycleThroughBaitList.AutoSize = true;
-            this.cbCycleThroughBaitList.Location = new System.Drawing.Point(244, 207);
-            this.cbCycleThroughBaitList.Name = "cbCycleThroughBaitList";
-            this.cbCycleThroughBaitList.Size = new System.Drawing.Size(189, 17);
-            this.cbCycleThroughBaitList.TabIndex = 26;
-            this.cbCycleThroughBaitList.Text = "Cycle through the 7 possibles baits";
-            this.cbCycleThroughBaitList.ThreeState = true;
-            this.cbCycleThroughBaitList.UseVisualStyleBackColor = true;
+            this.cbRandomBait.AutoSize = true;
+            this.cbRandomBait.Location = new System.Drawing.Point(244, 207);
+            this.cbRandomBait.Name = "cbRandomBait";
+            this.cbRandomBait.Size = new System.Drawing.Size(203, 17);
+            this.cbRandomBait.TabIndex = 26;
+            this.cbRandomBait.Text = "Random bait between the 7 possibles";
+            this.cbRandomBait.UseVisualStyleBackColor = true;
             // 
             // LabelBaitKey7
             // 
@@ -728,7 +735,7 @@
             // 
             this.LabelScanningDelay.AutoSize = true;
             this.LabelScanningDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelScanningDelay.Location = new System.Drawing.Point(2, 82);
+            this.LabelScanningDelay.Location = new System.Drawing.Point(3, 65);
             this.LabelScanningDelay.Name = "LabelScanningDelay";
             this.LabelScanningDelay.Size = new System.Drawing.Size(100, 13);
             this.LabelScanningDelay.TabIndex = 12;
@@ -752,7 +759,7 @@
             // txtDelay
             // 
             this.txtDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelay.Location = new System.Drawing.Point(128, 79);
+            this.txtDelay.Location = new System.Drawing.Point(129, 58);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(32, 20);
             this.txtDelay.TabIndex = 3;
@@ -877,6 +884,13 @@
             // 
             // TabPage1
             // 
+            this.TabPage1.Controls.Add(this.LabelMaxXY);
+            this.TabPage1.Controls.Add(this.txtMaxXY);
+            this.TabPage1.Controls.Add(this.txtMinXY);
+            this.TabPage1.Controls.Add(this.LabelMinXY);
+            this.TabPage1.Controls.Add(this.btnSetScanArea);
+            this.TabPage1.Controls.Add(this.customAreaCheckbox);
+            this.TabPage1.Controls.Add(this.LabelScanArea);
             this.TabPage1.Controls.Add(this.LabelAlternativeRoute);
             this.TabPage1.Controls.Add(this.cmbAlternativeRoute);
             this.TabPage1.Controls.Add(this.LabelCheckCursorIcon);
@@ -897,6 +911,73 @@
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // LabelMaxXY
+            // 
+            this.LabelMaxXY.AutoSize = true;
+            this.LabelMaxXY.Location = new System.Drawing.Point(301, 170);
+            this.LabelMaxXY.Name = "LabelMaxXY";
+            this.LabelMaxXY.Size = new System.Drawing.Size(49, 13);
+            this.LabelMaxXY.TabIndex = 27;
+            this.LabelMaxXY.Text = "End X,Y:";
+            // 
+            // txtMaxXY
+            // 
+            this.txtMaxXY.Location = new System.Drawing.Point(356, 166);
+            this.txtMaxXY.Name = "txtMaxXY";
+            this.txtMaxXY.ReadOnly = true;
+            this.txtMaxXY.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxXY.TabIndex = 26;
+            // 
+            // txtMinXY
+            // 
+            this.txtMinXY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMinXY.Location = new System.Drawing.Point(193, 166);
+            this.txtMinXY.Name = "txtMinXY";
+            this.txtMinXY.ReadOnly = true;
+            this.txtMinXY.Size = new System.Drawing.Size(100, 20);
+            this.txtMinXY.TabIndex = 26;
+            // 
+            // LabelMinXY
+            // 
+            this.LabelMinXY.AutoSize = true;
+            this.LabelMinXY.Location = new System.Drawing.Point(135, 169);
+            this.LabelMinXY.Name = "LabelMinXY";
+            this.LabelMinXY.Size = new System.Drawing.Size(52, 13);
+            this.LabelMinXY.TabIndex = 25;
+            this.LabelMinXY.Text = "Start X,Y:";
+            // 
+            // btnSetScanArea
+            // 
+            this.btnSetScanArea.Enabled = false;
+            this.btnSetScanArea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetScanArea.Location = new System.Drawing.Point(6, 164);
+            this.btnSetScanArea.Name = "btnSetScanArea";
+            this.btnSetScanArea.Size = new System.Drawing.Size(123, 23);
+            this.btnSetScanArea.TabIndex = 24;
+            this.btnSetScanArea.Text = "Set Scanning Area";
+            this.btnSetScanArea.UseVisualStyleBackColor = true;
+            this.btnSetScanArea.Click += new System.EventHandler(this.btnSetScanArea_Click);
+            // 
+            // customAreaCheckbox
+            // 
+            this.customAreaCheckbox.AutoSize = true;
+            this.customAreaCheckbox.Location = new System.Drawing.Point(482, 148);
+            this.customAreaCheckbox.Name = "customAreaCheckbox";
+            this.customAreaCheckbox.Size = new System.Drawing.Size(15, 14);
+            this.customAreaCheckbox.TabIndex = 23;
+            this.customAreaCheckbox.UseVisualStyleBackColor = true;
+            this.customAreaCheckbox.CheckedChanged += new System.EventHandler(this.customAreaCheckbox_CheckedChanged);
+            // 
+            // LabelScanArea
+            // 
+            this.LabelScanArea.AutoSize = true;
+            this.LabelScanArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LabelScanArea.Location = new System.Drawing.Point(3, 148);
+            this.LabelScanArea.Name = "LabelScanArea";
+            this.LabelScanArea.Size = new System.Drawing.Size(451, 13);
+            this.LabelScanArea.TabIndex = 22;
+            this.LabelScanArea.Text = "Scanning Area (if disabled the scanning area will be calculated automatically):";
             // 
             // LabelAlternativeRoute
             // 
@@ -941,7 +1022,7 @@
             // txtRetries
             // 
             this.txtRetries.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRetries.Location = new System.Drawing.Point(129, 154);
+            this.txtRetries.Location = new System.Drawing.Point(129, 107);
             this.txtRetries.Name = "txtRetries";
             this.txtRetries.Size = new System.Drawing.Size(32, 20);
             this.txtRetries.TabIndex = 4;
@@ -949,7 +1030,7 @@
             // LabelScanningRetriesDesc
             // 
             this.LabelScanningRetriesDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelScanningRetriesDesc.Location = new System.Drawing.Point(6, 177);
+            this.LabelScanningRetriesDesc.Location = new System.Drawing.Point(6, 130);
             this.LabelScanningRetriesDesc.Name = "LabelScanningRetriesDesc";
             this.LabelScanningRetriesDesc.Size = new System.Drawing.Size(423, 38);
             this.LabelScanningRetriesDesc.TabIndex = 16;
@@ -959,7 +1040,7 @@
             // 
             this.LabelScanningRetries.AutoSize = true;
             this.LabelScanningRetries.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelScanningRetries.Location = new System.Drawing.Point(3, 157);
+            this.LabelScanningRetries.Location = new System.Drawing.Point(3, 110);
             this.LabelScanningRetries.Name = "LabelScanningRetries";
             this.LabelScanningRetries.Size = new System.Drawing.Size(108, 13);
             this.LabelScanningRetries.TabIndex = 15;
@@ -1071,6 +1152,9 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.buttonCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmSettings";
             this.Load += new System.EventHandler(this.frmSettings_Load);
             this.TabPage3.ResumeLayout(false);
@@ -1106,7 +1190,7 @@
         internal System.Windows.Forms.Label LabelSplashThresholdDesc;
         internal System.Windows.Forms.Label LabelSplashThreshold;
         internal System.Windows.Forms.TabPage TabPage4;
-        internal System.Windows.Forms.CheckBox cbCycleThroughBaitList;
+        internal System.Windows.Forms.CheckBox cbRandomBait;
         internal System.Windows.Forms.Label LabelBaitKey7;
         internal System.Windows.Forms.TextBox txtBaitKey7;
         internal System.Windows.Forms.Label LabelBaitKey6;
@@ -1181,6 +1265,13 @@
         internal System.Windows.Forms.Label labelHotKey;
         internal System.Windows.Forms.Label LabelAlternativeRoute;
         private System.Windows.Forms.CheckBox cmbAlternativeRoute;
+        private System.Windows.Forms.Label LabelMaxXY;
+        private System.Windows.Forms.Label LabelMinXY;
+        private System.Windows.Forms.Button btnSetScanArea;
+        private System.Windows.Forms.CheckBox customAreaCheckbox;
+        private System.Windows.Forms.Label LabelScanArea;
+        internal System.Windows.Forms.TextBox txtMaxXY;
+        internal System.Windows.Forms.TextBox txtMinXY;
 
     }
 }

@@ -17,6 +17,15 @@ namespace UltimateFishBot.Forms
 {
     public partial class frmSettings : Form
     {
+        private static frmSettings inst;
+        public static frmSettings GetForm (frmMain main)
+            {
+                if (inst == null || inst.IsDisposed)
+                    inst = new frmSettings(main);
+                return inst;
+            }
+
+
         private enum TabulationIndex
         {
             GeneralFishing  = 0,
@@ -83,6 +92,11 @@ namespace UltimateFishBot.Forms
             cmbAlternativeRoute.Text        = Translate.GetTranslate("frmSettings", "LABEL_ALTERNATIVE_ROUTE");
             LabelAlternativeRoute.Text      = Translate.GetTranslate("frmSettings", "LABEL_ALTERNATIVE_ROUTE_DESC");
 
+            LabelScanArea.Text              = Translate.GetTranslate("frmSettings", "LABEL_SCAN_AREA");
+            btnSetScanArea.Text             = Translate.GetTranslate("frmSettings", "SET_SCANNING_AREA");
+            LabelMinXY.Text                 = Translate.GetTranslate("frmSettings", "START_XY");
+            LabelMaxXY.Text                 = Translate.GetTranslate("frmSettings", "END_XY");
+
             /// Hearing the Fish
 
             LabelSplashThreshold.Text       = Translate.GetTranslate("frmSettings", "LABEL_SPLASH_THRESHOLD");
@@ -116,7 +130,7 @@ namespace UltimateFishBot.Forms
             cbApplyRaft.Text                = Translate.GetTranslate("frmSettings", "CB_AUTO_RAFT");
             cbApplyCharm.Text               = Translate.GetTranslate("frmSettings", "CB_AUTO_CHARM");
             cbAutoBait.Text                 = Translate.GetTranslate("frmSettings", "CB_AUTO_BAIT");
-            cbCycleThroughBaitList.Text     = Translate.GetTranslate("frmSettings", "CB_CYCLE_THROUGH_BAIT_LIST");
+            cbRandomBait.Text               = Translate.GetTranslate("frmSettings", "CB_RANDOM_BAIT");
             cbShiftLoot.Text                = Translate.GetTranslate("frmSettings", "CB_SHIFT_LOOT");
 
             LabelProcessName.Text           = Translate.GetTranslate("frmSettings", "LABEL_PROCESS_NAME");
@@ -152,6 +166,9 @@ namespace UltimateFishBot.Forms
             txtScanSteps.Text       = Properties.Settings.Default.ScanningSteps.ToString();
             cmbCompareIcon.Checked  = Properties.Settings.Default.CheckCursor;
             cmbAlternativeRoute.Checked = Properties.Settings.Default.AlternativeRoute;
+            customAreaCheckbox.Checked = Properties.Settings.Default.customScanArea;
+            txtMinXY.Text           = Properties.Settings.Default.minScanXY.ToString();
+            txtMaxXY.Text           = Properties.Settings.Default.maxScanXY.ToString();
 
             /// Hearing the Fish
             txtSplash.Text          = Properties.Settings.Default.SplashLimit.ToString();
@@ -185,7 +202,7 @@ namespace UltimateFishBot.Forms
             txtBaitKey6.Text        = Properties.Settings.Default.BaitKey6;
             txtBaitKey7.Text        = Properties.Settings.Default.BaitKey7;
             cbAutoBait.Checked      = Properties.Settings.Default.AutoBait;
-            cbCycleThroughBaitList.Checked  = Properties.Settings.Default.CycleThroughBaitList;
+            cbRandomBait.Checked    = Properties.Settings.Default.randomBait;
 
             //Times
             txtLureTime.Text        = Properties.Settings.Default.LureTime.ToString();
@@ -201,6 +218,10 @@ namespace UltimateFishBot.Forms
 
             /// Languages
             LoadLanguages();
+
+            // Update Checkbox
+            customAreaCheckbox_CheckedChanged(null, null);
+
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -221,6 +242,7 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.ScanningSteps   = int.Parse(txtScanSteps.Text);
             Properties.Settings.Default.CheckCursor     = cmbCompareIcon.Checked;
             Properties.Settings.Default.AlternativeRoute    = cmbAlternativeRoute.Checked;
+            Properties.Settings.Default.customScanArea  = customAreaCheckbox.Checked;
             
             /// Hearing the Fish
             Properties.Settings.Default.SplashLimit     = int.Parse(txtSplash.Text);
@@ -254,7 +276,7 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.BaitKey6        = txtBaitKey6.Text;
             Properties.Settings.Default.BaitKey7        = txtBaitKey7.Text;
             Properties.Settings.Default.AutoBait        = cbAutoBait.Checked;
-            Properties.Settings.Default.CycleThroughBaitList    = cbCycleThroughBaitList.Checked;
+            Properties.Settings.Default.randomBait      = cbRandomBait.Checked;
 
             SaveHotKeys();
 
@@ -286,6 +308,7 @@ namespace UltimateFishBot.Forms
                 Properties.Settings.Default.Save();
                 this.Close();
             }
+
         }
 
         private void tabSettings_SelectedIndexChanged(Object sender, EventArgs e)
@@ -393,6 +416,30 @@ namespace UltimateFishBot.Forms
         {
             m_hotkey = e.KeyData;
             txtHotKey.Text = new KeysConverter().ConvertToString(m_hotkey);
+        }
+
+        private void customAreaCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (customAreaCheckbox.Checked)
+            {
+                btnSetScanArea.Enabled = true;
+                txtMinXY.Enabled = true;
+                txtMaxXY.Enabled = true;
+            }
+            else
+            {
+                btnSetScanArea.Enabled = false;
+                txtMinXY.Enabled = false;
+                txtMaxXY.Enabled = false;
+            }
+        }
+
+        private void btnSetScanArea_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Translate.GetTranslate("frmSettings", "SCAN_MESSAGE"), Translate.GetTranslate("frmSettings", "SCAN_TITLE"), MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                frmOverlay.GetForm(this).Show();
+            }
         }
     }
 }

@@ -30,14 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnSettings = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnHowTo = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.lblWarn = new System.Windows.Forms.Label();
+            this.btnAbout = new System.Windows.Forms.Button();
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,20 +53,10 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // lblStatus
-            // 
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(12, 171);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(196, 23);
-            this.lblStatus.TabIndex = 14;
-            this.lblStatus.Text = "Stopped";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(227, 150);
+            this.btnClose.Location = new System.Drawing.Point(227, 179);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(92, 23);
             this.btnClose.TabIndex = 6;
@@ -86,6 +77,7 @@
             // 
             // btnStop
             // 
+            this.btnStop.Enabled = false;
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Location = new System.Drawing.Point(227, 34);
             this.btnStop.Name = "btnStop";
@@ -105,17 +97,6 @@
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // PictureBox1
-            // 
-            this.PictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.BackgroundImage")));
-            this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.InitialImage")));
-            this.PictureBox1.Location = new System.Drawing.Point(12, 5);
-            this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(196, 156);
-            this.PictureBox1.TabIndex = 16;
-            this.PictureBox1.TabStop = false;
             // 
             // btnStatistics
             // 
@@ -139,22 +120,61 @@
             this.lblWarn.Text = "** Potential Warnings **";
             this.lblWarn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnAbout
+            // 
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbout.Location = new System.Drawing.Point(227, 150);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(92, 23);
+            this.btnAbout.TabIndex = 6;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // PictureBox1
+            // 
+            this.PictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.BackgroundImage")));
+            this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.InitialImage")));
+            this.PictureBox1.Location = new System.Drawing.Point(12, 5);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Size = new System.Drawing.Size(196, 156);
+            this.PictureBox1.TabIndex = 16;
+            this.PictureBox1.TabStop = false;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Image = global::UltimateFishBot.Properties.Resources.offline;
+            this.lblStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStatus.Location = new System.Drawing.Point(12, 171);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblStatus.Size = new System.Drawing.Size(196, 23);
+            this.lblStatus.TabIndex = 14;
+            this.lblStatus.Text = "Stopped";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 194);
+            this.ClientSize = new System.Drawing.Size(335, 211);
             this.Controls.Add(this.lblWarn);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnHowTo);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "UltimateFishBot - v 4.0";
+            this.Text = "UltimateFishBot - v 4.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
@@ -173,6 +193,7 @@
         internal System.Windows.Forms.PictureBox PictureBox1;
         internal System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.Label lblWarn;
+        internal System.Windows.Forms.Button btnAbout;
     }
 }
 
