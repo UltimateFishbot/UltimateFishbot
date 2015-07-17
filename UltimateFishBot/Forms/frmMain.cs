@@ -12,11 +12,13 @@ using System.Windows.Forms;
 using UltimateFishBot.Classes;
 using UltimateFishBot.Classes.Helpers;
 using UltimateFishBot.Forms;
+using UltimateFishBot.Properties;
 
 namespace UltimateFishBot
 {
     public partial class frmMain : Form
     {
+
         public enum KeyModifier
         {
             None    = 0,
@@ -45,8 +47,9 @@ namespace UltimateFishBot
             btnStatistics.Text  = Translate.GetTranslate("frmMain", "BUTTON_STATISTICS");
             btnHowTo.Text       = Translate.GetTranslate("frmMain", "BUTTON_HTU");
             btnClose.Text       = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
+            btnAbout.Text       = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
             lblStatus.Text      = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
-
+            this.Text           = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             ReloadHotkeys();
             CheckStatus();
         }
@@ -71,14 +74,15 @@ namespace UltimateFishBot
                             lblWarn.Visible = false;
                     }, TaskScheduler.FromCurrentSynchronizationContext());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_COULD_NOT_CHECK_STATUS");
+                lblWarn.Text = (Translate.GetTranslate("frmMain", "LABEL_COULD_NOT_CHECK_STATUS") + ex.ToString());
             }                        
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            btnStop.Enabled = true;
             if (!m_manager.IsStoppedOrPaused())
                 return;
 
@@ -88,6 +92,7 @@ namespace UltimateFishBot
                 btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_START");
                 btnStop.Text    = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text  = Translate.GetTranslate("frmMain", "LABEL_STARTED");
+                lblStatus.Image = Resources.online;
             }
             else
             {
@@ -95,6 +100,7 @@ namespace UltimateFishBot
                 btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
                 btnStop.Text    = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text  = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
+                lblStatus.Image = Resources.offline;
             }
         }
 
@@ -109,6 +115,7 @@ namespace UltimateFishBot
                 btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_START");
                 btnStop.Text    = Translate.GetTranslate("frmMain", "BUTTON_STOP");
                 lblStatus.Text  = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
+                lblStatus.Image = Resources.offline;
             }
             else
             {
@@ -116,23 +123,29 @@ namespace UltimateFishBot
                 btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
                 btnStop.Text    = Translate.GetTranslate("frmMain", "BUTTON_STOP");
                 lblStatus.Text  = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
+                lblStatus.Image = Resources.offline;
             }
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            new frmSettings(this).Show();
+
+            frmSettings.GetForm(this).Show();
+
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
 
-            new frmStats(m_manager).Show();
+            frmStats.GetForm(m_manager).Show();
+
         }
 
         private void btnHowTo_Click(object sender, EventArgs e)
         {
-            new frmDirections().Show();
+
+            frmDirections.GetForm.Show();
+         
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -220,5 +233,13 @@ namespace UltimateFishBot
 
         private Manager m_manager;
         private static int WM_HOTKEY = 0x0312;
+
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            about.GetForm.Show();
+        }
+
+
     }
 }

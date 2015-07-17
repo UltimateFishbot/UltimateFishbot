@@ -10,6 +10,11 @@ namespace UltimateFishBot.Classes.BodyParts
     {
         private Manager m_manager;
         private BackgroundWorker m_backgroundWorker;
+        int xPosMin;
+        int xPosMax;
+        int yPosMin;
+        int yPosMax;
+        Rectangle wowRectangle;
 
         public Eyes(Manager manager)
         {
@@ -32,6 +37,26 @@ namespace UltimateFishBot.Classes.BodyParts
 
         private void EyeProcess_DoWork(object sender, DoWorkEventArgs e)
         {
+
+            Rectangle wowRectangle = Win32.GetWowRectangle();
+
+            if (!Properties.Settings.Default.customScanArea)
+            {
+                xPosMin = wowRectangle.Width / 4;
+                xPosMax = xPosMin * 3;
+                yPosMin = wowRectangle.Height / 4;
+                yPosMax = yPosMin * 3;
+                System.Console.Out.WriteLine("Using default area");
+            }
+            else
+            {
+                xPosMin = Properties.Settings.Default.minScanXY.X;
+                yPosMin = Properties.Settings.Default.minScanXY.Y;
+                xPosMax = Properties.Settings.Default.maxScanXY.X;
+                yPosMax = Properties.Settings.Default.maxScanXY.Y;
+                System.Console.Out.WriteLine("Using custom area");
+            }
+            System.Console.Out.WriteLine("Positions: " + xPosMin.ToString() + " , " + yPosMin.ToString() + " , " + xPosMax.ToString() + " , " + yPosMax.ToString() + " , ");
             if (Properties.Settings.Default.AlternativeRoute)
             {
                 LookForBobber_Alt();
@@ -59,13 +84,6 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             Win32.CursorInfo noFishCursor = Win32.GetNoFishCursor();
             Win32.CursorInfo actualCursor = noFishCursor;
-
-            Rectangle wowRectangle = Win32.GetWowRectangle();
-
-            int xPosMin = wowRectangle.Width / 4;
-            int xPosMax = xPosMin * 3;
-            int yPosMin = wowRectangle.Height / 4;
-            int yPosMax = yPosMin * 3;
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
@@ -102,20 +120,13 @@ namespace UltimateFishBot.Classes.BodyParts
                 }
             }
 
-            throw new Exception("Fish not found"); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
+            throw new Exception("Fish not found"); // Will be catched in Manager:EyeProcess_RunWorkerCompleted
         }
 
         private void LookForBobber_Alt()
         {
             Win32.CursorInfo noFishCursor = Win32.GetNoFishCursor();
             Win32.CursorInfo actualCursor = noFishCursor;
-
-            Rectangle wowRectangle = Win32.GetWowRectangle();
-
-            int xPosMin = wowRectangle.Width / 4;
-            int xPosMax = xPosMin * 3;
-            int yPosMin = wowRectangle.Height / 4;
-            int yPosMax = yPosMin * 3;
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);

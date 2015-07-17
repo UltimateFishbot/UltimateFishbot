@@ -36,6 +36,7 @@
         <BUTTON_STATISTICS>Statistics</BUTTON_STATISTICS>
         <BUTTON_HTU>How to Use</BUTTON_HTU>
         <BUTTON_EXIT>Exit</BUTTON_EXIT>
+		<BUTTON_ABOUT>About</BUTTON_ABOUT>
 
         <LABEL_STARTED>Started</LABEL_STARTED>
         <LABEL_RESUMED>Resumed</LABEL_RESUMED>
@@ -96,14 +97,22 @@
 
         <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
         <LABEL_ALTERNATIVE_ROUTE_DESC>An alternative route for bobber searching.</LABEL_ALTERNATIVE_ROUTE_DESC>
-
+		
+		<LABEL_SCAN_AREA>Scanning Area (if disabled the scanning area will be calculated automatically):</LABEL_SCAN_AREA>
+		<SET_SCANNING_AREA>Set Scanning Area</SET_SCANNING_AREA>
+		<START_XY>Start X,Y:</START_XY>
+		<END_XY>End X,Y:</END_XY>
+		<SCAN_TITLE>Select Area</SCAN_TITLE>
+		<SCAN_MESSAGE>Now an overlay will appear where you can select the scanning area. When you are done just double click the area or press ENTER. Click OK to continue...</SCAN_MESSAGE>
+		<AREA_SMALL>The Scanning area is too small!</AREA_SMALL>
+		
         <!-- Hearing the Fish -->
 
         <LABEL_SPLASH_THRESHOLD>Splash Threshold:</LABEL_SPLASH_THRESHOLD>
         <LABEL_SPLASH_THRESHOLD_DESC>Determines if a given sound is loud enough to be a fish or not.  Too low and the bot will mistake non-fish for fish.  Too high and the bot will ignore the real fish.</LABEL_SPLASH_THRESHOLD_DESC>
 
-        <LABEL_SCANNING_DELAY>Audio Device:</LABEL_SCANNING_DELAY>
-        <LABEL_SCANNING_DELAY_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_SCANNING_DELAY_DESC>
+        <LABEL_AUDIO_DEVICE>Audio Device:</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_AUDIO_DEVICE_DESC>
 
         <!-- Premium Settings -->
         <LABEL_CAST_KEY>Cast Key:</LABEL_CAST_KEY>
@@ -160,5 +169,21 @@
         <LABEL_TOTAL>Total :</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Close</BUTTON_CLOSE>
-    </frmStats>
+	</frmStats>	
+    <frmAbout>
+        <TITLE>About</TITLE>
+        <DESCRIPTION>If you are like me - you love playing World of Warcraft...but leveling your fishing and cooking skill isn't any fun.  You'd rather be *enjoying* the game than wasting hours doing what amounts to a chore. 
+		
+		Luckily, for both of us, I'm a computer programmer.  I've put together an application that will fish for you. 
+		
+		For more info and FAQ go to www.fishbot.net 
+		
+		Authors: 
+		UltimateFishBot ultimatefishbot@gmail.com, 
+		Mograine, 
+		henrikhermansen, 
+		and others... 
+		Icons from www.iconarchive.com and Google Image Search 
+		</DESCRIPTION>
+    </frmAbout>
 </translation>

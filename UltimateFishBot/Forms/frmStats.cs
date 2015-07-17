@@ -13,6 +13,14 @@ namespace UltimateFishBot.Forms
 {
     public partial class frmStats : Form
     {
+        private static frmStats inst;
+        public static frmStats GetForm(Manager manag)
+        {
+            if (inst == null || inst.IsDisposed)
+                inst = new frmStats(manag);
+            return inst;
+        }
+
         public frmStats(Manager manager)
         {
             InitializeComponent();
