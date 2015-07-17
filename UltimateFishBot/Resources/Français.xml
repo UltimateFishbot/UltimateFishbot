@@ -129,7 +129,7 @@
         <CB_AUTO_RAFT>Radeau toutes les X minutes</CB_AUTO_RAFT>
         <CB_AUTO_CHARM>Charme toutes les X minutes</CB_AUTO_CHARM>
         <CB_AUTO_BAIT>Appât toutes les X minutes</CB_AUTO_BAIT>
-        <CB_RANDOM_BAIT>Appât aléatoire entre les 7 possibles</CB_RANDOM_BAIT>
+        <CB_CYCLE_THROUGH_BAIT_LIST>Parcourir les 7 appâts l'un après l'autre</CB_CYCLE_THROUGH_BAIT_LIST>
         <CB_SHIFT_LOOT>Shift-Loot? (Si AutoLoot désactivé, activez cette option)</CB_SHIFT_LOOT>
 
         <LABEL_PROCESS_NAME>Nom processus WoW:</LABEL_PROCESS_NAME>

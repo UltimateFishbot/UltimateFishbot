@@ -598,41 +598,6 @@ namespace UltimateFishBot.Properties {
                 this["StartStopHotKey"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point minScanXY {
-            get {
-                return ((global::System.Drawing.Point)(this["minScanXY"]));
-            }
-            set {
-                this["minScanXY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point maxScanXY {
-            get {
-                return ((global::System.Drawing.Point)(this["maxScanXY"]));
-            }
-            set {
-                this["maxScanXY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool customScanArea {
-            get {
-                return ((bool)(this["customScanArea"]));
-            }
-            set {
-                this["customScanArea"] = value;
-            }
-        }
+
     }
 }

@@ -262,7 +262,7 @@ namespace UltimateFishBot.Classes
         private void ResetTimers()
         {
             m_nextActionTimer.Interval  = ACTION_TIMER_LENGTH;
-            m_LureTimer.Interval        = Properties.Settings.Default.LureTime      * MINUTE;
+            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
             m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime      * MINUTE;
             m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime     * MINUTE;
             m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime      * MINUTE;

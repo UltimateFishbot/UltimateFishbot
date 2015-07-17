@@ -130,7 +130,7 @@ namespace UltimateFishBot.Forms
             cbApplyRaft.Text                = Translate.GetTranslate("frmSettings", "CB_AUTO_RAFT");
             cbApplyCharm.Text               = Translate.GetTranslate("frmSettings", "CB_AUTO_CHARM");
             cbAutoBait.Text                 = Translate.GetTranslate("frmSettings", "CB_AUTO_BAIT");
-            cbRandomBait.Text               = Translate.GetTranslate("frmSettings", "CB_RANDOM_BAIT");
+            cbCycleThroughBaitList.Text     = Translate.GetTranslate("frmSettings", "CB_CYCLE_THROUGH_BAIT_LIST");
             cbShiftLoot.Text                = Translate.GetTranslate("frmSettings", "CB_SHIFT_LOOT");
 
             LabelProcessName.Text           = Translate.GetTranslate("frmSettings", "LABEL_PROCESS_NAME");
@@ -202,7 +202,7 @@ namespace UltimateFishBot.Forms
             txtBaitKey6.Text        = Properties.Settings.Default.BaitKey6;
             txtBaitKey7.Text        = Properties.Settings.Default.BaitKey7;
             cbAutoBait.Checked      = Properties.Settings.Default.AutoBait;
-            cbRandomBait.Checked    = Properties.Settings.Default.randomBait;
+            cbCycleThroughBaitList.Checked = Properties.Settings.Default.CycleThroughBaitList;
 
             //Times
             txtLureTime.Text        = Properties.Settings.Default.LureTime.ToString();
@@ -219,8 +219,6 @@ namespace UltimateFishBot.Forms
             /// Languages
             LoadLanguages();
 
-            // Update Checkbox
-            customAreaCheckbox_CheckedChanged(null, null);
 
         }
 
@@ -276,7 +274,7 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.BaitKey6        = txtBaitKey6.Text;
             Properties.Settings.Default.BaitKey7        = txtBaitKey7.Text;
             Properties.Settings.Default.AutoBait        = cbAutoBait.Checked;
-            Properties.Settings.Default.randomBait      = cbRandomBait.Checked;
+            Properties.Settings.Default.CycleThroughBaitList = cbCycleThroughBaitList.Checked;
 
             SaveHotKeys();
 

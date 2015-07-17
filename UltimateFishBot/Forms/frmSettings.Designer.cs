@@ -50,7 +50,7 @@
             this.txtBaitTime = new System.Windows.Forms.TextBox();
             this.txtRaftTime = new System.Windows.Forms.TextBox();
             this.txtLureTime = new System.Windows.Forms.TextBox();
-            this.cbRandomBait = new System.Windows.Forms.CheckBox();
+            this.cbCycleThroughBaitList = new System.Windows.Forms.CheckBox();
             this.LabelBaitKey7 = new System.Windows.Forms.Label();
             this.txtBaitKey7 = new System.Windows.Forms.TextBox();
             this.LabelBaitKey6 = new System.Windows.Forms.Label();
@@ -276,7 +276,7 @@
             this.TabPage4.Controls.Add(this.txtBaitTime);
             this.TabPage4.Controls.Add(this.txtRaftTime);
             this.TabPage4.Controls.Add(this.txtLureTime);
-            this.TabPage4.Controls.Add(this.cbRandomBait);
+            this.TabPage4.Controls.Add(this.cbCycleThroughBaitList);
             this.TabPage4.Controls.Add(this.LabelBaitKey7);
             this.TabPage4.Controls.Add(this.txtBaitKey7);
             this.TabPage4.Controls.Add(this.LabelBaitKey6);
@@ -376,15 +376,15 @@
             this.txtLureTime.TabIndex = 17;
             this.txtLureTime.Text = "10";
             // 
-            // cbRandomBait
+            // cbCycleThroughBaitList
             // 
-            this.cbRandomBait.AutoSize = true;
-            this.cbRandomBait.Location = new System.Drawing.Point(244, 207);
-            this.cbRandomBait.Name = "cbRandomBait";
-            this.cbRandomBait.Size = new System.Drawing.Size(203, 17);
-            this.cbRandomBait.TabIndex = 26;
-            this.cbRandomBait.Text = "Random bait between the 7 possibles";
-            this.cbRandomBait.UseVisualStyleBackColor = true;
+            this.cbCycleThroughBaitList.AutoSize = true;
+            this.cbCycleThroughBaitList.Location = new System.Drawing.Point(244, 207);
+            this.cbCycleThroughBaitList.Name = "cbCycleThroughBaitList";
+            this.cbCycleThroughBaitList.Size = new System.Drawing.Size(189, 17);
+            this.cbCycleThroughBaitList.TabIndex = 26;
+            this.cbCycleThroughBaitList.Text = "Cycle through the 7 possibles baits";
+            this.cbCycleThroughBaitList.UseVisualStyleBackColor = true;
             // 
             // LabelBaitKey7
             // 
@@ -1190,7 +1190,7 @@
         internal System.Windows.Forms.Label LabelSplashThresholdDesc;
         internal System.Windows.Forms.Label LabelSplashThreshold;
         internal System.Windows.Forms.TabPage TabPage4;
-        internal System.Windows.Forms.CheckBox cbRandomBait;
+        internal System.Windows.Forms.CheckBox cbCycleThroughBaitList;
         internal System.Windows.Forms.Label LabelBaitKey7;
         internal System.Windows.Forms.TextBox txtBaitKey7;
         internal System.Windows.Forms.Label LabelBaitKey6;
