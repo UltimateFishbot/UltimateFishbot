@@ -84,14 +84,31 @@ namespace UltimateFishBot.Classes.BodyParts
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
             int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
-            for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
+            if (Properties.Settings.Default.customScanArea)
             {
-                for (int x = (int)(xPosMin + (XOFFSET * tryCount)); x < xPosMax; x += XPOSSTEP)
+                for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
                 {
-                    for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
+                    for (int x = (int)(xPosMin + (XOFFSET * tryCount)); x < xPosMax; x += XPOSSTEP)
                     {
-                        if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
-                            return;
+                        for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
+                        {
+                            if (MoveMouseAndCheckCursor(x, y))
+                                return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
+                {
+                    for (int x = (int)(xPosMin + (XOFFSET * tryCount)); x < xPosMax; x += XPOSSTEP)
+                    {
+                        for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
+                        {
+                            if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                                return;
+                        }
                     }
                 }
             }
@@ -107,49 +124,101 @@ namespace UltimateFishBot.Classes.BodyParts
             int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
             int YOFFSET = (int)(YPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
-            for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
+            if (Properties.Settings.Default.customScanArea)
             {
-                int x = (int)((xPosMin + xPosMax) / 2) + XOFFSET * tryCount;
-                int y = (int)((yPosMin + yPosMax) / 2) + YOFFSET * tryCount;
-
-                for (int i = 0; i <= 2 * Properties.Settings.Default.ScanningSteps; i++)
+                for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
                 {
-                    for (int j = 0; j <= (i / 2); j++)
+                    int x = (int)((xPosMin + xPosMax) / 2) + XOFFSET * tryCount;
+                    int y = (int)((yPosMin + yPosMax) / 2) + YOFFSET * tryCount;
+
+                    for (int i = 0; i <= 2 * Properties.Settings.Default.ScanningSteps; i++)
                     {
-                        int dx = 0, dy = 0;
-
-                        if (i % 2 == 0)
+                        for (int j = 0; j <= (i / 2); j++)
                         {
-                            if ((i / 2) % 2 == 0)
+                            int dx = 0, dy = 0;
+
+                            if (i % 2 == 0)
                             {
-                                dx = XPOSSTEP;
-                                dy = 0;
+                                if ((i / 2) % 2 == 0)
+                                {
+                                    dx = XPOSSTEP;
+                                    dy = 0;
+                                }
+                                else
+                                {
+                                    dx = -XPOSSTEP;
+                                    dy = 0;
+                                }
                             }
                             else
                             {
-                                dx = -XPOSSTEP;
-                                dy = 0;
+                                if ((i / 2) % 2 == 0)
+                                {
+                                    dx = 0;
+                                    dy = YPOSSTEP;
+                                }
+                                else
+                                {
+                                    dx = 0;
+                                    dy = -YPOSSTEP;
+                                }
                             }
+
+                            x += dx;
+                            y += dy;
+
+                            if (MoveMouseAndCheckCursor(x, y))
+                                return;
                         }
-                        else
+                    }
+                }
+            }
+            else
+            {
+                for (int tryCount = 0; tryCount < Properties.Settings.Default.ScanningRetries; ++tryCount)
+                {
+                    int x = (int)((xPosMin + xPosMax) / 2) + XOFFSET * tryCount;
+                    int y = (int)((yPosMin + yPosMax) / 2) + YOFFSET * tryCount;
+
+                    for (int i = 0; i <= 2 * Properties.Settings.Default.ScanningSteps; i++)
+                    {
+                        for (int j = 0; j <= (i / 2); j++)
                         {
-                            if ((i / 2) % 2 == 0)
+                            int dx = 0, dy = 0;
+
+                            if (i % 2 == 0)
                             {
-                                dx = 0;
-                                dy = YPOSSTEP;
+                                if ((i / 2) % 2 == 0)
+                                {
+                                    dx = XPOSSTEP;
+                                    dy = 0;
+                                }
+                                else
+                                {
+                                    dx = -XPOSSTEP;
+                                    dy = 0;
+                                }
                             }
                             else
                             {
-                                dx = 0;
-                                dy = -YPOSSTEP;
+                                if ((i / 2) % 2 == 0)
+                                {
+                                    dx = 0;
+                                    dy = YPOSSTEP;
+                                }
+                                else
+                                {
+                                    dx = 0;
+                                    dy = -YPOSSTEP;
+                                }
                             }
+
+                            x += dx;
+                            y += dy;
+
+                            if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                                return;
                         }
-
-                        x += dx;
-                        y += dy;
-
-                        if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
-                            return;
                     }
                 }
             }

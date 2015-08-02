@@ -598,6 +598,5 @@ namespace UltimateFishBot.Properties {
                 this["StartStopHotKey"] = value;
             }
         }
-
     }
 }
