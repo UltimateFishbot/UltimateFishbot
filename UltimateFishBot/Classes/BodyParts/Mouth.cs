@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UltimateFishBot.Properties;
 
 namespace UltimateFishBot.Classes.BodyParts
 {
@@ -20,6 +21,14 @@ namespace UltimateFishBot.Classes.BodyParts
         public void Say(string text)
         {
             m_mainForm.lblStatus.Text = text;
+            if (text == Translate.GetTranslate("manager", "LABEL_PAUSED") || (text == Translate.GetTranslate("manager", "LABEL_STOPPED")))
+            {
+                m_mainForm.lblStatus.Image = Resources.offline;
+            }
+            else
+            {
+                m_mainForm.lblStatus.Image = Resources.online;
+            }
         }
     }
 }

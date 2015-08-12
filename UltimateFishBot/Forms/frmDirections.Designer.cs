@@ -120,8 +120,11 @@
             this.Controls.Add(this.Label2Title);
             this.Controls.Add(this.Label1Desc);
             this.Controls.Add(this.Label1Title);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmDirections";
-            this.Text = "frmDirections";
+            this.Text = "Directions";
             this.Load += new System.EventHandler(this.frmDirections_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

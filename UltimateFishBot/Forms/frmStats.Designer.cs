@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStats));
             this.labelSuccess = new System.Windows.Forms.Label();
             this.labelNotFoundCount = new System.Windows.Forms.Label();
             this.labelNotFound = new System.Windows.Forms.Label();
@@ -155,6 +156,9 @@
             this.Controls.Add(this.labelNotFound);
             this.Controls.Add(this.labelNotFoundCount);
             this.Controls.Add(this.labelSuccess);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmStats";
             this.Text = "Statistics";
             this.Load += new System.EventHandler(this.frmStats_Load);
