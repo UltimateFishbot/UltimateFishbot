@@ -157,6 +157,10 @@
         <TITLE_LANGUAGE_CHANGE>Restart Required.</TITLE_LANGUAGE_CHANGE>
         <LABEL_LANGUAGE_CHANGE>The application will restart in order to apply the language change.</LABEL_LANGUAGE_CHANGE>
 
+      <!-- Other-->
+      <RESET_TITLE>Reset Settings</RESET_TITLE>
+      <RESET_MESSAGE>Click OK to reset all settings to default values and restart the application.</RESET_MESSAGE>
+      
         <!-- Buttons -->
         <BUTTON_SAVE>Save</BUTTON_SAVE>
         <BUTTON_CANCEL>Cancel</BUTTON_CANCEL>
@@ -179,7 +183,7 @@
 		For more info and FAQ go to www.fishbot.net 
 		
 		Authors: 
-		UltimateFishBot ultimatefishbot@gmail.com, 
+		Rob ultimatefishbot@gmail.com, 
 		Mograine, 
 		henrikhermansen, 
 		and others... 

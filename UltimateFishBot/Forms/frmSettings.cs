@@ -217,6 +217,7 @@ namespace UltimateFishBot.Forms
             cmbMovements.SelectedIndex  = Properties.Settings.Default.AntiAfkMoves;
 
             /// Languages
+            chkTxt2speech.Checked = Properties.Settings.Default.Txt2speech;
             LoadLanguages();
 
 
@@ -290,6 +291,8 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.AntiAfkTime     = int.Parse(txtAntiAfkTimer.Text);
             Properties.Settings.Default.AntiAfkMoves    = cmbMovements.SelectedIndex;
 
+            /// Language
+            Properties.Settings.Default.Txt2speech = chkTxt2speech.Checked;
             if ((string)cmbLanguage.SelectedItem != Properties.Settings.Default.Language)
             {
                 Properties.Settings.Default.Language = (string)cmbLanguage.SelectedItem;
@@ -439,5 +442,15 @@ namespace UltimateFishBot.Forms
                 frmOverlay.GetForm(this).Show();
             }
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Translate.GetTranslate("frmSettings", "RESET_MESSAGE"), Translate.GetTranslate("frmSettings", "RESET_TITLE"), MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Properties.Settings.Default.Reset();
+                Application.Restart();
+            }
+        }
+
     }
 }
