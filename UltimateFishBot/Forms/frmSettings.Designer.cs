@@ -125,6 +125,9 @@
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguageDesc = new System.Windows.Forms.Label();
             this.labelLanguage = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.chkTxt2speech = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
@@ -133,6 +136,7 @@
             this.TabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.TabPage5.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // LabelScanningDelayDesc
@@ -185,7 +189,7 @@
             this.TabPage3.Controls.Add(this.LabelSplashThreshold);
             this.TabPage3.Location = new System.Drawing.Point(4, 22);
             this.TabPage3.Name = "TabPage3";
-            this.TabPage3.Size = new System.Drawing.Size(519, 309);
+            this.TabPage3.Size = new System.Drawing.Size(527, 309);
             this.TabPage3.TabIndex = 2;
             this.TabPage3.Text = "Hearing The Fish";
             this.TabPage3.UseVisualStyleBackColor = true;
@@ -315,7 +319,7 @@
             this.TabPage4.Controls.Add(this.cbAutoBait);
             this.TabPage4.Location = new System.Drawing.Point(4, 22);
             this.TabPage4.Name = "TabPage4";
-            this.TabPage4.Size = new System.Drawing.Size(519, 309);
+            this.TabPage4.Size = new System.Drawing.Size(527, 309);
             this.TabPage4.TabIndex = 3;
             this.TabPage4.Text = "Premium Settings";
             this.TabPage4.UseVisualStyleBackColor = true;
@@ -772,11 +776,12 @@
             this.tabSettings.Controls.Add(this.TabPage4);
             this.tabSettings.Controls.Add(this.tabPage6);
             this.tabSettings.Controls.Add(this.TabPage5);
+            this.tabSettings.Controls.Add(this.tabPage7);
             this.tabSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabSettings.Location = new System.Drawing.Point(0, 0);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(527, 335);
+            this.tabSettings.Size = new System.Drawing.Size(535, 335);
             this.tabSettings.TabIndex = 1;
             this.tabSettings.SelectedIndexChanged += new System.EventHandler(this.tabSettings_SelectedIndexChanged);
             // 
@@ -794,7 +799,7 @@
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage2.Size = new System.Drawing.Size(519, 309);
+            this.TabPage2.Size = new System.Drawing.Size(527, 309);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "General Fishing";
             this.TabPage2.UseVisualStyleBackColor = true;
@@ -907,7 +912,7 @@
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(519, 309);
+            this.TabPage1.Size = new System.Drawing.Size(527, 309);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -1055,7 +1060,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(519, 309);
+            this.tabPage6.Size = new System.Drawing.Size(527, 309);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Anti-Afk";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1098,7 +1103,7 @@
             this.TabPage5.Location = new System.Drawing.Point(4, 22);
             this.TabPage5.Name = "TabPage5";
             this.TabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage5.Size = new System.Drawing.Size(519, 309);
+            this.TabPage5.Size = new System.Drawing.Size(527, 309);
             this.TabPage5.TabIndex = 4;
             this.TabPage5.Text = "Language";
             this.TabPage5.UseVisualStyleBackColor = true;
@@ -1109,7 +1114,7 @@
             this.cmbLanguage.FormattingEnabled = true;
             this.cmbLanguage.Items.AddRange(new object[] {
             "Default"});
-            this.cmbLanguage.Location = new System.Drawing.Point(181, 133);
+            this.cmbLanguage.Location = new System.Drawing.Point(213, 109);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(99, 21);
             this.cmbLanguage.TabIndex = 2;
@@ -1117,7 +1122,7 @@
             // labelLanguageDesc
             // 
             this.labelLanguageDesc.AutoSize = true;
-            this.labelLanguageDesc.Location = new System.Drawing.Point(86, 157);
+            this.labelLanguageDesc.Location = new System.Drawing.Point(118, 133);
             this.labelLanguageDesc.Name = "labelLanguageDesc";
             this.labelLanguageDesc.Size = new System.Drawing.Size(271, 26);
             this.labelLanguageDesc.TabIndex = 16;
@@ -1127,11 +1132,43 @@
             // labelLanguage
             // 
             this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(114, 137);
+            this.labelLanguage.Location = new System.Drawing.Point(146, 113);
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(61, 13);
             this.labelLanguage.TabIndex = 0;
             this.labelLanguage.Text = "Language :";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.btnReset);
+            this.tabPage7.Controls.Add(this.chkTxt2speech);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(527, 309);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Other";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(333, 280);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(186, 23);
+            this.btnReset.TabIndex = 19;
+            this.btnReset.Text = "Reset all settings to default";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // chkTxt2speech
+            // 
+            this.chkTxt2speech.AutoSize = true;
+            this.chkTxt2speech.Location = new System.Drawing.Point(8, 17);
+            this.chkTxt2speech.Name = "chkTxt2speech";
+            this.chkTxt2speech.Size = new System.Drawing.Size(332, 17);
+            this.chkTxt2speech.TabIndex = 18;
+            this.chkTxt2speech.Text = "Use Text2Speech alerts (Highly experimental, may cause issues!)";
+            this.chkTxt2speech.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
@@ -1148,7 +1185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 371);
+            this.ClientSize = new System.Drawing.Size(535, 371);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.buttonCancel);
@@ -1170,6 +1207,8 @@
             this.tabPage6.PerformLayout();
             this.TabPage5.ResumeLayout(false);
             this.TabPage5.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1272,6 +1311,9 @@
         private System.Windows.Forms.Label LabelScanArea;
         internal System.Windows.Forms.TextBox txtMaxXY;
         internal System.Windows.Forms.TextBox txtMinXY;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.CheckBox chkTxt2speech;
 
     }
 }

@@ -146,5 +146,8 @@
     <Setting Name="StartStopHotKey" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">Ctrl+Shift+S</Value>
     </Setting>
+    <Setting Name="Txt2speech" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -18,7 +18,7 @@ namespace UltimateFishBot.Classes.BodyParts
             JUMP        = 2
         }
 
-        public void DoMovement()
+        public void DoMovement(T2S t2s)
         {
             switch ((Path)Properties.Settings.Default.AntiAfkMoves)
             {
@@ -35,6 +35,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     MovePath(new Keys[] { Keys.Left, Keys.Right });
                     break;
             }
+            t2s.Say("Anti A F K");
         }
 
         private void MovePath(Keys[] moves)

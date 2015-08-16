@@ -598,5 +598,17 @@ namespace UltimateFishBot.Properties {
                 this["StartStopHotKey"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Txt2speech {
+            get {
+                return ((bool)(this["Txt2speech"]));
+            }
+            set {
+                this["Txt2speech"] = value;
+            }
+        }
     }
 }

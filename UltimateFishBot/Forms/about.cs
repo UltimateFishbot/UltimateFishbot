@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using UltimateFishBot.Classes;
+using UltimateFishBot.Classes.BodyParts;
 
 namespace UltimateFishBot.Forms
 {
@@ -132,6 +133,12 @@ namespace UltimateFishBot.Forms
         {
             ProcessStartInfo sInfo = new ProcessStartInfo(webLink);
             Process.Start(sInfo);
+        }
+
+        private void logoPictureBox_DoubleClick(object sender, EventArgs e)
+        {
+            T2S say = new T2S();
+            say.Say("Please STOP!");
         }
 
 

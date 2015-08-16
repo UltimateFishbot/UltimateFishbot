@@ -73,6 +73,7 @@ namespace UltimateFishBot.Classes
         private Ears  m_ears;
         private Mouth m_mouth;
         private Legs  m_legs;
+        private T2S t2s;
 
         private NeededAction m_neededActions;
         private FishingState m_actualState;
@@ -356,7 +357,7 @@ namespace UltimateFishBot.Classes
                     m_hands.DoAction(action, m_mouth);
                     break;
                 case NeededAction.AntiAfkMove:
-                    m_legs.DoMovement();
+                    m_legs.DoMovement(t2s);
                     break;
             }
 
