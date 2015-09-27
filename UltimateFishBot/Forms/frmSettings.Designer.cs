@@ -129,6 +129,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.chkTxt2speech = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.cbSoundAvg = new System.Windows.Forms.CheckBox();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -179,6 +180,7 @@
             // 
             // TabPage3
             // 
+            this.TabPage3.Controls.Add(this.cbSoundAvg);
             this.TabPage3.Controls.Add(this.lblAudioLevel);
             this.TabPage3.Controls.Add(this.pgbSoundLevel);
             this.TabPage3.Controls.Add(this.LabelAudioDeviceDesc);
@@ -1181,6 +1183,16 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // cbSoundAvg
+            // 
+            this.cbSoundAvg.AutoSize = true;
+            this.cbSoundAvg.Location = new System.Drawing.Point(14, 178);
+            this.cbSoundAvg.Name = "cbSoundAvg";
+            this.cbSoundAvg.Size = new System.Drawing.Size(404, 17);
+            this.cbSoundAvg.TabIndex = 20;
+            this.cbSoundAvg.Text = "Use averaging method (better in crowded areas, but less chance to catch a fish)";
+            this.cbSoundAvg.UseVisualStyleBackColor = true;
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1314,6 +1326,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.CheckBox chkTxt2speech;
+        private System.Windows.Forms.CheckBox cbSoundAvg;
 
     }
 }

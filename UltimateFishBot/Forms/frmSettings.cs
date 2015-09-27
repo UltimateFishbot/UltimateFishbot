@@ -105,6 +105,8 @@ namespace UltimateFishBot.Forms
             LabelAudioDevice.Text           = Translate.GetTranslate("frmSettings", "LABEL_AUDIO_DEVICE");
             LabelAudioDeviceDesc.Text       = Translate.GetTranslate("frmSettings", "LABEL_AUDIO_DEVICE_DESC");
 
+            cbSoundAvg.Text                 = Translate.GetTranslate("frmSettings", "CB_AVG_SND");
+
             /// Premium Settings
 
             LabelCastKey.Text               = Translate.GetTranslate("frmSettings", "LABEL_CAST_KEY");
@@ -173,6 +175,7 @@ namespace UltimateFishBot.Forms
             /// Hearing the Fish
             txtSplash.Text          = Properties.Settings.Default.SplashLimit.ToString();
             LoadAudioDevices();
+            cbSoundAvg.Checked      = Properties.Settings.Default.AverageSound;
 
             /// Premium Settings
             txtProcName.Text        = Properties.Settings.Default.ProcName;
@@ -230,6 +233,7 @@ namespace UltimateFishBot.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Some changes may start working only after application restart.");
             /// General
             Properties.Settings.Default.CastingDelay    = int.Parse(txtCastDelay.Text);
             Properties.Settings.Default.LootingDelay    = int.Parse(txtLootingDelay.Text);
@@ -246,6 +250,7 @@ namespace UltimateFishBot.Forms
             /// Hearing the Fish
             Properties.Settings.Default.SplashLimit     = int.Parse(txtSplash.Text);
             Properties.Settings.Default.AudioDevice     = (string)cmbAudio.SelectedValue;
+            Properties.Settings.Default.AverageSound    = cbSoundAvg.Checked;
 
             /// Premium Settings
 

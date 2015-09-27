@@ -114,6 +114,8 @@
         <LABEL_AUDIO_DEVICE>Audio Device:</LABEL_AUDIO_DEVICE>
         <LABEL_AUDIO_DEVICE_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_AUDIO_DEVICE_DESC>
 
+        <CB_AVG_SND>Use averaging method (better in crowded areas, but less chance to catch a fish)</CB_AVG_SND>
+      
         <!-- Premium Settings -->
         <LABEL_CAST_KEY>Cast Key:</LABEL_CAST_KEY>
         <LABEL_LURE_KEY>Lure Key:</LABEL_LURE_KEY>

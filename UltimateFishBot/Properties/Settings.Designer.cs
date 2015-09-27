@@ -610,5 +610,17 @@ namespace UltimateFishBot.Properties {
                 this["Txt2speech"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AverageSound {
+            get {
+                return ((bool)(this["AverageSound"]));
+            }
+            set {
+                this["AverageSound"] = value;
+            }
+        }
     }
 }
