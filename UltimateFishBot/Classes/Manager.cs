@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.BodyParts;
-using UltimateFishBot.Classes.Helpers;
-using UltimateFishBot.Forms;
-using UltimateFishBot.Properties;
 
 namespace UltimateFishBot.Classes
 {

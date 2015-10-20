@@ -1,9 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.IO;
-using System.Collections.Generic;
-using UltimateFishBot.Forms;
 using UltimateFishBot.Classes;
 
 namespace UltimateFishBot.Forms
