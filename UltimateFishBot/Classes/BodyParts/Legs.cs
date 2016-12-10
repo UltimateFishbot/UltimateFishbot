@@ -8,9 +8,9 @@ namespace UltimateFishBot.Classes.BodyParts
     {
         public enum Path
         {
-            FRONT_BACK  = 0,
-            LEFT_RIGHT  = 1,
-            JUMP        = 2
+            FRONT_BACK = 0,
+            LEFT_RIGHT = 1,
+            JUMP = 2
         }
 
         public void DoMovement(T2S t2s)

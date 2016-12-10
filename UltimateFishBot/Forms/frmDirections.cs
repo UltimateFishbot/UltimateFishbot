@@ -29,16 +29,16 @@ namespace UltimateFishBot.Forms
 
         private void frmDirections_Load(object sender, EventArgs e)
         {
-            this.Text           = Translate.GetTranslate("frmDirections", "TITLE");
+            this.Text = Translate.GetTranslate("frmDirections", "TITLE");
 
-            Label1Title.Text    = Translate.GetTranslate("frmDirections", "LABEL_SETTING_WOW_TITLE");
-            Label1Desc.Text     = Translate.GetTranslate("frmDirections", "LABEL_SETTING_WOW_DESC");
+            Label1Title.Text = Translate.GetTranslate("frmDirections", "LABEL_SETTING_WOW_TITLE");
+            Label1Desc.Text = Translate.GetTranslate("frmDirections", "LABEL_SETTING_WOW_DESC");
 
-            Label2Title.Text    = Translate.GetTranslate("frmDirections", "LABEL_FIND_LOCATION_TITLE");
-            Label2Desc.Text     = Translate.GetTranslate("frmDirections", "LABEL_FIND_LOCATION_DESC");
+            Label2Title.Text = Translate.GetTranslate("frmDirections", "LABEL_FIND_LOCATION_TITLE");
+            Label2Desc.Text = Translate.GetTranslate("frmDirections", "LABEL_FIND_LOCATION_DESC");
 
-            Label3Title.Text    = Translate.GetTranslate("frmDirections", "LABEL_FISH_TITLE");
-            Label3Desc.Text     = Translate.GetTranslate("frmDirections", "LABEL_FISH_DESC");
+            Label3Title.Text = Translate.GetTranslate("frmDirections", "LABEL_FISH_TITLE");
+            Label3Desc.Text = Translate.GetTranslate("frmDirections", "LABEL_FISH_DESC");
         }
     }
 }

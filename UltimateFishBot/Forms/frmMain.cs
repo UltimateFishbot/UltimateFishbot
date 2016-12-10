@@ -15,15 +15,15 @@ namespace UltimateFishBot
 
         public enum KeyModifier
         {
-            None    = 0,
-            Alt     = 1,
+            None = 0,
+            Alt = 1,
             Control = 2,
-            Shift   = 4
+            Shift = 4
         }
 
         public enum HotKey
         {
-            StartStop   = 0
+            StartStop = 0
         }
 
         public frmMain()
@@ -35,15 +35,15 @@ namespace UltimateFishBot
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnStart.Text       = Translate.GetTranslate("frmMain", "BUTTON_START");
-            btnStop.Text        = Translate.GetTranslate("frmMain", "BUTTON_STOP");
-            btnSettings.Text    = Translate.GetTranslate("frmMain", "BUTTON_SETTINGS");
-            btnStatistics.Text  = Translate.GetTranslate("frmMain", "BUTTON_STATISTICS");
-            btnHowTo.Text       = Translate.GetTranslate("frmMain", "BUTTON_HTU");
-            btnClose.Text       = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
-            btnAbout.Text       = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
-            lblStatus.Text      = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
-            this.Text           = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
+            btnStop.Text = Translate.GetTranslate("frmMain", "BUTTON_STOP");
+            btnSettings.Text = Translate.GetTranslate("frmMain", "BUTTON_SETTINGS");
+            btnStatistics.Text = Translate.GetTranslate("frmMain", "BUTTON_STATISTICS");
+            btnHowTo.Text = Translate.GetTranslate("frmMain", "BUTTON_HTU");
+            btnClose.Text = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
+            btnAbout.Text = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
+            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
+            this.Text = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             ReloadHotkeys();
             CheckStatus();
         }
@@ -71,7 +71,7 @@ namespace UltimateFishBot
             catch (Exception ex)
             {
                 lblWarn.Text = (Translate.GetTranslate("frmMain", "LABEL_COULD_NOT_CHECK_STATUS") + ex.ToString());
-            }                        
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace UltimateFishBot
         {
 
             frmDirections.GetForm.Show();
-         
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -194,9 +194,9 @@ namespace UltimateFishBot
         {
             KeyModifier modifiers = KeyModifier.None;
 
-            modifiers |= RemoveAndReturnModifier(ref key, Keys.Shift,   KeyModifier.Shift);
+            modifiers |= RemoveAndReturnModifier(ref key, Keys.Shift, KeyModifier.Shift);
             modifiers |= RemoveAndReturnModifier(ref key, Keys.Control, KeyModifier.Control);
-            modifiers |= RemoveAndReturnModifier(ref key, Keys.Alt,     KeyModifier.Alt);
+            modifiers |= RemoveAndReturnModifier(ref key, Keys.Alt, KeyModifier.Alt);
 
             return modifiers;
         }

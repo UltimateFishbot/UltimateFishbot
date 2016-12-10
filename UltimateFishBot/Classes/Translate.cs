@@ -86,7 +86,7 @@ namespace UltimateFishBot.Classes
                             returnList.Add(node.InnerText);
 
                 // Remove the extras spaces from each lines
-                returnList.Select(text => String.Join("\n", text.Split('\n').Select(s => s.Trim())) );
+                returnList.Select(text => String.Join("\n", text.Split('\n').Select(s => s.Trim())));
 
                 // Replace {int} in text by variables. Ex : "Waiting for Fish ({0}/{1}s) ..."
                 returnList.Select(text => String.Format(text, list));

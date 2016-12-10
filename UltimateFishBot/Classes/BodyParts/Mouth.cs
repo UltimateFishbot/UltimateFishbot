@@ -34,7 +34,7 @@ namespace UltimateFishBot.Classes.BodyParts
         SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         bool uset2s;
         string lastMessage;
-        
+
         public T2S()
         {
             uset2s = Properties.Settings.Default.Txt2speech;

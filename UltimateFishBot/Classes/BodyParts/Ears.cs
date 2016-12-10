@@ -19,8 +19,8 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public Ears(Manager manager)
         {
-            m_manager       = manager;
-            m_volumeQueue   = new Queue<int>();
+            m_manager = manager;
+            m_volumeQueue = new Queue<int>();
 
             MMDeviceEnumerator SndDevEnum = new MMDeviceEnumerator();
             if (Properties.Settings.Default.AudioDevice != "")
@@ -40,7 +40,7 @@ namespace UltimateFishBot.Classes.BodyParts
                 listenTimer.Tick += new EventHandler(ListenTimerTick);
                 Debug.WriteLine("Using normal sound comparing");
             }
-            
+
             listenTimer.Enabled = true;
         }
 

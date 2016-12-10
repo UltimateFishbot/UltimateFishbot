@@ -8,38 +8,38 @@ namespace UltimateFishBot.Classes
     {
         public enum FishingState
         {
-            Idle                = 0,
-            Start               = 1,
-            Casting             = 2,
-            SearchingForBobber  = 3,
-            WaitingForFish      = 4,
-            Looting             = 5,
-            Paused              = 6,
-            Stopped             = 7
+            Idle = 0,
+            Start = 1,
+            Casting = 2,
+            SearchingForBobber = 3,
+            WaitingForFish = 4,
+            Looting = 5,
+            Paused = 6,
+            Stopped = 7
         }
 
         public enum NeededAction
         {
-            None        = 0x00,
+            None = 0x00,
             HearthStone = 0x01,
-            Lure        = 0x02,
-            Charm       = 0x04,
-            Raft        = 0x08,
-            Bait        = 0x10,
+            Lure = 0x02,
+            Charm = 0x04,
+            Raft = 0x08,
+            Bait = 0x10,
             AntiAfkMove = 0x20
         }
 
         public struct FishingStats
         {
-            public int totalSuccessFishing  { get; set; }
-            public int totalNotFoundFish    { get; set; }
-            public int totalNotEaredFish    { get; set; }
+            public int totalSuccessFishing { get; set; }
+            public int totalNotFoundFish { get; set; }
+            public int totalNotEaredFish { get; set; }
 
             public void Reset()
             {
                 totalSuccessFishing = 0;
-                totalNotFoundFish   = 0;
-                totalNotEaredFish   = 0;
+                totalNotFoundFish = 0;
+                totalNotEaredFish = 0;
             }
 
             public int Total()
@@ -56,48 +56,48 @@ namespace UltimateFishBot.Classes
         private Timer m_BaitTimer;
         private Timer m_AntiAfkTimer;
 
-        private int   m_fishWaitTime;
+        private int m_fishWaitTime;
 
         private frmMain m_mainForm;
 
-        private Eyes  m_eyes;
+        private Eyes m_eyes;
         private Hands m_hands;
-        private Ears  m_ears;
+        private Ears m_ears;
         private Mouth m_mouth;
-        private Legs  m_legs;
+        private Legs m_legs;
         private T2S t2s;
 
         private NeededAction m_neededActions;
         private FishingState m_actualState;
         private FishingStats m_fishingStats;
 
-        private const int SECOND                = 1000;
-        private const int MINUTE                = 60 * SECOND;
-        private const int ACTION_TIMER_LENGTH   = 500;
+        private const int SECOND = 1000;
+        private const int MINUTE = 60 * SECOND;
+        private const int ACTION_TIMER_LENGTH = 500;
 
         public Manager(frmMain mainForm)
         {
-            m_mainForm      = mainForm;
+            m_mainForm = mainForm;
 
-            m_eyes          = new Eyes(this);
-            m_hands         = new Hands();
-            m_ears          = new Ears(this);
-            m_mouth         = new Mouth(m_mainForm);
-            m_legs          = new Legs();
+            m_eyes = new Eyes(this);
+            m_hands = new Hands();
+            m_ears = new Ears(this);
+            m_mouth = new Mouth(m_mainForm);
+            m_legs = new Legs();
 
-            m_actualState   = FishingState.Stopped;
+            m_actualState = FishingState.Stopped;
             m_neededActions = NeededAction.None;
 
             m_fishingStats.Reset();
 
             //InitializeTimer(Timer,                Handler);
-            InitializeTimer(ref m_nextActionTimer,  TakeNextAction);
-            InitializeTimer(ref m_LureTimer,        LureTimerTick);
-            InitializeTimer(ref m_CharmTimer,       CharmTimerTick);
-            InitializeTimer(ref m_RaftTimer,        RaftTimerTick);
-            InitializeTimer(ref m_BaitTimer,        BaitTimerTick);
+            InitializeTimer(ref m_nextActionTimer, TakeNextAction);
+            InitializeTimer(ref m_LureTimer, LureTimerTick);
+            InitializeTimer(ref m_CharmTimer, CharmTimerTick);
+            InitializeTimer(ref m_RaftTimer, RaftTimerTick);
+            InitializeTimer(ref m_BaitTimer, BaitTimerTick);
             InitializeTimer(ref m_HearthStoneTimer, HearthStoneTimerTick);
-            InitializeTimer(ref m_AntiAfkTimer,     AntiAfkTimerTick);
+            InitializeTimer(ref m_AntiAfkTimer, AntiAfkTimerTick);
 
             ResetTimers();
         }
@@ -121,7 +121,7 @@ namespace UltimateFishBot.Classes
         {
             ResetTimers();
             SwitchTimerState(true);
-            
+
             if (Properties.Settings.Default.AutoLure)
                 AddNeededAction(NeededAction.Lure);
 
@@ -171,21 +171,21 @@ namespace UltimateFishBot.Classes
                 switch (m_actualState)
                 {
                     case FishingState.Looting:
-                    {
-                        ++m_fishingStats.totalSuccessFishing;
-                        break;
-                    }
+                        {
+                            ++m_fishingStats.totalSuccessFishing;
+                            break;
+                        }
                     case FishingState.Casting:
                     case FishingState.SearchingForBobber:
-                    {
-                        ++m_fishingStats.totalNotFoundFish;
-                        break;
-                    }
+                        {
+                            ++m_fishingStats.totalNotFoundFish;
+                            break;
+                        }
                     case FishingState.WaitingForFish:
-                    {
-                        ++m_fishingStats.totalNotEaredFish;
-                        break;
-                    }
+                        {
+                            ++m_fishingStats.totalNotEaredFish;
+                            break;
+                        }
                 }
             }
         }
@@ -243,26 +243,26 @@ namespace UltimateFishBot.Classes
             // On deactivation, we don't care
             else
             {
-                m_nextActionTimer.Enabled   = false;
-                m_LureTimer.Enabled         = false;
-                m_RaftTimer.Enabled         = false;
-                m_CharmTimer.Enabled        = false;
-                m_BaitTimer.Enabled         = false;
-                m_HearthStoneTimer.Enabled  = false;
+                m_nextActionTimer.Enabled = false;
+                m_LureTimer.Enabled = false;
+                m_RaftTimer.Enabled = false;
+                m_CharmTimer.Enabled = false;
+                m_BaitTimer.Enabled = false;
+                m_HearthStoneTimer.Enabled = false;
             }
         }
 
         private void ResetTimers()
         {
-            m_nextActionTimer.Interval  = ACTION_TIMER_LENGTH;
-            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
-            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime      * MINUTE;
-            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime     * MINUTE;
-            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime      * MINUTE;
-            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime    * MINUTE;
-            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime   * MINUTE;
+            m_nextActionTimer.Interval = ACTION_TIMER_LENGTH;
+            m_LureTimer.Interval = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
+            m_RaftTimer.Interval = Properties.Settings.Default.RaftTime * MINUTE;
+            m_CharmTimer.Interval = Properties.Settings.Default.CharmTime * MINUTE;
+            m_BaitTimer.Interval = Properties.Settings.Default.BaitTime * MINUTE;
+            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
+            m_AntiAfkTimer.Interval = Properties.Settings.Default.AntiAfkTime * MINUTE;
 
-            m_fishWaitTime              = 0;
+            m_fishWaitTime = 0;
         }
 
         public void HearFish()
@@ -283,55 +283,55 @@ namespace UltimateFishBot.Classes
             switch (GetActualState())
             {
                 case FishingState.Start:
-                {
-                    // We just start, going to Idle to begin bot loop
-                    SetActualState(FishingState.Idle);
-                    break;
-                }
-                case FishingState.Idle:
-                {
-                    // We first check if another action is needed, foreach on all NeededAction enum values
-                    foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
                     {
-                        if (HasNeededAction(neededAction))
-                        {
-                            HandleNeededAction(neededAction);
-                            return;
-                        }
-                    }
-
-                    // If no other action required, we can cast !
-                    m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
-                    SetActualState(FishingState.Casting);
-                    m_hands.Cast();
-                    break;
-                }
-                case FishingState.Casting:
-                {
-                    m_mouth.Say(Translate.GetTranslate("manager", "LABEL_START_FINDING"));
-                    SetActualState(FishingState.SearchingForBobber);
-                    m_eyes.StartLooking(); // <= The new state will be set in the Eyes
-                    break;
-                }
-                case FishingState.SearchingForBobber:
-                {
-                    // We are just waiting for the Eyes
-                    m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-                    break;
-                }
-                case FishingState.WaitingForFish:
-                {
-                    // We are waiting a detection from the Ears
-                    m_mouth.Say(Translate.GetTranslate("manager", "LABEL_WAITING", GetFishWaitTime() / 1000, Properties.Settings.Default.FishWait / 1000));
-
-                    if ((m_fishWaitTime += ACTION_TIMER_LENGTH) >= Properties.Settings.Default.FishWait)
-                    {
+                        // We just start, going to Idle to begin bot loop
                         SetActualState(FishingState.Idle);
-                        m_fishWaitTime = 0;
+                        break;
                     }
+                case FishingState.Idle:
+                    {
+                        // We first check if another action is needed, foreach on all NeededAction enum values
+                        foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
+                        {
+                            if (HasNeededAction(neededAction))
+                            {
+                                HandleNeededAction(neededAction);
+                                return;
+                            }
+                        }
 
-                    break;
-                }
+                        // If no other action required, we can cast !
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
+                        SetActualState(FishingState.Casting);
+                        m_hands.Cast();
+                        break;
+                    }
+                case FishingState.Casting:
+                    {
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_START_FINDING"));
+                        SetActualState(FishingState.SearchingForBobber);
+                        m_eyes.StartLooking(); // <= The new state will be set in the Eyes
+                        break;
+                    }
+                case FishingState.SearchingForBobber:
+                    {
+                        // We are just waiting for the Eyes
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
+                        break;
+                    }
+                case FishingState.WaitingForFish:
+                    {
+                        // We are waiting a detection from the Ears
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_WAITING", GetFishWaitTime() / 1000, Properties.Settings.Default.FishWait / 1000));
+
+                        if ((m_fishWaitTime += ACTION_TIMER_LENGTH) >= Properties.Settings.Default.FishWait)
+                        {
+                            SetActualState(FishingState.Idle);
+                            m_fishWaitTime = 0;
+                        }
+
+                        break;
+                    }
             }
         }
 
