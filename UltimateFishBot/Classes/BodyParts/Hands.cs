@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.Helpers;
 
@@ -31,17 +32,17 @@ namespace UltimateFishBot.Classes.BodyParts
             };
         }
 
-        public void Cast()
+        public async Task Cast()
         {
             Win32.ActivateWow();
             Win32.SendKey(Properties.Settings.Default.FishKey);
-            System.Threading.Thread.Sleep(Properties.Settings.Default.CastingDelay);
+            await Task.Delay(Properties.Settings.Default.CastingDelay);
         }
 
-        public void Loot()
+        public async Task Loot()
         {
             Win32.SendMouseClick();
-            Thread.Sleep(Properties.Settings.Default.LootingDelay);
+            await Task.Delay(Properties.Settings.Default.LootingDelay);
         }
 
         public void ResetBaitIndex()
@@ -49,7 +50,7 @@ namespace UltimateFishBot.Classes.BodyParts
             m_baitIndex = 0;
         }
 
-        public void DoAction(Manager.NeededAction action, Mouth mouth)
+        public async Task DoAction(Manager.NeededAction action, Mouth mouth)
         {
             string actionKey = "";
             int sleepTime = 0;
@@ -107,7 +108,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
             Win32.ActivateWow();
             Win32.SendKey(actionKey);
-            Thread.Sleep(sleepTime * 1000);
+            await Task.Delay(sleepTime * 1000);
         }
     }
 }

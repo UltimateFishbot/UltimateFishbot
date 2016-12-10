@@ -33,7 +33,7 @@ namespace UltimateFishBot
             m_manager = new Manager(this);
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private async void frmMain_Load(object sender, EventArgs e)
         {
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
             btnStop.Text = Translate.GetTranslate("frmMain", "BUTTON_STOP");
@@ -45,28 +45,27 @@ namespace UltimateFishBot
             lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
             this.Text = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             ReloadHotkeys();
-            CheckStatus();
+            await CheckStatus();
         }
 
-        private void CheckStatus()
+        private async Task CheckStatus()
         {
             lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_CHECKING_STATUS");
             lblWarn.Parent = PictureBox1;
 
             try
             {
-                Task.Factory.StartNew(() => (new WebClient()).DownloadString("http://www.fishbot.net/status.txt"),
-                    TaskCreationOptions.LongRunning).ContinueWith(x =>
-                    {
-                        if (x.Result.ToLower().Trim() != "safe")
-                        {
-                            lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
-                            lblWarn.ForeColor = Color.Red;
-                            lblWarn.BackColor = Color.Black;
-                        }
-                        else
-                            lblWarn.Visible = false;
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                string result = await (new WebClient()).DownloadStringTaskAsync("http://www.fishbot.net/status.txt");
+                if (result.ToLower().Trim() != "safe")
+                {
+                    lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
+                    lblWarn.ForeColor = Color.Red;
+                    lblWarn.BackColor = Color.Black;
+                }
+                else
+                {
+                    lblWarn.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -74,32 +73,33 @@ namespace UltimateFishBot
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private async void btnStart_Click(object sender, EventArgs e)
+
         {
             btnSettings.Enabled = false;
             btnStop.Enabled = true;
 
             if (m_manager.GetActualState() == Manager.FishingState.Stopped)
             {
-                m_manager.Start();
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STARTED");
                 lblStatus.Image = Resources.online;
+                await m_manager.RunBotUntilCanceled();
             }
             else if (m_manager.GetActualState() == Manager.FishingState.Paused)
             {
-                m_manager.Resume();
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
                 lblStatus.Image = Resources.online;
+                m_manager.Resume();
             }
             else
             {
                 btnSettings.Enabled = true;
-                m_manager.Pause();
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
                 lblStatus.Image = Resources.online;
+                m_manager.Pause();
             }
         }
 
