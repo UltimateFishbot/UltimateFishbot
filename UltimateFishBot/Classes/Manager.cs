@@ -327,7 +327,7 @@ namespace UltimateFishBot.Classes
                 case FishingState.SearchingForBobber:
                     {
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-                        await m_eyes.StartLooking(); // <= The new state will be set in the Eyes
+                        await m_eyes.LookForBobber(cancellationToken); // <= The new state will be set in the Eyes
                         // We are just waiting for the Eyes
                         break;
                     }

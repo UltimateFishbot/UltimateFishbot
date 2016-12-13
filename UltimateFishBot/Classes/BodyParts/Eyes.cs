@@ -23,7 +23,7 @@ namespace UltimateFishBot.Classes.BodyParts
             m_manager = manager;
         }
 
-        public async Task StartLooking()
+        public async Task LookForBobber(CancellationToken cancellationToken)
         {
             m_noFishCursor = Win32.GetNoFishCursor();
             wowRectangle = Win32.GetWowRectangle();
@@ -48,9 +48,9 @@ namespace UltimateFishBot.Classes.BodyParts
             try
             {
                 if (Properties.Settings.Default.AlternativeRoute)
-                    await LookForBobber_Spiral();
+                    await LookForBobberSpiralImpl(cancellationToken);
                 else
-                    await LookForBobber();
+                    await LookForBobberImpl(cancellationToken);
 
                 // Found the fish!
                 m_manager.SetActualState(Manager.FishingState.WaitingForFish);
@@ -63,7 +63,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
         }
 
-        private async Task LookForBobber()
+        private async Task LookForBobberImpl(CancellationToken cancellationToken)
         {
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
@@ -78,7 +78,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     {
                         for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
                         {
-                            if (await MoveMouseAndCheckCursor(x, y))
+                            if (await MoveMouseAndCheckCursor(x, y, cancellationToken))
                                 return;
                         }
                     }
@@ -92,7 +92,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     {
                         for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
                         {
-                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y, cancellationToken))
                                 return;
                         }
                     }
@@ -102,7 +102,7 @@ namespace UltimateFishBot.Classes.BodyParts
             throw new NoFishFoundException(); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
         }
 
-        private async Task LookForBobber_Spiral()
+        private async Task LookForBobberSpiralImpl(CancellationToken cancellationToken)
         {
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
@@ -153,7 +153,7 @@ namespace UltimateFishBot.Classes.BodyParts
                             x += dx;
                             y += dy;
 
-                            if (await MoveMouseAndCheckCursor(x, y))
+                            if (await MoveMouseAndCheckCursor(x, y, cancellationToken))
                                 return;
                         }
                     }
@@ -202,7 +202,7 @@ namespace UltimateFishBot.Classes.BodyParts
                             x += dx;
                             y += dy;
 
-                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y, cancellationToken))
                                 return;
                         }
                     }
@@ -212,15 +212,18 @@ namespace UltimateFishBot.Classes.BodyParts
             throw new NoFishFoundException(); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
         }
 
-        private async Task<bool> MoveMouseAndCheckCursor(int x, int y)
+        private async Task<bool> MoveMouseAndCheckCursor(int x, int y, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                throw new TaskCanceledException();
+
             if (m_manager.IsStoppedOrPaused())
-                throw new Exception("Bot paused or stopped");
+                throw new Exception("Bot paused or stopped without cancellation request");
 
             Win32.MoveMouse(x, y);
 
             // Pause (give the OS a chance to change the cursor)
-            await Task.Delay(Properties.Settings.Default.ScanningDelay);
+            await Task.Delay(Properties.Settings.Default.ScanningDelay, cancellationToken);
 
             Win32.CursorInfo actualCursor = Win32.GetCurrentCursor();
 
