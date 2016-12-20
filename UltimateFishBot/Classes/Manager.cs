@@ -113,10 +113,27 @@ namespace UltimateFishBot.Classes
 
         public async Task RunBotUntilCanceled()
         {
+            ResetTimers();
+            EnableTimers();
+            await RunBot();
+        }
+
+        public async Task Resume()
+        {
+            await RunBot();
+        }
+
+        private async Task RunBot()
+        {
             SetActualState(FishingState.Start);
+            _cancellationTokenSource = new CancellationTokenSource();
             try
             {
-                await RunBot();
+                await Task.WhenAll(new[]
+                {
+                    TakeActions(_cancellationTokenSource.Token),
+                    m_ears.Listen(_cancellationTokenSource.Token),
+                });
             }
             catch (TaskCanceledException)
             {
@@ -124,20 +141,15 @@ namespace UltimateFishBot.Classes
             }
         }
 
-        public void Resume()
-        {
-            SetActualState(FishingState.Start);
-        }
-
         public void Pause()
         {
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource = null;
             SetActualState(FishingState.Paused);
         }
 
-        public async Task RunBot()
+        public void EnableTimers()
         {
-            ResetTimers();
-
             if (Properties.Settings.Default.AutoLure)
             {
                 AddNeededAction(NeededAction.Lure);
@@ -167,25 +179,26 @@ namespace UltimateFishBot.Classes
 
             if (Properties.Settings.Default.AntiAfk)
                 m_AntiAfkTimer.Enabled = true;
-
-            _cancellationTokenSource = new CancellationTokenSource();
-            await Task.WhenAll(new[]
-            {
-                TakeActions(_cancellationTokenSource.Token),
-                m_ears.Listen(_cancellationTokenSource.Token),
-            });
         }
 
         public void Stop()
         {
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource = null;
-            m_LureTimer.Enabled = false;
-            m_RaftTimer.Enabled = false;
-            m_CharmTimer.Enabled = false;
-            m_BaitTimer.Enabled = false;
-            m_HearthStoneTimer.Enabled = false;
-            SetActualState(FishingState.Stopped);
+            // only cancel if not already stopped/paused
+            if (!IsStoppedOrPaused())
+            {
+                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource = null;
+            }
+
+            if (GetActualState() != FishingState.Stopped)
+            {
+                m_LureTimer.Enabled = false;
+                m_RaftTimer.Enabled = false;
+                m_CharmTimer.Enabled = false;
+                m_BaitTimer.Enabled = false;
+                m_HearthStoneTimer.Enabled = false;
+                SetActualState(FishingState.Stopped);
+            }
         }
 
         public void SetActualState(FishingState newState)

@@ -91,7 +91,7 @@ namespace UltimateFishBot
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
                 lblStatus.Image = Resources.online;
-                m_manager.Resume();
+                await m_manager.Resume();
             }
             else
             {
