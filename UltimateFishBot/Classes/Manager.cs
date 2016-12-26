@@ -18,7 +18,7 @@ namespace UltimateFishBot.Classes
 
     public class Manager
     {
-        public enum FishingState
+        private enum FishingState
         {
             Idle = 0,
             Start = 1,
@@ -101,11 +101,11 @@ namespace UltimateFishBot.Classes
 
         public async Task StartOrResumeOrPause()
         {
-            if (GetCurrentState() == Manager.FishingState.Stopped)
+            if (m_fishingState == Manager.FishingState.Stopped)
             {
                 await RunBotUntilCanceled();
             }
-            else if (GetCurrentState() == Manager.FishingState.Paused)
+            else if (m_fishingState == Manager.FishingState.Paused)
             {
                 await Resume();
             }
@@ -194,7 +194,7 @@ namespace UltimateFishBot.Classes
                 _cancellationTokenSource = null;
             }
 
-            if (GetCurrentState() != FishingState.Stopped)
+            if (m_fishingState != FishingState.Stopped)
             {
                 m_LureTimer.Enabled = false;
                 m_RaftTimer.Enabled = false;
@@ -205,7 +205,7 @@ namespace UltimateFishBot.Classes
             }
         }
 
-        public void SeFishingState(FishingState newState)
+        private void SeFishingState(FishingState newState)
         {
             if (IsStoppedOrPaused())
                 if (newState != FishingState.Start)
@@ -214,14 +214,9 @@ namespace UltimateFishBot.Classes
             m_fishingState = newState;
         }
 
-        public FishingState GetCurrentState()
+        private bool IsStoppedOrPaused()
         {
-            return m_fishingState;
-        }
-
-        public bool IsStoppedOrPaused()
-        {
-            return GetCurrentState() == FishingState.Stopped || GetCurrentState() == FishingState.Paused;
+            return m_fishingState == FishingState.Stopped || m_fishingState == FishingState.Paused;
         }
 
         public FishingStats GetFishingStats()
@@ -270,7 +265,7 @@ namespace UltimateFishBot.Classes
 
         private async Task TakeNextAction(CancellationToken cancellationToken)
         {
-            switch (GetCurrentState())
+            switch (m_fishingState)
             {
                 case FishingState.Start:
                     {
