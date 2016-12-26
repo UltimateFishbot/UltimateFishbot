@@ -312,16 +312,15 @@ namespace UltimateFishBot.Classes
 
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
                         bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
-                        if (didFindFish)
-                        {
-                            SeFishingState(Manager.FishingState.WaitingForFish);
-                        }
-                        else
+                        if (!didFindFish)
                         {
                             // Refactor this later: record failure stat here
                             SeFishingState(Manager.FishingState.Idle);
+                            break;
                         }
+
                         // We are just waiting for the Eyes
+                        SeFishingState(Manager.FishingState.WaitingForFish);
                         break;
                     }
                 case FishingState.WaitingForFish:
