@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -50,8 +51,6 @@ namespace UltimateFishBot.Classes
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
 
-        private bool m_fishHeard;
-
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
         private const int ACTION_TIMER_LENGTH = 500;
@@ -62,7 +61,7 @@ namespace UltimateFishBot.Classes
 
             m_eyes = new Eyes();
             m_hands = new Hands();
-            m_ears = new Ears(this);
+            m_ears = new Ears();
             m_mouth = new Mouth(m_mainForm);
             m_legs = new Legs();
 
@@ -110,11 +109,7 @@ namespace UltimateFishBot.Classes
             _cancellationTokenSource = new CancellationTokenSource();
             try
             {
-                await Task.WhenAll(new[]
-                {
-                    TakeActions(_cancellationTokenSource.Token),
-                    m_ears.Listen(_cancellationTokenSource.Token),
-                });
+                await TakeActions(_cancellationTokenSource.Token);
             }
             catch (TaskCanceledException)
             {
@@ -223,7 +218,6 @@ namespace UltimateFishBot.Classes
 
         public async Task HearFish()
         {
-            m_fishHeard = true;
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
 
             SeFishingState(FishingState.Looting);
@@ -295,30 +289,62 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
-            // We are waiting a detection from the Ears
-            m_fishHeard = false;
-            for (int waitTime = 0;
-                !m_fishHeard && waitTime < Properties.Settings.Default.FishWait;
-                waitTime += SECOND)
+            // Update UI with wait status            
+            var progress = new Progress<long>(msecs =>
             {
                 m_mouth.Say(Translate.GetTranslate(
                     "manager",
                     "LABEL_WAITING",
-                    waitTime / SECOND,
+                    msecs / SECOND,
                     Properties.Settings.Default.FishWait / SECOND));
+            });
+            var uiUpdateCancelTokenSource =
+                CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
+            (new Task(
+                async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
+                uiUpdateCancelToken,
+                TaskCreationOptions.LongRunning)
+                ).Start();
 
-                await Task.Delay(
-                    Math.Min(SECOND, Properties.Settings.Default.FishWait - waitTime),
-                    cancellationToken);
-            }
-            if (m_fishHeard)
-            {
-                m_fishingStats.RecordSuccess();
-            }
-            else
+            bool fishHeard = await m_ears.Listen(
+                Properties.Settings.Default.FishWait,
+                cancellationToken);
+
+            uiUpdateCancelTokenSource.Cancel();
+
+            if (!fishHeard)
             {
                 m_fishingStats.RecordNotHeard();
                 SeFishingState(FishingState.Idle);
+                return;
+            }
+
+            await HearFish();
+            m_fishingStats.RecordSuccess();
+        }
+
+        private async Task UpdateUIWhileWaitingToHearFish(
+            IProgress<long> progress, 
+            CancellationToken uiUpdateCancelToken)
+        {
+            // We are waiting a detection from the Ears
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            try
+            {
+                while (!uiUpdateCancelToken.IsCancellationRequested)
+                {
+                    progress.Report(stopwatch.ElapsedMilliseconds);
+                    await Task.Delay(SECOND / 10, uiUpdateCancelToken);
+                }
+                uiUpdateCancelToken.ThrowIfCancellationRequested();
+            }
+            catch (TaskCanceledException)
+            {
+                // Swallow exception; this will hit when a fish is heard and the UI update job is canceled.
+                // Explicitly throw and catch instead of not throwing so that the `Task.Delay()` cancellation
+                // exception is also caught.
             }
         }
 
