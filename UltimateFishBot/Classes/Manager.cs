@@ -14,7 +14,6 @@ namespace UltimateFishBot.Classes
             Idle = 0,
             Start = 1,
             Fishing = 3,
-            Looting = 5,
             Paused = 6,
             Stopped = 7
         }
@@ -216,15 +215,6 @@ namespace UltimateFishBot.Classes
             m_AntiAfkTimer.Interval = Properties.Settings.Default.AntiAfkTime * MINUTE;
         }
 
-        public async Task HearFish()
-        {
-            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
-
-            SeFishingState(FishingState.Looting);
-            await m_hands.Loot();
-            SeFishingState(FishingState.Idle);
-        }
-
         private async Task TakeActions(CancellationToken cancellationToken)
         {
             while (true)
@@ -320,8 +310,11 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
-            await HearFish();
+            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
+            await m_hands.Loot();
             m_fishingStats.RecordSuccess();
+
+            SeFishingState(FishingState.Idle);
         }
 
         private async Task UpdateUIWhileWaitingToHearFish(
