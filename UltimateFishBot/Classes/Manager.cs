@@ -13,6 +13,7 @@ namespace UltimateFishBot.Classes
         void Stopped();
         void Resumed();
         void Paused();
+        void UpdateStatus(string text);
     }
 
     public class Manager
@@ -62,7 +63,7 @@ namespace UltimateFishBot.Classes
         private const int MINUTE = 60 * SECOND;
         private const int ACTION_TIMER_LENGTH = 500;
 
-        public Manager(frmMain mainForm)
+        public Manager(IManagerEventHandler mainForm)
         {
             m_mainForm = mainForm;
 

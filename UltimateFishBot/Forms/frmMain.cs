@@ -228,5 +228,10 @@ namespace UltimateFishBot
             lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
             lblStatus.Image = Resources.online;
         }
+
+        public void UpdateStatus(string text)
+        {
+            lblStatus.Text = text;
+        }
     }
 }
