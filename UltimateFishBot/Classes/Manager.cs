@@ -13,7 +13,6 @@ namespace UltimateFishBot.Classes
             Idle = 0,
             Start = 1,
             Fishing = 3,
-            WaitingForFish = 4,
             Looting = 5,
             Paused = 6,
             Stopped = 7
@@ -189,35 +188,7 @@ namespace UltimateFishBot.Classes
                 if (newState != FishingState.Start)
                     return;
 
-            FishingState prevState = m_fishingState;
             m_fishingState = newState;
-
-            if (m_fishingState == FishingState.Idle) // If we start a new loop, check why and increase stats according
-            {
-                UpdateStats(prevState, m_fishingStats);
-            }
-        }
-
-        private static void UpdateStats(FishingState prevState, FishingStats stats)
-        {
-            switch (prevState)
-            {
-                case FishingState.Looting:
-                    {
-                        stats.RecordSuccess();
-                        break;
-                    }
-                case FishingState.Fishing:
-                    {
-                        stats.RecordBobberNotFound();
-                        break;
-                    }
-                case FishingState.WaitingForFish:
-                    {
-                        stats.RecordNotHeard();
-                        break;
-                    }
-            }
         }
 
         public FishingState GetCurrentState()
@@ -311,7 +282,7 @@ namespace UltimateFishBot.Classes
                         bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
                         if (!didFindFish)
                         {
-                            // Refactor this later: record failure stat here
+                            m_fishingStats.RecordBobberNotFound();
                             SeFishingState(Manager.FishingState.Idle);
                             break;
                         }
@@ -332,11 +303,13 @@ namespace UltimateFishBot.Classes
 
                             if (m_fishHeard)
                             {
+                                m_fishingStats.RecordSuccess();
                                 break;
                             }
                         }
                         if (!m_fishHeard)
                         {
+                            m_fishingStats.RecordNotHeard();
                             SeFishingState(FishingState.Idle);
                         }
                         break;
