@@ -139,7 +139,7 @@ namespace UltimateFishBot.Classes
                     {
                         if (HasNeededAction(neededAction))
                         {
-                            await HandleNeededAction(neededAction);
+                            await HandleNeededAction(neededAction, _cancellationTokenSource.Token);
                         }
                     }
 
@@ -320,7 +320,7 @@ namespace UltimateFishBot.Classes
             }
         }
 
-        private async Task HandleNeededAction(NeededAction action)
+        private async Task HandleNeededAction(NeededAction action, CancellationToken cancellationToken)
         {
             switch (action)
             {
@@ -331,10 +331,10 @@ namespace UltimateFishBot.Classes
                 case NeededAction.Charm:
                 case NeededAction.Raft:
                 case NeededAction.Bait:
-                    await m_hands.DoAction(action, m_mouth);
+                    await m_hands.DoAction(action, m_mouth, cancellationToken);
                     break;
                 case NeededAction.AntiAfkMove:
-                    await m_legs.DoMovement(t2s);
+                    await m_legs.DoMovement(t2s, cancellationToken);
                     break;
             }
 

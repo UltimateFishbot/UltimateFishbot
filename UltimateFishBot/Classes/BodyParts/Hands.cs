@@ -50,7 +50,7 @@ namespace UltimateFishBot.Classes.BodyParts
             m_baitIndex = 0;
         }
 
-        public async Task DoAction(Manager.NeededAction action, Mouth mouth)
+        public async Task DoAction(Manager.NeededAction action, Mouth mouth, CancellationToken cancellationToken)
         {
             string actionKey = "";
             int sleepTime = 0;
@@ -108,7 +108,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
             Win32.ActivateWow();
             Win32.SendKey(actionKey);
-            await Task.Delay(sleepTime * 1000);
+            await Task.Delay(sleepTime * 1000, cancellationToken);
         }
     }
 }
