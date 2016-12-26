@@ -115,10 +115,20 @@ namespace UltimateFishBot
 
                 if (id == (int)HotKey.StartStop)
                 {
-                    if (m_manager.IsStoppedOrPaused())
-                        btnStart_Click(null, null);
-                    else
-                        btnStop_Click(null, null);
+                    Task.Factory.StartNew(async () =>
+                    {
+                        try
+                        {
+                            await m_manager.StartOrStop();
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            // Do nothing, cancellations are to be expected
+                        }
+                    },
+                    System.Threading.CancellationToken.None,
+                    TaskCreationOptions.None,
+                    TaskScheduler.FromCurrentSynchronizationContext());
                 }
             }
         }

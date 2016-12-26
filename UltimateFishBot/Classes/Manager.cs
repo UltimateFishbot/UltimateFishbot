@@ -233,6 +233,14 @@ namespace UltimateFishBot.Classes
         {
             m_fishingStats.Reset();
         }
+        
+        public async Task StartOrStop()
+        {
+            if (IsStoppedOrPaused())
+                await StartOrResumeOrPause();
+            else
+                Stop();
+        }
 
         private void ResetTimers()
         {
