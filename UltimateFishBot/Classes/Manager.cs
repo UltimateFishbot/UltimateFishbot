@@ -12,7 +12,7 @@ namespace UltimateFishBot.Classes
         {
             Idle = 0,
             Start = 1,
-            CastingAndSearchingForBobber = 3,
+            Fishing = 3,
             WaitingForFish = 4,
             Looting = 5,
             Paused = 6,
@@ -207,7 +207,7 @@ namespace UltimateFishBot.Classes
                         stats.RecordSuccess();
                         break;
                     }
-                case FishingState.CastingAndSearchingForBobber:
+                case FishingState.Fishing:
                     {
                         stats.RecordBobberNotFound();
                         break;
@@ -252,9 +252,6 @@ namespace UltimateFishBot.Classes
 
         public async Task HearFish()
         {
-            if (GetCurrentState() != FishingState.WaitingForFish)
-                return;
-
             m_fishHeard = true;
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
 
@@ -302,10 +299,10 @@ namespace UltimateFishBot.Classes
                         }
 
                         // If no other action required, we can cast !
-                        SeFishingState(FishingState.CastingAndSearchingForBobber);
+                        SeFishingState(FishingState.Fishing);
                         break;
                     }
-                case FishingState.CastingAndSearchingForBobber:
+                case FishingState.Fishing:
                     {
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
                         await m_hands.Cast();
@@ -319,12 +316,6 @@ namespace UltimateFishBot.Classes
                             break;
                         }
 
-                        // We are just waiting for the Eyes
-                        SeFishingState(Manager.FishingState.WaitingForFish);
-                        break;
-                    }
-                case FishingState.WaitingForFish:
-                    {
                         // We are waiting a detection from the Ears
                         m_fishHeard = false;
                         for (int waitTime = 0; waitTime < Properties.Settings.Default.FishWait; waitTime += SECOND)
