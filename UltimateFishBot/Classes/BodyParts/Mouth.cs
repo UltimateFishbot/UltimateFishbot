@@ -16,14 +16,6 @@ namespace UltimateFishBot.Classes.BodyParts
         public void Say(string text)
         {
             m_mainForm.lblStatus.Text = text;
-            if (text == Translate.GetTranslate("manager", "LABEL_PAUSED") || (text == Translate.GetTranslate("manager", "LABEL_STOPPED")))
-            {
-                m_mainForm.lblStatus.Image = Resources.offline;
-            }
-            else
-            {
-                m_mainForm.lblStatus.Image = Resources.online;
-            }
             t2s.Say(text);
 
         }
