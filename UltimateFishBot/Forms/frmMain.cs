@@ -10,7 +10,7 @@ using UltimateFishBot.Properties;
 
 namespace UltimateFishBot
 {
-    public partial class frmMain : Form
+    public partial class frmMain : Form, IManagerEventHandler
     {
 
         public enum KeyModifier
@@ -74,74 +74,33 @@ namespace UltimateFishBot
         }
 
         private async void btnStart_Click(object sender, EventArgs e)
-
         {
-            btnSettings.Enabled = false;
-            btnStop.Enabled = true;
-
-            if (m_manager.GetCurrentState() == Manager.FishingState.Stopped)
-            {
-                btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
-                lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STARTED");
-                lblStatus.Image = Resources.online;
-                await m_manager.RunBotUntilCanceled();
-            }
-            else if (m_manager.GetCurrentState() == Manager.FishingState.Paused)
-            {
-                btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
-                lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
-                lblStatus.Image = Resources.online;
-                await m_manager.Resume();
-            }
-            else
-            {
-                btnSettings.Enabled = true;
-                btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
-                lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
-                lblStatus.Image = Resources.online;
-                m_manager.Pause();
-            }
+            await m_manager.StartOrResumeOrPause();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            btnSettings.Enabled = true;
-            btnStop.Enabled = false;
             m_manager.Stop();
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
-            lblStatus.Image = Resources.offline;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-
             frmSettings.GetForm(this).Show();
-
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-
             frmStats.GetForm(m_manager).Show();
-
         }
 
         private void btnHowTo_Click(object sender, EventArgs e)
         {
-
             frmDirections.GetForm.Show();
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        public void StopFishing()
-        {
-            btnStop_Click(null, null);
         }
 
         protected override void WndProc(ref Message m)
@@ -226,6 +185,48 @@ namespace UltimateFishBot
             about.GetForm.Show();
         }
 
+        private void ToggleButtonEnabledRunning()
+        {
+            btnSettings.Enabled = false;
+            btnStop.Enabled = true;
+        }
 
+        private void ToggleButtonEnabledNotRunning()
+        {
+            btnSettings.Enabled = true;
+            btnStop.Enabled = false;
+        }
+
+        public void Started()
+        {
+            ToggleButtonEnabledRunning();
+            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
+            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STARTED");
+            lblStatus.Image = Resources.online;
+        }
+
+        public void Stopped()
+        {
+            ToggleButtonEnabledNotRunning();
+            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
+            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
+            lblStatus.Image = Resources.offline;
+        }
+
+        public void Resumed()
+        {
+            ToggleButtonEnabledRunning();
+            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
+            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
+            lblStatus.Image = Resources.online;
+        }
+
+        public void Paused()
+        {
+            btnSettings.Enabled = true;
+            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
+            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
+            lblStatus.Image = Resources.online;
+        }
     }
 }

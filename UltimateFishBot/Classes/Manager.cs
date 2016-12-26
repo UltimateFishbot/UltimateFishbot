@@ -7,6 +7,14 @@ using UltimateFishBot.Classes.BodyParts;
 
 namespace UltimateFishBot.Classes
 {
+    public interface IManagerEventHandler
+    {
+        void Started();
+        void Stopped();
+        void Resumed();
+        void Paused();
+    }
+
     public class Manager
     {
         public enum FishingState
@@ -37,7 +45,7 @@ namespace UltimateFishBot.Classes
         private System.Windows.Forms.Timer m_BaitTimer;
         private System.Windows.Forms.Timer m_AntiAfkTimer;
 
-        private frmMain m_mainForm;
+        private IManagerEventHandler m_mainForm;
 
         private Eyes m_eyes;
         private Hands m_hands;
@@ -61,7 +69,7 @@ namespace UltimateFishBot.Classes
             m_eyes = new Eyes();
             m_hands = new Hands();
             m_ears = new Ears();
-            m_mouth = new Mouth(m_mainForm);
+            m_mouth = new Mouth(mainForm);
             m_legs = new Legs();
 
             m_fishingState = FishingState.Stopped;
@@ -90,15 +98,33 @@ namespace UltimateFishBot.Classes
             timer.Tick += new EventHandler(handler);
         }
 
-        public async Task RunBotUntilCanceled()
+        public async Task StartOrResumeOrPause()
+        {
+            if (GetCurrentState() == Manager.FishingState.Stopped)
+            {
+                await RunBotUntilCanceled();
+            }
+            else if (GetCurrentState() == Manager.FishingState.Paused)
+            {
+                await Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+
+        private async Task RunBotUntilCanceled()
         {
             ResetTimers();
             EnableTimers();
+            m_mainForm.Started();
             await RunBot();
         }
 
-        public async Task Resume()
+        private async Task Resume()
         {
+            m_mainForm.Resumed();
             await RunBot();
         }
 
@@ -116,11 +142,12 @@ namespace UltimateFishBot.Classes
             }
         }
 
-        public void Pause()
+        private void Pause()
         {
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource = null;
             SeFishingState(FishingState.Paused);
+            m_mainForm.Paused();
         }
 
         public void EnableTimers()
@@ -158,6 +185,7 @@ namespace UltimateFishBot.Classes
 
         public void Stop()
         {
+            m_mainForm.Stopped();
             // only cancel if not already stopped/paused
             if (!IsStoppedOrPaused())
             {
@@ -346,7 +374,7 @@ namespace UltimateFishBot.Classes
             switch (action)
             {
                 case NeededAction.HearthStone:
-                    m_mainForm.StopFishing();
+                    Stop();
                     goto case NeededAction.Lure; // We continue, Hearthstone need m_hands.DoAction
                 case NeededAction.Lure:
                 case NeededAction.Charm:
