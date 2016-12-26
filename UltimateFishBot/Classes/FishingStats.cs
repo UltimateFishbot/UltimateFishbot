@@ -13,17 +13,17 @@
             totalNotEaredFish = 0;
         }
 
-        public void Looting()
+        public void RecordSuccess()
         {
             ++totalSuccessFishing;
         }
 
-        public void CastingOrSearchingForBobber()
+        public void RecordBobberNotFound()
         {
             ++totalNotFoundFish;
         }
 
-        public void WaitingForFish()
+        public void RecordNotHeard()
         {
             ++totalNotEaredFish;
         }

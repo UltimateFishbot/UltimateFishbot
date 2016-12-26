@@ -205,18 +205,18 @@ namespace UltimateFishBot.Classes
             {
                 case FishingState.Looting:
                     {
-                        stats.Looting();
+                        stats.RecordSuccess();
                         break;
                     }
                 case FishingState.Casting:
                 case FishingState.SearchingForBobber:
                     {
-                        stats.CastingOrSearchingForBobber();
+                        stats.RecordBobberNotFound();
                         break;
                     }
                 case FishingState.WaitingForFish:
                     {
-                        stats.WaitingForFish();
+                        stats.RecordNotHeard();
                         break;
                     }
             }
