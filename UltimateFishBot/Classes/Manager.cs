@@ -51,7 +51,7 @@ namespace UltimateFishBot.Classes
         private T2S t2s;
 
         private NeededAction m_neededActions;
-        private FishingState m_actualState;
+        private FishingState m_fishingState;
         private FishingStats m_fishingStats;
 
         private const int SECOND = 1000;
@@ -68,7 +68,7 @@ namespace UltimateFishBot.Classes
             m_mouth = new Mouth(m_mainForm);
             m_legs = new Legs();
 
-            m_actualState = FishingState.Stopped;
+            m_fishingState = FishingState.Stopped;
             m_neededActions = NeededAction.None;
 
             m_fishingStats = new FishingStats();
@@ -108,7 +108,7 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBot()
         {
-            SetActualState(FishingState.Start);
+            SeFishingState(FishingState.Start);
             _cancellationTokenSource = new CancellationTokenSource();
             try
             {
@@ -128,7 +128,7 @@ namespace UltimateFishBot.Classes
         {
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource = null;
-            SetActualState(FishingState.Paused);
+            SeFishingState(FishingState.Paused);
         }
 
         public void EnableTimers()
@@ -173,62 +173,63 @@ namespace UltimateFishBot.Classes
                 _cancellationTokenSource = null;
             }
 
-            if (GetActualState() != FishingState.Stopped)
+            if (GetCurrentState() != FishingState.Stopped)
             {
                 m_LureTimer.Enabled = false;
                 m_RaftTimer.Enabled = false;
                 m_CharmTimer.Enabled = false;
                 m_BaitTimer.Enabled = false;
                 m_HearthStoneTimer.Enabled = false;
-                SetActualState(FishingState.Stopped);
+                SeFishingState(FishingState.Stopped);
             }
         }
 
-        public void SetActualState(FishingState newState)
+        public void SeFishingState(FishingState newState)
         {
             if (IsStoppedOrPaused())
                 if (newState != FishingState.Start)
                     return;
 
-            UpdateStats(newState);
+            FishingState prevState = m_fishingState;
+            m_fishingState = newState;
 
-            m_actualState = newState;
-        }
-
-        private void UpdateStats(FishingState newState)
-        {
-            if (newState == FishingState.Idle) // If we start a new loop, check why and increase stats according
+            if (m_fishingState == FishingState.Idle) // If we start a new loop, check why and increase stats according
             {
-                switch (m_actualState)
-                {
-                    case FishingState.Looting:
-                        {
-                            m_fishingStats.Looting();
-                            break;
-                        }
-                    case FishingState.Casting:
-                    case FishingState.SearchingForBobber:
-                        {
-                            m_fishingStats.CastingOrSearchingForBobber();
-                            break;
-                        }
-                    case FishingState.WaitingForFish:
-                        {
-                            m_fishingStats.WaitingForFish();
-                            break;
-                        }
-                }
+                UpdateStats(prevState, m_fishingStats);
             }
         }
 
-        public FishingState GetActualState()
+        private static void UpdateStats(FishingState prevState, FishingStats stats)
         {
-            return m_actualState;
+            switch (prevState)
+            {
+                case FishingState.Looting:
+                    {
+                        stats.Looting();
+                        break;
+                    }
+                case FishingState.Casting:
+                case FishingState.SearchingForBobber:
+                    {
+                        stats.CastingOrSearchingForBobber();
+                        break;
+                    }
+                case FishingState.WaitingForFish:
+                    {
+                        stats.WaitingForFish();
+                        break;
+                    }
+            }
+        }
+
+        public FishingState GetCurrentState()
+        {
+            return m_fishingState;
         }
 
         public bool IsStoppedOrPaused()
         {
-            return GetActualState() == FishingState.Stopped || GetActualState() == FishingState.Paused;
+            return GetCurrentState() == FishingState.Stopped || GetCurrentState() == FishingState.Paused;
         }
 
         public FishingStats GetFishingStats()
@@ -260,15 +261,15 @@ namespace UltimateFishBot.Classes
 
         public async Task HearFish()
         {
-            if (GetActualState() != FishingState.WaitingForFish)
+            if (GetCurrentState() != FishingState.WaitingForFish)
                 return;
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
 
-            SetActualState(FishingState.Looting);
+            SeFishingState(FishingState.Looting);
             await m_hands.Loot();
             m_fishWaitTime = 0;
-            SetActualState(FishingState.Idle);
+            SeFishingState(FishingState.Idle);
         }
 
         private async Task TakeActions(CancellationToken cancellationToken)
@@ -289,12 +290,12 @@ namespace UltimateFishBot.Classes
 
         private async Task TakeNextAction(CancellationToken cancellationToken)
         {
-            switch (GetActualState())
+            switch (GetCurrentState())
             {
                 case FishingState.Start:
                     {
                         // We just start, going to Idle to begin bot loop
-                        SetActualState(FishingState.Idle);
+                        SeFishingState(FishingState.Idle);
                         break;
                     }
                 case FishingState.Idle:
@@ -310,14 +311,14 @@ namespace UltimateFishBot.Classes
                         }
 
                         // If no other action required, we can cast !
-                        SetActualState(FishingState.Casting);
+                        SeFishingState(FishingState.Casting);
                         break;
                     }
                 case FishingState.Casting:
                     {
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
                         await m_hands.Cast();
-                        SetActualState(FishingState.SearchingForBobber);
+                        SeFishingState(FishingState.SearchingForBobber);
                         break;
                     }
                 case FishingState.SearchingForBobber:
@@ -338,7 +339,7 @@ namespace UltimateFishBot.Classes
 
                         if ((m_fishWaitTime += ACTION_TIMER_LENGTH) >= Properties.Settings.Default.FishWait)
                         {
-                            SetActualState(FishingState.Idle);
+                            SeFishingState(FishingState.Idle);
                             m_fishWaitTime = 0;
                         }
 

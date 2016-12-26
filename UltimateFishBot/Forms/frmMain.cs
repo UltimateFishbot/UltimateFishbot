@@ -79,14 +79,14 @@ namespace UltimateFishBot
             btnSettings.Enabled = false;
             btnStop.Enabled = true;
 
-            if (m_manager.GetActualState() == Manager.FishingState.Stopped)
+            if (m_manager.GetCurrentState() == Manager.FishingState.Stopped)
             {
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STARTED");
                 lblStatus.Image = Resources.online;
                 await m_manager.RunBotUntilCanceled();
             }
-            else if (m_manager.GetActualState() == Manager.FishingState.Paused)
+            else if (m_manager.GetCurrentState() == Manager.FishingState.Paused)
             {
                 btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
                 lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");

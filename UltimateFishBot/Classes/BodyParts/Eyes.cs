@@ -53,12 +53,12 @@ namespace UltimateFishBot.Classes.BodyParts
                     await LookForBobberImpl(cancellationToken);
 
                 // Found the fish!
-                m_manager.SetActualState(Manager.FishingState.WaitingForFish);
+                m_manager.SeFishingState(Manager.FishingState.WaitingForFish);
             }
             catch (NoFishFoundException)
             {
                 // Didn't find the fish
-                m_manager.SetActualState(Manager.FishingState.Idle);
+                m_manager.SeFishingState(Manager.FishingState.Idle);
             }
 
         }
