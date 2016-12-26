@@ -20,7 +20,6 @@ namespace UltimateFishBot.Classes
     {
         private enum FishingState
         {
-            Idle = 0,
             Start = 1,
             Fishing = 3,
             Paused = 6,
@@ -270,10 +269,10 @@ namespace UltimateFishBot.Classes
                 case FishingState.Start:
                     {
                         // We just start, going to Idle to begin bot loop
-                        SeFishingState(FishingState.Idle);
+                        SeFishingState(FishingState.Fishing);
                         break;
                     }
-                case FishingState.Idle:
+                case FishingState.Fishing:
                     {
                         // We first check if another action is needed, foreach on all NeededAction enum values
                         foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
@@ -286,11 +285,6 @@ namespace UltimateFishBot.Classes
                         }
 
                         // If no other action required, we can cast !
-                        SeFishingState(FishingState.Fishing);
-                        break;
-                    }
-                case FishingState.Fishing:
-                    {
                         await Fish(cancellationToken);
                         break;
                     }
@@ -307,7 +301,6 @@ namespace UltimateFishBot.Classes
             if (!didFindFish)
             {
                 m_fishingStats.RecordBobberNotFound();
-                SeFishingState(Manager.FishingState.Idle);
                 return;
             }
 
@@ -338,15 +331,12 @@ namespace UltimateFishBot.Classes
             if (!fishHeard)
             {
                 m_fishingStats.RecordNotHeard();
-                SeFishingState(FishingState.Idle);
                 return;
             }
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
             await m_hands.Loot();
             m_fishingStats.RecordSuccess();
-
-            SeFishingState(FishingState.Idle);
         }
 
         private async Task UpdateUIWhileWaitingToHearFish(
