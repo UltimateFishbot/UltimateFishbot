@@ -275,45 +275,50 @@ namespace UltimateFishBot.Classes
                     }
                 case FishingState.Fishing:
                     {
-                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
-                        await m_hands.Cast();
-
-                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-                        bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
-                        if (!didFindFish)
-                        {
-                            m_fishingStats.RecordBobberNotFound();
-                            SeFishingState(Manager.FishingState.Idle);
-                            break;
-                        }
-
-                        // We are waiting a detection from the Ears
-                        m_fishHeard = false;
-                        for (int waitTime = 0; waitTime < Properties.Settings.Default.FishWait; waitTime += SECOND)
-                        {
-                            m_mouth.Say(Translate.GetTranslate(
-                                "manager",
-                                "LABEL_WAITING",
-                                waitTime / SECOND,
-                                Properties.Settings.Default.FishWait / SECOND));
-
-                            await Task.Delay(
-                                Math.Min(SECOND, Properties.Settings.Default.FishWait - waitTime),
-                                cancellationToken);
-
-                            if (m_fishHeard)
-                            {
-                                m_fishingStats.RecordSuccess();
-                                break;
-                            }
-                        }
-                        if (!m_fishHeard)
-                        {
-                            m_fishingStats.RecordNotHeard();
-                            SeFishingState(FishingState.Idle);
-                        }
+                        await Fish(cancellationToken);
                         break;
                     }
+            }
+        }
+
+        private async Task Fish(CancellationToken cancellationToken)
+        {
+            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
+            await m_hands.Cast();
+
+            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
+            bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
+            if (!didFindFish)
+            {
+                m_fishingStats.RecordBobberNotFound();
+                SeFishingState(Manager.FishingState.Idle);
+                return;
+            }
+
+            // We are waiting a detection from the Ears
+            m_fishHeard = false;
+            for (int waitTime = 0; waitTime < Properties.Settings.Default.FishWait; waitTime += SECOND)
+            {
+                m_mouth.Say(Translate.GetTranslate(
+                    "manager",
+                    "LABEL_WAITING",
+                    waitTime / SECOND,
+                    Properties.Settings.Default.FishWait / SECOND));
+
+                await Task.Delay(
+                    Math.Min(SECOND, Properties.Settings.Default.FishWait - waitTime),
+                    cancellationToken);
+
+                if (m_fishHeard)
+                {
+                    m_fishingStats.RecordSuccess();
+                    break;
+                }
+            }
+            if (!m_fishHeard)
+            {
+                m_fishingStats.RecordNotHeard();
+                SeFishingState(FishingState.Idle);
             }
         }
 
