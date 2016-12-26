@@ -128,7 +128,7 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBot()
         {
-            SeFishingState(FishingState.Fishing);
+            m_fishingState = FishingState.Fishing;
             _cancellationTokenSource = new CancellationTokenSource();
             while (!_cancellationTokenSource.Token.IsCancellationRequested)
             {
@@ -157,7 +157,7 @@ namespace UltimateFishBot.Classes
         {
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource = null;
-            SeFishingState(FishingState.Paused);
+            m_fishingState = FishingState.Paused;
             m_managerEventHandler.Paused();
         }
 
@@ -211,17 +211,8 @@ namespace UltimateFishBot.Classes
                 m_CharmTimer.Enabled = false;
                 m_BaitTimer.Enabled = false;
                 m_HearthStoneTimer.Enabled = false;
-                SeFishingState(FishingState.Stopped);
+                m_fishingState = FishingState.Stopped;
             }
-        }
-
-        private void SeFishingState(FishingState newState)
-        {
-            if (IsStoppedOrPaused())
-                if (newState != FishingState.Fishing)
-                    return;
-
-            m_fishingState = newState;
         }
 
         private bool IsStoppedOrPaused()
