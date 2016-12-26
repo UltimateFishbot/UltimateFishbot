@@ -297,7 +297,9 @@ namespace UltimateFishBot.Classes
 
             // We are waiting a detection from the Ears
             m_fishHeard = false;
-            for (int waitTime = 0; waitTime < Properties.Settings.Default.FishWait; waitTime += SECOND)
+            for (int waitTime = 0;
+                !m_fishHeard && waitTime < Properties.Settings.Default.FishWait;
+                waitTime += SECOND)
             {
                 m_mouth.Say(Translate.GetTranslate(
                     "manager",
@@ -308,14 +310,12 @@ namespace UltimateFishBot.Classes
                 await Task.Delay(
                     Math.Min(SECOND, Properties.Settings.Default.FishWait - waitTime),
                     cancellationToken);
-
-                if (m_fishHeard)
-                {
-                    m_fishingStats.RecordSuccess();
-                    break;
-                }
             }
-            if (!m_fishHeard)
+            if (m_fishHeard)
+            {
+                m_fishingStats.RecordSuccess();
+            }
+            else
             {
                 m_fishingStats.RecordNotHeard();
                 SeFishingState(FishingState.Idle);
