@@ -5,17 +5,17 @@ namespace UltimateFishBot.Classes.BodyParts
 {
     class Mouth
     {
-        private IManagerEventHandler m_mainForm;
+        private IManagerEventHandler m_managerEventHandler;
         T2S t2s = new T2S();
 
-        public Mouth(IManagerEventHandler mainForm)
+        public Mouth(IManagerEventHandler managerEventHandler)
         {
-            m_mainForm = mainForm;
+            m_managerEventHandler = managerEventHandler;
         }
 
         public void Say(string text)
         {
-            m_mainForm.UpdateStatus(text);
+            m_managerEventHandler.UpdateStatus(text);
             t2s.Say(text);
 
         }

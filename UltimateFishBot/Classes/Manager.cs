@@ -46,7 +46,7 @@ namespace UltimateFishBot.Classes
         private System.Windows.Forms.Timer m_BaitTimer;
         private System.Windows.Forms.Timer m_AntiAfkTimer;
 
-        private IManagerEventHandler m_mainForm;
+        private IManagerEventHandler m_managerEventHandler;
 
         private Eyes m_eyes;
         private Hands m_hands;
@@ -63,14 +63,14 @@ namespace UltimateFishBot.Classes
         private const int MINUTE = 60 * SECOND;
         private const int ACTION_TIMER_LENGTH = 500;
 
-        public Manager(IManagerEventHandler mainForm)
+        public Manager(IManagerEventHandler managerEventHandler)
         {
-            m_mainForm = mainForm;
+            m_managerEventHandler = managerEventHandler;
 
             m_eyes = new Eyes();
             m_hands = new Hands();
             m_ears = new Ears();
-            m_mouth = new Mouth(mainForm);
+            m_mouth = new Mouth(m_managerEventHandler);
             m_legs = new Legs();
 
             m_fishingState = FishingState.Stopped;
@@ -119,13 +119,13 @@ namespace UltimateFishBot.Classes
         {
             ResetTimers();
             EnableTimers();
-            m_mainForm.Started();
+            m_managerEventHandler.Started();
             await RunBot();
         }
 
         private async Task Resume()
         {
-            m_mainForm.Resumed();
+            m_managerEventHandler.Resumed();
             await RunBot();
         }
 
@@ -148,7 +148,7 @@ namespace UltimateFishBot.Classes
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource = null;
             SeFishingState(FishingState.Paused);
-            m_mainForm.Paused();
+            m_managerEventHandler.Paused();
         }
 
         public void EnableTimers()
@@ -186,7 +186,7 @@ namespace UltimateFishBot.Classes
 
         public void Stop()
         {
-            m_mainForm.Stopped();
+            m_managerEventHandler.Stopped();
             // only cancel if not already stopped/paused
             if (!IsStoppedOrPaused())
             {
