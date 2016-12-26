@@ -12,8 +12,7 @@ namespace UltimateFishBot.Classes
         {
             Idle = 0,
             Start = 1,
-            Casting = 2,
-            SearchingForBobber = 3,
+            CastingAndSearchingForBobber = 3,
             WaitingForFish = 4,
             Looting = 5,
             Paused = 6,
@@ -208,8 +207,7 @@ namespace UltimateFishBot.Classes
                         stats.RecordSuccess();
                         break;
                     }
-                case FishingState.Casting:
-                case FishingState.SearchingForBobber:
+                case FishingState.CastingAndSearchingForBobber:
                     {
                         stats.RecordBobberNotFound();
                         break;
@@ -311,18 +309,14 @@ namespace UltimateFishBot.Classes
                         }
 
                         // If no other action required, we can cast !
-                        SeFishingState(FishingState.Casting);
+                        SeFishingState(FishingState.CastingAndSearchingForBobber);
                         break;
                     }
-                case FishingState.Casting:
+                case FishingState.CastingAndSearchingForBobber:
                     {
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
                         await m_hands.Cast();
-                        SeFishingState(FishingState.SearchingForBobber);
-                        break;
-                    }
-                case FishingState.SearchingForBobber:
-                    {
+
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
                         await m_eyes.LookForBobber(cancellationToken); // <= The new state will be set in the Eyes
                         // We are just waiting for the Eyes
