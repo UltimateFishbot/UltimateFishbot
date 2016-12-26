@@ -38,8 +38,6 @@ namespace UltimateFishBot.Classes
         private System.Windows.Forms.Timer m_BaitTimer;
         private System.Windows.Forms.Timer m_AntiAfkTimer;
 
-        private int m_fishWaitTime;
-
         private frmMain m_mainForm;
 
         private Eyes m_eyes;
@@ -52,6 +50,8 @@ namespace UltimateFishBot.Classes
         private NeededAction m_neededActions;
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
+
+        private bool m_fishHeard;
 
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
@@ -240,11 +240,6 @@ namespace UltimateFishBot.Classes
             m_fishingStats.Reset();
         }
 
-        public int GetFishWaitTime()
-        {
-            return m_fishWaitTime;
-        }
-
         private void ResetTimers()
         {
             m_LureTimer.Interval = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
@@ -253,8 +248,6 @@ namespace UltimateFishBot.Classes
             m_BaitTimer.Interval = Properties.Settings.Default.BaitTime * MINUTE;
             m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
             m_AntiAfkTimer.Interval = Properties.Settings.Default.AntiAfkTime * MINUTE;
-
-            m_fishWaitTime = 0;
         }
 
         public async Task HearFish()
@@ -262,11 +255,11 @@ namespace UltimateFishBot.Classes
             if (GetCurrentState() != FishingState.WaitingForFish)
                 return;
 
+            m_fishHeard = true;
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
 
             SeFishingState(FishingState.Looting);
             await m_hands.Loot();
-            m_fishWaitTime = 0;
             SeFishingState(FishingState.Idle);
         }
 
@@ -334,18 +327,28 @@ namespace UltimateFishBot.Classes
                 case FishingState.WaitingForFish:
                     {
                         // We are waiting a detection from the Ears
-                        m_mouth.Say(Translate.GetTranslate(
-                            "manager",
-                            "LABEL_WAITING",
-                            GetFishWaitTime() / 1000,
-                            Properties.Settings.Default.FishWait / 1000));
+                        m_fishHeard = false;
+                        for (int waitTime = 0; waitTime < Properties.Settings.Default.FishWait; waitTime += SECOND)
+                        {
+                            m_mouth.Say(Translate.GetTranslate(
+                                "manager",
+                                "LABEL_WAITING",
+                                waitTime / SECOND,
+                                Properties.Settings.Default.FishWait / SECOND));
 
-                        if ((m_fishWaitTime += ACTION_TIMER_LENGTH) >= Properties.Settings.Default.FishWait)
+                            await Task.Delay(
+                                Math.Min(SECOND, Properties.Settings.Default.FishWait - waitTime),
+                                cancellationToken);
+
+                            if (m_fishHeard)
+                            {
+                                break;
+                            }
+                        }
+                        if (!m_fishHeard)
                         {
                             SeFishingState(FishingState.Idle);
-                            m_fishWaitTime = 0;
                         }
-
                         break;
                     }
             }
