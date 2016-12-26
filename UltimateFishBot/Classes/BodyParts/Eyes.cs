@@ -10,7 +10,6 @@ namespace UltimateFishBot.Classes.BodyParts
     class NoFishFoundException : Exception { }
     class Eyes
     {
-        private Manager m_manager;
         int xPosMin;
         int xPosMax;
         int yPosMin;
@@ -18,12 +17,7 @@ namespace UltimateFishBot.Classes.BodyParts
         Rectangle wowRectangle;
         private Win32.CursorInfo m_noFishCursor;
 
-        public Eyes(Manager manager)
-        {
-            m_manager = manager;
-        }
-
-        public async Task LookForBobber(CancellationToken cancellationToken)
+        public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
             m_noFishCursor = Win32.GetNoFishCursor();
             wowRectangle = Win32.GetWowRectangle();
@@ -53,12 +47,12 @@ namespace UltimateFishBot.Classes.BodyParts
                     await LookForBobberImpl(cancellationToken);
 
                 // Found the fish!
-                m_manager.SeFishingState(Manager.FishingState.WaitingForFish);
+                return true;
             }
             catch (NoFishFoundException)
             {
                 // Didn't find the fish
-                m_manager.SeFishingState(Manager.FishingState.Idle);
+                return false;
             }
 
         }
@@ -216,9 +210,6 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             if (cancellationToken.IsCancellationRequested)
                 throw new TaskCanceledException();
-
-            if (m_manager.IsStoppedOrPaused())
-                throw new Exception("Bot paused or stopped without cancellation request");
 
             Win32.MoveMouse(x, y);
 

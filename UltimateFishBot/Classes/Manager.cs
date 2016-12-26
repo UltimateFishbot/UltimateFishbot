@@ -61,7 +61,7 @@ namespace UltimateFishBot.Classes
         {
             m_mainForm = mainForm;
 
-            m_eyes = new Eyes(this);
+            m_eyes = new Eyes();
             m_hands = new Hands();
             m_ears = new Ears(this);
             m_mouth = new Mouth(m_mainForm);
@@ -318,7 +318,16 @@ namespace UltimateFishBot.Classes
                         await m_hands.Cast();
 
                         m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-                        await m_eyes.LookForBobber(cancellationToken); // <= The new state will be set in the Eyes
+                        bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
+                        if (didFindFish)
+                        {
+                            SeFishingState(Manager.FishingState.WaitingForFish);
+                        }
+                        else
+                        {
+                            // Refactor this later: record failure stat here
+                            SeFishingState(Manager.FishingState.Idle);
+                        }
                         // We are just waiting for the Eyes
                         break;
                     }
