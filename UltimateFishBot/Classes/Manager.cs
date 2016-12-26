@@ -20,7 +20,6 @@ namespace UltimateFishBot.Classes
     {
         private enum FishingState
         {
-            Start = 1,
             Fishing = 3,
             Paused = 6,
             Stopped = 7
@@ -130,7 +129,7 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBot()
         {
-            SeFishingState(FishingState.Start);
+            SeFishingState(FishingState.Fishing);
             _cancellationTokenSource = new CancellationTokenSource();
             try
             {
@@ -207,7 +206,7 @@ namespace UltimateFishBot.Classes
         private void SeFishingState(FishingState newState)
         {
             if (IsStoppedOrPaused())
-                if (newState != FishingState.Start)
+                if (newState != FishingState.Fishing)
                     return;
 
             m_fishingState = newState;
@@ -266,12 +265,6 @@ namespace UltimateFishBot.Classes
         {
             switch (m_fishingState)
             {
-                case FishingState.Start:
-                    {
-                        // We just start, going to Idle to begin bot loop
-                        SeFishingState(FishingState.Fishing);
-                        break;
-                    }
                 case FishingState.Fishing:
                     {
                         // We first check if another action is needed, foreach on all NeededAction enum values
