@@ -59,7 +59,6 @@ namespace UltimateFishBot.Classes
 
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
-        private const int ACTION_TIMER_LENGTH = 500;
 
         public Manager(IManagerEventHandler managerEventHandler)
         {
@@ -131,13 +130,26 @@ namespace UltimateFishBot.Classes
         {
             SeFishingState(FishingState.Fishing);
             _cancellationTokenSource = new CancellationTokenSource();
-            try
+            while (!_cancellationTokenSource.Token.IsCancellationRequested)
             {
-                await TakeActions(_cancellationTokenSource.Token);
-            }
-            catch (TaskCanceledException)
-            {
-                return;
+                try
+                {
+                    // We first check if another action is needed, foreach on all NeededAction enum values
+                    foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
+                    {
+                        if (HasNeededAction(neededAction))
+                        {
+                            await HandleNeededAction(neededAction);
+                        }
+                    }
+
+                    // If no other action required, we can cast !
+                    await Fish(_cancellationTokenSource.Token);
+                }
+                catch (TaskCanceledException)
+                {
+                    return;
+                }
             }
         }
 
@@ -243,45 +255,6 @@ namespace UltimateFishBot.Classes
             m_BaitTimer.Interval = Properties.Settings.Default.BaitTime * MINUTE;
             m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
             m_AntiAfkTimer.Interval = Properties.Settings.Default.AntiAfkTime * MINUTE;
-        }
-
-        private async Task TakeActions(CancellationToken cancellationToken)
-        {
-            while (true)
-            {
-                try
-                {
-                    await Task.Delay(ACTION_TIMER_LENGTH, cancellationToken);
-                    await TakeNextAction(cancellationToken);
-                }
-                catch (TaskCanceledException)
-                {
-                    return;
-                }
-            }
-        }
-
-        private async Task TakeNextAction(CancellationToken cancellationToken)
-        {
-            switch (m_fishingState)
-            {
-                case FishingState.Fishing:
-                    {
-                        // We first check if another action is needed, foreach on all NeededAction enum values
-                        foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
-                        {
-                            if (HasNeededAction(neededAction))
-                            {
-                                await HandleNeededAction(neededAction);
-                                return;
-                            }
-                        }
-
-                        // If no other action required, we can cast !
-                        await Fish(cancellationToken);
-                        break;
-                    }
-            }
         }
 
         private async Task Fish(CancellationToken cancellationToken)
