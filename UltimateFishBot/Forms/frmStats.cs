@@ -55,7 +55,7 @@ namespace UltimateFishBot.Forms
 
         private void UpdateStats()
         {
-            Manager.FishingStats stats = m_manager.GetFishingStats();
+            UltimateFishBot.Classes.FishingStats stats = m_manager.GetFishingStats();
             labelSuccessCount.Text = stats.totalSuccessFishing.ToString();
             labelNotFoundCount.Text = stats.totalNotFoundFish.ToString();
             labelNotEaredCount.Text = stats.totalNotEaredFish.ToString();

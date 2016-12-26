@@ -77,6 +77,7 @@
     <Compile Include="Classes\BodyParts\Hands.cs" />
     <Compile Include="Classes\BodyParts\Legs.cs" />
     <Compile Include="Classes\BodyParts\Mouth.cs" />
+    <Compile Include="Classes\FishingStats.cs" />
     <Compile Include="Classes\Helpers\Win32.cs" />
     <Compile Include="Classes\Manager.cs" />
     <Compile Include="Classes\Translate.cs" />
