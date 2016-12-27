@@ -13,7 +13,6 @@ namespace UltimateFishBot.Classes
         void Stopped();
         void Resumed();
         void Paused();
-        void UpdateStatus(string text);
     }
 
     public class Manager
@@ -60,14 +59,14 @@ namespace UltimateFishBot.Classes
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
 
-        public Manager(IManagerEventHandler managerEventHandler)
+        public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
             m_managerEventHandler = managerEventHandler;
 
             m_eyes = new Eyes();
             m_hands = new Hands();
             m_ears = new Ears();
-            m_mouth = new Mouth(m_managerEventHandler);
+            m_mouth = new Mouth(progressHandle);
             m_legs = new Legs();
 
             m_fishingState = FishingState.Stopped;

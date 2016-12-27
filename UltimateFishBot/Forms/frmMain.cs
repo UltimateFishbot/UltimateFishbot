@@ -30,7 +30,10 @@ namespace UltimateFishBot
         {
             InitializeComponent();
 
-            m_manager = new Manager(this);
+            m_manager = new Manager(this, new Progress<string>(text =>
+            {
+                lblStatus.Text = text;
+            }));
         }
 
         private async void frmMain_Load(object sender, EventArgs e)
@@ -237,11 +240,6 @@ namespace UltimateFishBot
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
             lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
             lblStatus.Image = Resources.online;
-        }
-
-        public void UpdateStatus(string text)
-        {
-            lblStatus.Text = text;
         }
     }
 }

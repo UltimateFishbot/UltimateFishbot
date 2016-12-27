@@ -1,21 +1,22 @@
-﻿using System.Speech.Synthesis;
+﻿using System;
+using System.Speech.Synthesis;
 using UltimateFishBot.Properties;
 
 namespace UltimateFishBot.Classes.BodyParts
 {
     class Mouth
     {
-        private IManagerEventHandler m_managerEventHandler;
+        private IProgress<string> m_progressHandle;
         T2S t2s = new T2S();
 
-        public Mouth(IManagerEventHandler managerEventHandler)
+        public Mouth(IProgress<string> progressHandle)
         {
-            m_managerEventHandler = managerEventHandler;
+            m_progressHandle = progressHandle;
         }
 
         public void Say(string text)
         {
-            m_managerEventHandler.UpdateStatus(text);
+            m_progressHandle.Report(text);
             t2s.Say(text);
 
         }
