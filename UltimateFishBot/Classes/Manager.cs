@@ -115,12 +115,14 @@ namespace UltimateFishBot.Classes
         {
             ResetTimers();
             EnableTimers();
+            m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STARTED"));
             m_managerEventHandler.Started();
             await RunBot();
         }
 
         private async Task Resume()
         {
+            m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_RESUMED"));
             m_managerEventHandler.Resumed();
             await RunBot();
         }
@@ -173,6 +175,7 @@ namespace UltimateFishBot.Classes
         {
             CancelRun();
             m_fishingState = FishingState.Paused;
+            m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_PAUSED"));
             m_managerEventHandler.Paused();
         }
 
@@ -213,6 +216,7 @@ namespace UltimateFishBot.Classes
         {
             CancelRun();
             m_fishingState = FishingState.Stopped;
+            m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STOPPED"));
             m_managerEventHandler.Stopped();
             m_LureTimer.Enabled = false;
             m_RaftTimer.Enabled = false;
@@ -279,17 +283,26 @@ namespace UltimateFishBot.Classes
             var uiUpdateCancelTokenSource =
                 CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
-            (new Task(
+            var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
-                uiUpdateCancelToken,
-                TaskCreationOptions.LongRunning)
-                ).Start();
+                uiUpdateCancelToken);
 
             bool fishHeard = await m_ears.Listen(
                 Properties.Settings.Default.FishWait,
                 cancellationToken);
-
             uiUpdateCancelTokenSource.Cancel();
+            try
+            {
+                uiUpdateTask.GetAwaiter().GetResult(); // Wait & Unwrap
+                // https://github.com/StephenCleary/AsyncEx/blob/dc54d22b06566c76db23af06afcd0727cac625ef/Source/Nito.AsyncEx%20(NET45%2C%20Win8%2C%20WP8%2C%20WPA81)/Synchronous/TaskExtensions.cs#L18
+            }
+            catch (TaskCanceledException)
+            {
+            }
+            finally
+            {
+                uiUpdateCancelTokenSource.Dispose();
+            }
 
             if (!fishHeard)
             {
@@ -309,21 +322,12 @@ namespace UltimateFishBot.Classes
             // We are waiting a detection from the Ears
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            try
+            while (!uiUpdateCancelToken.IsCancellationRequested)
             {
-                while (!uiUpdateCancelToken.IsCancellationRequested)
-                {
-                    progress.Report(stopwatch.ElapsedMilliseconds);
-                    await Task.Delay(SECOND / 10, uiUpdateCancelToken);
-                }
-                uiUpdateCancelToken.ThrowIfCancellationRequested();
+                progress.Report(stopwatch.ElapsedMilliseconds);
+                await Task.Delay(SECOND / 10, uiUpdateCancelToken);
             }
-            catch (TaskCanceledException)
-            {
-                // Swallow exception; this will hit when a fish is heard and the UI update job is canceled.
-                // Explicitly throw and catch instead of not throwing so that the `Task.Delay()` cancellation
-                // exception is also caught.
-            }
+            uiUpdateCancelToken.ThrowIfCancellationRequested();
         }
 
         private async Task HandleNeededAction(NeededAction action, CancellationToken cancellationToken)

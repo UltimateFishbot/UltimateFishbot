@@ -214,7 +214,6 @@ namespace UltimateFishBot
         {
             ToggleButtonEnabledRunning();
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STARTED");
             lblStatus.Image = Resources.online;
         }
 
@@ -222,7 +221,6 @@ namespace UltimateFishBot
         {
             ToggleButtonEnabledNotRunning();
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
             lblStatus.Image = Resources.offline;
         }
 
@@ -230,7 +228,6 @@ namespace UltimateFishBot
         {
             ToggleButtonEnabledRunning();
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_RESUMED");
             lblStatus.Image = Resources.online;
         }
 
@@ -238,7 +235,6 @@ namespace UltimateFishBot
         {
             btnSettings.Enabled = true;
             btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_PAUSED");
             lblStatus.Image = Resources.online;
         }
     }
