@@ -129,33 +129,49 @@ namespace UltimateFishBot.Classes
         {
             m_fishingState = FishingState.Fishing;
             _cancellationTokenSource = new CancellationTokenSource();
-            while (!_cancellationTokenSource.Token.IsCancellationRequested)
+            var cancellationToken = _cancellationTokenSource.Token;
+            try
             {
-                try
+                while (!cancellationToken.IsCancellationRequested)
                 {
+
                     // We first check if another action is needed, foreach on all NeededAction enum values
                     foreach (NeededAction neededAction in (NeededAction[])Enum.GetValues(typeof(NeededAction)))
                     {
                         if (HasNeededAction(neededAction))
                         {
-                            await HandleNeededAction(neededAction, _cancellationTokenSource.Token);
+                            await HandleNeededAction(neededAction, cancellationToken);
                         }
                     }
 
                     // If no other action required, we can cast !
-                    await Fish(_cancellationTokenSource.Token);
+                    await Fish(cancellationToken);
                 }
-                catch (TaskCanceledException)
-                {
-                    return;
-                }
+
+            }
+            catch (TaskCanceledException)
+            {
+                return;
+            }
+            finally
+            {
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+            }
+        }
+
+        private void CancelRun()
+        {
+            if (!IsStoppedOrPaused())
+            {
+                Debug.Assert(_cancellationTokenSource != null);
+                _cancellationTokenSource.Cancel();
             }
         }
 
         private void Pause()
         {
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource = null;
+            CancelRun();
             m_fishingState = FishingState.Paused;
             m_managerEventHandler.Paused();
         }
@@ -195,23 +211,14 @@ namespace UltimateFishBot.Classes
 
         public void Stop()
         {
+            CancelRun();
+            m_fishingState = FishingState.Stopped;
             m_managerEventHandler.Stopped();
-            // only cancel if not already stopped/paused
-            if (!IsStoppedOrPaused())
-            {
-                _cancellationTokenSource.Cancel();
-                _cancellationTokenSource = null;
-            }
-
-            if (m_fishingState != FishingState.Stopped)
-            {
-                m_LureTimer.Enabled = false;
-                m_RaftTimer.Enabled = false;
-                m_CharmTimer.Enabled = false;
-                m_BaitTimer.Enabled = false;
-                m_HearthStoneTimer.Enabled = false;
-                m_fishingState = FishingState.Stopped;
-            }
+            m_LureTimer.Enabled = false;
+            m_RaftTimer.Enabled = false;
+            m_CharmTimer.Enabled = false;
+            m_BaitTimer.Enabled = false;
+            m_HearthStoneTimer.Enabled = false;
         }
 
         private bool IsStoppedOrPaused()
