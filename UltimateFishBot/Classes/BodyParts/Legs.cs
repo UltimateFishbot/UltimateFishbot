@@ -30,7 +30,8 @@ namespace UltimateFishBot.Classes.BodyParts
                     MovePath(new Keys[] { Keys.Left, Keys.Right });
                     break;
             }
-            t2s.Say("Anti A F K");
+            if (t2s != null)
+                t2s.Say("Anti A F K");
         }
 
         private void MovePath(Keys[] moves)
