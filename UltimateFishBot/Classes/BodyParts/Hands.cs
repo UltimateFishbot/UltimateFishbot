@@ -34,8 +34,8 @@ namespace UltimateFishBot.Classes.BodyParts
         public void Cast()
         {
             Win32.ActivateWow();
-            System.Threading.Thread.Sleep(Properties.Settings.Default.CastingDelay);
             Win32.SendKey(Properties.Settings.Default.FishKey);
+            System.Threading.Thread.Sleep(Properties.Settings.Default.CastingDelay);
         }
 
         public void Loot()
