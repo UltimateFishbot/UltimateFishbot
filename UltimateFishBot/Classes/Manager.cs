@@ -272,17 +272,20 @@ namespace UltimateFishBot.Classes
             }
 
             // Update UI with wait status            
-            var progress = new Progress<long>(msecs =>
-            {
-                m_mouth.Say(Translate.GetTranslate(
-                    "manager",
-                    "LABEL_WAITING",
-                    msecs / SECOND,
-                    Properties.Settings.Default.FishWait / SECOND));
-            });
             var uiUpdateCancelTokenSource =
                 CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
+            var progress = new Progress<long>(msecs =>
+            {
+                if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
+                {
+                    m_mouth.Say(Translate.GetTranslate(
+                        "manager",
+                        "LABEL_WAITING",
+                        msecs / SECOND,
+                        Properties.Settings.Default.FishWait / SECOND));
+                }
+            });
             var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
                 uiUpdateCancelToken);
