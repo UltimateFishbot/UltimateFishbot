@@ -32,11 +32,11 @@ namespace UltimateFishBot.Classes.BodyParts
             };
         }
 
-        public async Task Cast()
+        public async Task Cast(CancellationToken token)
         {
             Win32.ActivateWow();
             Win32.SendKey(Properties.Settings.Default.FishKey);
-            await Task.Delay(Properties.Settings.Default.CastingDelay);
+            await Task.Delay(Properties.Settings.Default.CastingDelay, token);
         }
 
         public async Task Loot()
