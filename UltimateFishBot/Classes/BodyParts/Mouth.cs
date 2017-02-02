@@ -32,7 +32,7 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             uset2s = Properties.Settings.Default.Txt2speech;
             synthesizer.Volume = 60;  // 0...100
-            synthesizer.Rate = 1;     // -10...10
+            synthesizer.Rate   = 1;   // -10...10
         }
 
         public void Say(string text)

@@ -11,7 +11,7 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             FRONT_BACK = 0,
             LEFT_RIGHT = 1,
-            JUMP = 2
+            JUMP       = 2
         }
 
         public async Task DoMovement(T2S t2s, CancellationToken cancellationToken)

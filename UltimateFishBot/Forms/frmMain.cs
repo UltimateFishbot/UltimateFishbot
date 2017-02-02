@@ -38,15 +38,15 @@ namespace UltimateFishBot
 
         private async void frmMain_Load(object sender, EventArgs e)
         {
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
-            btnStop.Text = Translate.GetTranslate("frmMain", "BUTTON_STOP");
-            btnSettings.Text = Translate.GetTranslate("frmMain", "BUTTON_SETTINGS");
+            btnStart.Text      = Translate.GetTranslate("frmMain", "BUTTON_START");
+            btnStop.Text       = Translate.GetTranslate("frmMain", "BUTTON_STOP");
+            btnSettings.Text   = Translate.GetTranslate("frmMain", "BUTTON_SETTINGS");
             btnStatistics.Text = Translate.GetTranslate("frmMain", "BUTTON_STATISTICS");
-            btnHowTo.Text = Translate.GetTranslate("frmMain", "BUTTON_HTU");
-            btnClose.Text = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
-            btnAbout.Text = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
-            lblStatus.Text = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
-            this.Text = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            btnHowTo.Text      = Translate.GetTranslate("frmMain", "BUTTON_HTU");
+            btnClose.Text      = Translate.GetTranslate("frmMain", "BUTTON_EXIT");
+            btnAbout.Text      = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
+            lblStatus.Text     = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
+            this.Text          = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             ReloadHotkeys();
             await CheckStatus();
         }
@@ -61,7 +61,7 @@ namespace UltimateFishBot
                 string result = await (new WebClient()).DownloadStringTaskAsync("http://www.fishbot.net/status.txt");
                 if (result.ToLower().Trim() != "safe")
                 {
-                    lblWarn.Text = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
+                    lblWarn.Text      = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
                     lblWarn.ForeColor = Color.Red;
                     lblWarn.BackColor = Color.Black;
                 }
@@ -201,41 +201,41 @@ namespace UltimateFishBot
         private void ToggleButtonEnabledRunning()
         {
             btnSettings.Enabled = false;
-            btnStop.Enabled = true;
+            btnStop.Enabled     = true;
         }
 
         private void ToggleButtonEnabledNotRunning()
         {
             btnSettings.Enabled = true;
-            btnStop.Enabled = false;
+            btnStop.Enabled     = false;
         }
 
         public void Started()
         {
             ToggleButtonEnabledRunning();
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
+            btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
             lblStatus.Image = Resources.online;
         }
 
         public void Stopped()
         {
             ToggleButtonEnabledNotRunning();
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_START");
+            btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_START");
             lblStatus.Image = Resources.offline;
         }
 
         public void Resumed()
         {
             ToggleButtonEnabledRunning();
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
+            btnStart.Text   = Translate.GetTranslate("frmMain", "BUTTON_PAUSE");
             lblStatus.Image = Resources.online;
         }
 
         public void Paused()
         {
             btnSettings.Enabled = true;
-            btnStart.Text = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
-            lblStatus.Image = Resources.online;
+            btnStart.Text       = Translate.GetTranslate("frmMain", "BUTTON_RESUME");
+            lblStatus.Image     = Resources.online;
         }
     }
 }

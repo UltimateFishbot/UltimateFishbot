@@ -14,7 +14,7 @@ namespace UltimateFishBot.Classes.BodyParts
         public Hands()
         {
             m_baitIndex = 0;
-            m_cursor = new Cursor(Cursor.Current.Handle);
+            m_cursor    = new Cursor(Cursor.Current.Handle);
             UpdateKeys();
         }
 

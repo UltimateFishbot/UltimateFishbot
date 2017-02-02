@@ -62,7 +62,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
-            int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
             if (Properties.Settings.Default.customScanArea)
             {
@@ -101,8 +101,8 @@ namespace UltimateFishBot.Classes.BodyParts
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
-            int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
-            int YOFFSET = (int)(YPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int YOFFSET  = (int)(YPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
             if (Properties.Settings.Default.customScanArea)
             {

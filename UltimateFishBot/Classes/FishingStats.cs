@@ -9,8 +9,8 @@
         public void Reset()
         {
             totalSuccessFishing = 0;
-            totalNotFoundFish = 0;
-            totalNotEaredFish = 0;
+            totalNotFoundFish   = 0;
+            totalNotEaredFish   = 0;
         }
 
         public void RecordSuccess()

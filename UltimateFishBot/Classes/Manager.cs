@@ -20,18 +20,18 @@ namespace UltimateFishBot.Classes
         private enum FishingState
         {
             Fishing = 3,
-            Paused = 6,
+            Paused  = 6,
             Stopped = 7
         }
 
         public enum NeededAction
         {
-            None = 0x00,
+            None        = 0x00,
             HearthStone = 0x01,
-            Lure = 0x02,
-            Charm = 0x04,
-            Raft = 0x08,
-            Bait = 0x10,
+            Lure        = 0x02,
+            Charm       = 0x04,
+            Raft        = 0x08,
+            Bait        = 0x10,
             AntiAfkMove = 0x20
         }
 
@@ -61,23 +61,22 @@ namespace UltimateFishBot.Classes
 
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
-            m_managerEventHandler = managerEventHandler;
+            m_managerEventHandler    = managerEventHandler;
 
-            m_eyes = new Eyes();
-            m_hands = new Hands();
-            m_ears = new Ears();
-            m_mouth = new Mouth(progressHandle);
-            m_legs = new Legs();
+            m_eyes                   = new Eyes();
+            m_hands                  = new Hands();
+            m_ears                   = new Ears();
+            m_mouth                  = new Mouth(progressHandle);
+            m_legs                   = new Legs();
 
-            m_fishingState = FishingState.Stopped;
-            m_neededActions = NeededAction.None;
+            m_fishingState           = FishingState.Stopped;
+            m_neededActions          = NeededAction.None;
 
-            m_fishingStats = new FishingStats();
+            m_fishingStats           = new FishingStats();
             m_fishingStats.Reset();
 
             _cancellationTokenSource = null;
 
-            //InitializeTimer(Timer,                Handler);
             InitializeTimer(ref m_LureTimer, LureTimerTick);
             InitializeTimer(ref m_CharmTimer, CharmTimerTick);
             InitializeTimer(ref m_RaftTimer, RaftTimerTick);
@@ -218,10 +217,10 @@ namespace UltimateFishBot.Classes
             m_fishingState = FishingState.Stopped;
             m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STOPPED"));
             m_managerEventHandler.Stopped();
-            m_LureTimer.Enabled = false;
-            m_RaftTimer.Enabled = false;
-            m_CharmTimer.Enabled = false;
-            m_BaitTimer.Enabled = false;
+            m_LureTimer.Enabled        = false;
+            m_RaftTimer.Enabled        = false;
+            m_CharmTimer.Enabled       = false;
+            m_BaitTimer.Enabled        = false;
             m_HearthStoneTimer.Enabled = false;
         }
 
@@ -250,12 +249,12 @@ namespace UltimateFishBot.Classes
 
         private void ResetTimers()
         {
-            m_LureTimer.Interval = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
-            m_RaftTimer.Interval = Properties.Settings.Default.RaftTime * MINUTE;
-            m_CharmTimer.Interval = Properties.Settings.Default.CharmTime * MINUTE;
-            m_BaitTimer.Interval = Properties.Settings.Default.BaitTime * MINUTE;
+            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
+            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime * MINUTE;
+            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime * MINUTE;
+            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime * MINUTE;
             m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
-            m_AntiAfkTimer.Interval = Properties.Settings.Default.AntiAfkTime * MINUTE;
+            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MINUTE;
         }
 
         private async Task Fish(CancellationToken cancellationToken)
