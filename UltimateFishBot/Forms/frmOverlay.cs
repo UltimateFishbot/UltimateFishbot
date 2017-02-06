@@ -186,12 +186,14 @@ namespace UltimateFishBot.Forms
 
                 MessageBox.Show(Translate.GetTranslate("frmSettings", "AREA_SMALL"), "Error");
 
-            }else{
+            }
+            else
+            {
 
-            Properties.Settings.Default.minScanXY = CurrentTopLeft;
-            Properties.Settings.Default.maxScanXY = CurrentBottomRight;
-            settings.txtMinXY.Text = CurrentTopLeft.ToString();
-            settings.txtMaxXY.Text = CurrentBottomRight.ToString();
+                Properties.Settings.Default.minScanXY = CurrentTopLeft;
+                Properties.Settings.Default.maxScanXY = CurrentBottomRight;
+                settings.txtMinXY.Text = CurrentTopLeft.ToString();
+                settings.txtMaxXY.Text = CurrentBottomRight.ToString();
 
             }
 
@@ -546,20 +548,20 @@ namespace UltimateFishBot.Forms
             else
                 //Selection area has reached the right side of the screen
                 if (GetX(Cursor.Position.X) - DragClickRelative.X > 0)
-                {
+            {
 
-                    CurrentTopLeft.X = this.Width/*System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width*/ - RectangleWidth;
-                    CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
+                CurrentTopLeft.X = this.Width/*System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width*/ - RectangleWidth;
+                CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
 
-                }
-                //Selection area has reached the left side of the screen
-                else
-                {
+            }
+            //Selection area has reached the left side of the screen
+            else
+            {
 
-                    CurrentTopLeft.X = this.Left;
-                    CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
+                CurrentTopLeft.X = this.Left;
+                CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
 
-                }
+            }
 
             if (Cursor.Position.Y - DragClickRelative.Y > 0 && Cursor.Position.Y - DragClickRelative.Y + RectangleHeight < this.Width/*System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height*/)
             {
@@ -571,26 +573,26 @@ namespace UltimateFishBot.Forms
             else
                 //Selection area has reached the bottom of the screen
                 if (Cursor.Position.Y - DragClickRelative.Y > 0)
-                {
+            {
 
-                    CurrentTopLeft.Y = this.Height/*System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height*/ - RectangleHeight;
-                    CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
+                CurrentTopLeft.Y = this.Height/*System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height*/ - RectangleHeight;
+                CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
 
-                }
-                //Selection area has reached the top of the screen
-                else
-                {
+            }
+            //Selection area has reached the top of the screen
+            else
+            {
 
-                    CurrentTopLeft.Y = 0;
-                    CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
+                CurrentTopLeft.Y = 0;
+                CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
 
-                }
+            }
 
             //Draw a new rectangle
             g.DrawRectangle(MyPen, GetX(CurrentTopLeft.X), CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
 
         }
-#endregion
+        #endregion
 
         private int GetX(int X)
         {

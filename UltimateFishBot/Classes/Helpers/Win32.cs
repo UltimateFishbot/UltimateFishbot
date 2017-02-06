@@ -36,9 +36,9 @@ namespace UltimateFishBot.Classes.Helpers
 
         public enum keyState
         {
-            KEYDOWN     = 0,
+            KEYDOWN = 0,
             EXTENDEDKEY = 1,
-            KEYUP       = 2
+            KEYUP = 2
         };
 
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
@@ -71,11 +71,11 @@ namespace UltimateFishBot.Classes.Helpers
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        private const uint WM_LBUTTONDOWN    = 513;
-        private const uint WM_LBUTTONUP      = 514;
+        private const uint WM_LBUTTONDOWN = 513;
+        private const uint WM_LBUTTONUP = 514;
 
-        private const uint WM_RBUTTONDOWN    = 516;
-        private const uint WM_RBUTTONUP      = 517;
+        private const uint WM_RBUTTONDOWN = 516;
+        private const uint WM_RBUTTONUP = 517;
 
         public static Rectangle GetWowRectangle()
         {

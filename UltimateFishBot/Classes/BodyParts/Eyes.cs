@@ -2,14 +2,14 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using UltimateFishBot.Classes.Helpers;
 
 namespace UltimateFishBot.Classes.BodyParts
 {
+    class NoFishFoundException : Exception { }
     class Eyes
     {
-        private Manager m_manager;
-        private BackgroundWorker m_backgroundWorker;
         int xPosMin;
         int xPosMax;
         int yPosMin;
@@ -17,26 +17,7 @@ namespace UltimateFishBot.Classes.BodyParts
         Rectangle wowRectangle;
         private Win32.CursorInfo m_noFishCursor;
 
-        public Eyes(Manager manager)
-        {
-            m_manager = manager;
-
-            m_backgroundWorker = new BackgroundWorker();
-            m_backgroundWorker.WorkerSupportsCancellation = true;
-            m_backgroundWorker.DoWork += new DoWorkEventHandler(EyeProcess_DoWork);
-            m_backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EyeProcess_RunWorkerCompleted);
-        }
-
-        public void StartLooking()
-        {
-            if (m_backgroundWorker.IsBusy)
-                return;
-
-            m_manager.SetActualState(Manager.FishingState.SearchingForBobber);
-            m_backgroundWorker.RunWorkerAsync();
-        }
-
-        private void EyeProcess_DoWork(object sender, DoWorkEventArgs e)
+        public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
             m_noFishCursor = Win32.GetNoFishCursor();
             wowRectangle = Win32.GetWowRectangle();
@@ -58,31 +39,30 @@ namespace UltimateFishBot.Classes.BodyParts
                 System.Console.Out.WriteLine("Using custom area");
             }
             System.Console.Out.WriteLine("Scanning area: " + xPosMin.ToString() + " , " + yPosMin.ToString() + " , " + xPosMax.ToString() + " , " + yPosMax.ToString() + " , ");
-            if (Properties.Settings.Default.AlternativeRoute)
-                LookForBobber_Spiral();
-            else
-                LookForBobber();
-        }
-
-        private void EyeProcess_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
+            try
             {
-                // If not found, exception is sent...
-                m_manager.SetActualState(Manager.FishingState.Idle);
-                return;
+                if (Properties.Settings.Default.AlternativeRoute)
+                    await LookForBobberSpiralImpl(cancellationToken);
+                else
+                    await LookForBobberImpl(cancellationToken);
+
+                // Found the fish!
+                return true;
+            }
+            catch (NoFishFoundException)
+            {
+                // Didn't find the fish
+                return false;
             }
 
-            //... if no exception, we found a fish !
-            m_manager.SetActualState(Manager.FishingState.WaitingForFish);
         }
 
-        private void LookForBobber()
+        private async Task LookForBobberImpl(CancellationToken cancellationToken)
         {
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
-            int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
             if (Properties.Settings.Default.customScanArea)
             {
@@ -92,7 +72,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     {
                         for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
                         {
-                            if (MoveMouseAndCheckCursor(x, y))
+                            if (await MoveMouseAndCheckCursor(x, y, cancellationToken))
                                 return;
                         }
                     }
@@ -106,23 +86,23 @@ namespace UltimateFishBot.Classes.BodyParts
                     {
                         for (int y = yPosMin; y < yPosMax; y += YPOSSTEP)
                         {
-                            if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y, cancellationToken))
                                 return;
                         }
                     }
                 }
             }
 
-            throw new Exception("Fish not found"); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
+            throw new NoFishFoundException(); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
         }
 
-        private void LookForBobber_Spiral()
+        private async Task LookForBobberSpiralImpl(CancellationToken cancellationToken)
         {
 
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
-            int XOFFSET = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
-            int YOFFSET = (int)(YPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
+            int YOFFSET  = (int)(YPOSSTEP / Properties.Settings.Default.ScanningRetries);
 
             if (Properties.Settings.Default.customScanArea)
             {
@@ -167,7 +147,7 @@ namespace UltimateFishBot.Classes.BodyParts
                             x += dx;
                             y += dy;
 
-                            if (MoveMouseAndCheckCursor(x, y))
+                            if (await MoveMouseAndCheckCursor(x, y, cancellationToken))
                                 return;
                         }
                     }
@@ -216,25 +196,25 @@ namespace UltimateFishBot.Classes.BodyParts
                             x += dx;
                             y += dy;
 
-                            if (MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y))
+                            if (await MoveMouseAndCheckCursor(wowRectangle.X + x, wowRectangle.Y + y, cancellationToken))
                                 return;
                         }
                     }
                 }
             }
 
-            throw new Exception("Fish not found"); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
+            throw new NoFishFoundException(); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
         }
 
-        private bool MoveMouseAndCheckCursor(int x, int y)
+        private async Task<bool> MoveMouseAndCheckCursor(int x, int y, CancellationToken cancellationToken)
         {
-            if (m_manager.IsStoppedOrPaused())
-                throw new Exception("Bot paused or stopped");
+            if (cancellationToken.IsCancellationRequested)
+                throw new TaskCanceledException();
 
             Win32.MoveMouse(x, y);
 
-            // Sleep (give the OS a chance to change the cursor)
-            Thread.Sleep(Properties.Settings.Default.ScanningDelay);
+            // Pause (give the OS a chance to change the cursor)
+            await Task.Delay(Properties.Settings.Default.ScanningDelay, cancellationToken);
 
             Win32.CursorInfo actualCursor = Win32.GetCurrentCursor();
 

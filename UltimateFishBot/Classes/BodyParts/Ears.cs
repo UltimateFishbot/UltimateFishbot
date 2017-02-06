@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UltimateFishBot.Classes.BodyParts
@@ -10,47 +12,52 @@ namespace UltimateFishBot.Classes.BodyParts
     class Ears
     {
         private MMDevice SndDevice;
-        private Timer listenTimer;
         private Queue<int> m_volumeQueue;
-        private Manager m_manager;
         private int tickrate = 100; //ms pause between sound checks
 
         private const int MAX_VOLUME_QUEUE_LENGTH = 5;
 
-        public Ears(Manager manager)
+        public Ears()
         {
-            m_manager       = manager;
-            m_volumeQueue   = new Queue<int>();
+            m_volumeQueue = new Queue<int>();
+        }
 
+        public async Task<bool> Listen(int millisecondsToListen, CancellationToken cancellationToken)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             MMDeviceEnumerator SndDevEnum = new MMDeviceEnumerator();
             if (Properties.Settings.Default.AudioDevice != "")
                 SndDevice = SndDevEnum.GetDevice(Properties.Settings.Default.AudioDevice);
             else
                 SndDevice = SndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
 
-            listenTimer = new Timer();
-            listenTimer.Interval = tickrate;
+            Func<bool> heardFish;
             if (Properties.Settings.Default.AverageSound)
-            {
-                listenTimer.Tick += new EventHandler(ListenTimerTickAvg);
-                Debug.WriteLine("Using average sound comparing");
-            }
+                heardFish = ListenTimerTickAvg;
             else
+                heardFish = ListenTimerTick;
+
+            while (stopwatch.ElapsedMilliseconds <= millisecondsToListen)
             {
-                listenTimer.Tick += new EventHandler(ListenTimerTick);
-                Debug.WriteLine("Using normal sound comparing");
+                await Task.Delay(tickrate, cancellationToken);
+                if (heardFish())
+                {
+                    return true;
+                }
             }
-            
-            listenTimer.Enabled = true;
+            return false;
         }
 
-        private void ListenTimerTick(Object myObject, EventArgs myEventArgs)
+        private bool ListenTimerTick()
         {
             // Get the current level
-            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * 100);
+            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
 
             if (currentVolumnLevel >= Properties.Settings.Default.SplashLimit)
-                m_manager.HearFish();
+                return true;
+
+            return false;
 
             // Debug code
             //if (m_manager.IsStoppedOrPaused() == false)
@@ -67,10 +74,10 @@ namespace UltimateFishBot.Classes.BodyParts
             //}
         }
 
-        private void ListenTimerTickAvg(Object myObject, EventArgs myEventArgs)
+        private bool ListenTimerTickAvg()
         {
             // Get the current level
-            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * 100);
+            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
             m_volumeQueue.Enqueue(currentVolumnLevel);
 
             // Keep a running queue of the last X sounds as a reference point
@@ -80,7 +87,9 @@ namespace UltimateFishBot.Classes.BodyParts
             // Determine if the current level is high enough to be a fish
             int avgVol = GetAverageVolume();
             if (currentVolumnLevel - avgVol >= Properties.Settings.Default.SplashLimit)
-                m_manager.HearFish();
+                return true;
+
+            return false;
 
             // Debug code
             //if (m_manager.IsStoppedOrPaused() == false)
