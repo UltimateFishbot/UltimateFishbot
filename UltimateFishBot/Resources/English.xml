@@ -172,6 +172,7 @@
         <LABEL_SUCCESS>Successful Fishing:</LABEL_SUCCESS>
         <LABEL_NOT_FOUND>Fish not found:</LABEL_NOT_FOUND>
         <LABEL_NOT_HEARD>Fish not heard:</LABEL_NOT_HEARD>
+        <LABEL_NOT_LOOTED>Fish not looted:</LABEL_NOT_LOOTED>
         <LABEL_TOTAL>Total:</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Close</BUTTON_CLOSE>

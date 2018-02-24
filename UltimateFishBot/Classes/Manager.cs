@@ -313,9 +313,22 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
+            // Wait for splash to complete before looting
+            // so that loot sound can be detected for stats.
+            await Task.Delay(2000, cancellationToken);
+
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
+            Task<bool> listeningForLoot = m_ears.Listen(1000, cancellationToken);
             await m_hands.Loot();
-            m_fishingStats.RecordSuccess();
+            await listeningForLoot;
+            if (listeningForLoot.Result)
+            {
+                m_fishingStats.RecordSuccess();
+            }
+            else
+            {
+                m_fishingStats.RecordNotLooted();
+            }
         }
 
         private async Task UpdateUIWhileWaitingToHearFish(

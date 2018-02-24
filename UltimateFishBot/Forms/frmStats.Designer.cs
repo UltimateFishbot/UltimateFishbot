@@ -41,6 +41,8 @@
             this.timerUpdateStats = new System.Windows.Forms.Timer(this.components);
             this.labelTotalCount = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
+            this.labelNotLooted = new System.Windows.Forms.Label();
+            this.labelNotLootedCount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelSuccess
@@ -81,7 +83,7 @@
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(89, 81);
+            this.buttonClose.Location = new System.Drawing.Point(89, 100);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 2;
@@ -109,7 +111,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(8, 81);
+            this.buttonReset.Location = new System.Drawing.Point(8, 100);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(75, 23);
             this.buttonReset.TabIndex = 1;
@@ -126,7 +128,7 @@
             // labelTotalCount
             // 
             this.labelTotalCount.AutoSize = true;
-            this.labelTotalCount.Location = new System.Drawing.Point(141, 64);
+            this.labelTotalCount.Location = new System.Drawing.Point(141, 84);
             this.labelTotalCount.Name = "labelTotalCount";
             this.labelTotalCount.Size = new System.Drawing.Size(13, 13);
             this.labelTotalCount.TabIndex = 9;
@@ -135,17 +137,37 @@
             // labelTotal
             // 
             this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(13, 64);
+            this.labelTotal.Location = new System.Drawing.Point(13, 84);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(37, 13);
             this.labelTotal.TabIndex = 8;
             this.labelTotal.Text = "Total:";
             // 
+            // labelNotLooted
+            // 
+            this.labelNotLooted.AutoSize = true;
+            this.labelNotLooted.Location = new System.Drawing.Point(13, 64);
+            this.labelNotLooted.Name = "labelNotLooted";
+            this.labelNotLooted.Size = new System.Drawing.Size(82, 13);
+            this.labelNotLooted.TabIndex = 51;
+            this.labelNotLooted.Text = "Fish not looted:";
+            // 
+            // labelNotLootedCount
+            // 
+            this.labelNotLootedCount.AutoSize = true;
+            this.labelNotLootedCount.Location = new System.Drawing.Point(141, 64);
+            this.labelNotLootedCount.Name = "labelNotLootedCount";
+            this.labelNotLootedCount.Size = new System.Drawing.Size(13, 13);
+            this.labelNotLootedCount.TabIndex = 52;
+            this.labelNotLootedCount.Text = "0";
+            // 
             // frmStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(171, 110);
+            this.ClientSize = new System.Drawing.Size(171, 128);
+            this.Controls.Add(this.labelNotLootedCount);
+            this.Controls.Add(this.labelNotLooted);
             this.Controls.Add(this.labelTotalCount);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.buttonReset);
@@ -179,5 +201,7 @@
         private System.Windows.Forms.Timer timerUpdateStats;
         private System.Windows.Forms.Label labelTotalCount;
         private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label labelNotLooted;
+        private System.Windows.Forms.Label labelNotLootedCount;
     }
 }

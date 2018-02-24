@@ -157,6 +157,7 @@
         <LABEL_SUCCESS>Erfolgreiches Angeln:</LABEL_SUCCESS>
         <LABEL_NOT_FOUND>Kein Fisch gefunden:</LABEL_NOT_FOUND>
         <LABEL_NOT_HEARD>Fisch nicht gehört:</LABEL_NOT_HEARD>
+        <LABEL_NOT_LOOTED>Fisch nicht geplündert:</LABEL_NOT_LOOTED>
         <LABEL_TOTAL>Gesamt:</LABEL_TOTAL>
         <BUTTON_RESET>Zurücksetzen</BUTTON_RESET>
         <BUTTON_CLOSE>Schließen</BUTTON_CLOSE>
