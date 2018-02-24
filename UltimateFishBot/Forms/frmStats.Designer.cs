@@ -35,8 +35,8 @@
             this.labelNotFound = new System.Windows.Forms.Label();
             this.labelSuccessCount = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.labelNotEared = new System.Windows.Forms.Label();
-            this.labelNotEaredCount = new System.Windows.Forms.Label();
+            this.labelNotHeard = new System.Windows.Forms.Label();
+            this.labelNotHeardCount = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.timerUpdateStats = new System.Windows.Forms.Timer(this.components);
             this.labelTotalCount = new System.Windows.Forms.Label();
@@ -89,23 +89,23 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // labelNotEared
+            // labelNotHeard
             // 
-            this.labelNotEared.AutoSize = true;
-            this.labelNotEared.Location = new System.Drawing.Point(13, 47);
-            this.labelNotEared.Name = "labelNotEared";
-            this.labelNotEared.Size = new System.Drawing.Size(80, 13);
-            this.labelNotEared.TabIndex = 5;
-            this.labelNotEared.Text = "Fish not eared :";
+            this.labelNotHeard.AutoSize = true;
+            this.labelNotHeard.Location = new System.Drawing.Point(13, 47);
+            this.labelNotHeard.Name = "labelNotHeard";
+            this.labelNotHeard.Size = new System.Drawing.Size(80, 13);
+            this.labelNotHeard.TabIndex = 5;
+            this.labelNotHeard.Text = "Fish not heard :";
             // 
-            // labelNotEaredCount
+            // labelNotHeardCount
             // 
-            this.labelNotEaredCount.AutoSize = true;
-            this.labelNotEaredCount.Location = new System.Drawing.Point(141, 47);
-            this.labelNotEaredCount.Name = "labelNotEaredCount";
-            this.labelNotEaredCount.Size = new System.Drawing.Size(13, 13);
-            this.labelNotEaredCount.TabIndex = 6;
-            this.labelNotEaredCount.Text = "0";
+            this.labelNotHeardCount.AutoSize = true;
+            this.labelNotHeardCount.Location = new System.Drawing.Point(141, 47);
+            this.labelNotHeardCount.Name = "labelNotHeardCount";
+            this.labelNotHeardCount.Size = new System.Drawing.Size(13, 13);
+            this.labelNotHeardCount.TabIndex = 6;
+            this.labelNotHeardCount.Text = "0";
             // 
             // buttonReset
             // 
@@ -149,8 +149,8 @@
             this.Controls.Add(this.labelTotalCount);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.buttonReset);
-            this.Controls.Add(this.labelNotEaredCount);
-            this.Controls.Add(this.labelNotEared);
+            this.Controls.Add(this.labelNotHeardCount);
+            this.Controls.Add(this.labelNotHeard);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.labelSuccessCount);
             this.Controls.Add(this.labelNotFound);
@@ -164,7 +164,6 @@
             this.Load += new System.EventHandler(this.frmStats_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -174,8 +173,8 @@
         private System.Windows.Forms.Label labelNotFound;
         private System.Windows.Forms.Label labelSuccessCount;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.Label labelNotEared;
-        private System.Windows.Forms.Label labelNotEaredCount;
+        private System.Windows.Forms.Label labelNotHeard;
+        private System.Windows.Forms.Label labelNotHeardCount;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Timer timerUpdateStats;
         private System.Windows.Forms.Label labelTotalCount;

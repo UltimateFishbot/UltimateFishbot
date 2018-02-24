@@ -158,7 +158,7 @@
         <TITLE>Statistiques</TITLE>
         <LABEL_SUCCESS>Poissons pêchés :</LABEL_SUCCESS>
         <LABEL_NOT_FOUND>Poissons non-trouvés :</LABEL_NOT_FOUND>
-        <LABEL_NOT_EARED>Poissons non-entendus :</LABEL_NOT_EARED>
+        <LABEL_NOT_HEARD>Poissons non-entendus :</LABEL_NOT_HEARD>
         <LABEL_TOTAL>Total :</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Fermer</BUTTON_CLOSE>

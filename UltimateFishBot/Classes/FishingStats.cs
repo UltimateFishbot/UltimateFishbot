@@ -4,13 +4,13 @@
     {
         public int totalSuccessFishing { get; private set; }
         public int totalNotFoundFish { get; private set; }
-        public int totalNotEaredFish { get; private set; }
+        public int totalNotHeardFish { get; private set; }
 
         public void Reset()
         {
             totalSuccessFishing = 0;
             totalNotFoundFish   = 0;
-            totalNotEaredFish   = 0;
+            totalNotHeardFish   = 0;
         }
 
         public void RecordSuccess()
@@ -25,12 +25,12 @@
 
         public void RecordNotHeard()
         {
-            ++totalNotEaredFish;
+            ++totalNotHeardFish;
         }
 
         public int Total()
         {
-            return totalSuccessFishing + totalNotFoundFish + totalNotEaredFish;
+            return totalSuccessFishing + totalNotFoundFish + totalNotHeardFish;
         }
     }
 }
