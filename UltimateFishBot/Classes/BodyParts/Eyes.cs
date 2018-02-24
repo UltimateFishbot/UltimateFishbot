@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
@@ -16,6 +17,33 @@ namespace UltimateFishBot.Classes.BodyParts
         int yPosMax;
         Rectangle wowRectangle;
         private Win32.CursorInfo m_noFishCursor;
+
+        class BobberLocation
+        {
+            public uint count;
+            public Point location;
+            public DateTime last;
+
+            public BobberLocation(Point location)
+            {
+                this.count = 0;
+                this.location = location;
+                Use();
+            }
+
+            public void Use()
+            {
+                this.count++;
+                this.last = DateTime.Now;
+                System.Console.Out.WriteLine("BobberLocation: ({0},{1}) x{2}", location.X, location.Y, count);
+            }
+        };
+        List<BobberLocation> listBobberLocations = new List<BobberLocation>();
+
+        public void ClearHistory()
+        {
+            listBobberLocations.Clear();
+        }
 
         public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
@@ -41,6 +69,9 @@ namespace UltimateFishBot.Classes.BodyParts
             System.Console.Out.WriteLine("Scanning area: " + xPosMin.ToString() + " , " + yPosMin.ToString() + " , " + xPosMax.ToString() + " , " + yPosMax.ToString() + " , ");
             try
             {
+                if (await LookForBobberRecent(cancellationToken))
+                    return true;
+
                 if (Properties.Settings.Default.AlternativeRoute)
                     await LookForBobberSpiralImpl(cancellationToken);
                 else
@@ -54,7 +85,19 @@ namespace UltimateFishBot.Classes.BodyParts
                 // Didn't find the fish
                 return false;
             }
+        }
 
+        private async Task<bool> LookForBobberRecent(CancellationToken cancellationToken)
+        {
+            foreach (BobberLocation bobberLocation in listBobberLocations)
+            {
+                if (await MoveMouseAndCheckCursor(bobberLocation.location.X, bobberLocation.location.Y, cancellationToken))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private async Task LookForBobberImpl(CancellationToken cancellationToken)
@@ -98,7 +141,6 @@ namespace UltimateFishBot.Classes.BodyParts
 
         private async Task LookForBobberSpiralImpl(CancellationToken cancellationToken)
         {
-
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
             int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
@@ -228,6 +270,20 @@ namespace UltimateFishBot.Classes.BodyParts
                     return false;
 
             // We found a fish !
+            Point point = new Point(x, y);
+            BobberLocation bobberLocation;
+            int index = listBobberLocations.FindIndex(o => (o.location == point));
+            if (index >= 0)
+            {
+                bobberLocation = listBobberLocations[index];
+                listBobberLocations.RemoveAt(index);
+                bobberLocation.Use();
+            }
+            else
+            {
+                bobberLocation = new BobberLocation(point);
+            }
+            listBobberLocations.Insert(0, bobberLocation);
             return true;
         }
 

@@ -222,6 +222,7 @@ namespace UltimateFishBot.Classes
             m_CharmTimer.Enabled       = false;
             m_BaitTimer.Enabled        = false;
             m_HearthStoneTimer.Enabled = false;
+            m_eyes.ClearHistory();
         }
 
         private bool IsStoppedOrPaused()
