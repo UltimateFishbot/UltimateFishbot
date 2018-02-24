@@ -347,7 +347,7 @@
             this.labelHotKey.Name = "labelHotKey";
             this.labelHotKey.Size = new System.Drawing.Size(118, 13);
             this.labelHotKey.TabIndex = 53;
-            this.labelHotKey.Text = "Start/Stop Hotkey :";
+            this.labelHotKey.Text = "Start/Stop Hotkey:";
             // 
             // txtCharmTime
             // 
@@ -1144,7 +1144,7 @@
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(61, 13);
             this.labelLanguage.TabIndex = 0;
-            this.labelLanguage.Text = "Language :";
+            this.labelLanguage.Text = "Language:";
             // 
             // tabPage7
             // 

@@ -73,7 +73,7 @@
         <TAB_TITLE_LANGUAGE>Langue</TAB_TITLE_LANGUAGE>
 
         <!-- General Fishing -->
-        <LABEL_DELAY_AFTER_CAST>Delai après Cast :</LABEL_DELAY_AFTER_CAST>
+        <LABEL_DELAY_AFTER_CAST>Delai après Cast:</LABEL_DELAY_AFTER_CAST>
         <LABEL_DELAY_AFTER_CAST_DESC>Nombre de millisecondes à attendre après le cast avant de commencer à chercher. Trop court et vous manquerez le flotteur, trop long et vous perdrez du temps.</LABEL_DELAY_AFTER_CAST_DESC>
 
         <LABEL_FISH_WAIT_LIMIT>Attente poisson max:</LABEL_FISH_WAIT_LIMIT>
@@ -84,13 +84,13 @@
 
         <!-- Finding the Cursor -->
 
-        <LABEL_SCANNING_STEPS>Etapes de Scan :</LABEL_SCANNING_STEPS>
+        <LABEL_SCANNING_STEPS>Etapes de Scan:</LABEL_SCANNING_STEPS>
         <LABEL_SCANNING_STEPS_DESC>Un plus grand nombre d'étapes implique moins de chance de manquer le flotteur, mais ralenti le scan.</LABEL_SCANNING_STEPS_DESC>
 
-        <LABEL_SCANNING_DELAY>Délai de Scan :</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY>Délai de Scan:</LABEL_SCANNING_DELAY>
         <LABEL_SCANNING_DELAY_DESC>Le nombre de millisecondes à attendre avent de vérifier si le curseur a changé. Trop peu et vous risquez de ne pas détecter le flotteur; mais plus élevé le scan sera plus lent</LABEL_SCANNING_DELAY_DESC>
 
-        <LABEL_SCANNING_RETRIES>Tentatives de Scan :</LABEL_SCANNING_RETRIES>
+        <LABEL_SCANNING_RETRIES>Tentatives de Scan:</LABEL_SCANNING_RETRIES>
         <LABEL_SCANNING_RETRIES_DESC>Nombre de fois que le bot va effectuer une recherche complète.</LABEL_SCANNING_RETRIES_DESC>
 
         <LABEL_CHECK_ICON>Vérifier l'icone du Curseur</LABEL_CHECK_ICON>
@@ -101,10 +101,10 @@
       
         <!-- Hearing the Fish -->
 
-        <LABEL_SPLASH_THRESHOLD>Seuil de Splash :</LABEL_SPLASH_THRESHOLD>
+        <LABEL_SPLASH_THRESHOLD>Seuil de Splash:</LABEL_SPLASH_THRESHOLD>
         <LABEL_SPLASH_THRESHOLD_DESC>Détermine si un son donné est assez fort pour être un poisson ou non. Trop faible et le bot confondra poisson et autres bruits. Trop élevé et le bot ignorera certains vrais poissons.</LABEL_SPLASH_THRESHOLD_DESC>
 
-        <LABEL_AUDIO_DEVICE>Périphérique Audio :</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE>Périphérique Audio:</LABEL_AUDIO_DEVICE>
         <LABEL_AUDIO_DEVICE_DESC>Selectionnez le périphérique audio utilisé par WoW. Si le bot ne peut pas "entendre" le jeu, il ne trouvera aucun poisson. Si vous n'êtes pas sûr, lancez de la musique et séléctionnez tous les périphériques jusqu'à trouver le bon.</LABEL_AUDIO_DEVICE_DESC>
 
         <!-- Premium Settings -->
@@ -142,7 +142,7 @@
         <CMB_ANTIAFK_MOVE>Saut</CMB_ANTIAFK_MOVE>
 
         <!-- Language  -->
-        <LABEL_LANGUAGE>Langue :</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE>Langue:</LABEL_LANGUAGE>
         <LABEL_LANGUAGE_DESC>
           Choisissez la langue souhaitée.
           Les fichiers de langue XML doivent se situer dans le répertoire "Resources".
@@ -156,10 +156,10 @@
     </frmSettings>
     <frmStats>
         <TITLE>Statistiques</TITLE>
-        <LABEL_SUCCESS>Poissons pêchés :</LABEL_SUCCESS>
-        <LABEL_NOT_FOUND>Poissons non-trouvés :</LABEL_NOT_FOUND>
-        <LABEL_NOT_HEARD>Poissons non-entendus :</LABEL_NOT_HEARD>
-        <LABEL_TOTAL>Total :</LABEL_TOTAL>
+        <LABEL_SUCCESS>Poissons pêchés:</LABEL_SUCCESS>
+        <LABEL_NOT_FOUND>Poissons non-trouvés:</LABEL_NOT_FOUND>
+        <LABEL_NOT_HEARD>Poissons non-entendus:</LABEL_NOT_HEARD>
+        <LABEL_TOTAL>Total:</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Fermer</BUTTON_CLOSE>
     </frmStats>

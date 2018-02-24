@@ -50,7 +50,7 @@
             this.labelSuccess.Name = "labelSuccess";
             this.labelSuccess.Size = new System.Drawing.Size(101, 13);
             this.labelSuccess.TabIndex = 50;
-            this.labelSuccess.Text = "Successful Fishing :";
+            this.labelSuccess.Text = "Successful Fishing:";
             // 
             // labelNotFoundCount
             // 
@@ -68,7 +68,7 @@
             this.labelNotFound.Name = "labelNotFound";
             this.labelNotFound.Size = new System.Drawing.Size(80, 13);
             this.labelNotFound.TabIndex = 2;
-            this.labelNotFound.Text = "Fish not found :";
+            this.labelNotFound.Text = "Fish not found:";
             // 
             // labelSuccessCount
             // 
@@ -96,7 +96,7 @@
             this.labelNotHeard.Name = "labelNotHeard";
             this.labelNotHeard.Size = new System.Drawing.Size(80, 13);
             this.labelNotHeard.TabIndex = 5;
-            this.labelNotHeard.Text = "Fish not heard :";
+            this.labelNotHeard.Text = "Fish not heard:";
             // 
             // labelNotHeardCount
             // 
@@ -139,7 +139,7 @@
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(37, 13);
             this.labelTotal.TabIndex = 8;
-            this.labelTotal.Text = "Total :";
+            this.labelTotal.Text = "Total:";
             // 
             // frmStats
             // 

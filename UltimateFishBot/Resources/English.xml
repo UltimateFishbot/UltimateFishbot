@@ -151,7 +151,7 @@
         <CMB_ANTIAFK_MOVE>Jump</CMB_ANTIAFK_MOVE>
 
         <!-- Language  -->
-        <LABEL_LANGUAGE>Language :</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE>Language:</LABEL_LANGUAGE>
         <LABEL_LANGUAGE_DESC>
           Select the language that you want to use.
           Language XML Files must be found in Resources folder.
@@ -169,10 +169,10 @@
     </frmSettings>
     <frmStats>
         <TITLE>Statistics</TITLE>
-        <LABEL_SUCCESS>Successful Fishing :</LABEL_SUCCESS>
-        <LABEL_NOT_FOUND>Fish not found :</LABEL_NOT_FOUND>
-        <LABEL_NOT_HEARD>Fish not heard :</LABEL_NOT_HEARD>
-        <LABEL_TOTAL>Total :</LABEL_TOTAL>
+        <LABEL_SUCCESS>Successful Fishing:</LABEL_SUCCESS>
+        <LABEL_NOT_FOUND>Fish not found:</LABEL_NOT_FOUND>
+        <LABEL_NOT_HEARD>Fish not heard:</LABEL_NOT_HEARD>
+        <LABEL_TOTAL>Total:</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Close</BUTTON_CLOSE>
 	</frmStats>	
