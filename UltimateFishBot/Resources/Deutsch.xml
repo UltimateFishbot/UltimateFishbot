@@ -157,7 +157,7 @@
         <LABEL_SUCCESS>Erfolgreiches Angeln:</LABEL_SUCCESS>
         <LABEL_NOT_FOUND>Kein Fisch gefunden:</LABEL_NOT_FOUND>
         <LABEL_NOT_EARED>Fisch nicht gehört:</LABEL_NOT_EARED>
-        <LABEL_TOTAL>Total:</LABEL_TOTAL>
+        <LABEL_TOTAL>Gesamt:</LABEL_TOTAL>
         <BUTTON_RESET>Zurücksetzen</BUTTON_RESET>
         <BUTTON_CLOSE>Schließen</BUTTON_CLOSE>
     </frmStats>
