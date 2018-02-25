@@ -258,6 +258,7 @@ namespace UltimateFishBot.Classes
             m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MINUTE;
         }
 
+        private Random random = new Random();
         private async Task Fish(CancellationToken cancellationToken)
         {
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
@@ -316,6 +317,9 @@ namespace UltimateFishBot.Classes
             // Wait for splash to complete before looting
             // so that loot sound can be detected for stats.
             await Task.Delay(2000, cancellationToken);
+
+            // Add a bit of randomness to "user" responsiveness.
+            await Task.Delay(random.Next() % 1000, cancellationToken);
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
             Task<bool> listeningForLoot = m_ears.Listen(1000, cancellationToken);
