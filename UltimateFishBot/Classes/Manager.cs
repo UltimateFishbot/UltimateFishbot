@@ -264,13 +264,7 @@ namespace UltimateFishBot.Classes
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
             await m_hands.Cast(cancellationToken);
 
-            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-            bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
-            if (!didFindFish)
-            {
-                m_fishingStats.RecordBobberNotFound();
-                return;
-            }
+            bool foundBobber = false;
 
             // Update UI with wait status            
             var uiUpdateCancelTokenSource =
@@ -278,22 +272,36 @@ namespace UltimateFishBot.Classes
             var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
             var progress = new Progress<long>(msecs =>
             {
-                if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
+                if (foundBobber)
                 {
-                    m_mouth.Say(Translate.GetTranslate(
-                        "manager",
-                        "LABEL_WAITING",
-                        msecs / MILLISECONDS_PER_SECOND,
-                        Properties.Settings.Default.FishWait / MILLISECONDS_PER_SECOND));
+                    if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
+                    {
+                        m_mouth.Say(Translate.GetTranslate(
+                            "manager",
+                            "LABEL_WAITING",
+                            msecs / MILLISECONDS_PER_SECOND,
+                            Properties.Settings.Default.FishWait / MILLISECONDS_PER_SECOND));
+                    }
                 }
             });
             var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
                 uiUpdateCancelToken);
 
-            bool fishHeard = await m_ears.Listen(
+            Task<bool> listening = m_ears.Listen(
                 Properties.Settings.Default.FishWait,
                 cancellationToken);
+
+            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
+            foundBobber = await m_eyes.LookForBobber(cancellationToken);
+            if (!foundBobber)
+            {
+                m_fishingStats.RecordBobberNotFound();
+                return;
+            }
+
+            bool fishHeard = await listening;
+
             uiUpdateCancelTokenSource.Cancel();
             try
             {
