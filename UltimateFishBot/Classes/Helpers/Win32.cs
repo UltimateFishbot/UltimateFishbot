@@ -137,7 +137,7 @@ namespace UltimateFishBot.Classes.Helpers
             Win32.MoveMouse((WoWRect.X + 10), (WoWRect.Y + 45));
             LastRectX = WoWRect.X;
             LastRectY = WoWRect.Y;
-            Thread.Sleep(15);
+            Thread.Sleep(Properties.Settings.Default.ScanningDelay);
             CursorInfo myInfo = new CursorInfo();
             myInfo.cbSize = Marshal.SizeOf(myInfo);
             GetCursorInfo(out myInfo);
