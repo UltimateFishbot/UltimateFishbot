@@ -54,7 +54,7 @@ namespace UltimateFishBot.Classes.Helpers
         private static extern bool SetCursorPos(int X, int Y);
 
         [DllImport("user32.dll")]
-        private static extern bool GetCursorInfo(out CursorInfo pci);
+        private static extern bool GetCursorInfo(ref CursorInfo pci);
 
         [DllImport("user32.dll")]
         private static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
@@ -145,7 +145,9 @@ namespace UltimateFishBot.Classes.Helpers
         {
             CursorInfo myInfo = new CursorInfo();
             myInfo.cbSize = Marshal.SizeOf(myInfo);
-            GetCursorInfo(out myInfo);
+            GetCursorInfo(ref myInfo);
+            // GetCursorInfo clears the cbSize for some reason.
+            myInfo.cbSize = Marshal.SizeOf(myInfo);
             return myInfo;
         }
 

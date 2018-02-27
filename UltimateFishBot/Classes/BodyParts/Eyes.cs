@@ -43,6 +43,7 @@ namespace UltimateFishBot.Classes.BodyParts
         public void ClearHistory()
         {
             listBobberLocations.Clear();
+            m_noFishCursor = new Win32.CursorInfo();
         }
 
         public async Task<bool> LookForBobber(CancellationToken cancellationToken)
@@ -74,7 +75,10 @@ namespace UltimateFishBot.Classes.BodyParts
                     return true;
                 }
 
-                m_noFishCursor = Win32.GetNoFishCursor();
+                if (m_noFishCursor.cbSize == 0)
+                {
+                    m_noFishCursor = Win32.GetNoFishCursor();
+                }
 
                 if (await LookForBobberRecent(cancellationToken))
                     return true;
