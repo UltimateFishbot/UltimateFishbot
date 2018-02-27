@@ -138,10 +138,7 @@ namespace UltimateFishBot.Classes.Helpers
             LastRectX = WoWRect.X;
             LastRectY = WoWRect.Y;
             Thread.Sleep(Properties.Settings.Default.ScanningDelay);
-            CursorInfo myInfo = new CursorInfo();
-            myInfo.cbSize = Marshal.SizeOf(myInfo);
-            GetCursorInfo(out myInfo);
-            return myInfo;
+            return GetCurrentCursor();
         }
 
         public static CursorInfo GetCurrentCursor()
