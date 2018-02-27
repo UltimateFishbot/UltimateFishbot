@@ -300,6 +300,8 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
+            bool fishHeardEarly = listening.IsCompleted;
+
             bool fishHeard = await listening;
 
             uiUpdateCancelTokenSource.Cancel();
@@ -322,12 +324,17 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
-            // Wait for splash to complete before looting
-            // so that loot sound can be detected for stats.
-            await Task.Delay(2000, cancellationToken);
+            // If the splash occurred before bobber was found, instantly
+            // loot rather than waiting for splash to complete.
+            if (!fishHeardEarly)
+            {
+                // Wait for splash to complete before looting
+                // so that loot sound can be detected for stats.
+                await Task.Delay(2000, cancellationToken);
 
-            // Add a bit of randomness to "user" responsiveness.
-            await Task.Delay(random.Next() % 1000, cancellationToken);
+                // Add a bit of randomness to "user" responsiveness.
+                await Task.Delay(random.Next() % 1000, cancellationToken);
+            }
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
             Task<bool> listeningForLoot = m_ears.Listen(1000, cancellationToken);
