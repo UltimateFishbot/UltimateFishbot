@@ -56,8 +56,8 @@ namespace UltimateFishBot.Classes
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
 
-        private const int SECOND = 1000;
-        private const int MINUTE = 60 * SECOND;
+        private const int MILLISECONDS_PER_SECOND = 1000;
+        private const int MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
 
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
@@ -250,12 +250,12 @@ namespace UltimateFishBot.Classes
 
         private void ResetTimers()
         {
-            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
-            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime * MINUTE;
-            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime * MINUTE;
-            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime * MINUTE;
-            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
-            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MINUTE;
+            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MILLISECONDS_PER_MINUTE + 22 * MILLISECONDS_PER_SECOND;
+            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime * MILLISECONDS_PER_MINUTE;
+            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime * MILLISECONDS_PER_MINUTE;
+            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime * MILLISECONDS_PER_MINUTE;
+            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MILLISECONDS_PER_MINUTE;
+            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MILLISECONDS_PER_MINUTE;
         }
 
         private Random random = new Random();
@@ -283,8 +283,8 @@ namespace UltimateFishBot.Classes
                     m_mouth.Say(Translate.GetTranslate(
                         "manager",
                         "LABEL_WAITING",
-                        msecs / SECOND,
-                        Properties.Settings.Default.FishWait / SECOND));
+                        msecs / MILLISECONDS_PER_SECOND,
+                        Properties.Settings.Default.FishWait / MILLISECONDS_PER_SECOND));
                 }
             });
             var uiUpdateTask = Task.Run(
@@ -345,7 +345,7 @@ namespace UltimateFishBot.Classes
             while (!uiUpdateCancelToken.IsCancellationRequested)
             {
                 progress.Report(stopwatch.ElapsedMilliseconds);
-                await Task.Delay(SECOND / 10, uiUpdateCancelToken);
+                await Task.Delay(MILLISECONDS_PER_SECOND / 10, uiUpdateCancelToken);
             }
             uiUpdateCancelToken.ThrowIfCancellationRequested();
         }
