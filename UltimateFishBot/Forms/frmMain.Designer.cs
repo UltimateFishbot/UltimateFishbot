@@ -179,7 +179,6 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -196,4 +195,3 @@
         internal System.Windows.Forms.Button btnAbout;
     }
 }
-

@@ -147,8 +147,9 @@
             this.LabelScanningDelayDesc.Name = "LabelScanningDelayDesc";
             this.LabelScanningDelayDesc.Size = new System.Drawing.Size(423, 51);
             this.LabelScanningDelayDesc.TabIndex = 13;
-            this.LabelScanningDelayDesc.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To" +
-    " slow and you might not detect the bobber; but a bigger number goes slower.";
+            this.LabelScanningDelayDesc.Text =
+                "The number of milliseconds to wait before checking if the cursor has changed.  To" +
+                " slow and you might not detect the bobber; but a bigger number goes slower.";
             // 
             // txtScanSteps
             // 
@@ -165,8 +166,9 @@
             this.LabelScanningStepsDesc.Name = "LabelScanningStepsDesc";
             this.LabelScanningStepsDesc.Size = new System.Drawing.Size(423, 42);
             this.LabelScanningStepsDesc.TabIndex = 10;
-            this.LabelScanningStepsDesc.Text = "The greater number of steps, the less likely you are to miss the cursor; but the " +
-    "slower your scan will be.";
+            this.LabelScanningStepsDesc.Text =
+                "The greater number of steps, the less likely you are to miss the cursor; but the " +
+                "slower your scan will be.";
             // 
             // LabelScanningSteps
             // 
@@ -219,16 +221,16 @@
             this.LabelAudioDeviceDesc.Name = "LabelAudioDeviceDesc";
             this.LabelAudioDeviceDesc.Size = new System.Drawing.Size(423, 73);
             this.LabelAudioDeviceDesc.TabIndex = 17;
-            this.LabelAudioDeviceDesc.Text = "Select the audio device that WoW is Using.  If the bot cannot \'hear\' the game, it" +
-    " will never catch any fish.  If you are unsure, play some music and select each " +
-    "device until you find the right one.\r\n";
+            this.LabelAudioDeviceDesc.Text =
+                "Select the audio device that WoW is Using.  If the bot cannot \'hear\' the game, it" +
+                " will never catch any fish.  If you are unsure, play some music and select each " +
+                "device until you find the right one.\r\n";
             // 
             // cmbAudio
             // 
             this.cmbAudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAudio.FormattingEnabled = true;
-            this.cmbAudio.Items.AddRange(new object[] {
-            "Default"});
+            this.cmbAudio.Items.AddRange(new object[] {"Default"});
             this.cmbAudio.Location = new System.Drawing.Point(173, 99);
             this.cmbAudio.Name = "cmbAudio";
             this.cmbAudio.Size = new System.Drawing.Size(99, 21);
@@ -260,9 +262,10 @@
             this.LabelSplashThresholdDesc.Name = "LabelSplashThresholdDesc";
             this.LabelSplashThresholdDesc.Size = new System.Drawing.Size(423, 65);
             this.LabelSplashThresholdDesc.TabIndex = 13;
-            this.LabelSplashThresholdDesc.Text = "Determines if a given sound is loud enough to be a fish or not.  Too low and the " +
-    "bot will mistake non-fish for fish.  Too high and the bot will ignore the real f" +
-    "ish.";
+            this.LabelSplashThresholdDesc.Text =
+                "Determines if a given sound is loud enough to be a fish or not.  Too low and the " +
+                "bot will mistake non-fish for fish.  Too high and the bot will ignore the real " +
+                "fish.";
             // 
             // LabelSplashThreshold
             // 
@@ -628,8 +631,9 @@
             this.LabelProcessNameDesc.Name = "LabelProcessNameDesc";
             this.LabelProcessNameDesc.Size = new System.Drawing.Size(423, 31);
             this.LabelProcessNameDesc.TabIndex = 23;
-            this.LabelProcessNameDesc.Text = "The name of the process to activate (this rarely changes) but has been updated wi" +
-    "th new expansions in the past.";
+            this.LabelProcessNameDesc.Text =
+                "The name of the process to activate (this rarely changes) but has been updated " +
+                "with new expansions in the past.";
             // 
             // LabelProcessName
             // 
@@ -821,8 +825,9 @@
             this.LabelFishWaitDesc.Name = "LabelFishWaitDesc";
             this.LabelFishWaitDesc.Size = new System.Drawing.Size(423, 31);
             this.LabelFishWaitDesc.TabIndex = 19;
-            this.LabelFishWaitDesc.Text = "The number of milliseconds to listen for a fish before giving up. Too long decrea" +
-    "se bots effectiveness, too short and you miss fish.";
+            this.LabelFishWaitDesc.Text =
+                "The number of milliseconds to listen for a fish before giving up. Too long " +
+                "decrease bots effectiveness, too short and you miss fish.";
             // 
             // LabelDelayLooting
             // 
@@ -876,8 +881,9 @@
             this.LabelDelayCastDesc.Name = "LabelDelayCastDesc";
             this.LabelDelayCastDesc.Size = new System.Drawing.Size(423, 31);
             this.LabelDelayCastDesc.TabIndex = 13;
-            this.LabelDelayCastDesc.Text = "The number of milliseconds to wait after the cast before searching. Too short and" +
-    " you\'ll skip the bobber, too long and you\'ll waste time.";
+            this.LabelDelayCastDesc.Text =
+                "The number of milliseconds to wait after the cast before searching. Too short and " +
+                "you\'ll skip the bobber, too long and you\'ll waste time.";
             // 
             // LabelDelayCast
             // 
@@ -1012,9 +1018,10 @@
             this.LabelCheckCursorIcon.Name = "LabelCheckCursorIcon";
             this.LabelCheckCursorIcon.Size = new System.Drawing.Size(423, 29);
             this.LabelCheckCursorIcon.TabIndex = 19;
-            this.LabelCheckCursorIcon.Text = "Specify if the bot must check the icon before fishing. Avoid clicking when it\'s n" +
-    "ot a bobber. May not work on some computer, disable if the bot don\'t find your b" +
-    "obber.";
+            this.LabelCheckCursorIcon.Text =
+                "Specify if the bot must check the icon before fishing. Avoid clicking when it\'s " +
+                "not a bobber. May not work on some computer, disable if the bot don\'t find your " +
+                "bobber.";
             // 
             // cmbCompareIcon
             // 
@@ -1071,8 +1078,7 @@
             // 
             this.cmbMovements.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMovements.FormattingEnabled = true;
-            this.cmbMovements.Items.AddRange(new object[] {
-            "Default"});
+            this.cmbMovements.Items.AddRange(new object[] {"Default"});
             this.cmbMovements.Location = new System.Drawing.Point(153, 130);
             this.cmbMovements.Name = "cmbMovements";
             this.cmbMovements.Size = new System.Drawing.Size(99, 21);
@@ -1114,8 +1120,7 @@
             // 
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Items.AddRange(new object[] {
-            "Default"});
+            this.cmbLanguage.Items.AddRange(new object[] {"Default"});
             this.cmbLanguage.Location = new System.Drawing.Point(213, 109);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(99, 21);
@@ -1128,8 +1133,9 @@
             this.labelLanguageDesc.Name = "labelLanguageDesc";
             this.labelLanguageDesc.Size = new System.Drawing.Size(271, 26);
             this.labelLanguageDesc.TabIndex = 16;
-            this.labelLanguageDesc.Text = "Select the language file that you want to use.\r\nLanguage XML Files must be found " +
-    "in Resources folder.";
+            this.labelLanguageDesc.Text =
+                "Select the language file that you want to use.\r\nLanguage XML Files must be found " +
+                "in Resources folder.";
             // 
             // labelLanguage
             // 
@@ -1222,7 +1228,6 @@
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -1327,6 +1332,5 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.CheckBox chkTxt2speech;
         private System.Windows.Forms.CheckBox cbSoundAvg;
-
     }
 }
