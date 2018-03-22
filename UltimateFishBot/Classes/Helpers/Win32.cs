@@ -77,17 +77,32 @@ namespace UltimateFishBot.Classes.Helpers
         private const uint WM_RBUTTONDOWN = 516;
         private const uint WM_RBUTTONUP = 517;
 
+
         public static Rectangle GetWowRectangle()
         {
-            IntPtr Wow = FindWindow("GxWindowClass", "World Of Warcraft");
+            IntPtr Wow = FindWowWindow();
             Rect Win32ApiRect = new Rect();
             GetWindowRect(Wow, ref Win32ApiRect);
+            System.Console.WriteLine("right rectangle:");
+            System.Console.WriteLine(Win32ApiRect.Right);
             Rectangle myRect = new Rectangle();
             myRect.X = Win32ApiRect.Left;
             myRect.Y = Win32ApiRect.Top;
             myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
             myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
             return myRect;
+        }
+        public static IntPtr FindWowWindow()
+        {
+            Process[] processlist = Process.GetProcesses();
+            foreach(Process process in processlist)
+            {
+                if(process.MainWindowTitle.Equals("World of Warcraft"))
+                {
+                    return process.MainWindowHandle;
+                }
+            }
+            return new IntPtr();
         }
 
         public static Bitmap GetCursorIcon(CursorInfo actualCursor, int width = 35, int height = 35)
@@ -167,7 +182,7 @@ namespace UltimateFishBot.Classes.Helpers
 
         public static void SendMouseClick()
         {
-            IntPtr Wow = FindWindow("GxWindowClass", "World Of Warcraft");
+            IntPtr Wow = FindWowWindow();
             long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
 
             if (Properties.Settings.Default.ShiftLoot)

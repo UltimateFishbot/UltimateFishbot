@@ -163,6 +163,9 @@ node_modules/
 Generated_Code/
 
 # Backup & report files from converting an old project file
+
+# VS 2017 express files
+.vs/
 # to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
 _UpgradeReport_Files/
