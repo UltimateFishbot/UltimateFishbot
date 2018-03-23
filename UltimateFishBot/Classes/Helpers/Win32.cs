@@ -92,6 +92,19 @@ namespace UltimateFishBot.Classes.Helpers
             myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
             return myRect;
         }
+        public static Rectangle GetWowRectangle(IntPtr Wow)
+        {
+            Rect Win32ApiRect = new Rect();
+            GetWindowRect(Wow, ref Win32ApiRect);
+            System.Console.WriteLine("right rectangle:");
+            System.Console.WriteLine(Win32ApiRect.Right);
+            Rectangle myRect = new Rectangle();
+            myRect.X = Win32ApiRect.Left;
+            myRect.Y = Win32ApiRect.Top;
+            myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
+            myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
+            return myRect;
+        }
         public static IntPtr FindWowWindow()
         {
             Process[] processlist = Process.GetProcesses();
@@ -127,6 +140,10 @@ namespace UltimateFishBot.Classes.Helpers
             ActivateApp(Properties.Settings.Default.ProcName + "-64");
             ActivateApp("World Of Warcraft");
         }
+        static public void ActivateWow(IntPtr Wow)
+        {
+            ActivateApp(Wow);
+        }
 
         static public void ActivateApp(string processName)
         {
@@ -135,6 +152,10 @@ namespace UltimateFishBot.Classes.Helpers
             // Activate the first application we find with this name
             if (p.Count() > 0)
                 SetForegroundWindow(p[0].MainWindowHandle);
+        }
+        static public void ActivateApp(IntPtr Wow)
+        {
+            SetForegroundWindow(Wow);
         }
 
         public static void MoveMouse(int x, int y)
@@ -183,6 +204,20 @@ namespace UltimateFishBot.Classes.Helpers
         public static void SendMouseClick()
         {
             IntPtr Wow = FindWowWindow();
+            long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
+
+            if (Properties.Settings.Default.ShiftLoot)
+                SendKeyboardAction(16, keyState.KEYDOWN);
+
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+
+            if (Properties.Settings.Default.ShiftLoot)
+                SendKeyboardAction(16, keyState.KEYUP);
+        }
+        public static void SendMouseClick(IntPtr Wow)
+        {
             long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
 
             if (Properties.Settings.Default.ShiftLoot)
