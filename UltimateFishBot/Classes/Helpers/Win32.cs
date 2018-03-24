@@ -91,21 +91,6 @@ namespace UltimateFishBot.Classes.Helpers
         private const uint WM_RBUTTONDOWN = 516;
         private const uint WM_RBUTTONUP = 517;
 
-        /*
-        public static Rectangle GetWowRectangle()
-        {
-            IntPtr Wow = FindWowWindow();
-            Rect Win32ApiRect = new Rect();
-            GetWindowRect(Wow, ref Win32ApiRect);
-            System.Console.WriteLine("right rectangle:");
-            System.Console.WriteLine(Win32ApiRect.Right);
-            Rectangle myRect = new Rectangle();
-            myRect.X = Win32ApiRect.Left;
-            myRect.Y = Win32ApiRect.Top;
-            myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
-            myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
-            return myRect;
-        }*/
         public static Rectangle GetWowRectangle(IntPtr Wow)
         {
             Rect Win32ApiRect = new Rect();
@@ -119,6 +104,7 @@ namespace UltimateFishBot.Classes.Helpers
             myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
             return myRect;
         }
+
         public static IntPtr FindWowWindow()
         {
             Process[] processlist = Process.GetProcesses();
@@ -148,28 +134,12 @@ namespace UltimateFishBot.Classes.Helpers
             return actualCursorIcon;
         }
 
-        /*
-        static public void ActivateWow()
-        {
-            ActivateApp(Properties.Settings.Default.ProcName);
-            ActivateApp(Properties.Settings.Default.ProcName + "-64");
-            ActivateApp("World Of Warcraft");
-        }
-        */
         static public void ActivateWow(IntPtr Wow)
         {
             ActivateApp(Wow);
         }
-        /*
-        static public void ActivateApp(string processName)
-        {
-            Process[] p = Process.GetProcessesByName(processName);
 
-            // Activate the first application we find with this name
-            if (p.Count() > 0)
-                SetForegroundWindow(p[0].MainWindowHandle);
-        }*/
-        static public void ActivateApp(IntPtr Wow)
+        public static void ActivateApp(IntPtr Wow)
         {
             SetForegroundWindow(Wow);
             //AllowSetForegroundWindow(Process.GetCurrentProcess().Id);
@@ -237,6 +207,7 @@ namespace UltimateFishBot.Classes.Helpers
             if (Properties.Settings.Default.ShiftLoot)
                 SendKeyboardAction(16, keyState.KEYUP);
         }
+
         public static void SendMouseClick(IntPtr Wow)
         {
             long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
@@ -267,10 +238,10 @@ namespace UltimateFishBot.Classes.Helpers
             return (HiWord << 16) | (LoWord & 0xFFFF);
         }
 
-        static private int LastRectX;
-        static private int LastRectY;
+        private static int LastRectX;
+        private static int LastRectY;
 
-        static private int LastX;
-        static private int LastY;
+        private static int LastX;
+        private static int LastY;
     }
 }
