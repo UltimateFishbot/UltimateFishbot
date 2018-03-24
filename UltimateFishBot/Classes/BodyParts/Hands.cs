@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.Helpers;
@@ -10,11 +11,19 @@ namespace UltimateFishBot.Classes.BodyParts
         private Cursor m_cursor;
         private int m_baitIndex;
         private string[] m_baitKeys;
+        private IntPtr Wow;
 
         public Hands()
         {
             m_baitIndex = 0;
             m_cursor    = new Cursor(Cursor.Current.Handle);
+            UpdateKeys();
+        }
+        public Hands(IntPtr wowWindow)
+        {
+            this.Wow = wowWindow;
+            m_baitIndex = 0;
+            m_cursor = new Cursor(Cursor.Current.Handle);
             UpdateKeys();
         }
 
@@ -34,7 +43,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public async Task Cast(CancellationToken token)
         {
-            Win32.ActivateWow();
+            Win32.ActivateWow(this.Wow);
             Win32.SendKey(Properties.Settings.Default.FishKey);
             await Task.Delay(Properties.Settings.Default.CastingDelay, token);
         }
@@ -106,7 +115,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     return;
             }
 
-            Win32.ActivateWow();
+            Win32.ActivateWow(this.Wow);
             Win32.SendKey(actionKey);
             await Task.Delay(sleepTime * 1000, cancellationToken);
         }

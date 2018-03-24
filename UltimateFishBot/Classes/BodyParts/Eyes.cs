@@ -16,11 +16,17 @@ namespace UltimateFishBot.Classes.BodyParts
         int yPosMax;
         Rectangle wowRectangle;
         private Win32.CursorInfo m_noFishCursor;
+        private IntPtr Wow;
+
+        public Eyes(IntPtr wowWindow)
+        {
+            this.Wow = wowWindow;
+        }
 
         public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
             m_noFishCursor = Win32.GetNoFishCursor();
-            wowRectangle = Win32.GetWowRectangle();
+            wowRectangle = Win32.GetWowRectangle(this.Wow);
 
             if (!Properties.Settings.Default.customScanArea)
             {

@@ -40,6 +40,14 @@ namespace UltimateFishBot.Classes.Helpers
             EXTENDEDKEY = 1,
             KEYUP = 2
         };
+        private enum ShowWindowEnum
+        {
+            Hide = 0,
+            ShowNormal = 1, ShowMinimized = 2, ShowMaximized = 3,
+            Maximize = 3, ShowNormalNoActivate = 4, Show = 5,
+            Minimize = 6, ShowMinNoActivate = 7, ShowNoActivate = 8,
+            Restore = 9, ShowDefault = 10, ForceMinimized = 11
+        };
 
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -70,6 +78,12 @@ namespace UltimateFishBot.Classes.Helpers
 
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport("user32.dll")]
+        private static extern bool IsIconic(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
 
         private const uint WM_LBUTTONDOWN = 513;
         private const uint WM_LBUTTONUP = 514;
@@ -156,6 +170,11 @@ namespace UltimateFishBot.Classes.Helpers
         static public void ActivateApp(IntPtr Wow)
         {
             SetForegroundWindow(Wow);
+            //AllowSetForegroundWindow(Process.GetCurrentProcess().Id);
+            if (IsIconic(Wow))
+            {
+                ShowWindow(Wow, ShowWindowEnum.Restore);
+            }
         }
 
         public static void MoveMouse(int x, int y)
