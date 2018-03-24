@@ -91,7 +91,7 @@ namespace UltimateFishBot.Classes.Helpers
         private const uint WM_RBUTTONDOWN = 516;
         private const uint WM_RBUTTONUP = 517;
 
-
+        /*
         public static Rectangle GetWowRectangle()
         {
             IntPtr Wow = FindWowWindow();
@@ -105,7 +105,7 @@ namespace UltimateFishBot.Classes.Helpers
             myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
             myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
             return myRect;
-        }
+        }*/
         public static Rectangle GetWowRectangle(IntPtr Wow)
         {
             Rect Win32ApiRect = new Rect();
@@ -148,17 +148,19 @@ namespace UltimateFishBot.Classes.Helpers
             return actualCursorIcon;
         }
 
+        /*
         static public void ActivateWow()
         {
             ActivateApp(Properties.Settings.Default.ProcName);
             ActivateApp(Properties.Settings.Default.ProcName + "-64");
             ActivateApp("World Of Warcraft");
         }
+        */
         static public void ActivateWow(IntPtr Wow)
         {
             ActivateApp(Wow);
         }
-
+        /*
         static public void ActivateApp(string processName)
         {
             Process[] p = Process.GetProcessesByName(processName);
@@ -166,7 +168,7 @@ namespace UltimateFishBot.Classes.Helpers
             // Activate the first application we find with this name
             if (p.Count() > 0)
                 SetForegroundWindow(p[0].MainWindowHandle);
-        }
+        }*/
         static public void ActivateApp(IntPtr Wow)
         {
             SetForegroundWindow(Wow);
@@ -186,9 +188,9 @@ namespace UltimateFishBot.Classes.Helpers
             }
         }
 
-        public static CursorInfo GetNoFishCursor()
+        public static CursorInfo GetNoFishCursor(IntPtr Wow)
         {
-            Rectangle WoWRect = Win32.GetWowRectangle();
+            Rectangle WoWRect = Win32.GetWowRectangle(Wow);
             Win32.MoveMouse((WoWRect.X + 10), (WoWRect.Y + 45));
             LastRectX = WoWRect.X;
             LastRectY = WoWRect.Y;

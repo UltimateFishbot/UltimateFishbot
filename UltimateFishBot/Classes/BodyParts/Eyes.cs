@@ -25,7 +25,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
-            m_noFishCursor = Win32.GetNoFishCursor();
+            m_noFishCursor = Win32.GetNoFishCursor(this.Wow);
             wowRectangle = Win32.GetWowRectangle(this.Wow);
 
             if (!Properties.Settings.Default.customScanArea)
