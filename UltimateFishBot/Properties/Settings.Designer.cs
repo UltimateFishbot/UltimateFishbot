@@ -622,5 +622,7 @@ namespace UltimateFishBot.Properties {
                 this["AverageSound"] = value;
             }
         }
+
+        public bool RightClickCast { get; internal set; }
     }
 }

@@ -44,7 +44,14 @@ namespace UltimateFishBot.Classes.BodyParts
         public async Task Cast(CancellationToken token)
         {
             Win32.ActivateWow(this.Wow);
-            Win32.SendKey(Properties.Settings.Default.FishKey);
+            if (Properties.Settings.Default.RightClickCast)
+            {
+                Win32.SendMouseDblRightClick(this.Wow);
+            }
+            else
+            {
+                Win32.SendKey(Properties.Settings.Default.FishKey);
+            }
             await Task.Delay(Properties.Settings.Default.CastingDelay, token);
         }
 

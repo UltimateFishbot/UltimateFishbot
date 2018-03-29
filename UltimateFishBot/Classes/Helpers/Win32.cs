@@ -95,8 +95,6 @@ namespace UltimateFishBot.Classes.Helpers
         {
             Rect Win32ApiRect = new Rect();
             GetWindowRect(Wow, ref Win32ApiRect);
-            System.Console.WriteLine("right rectangle:");
-            System.Console.WriteLine(Win32ApiRect.Right);
             Rectangle myRect = new Rectangle();
             myRect.X = Win32ApiRect.Left;
             myRect.Y = Win32ApiRect.Top;
@@ -221,6 +219,19 @@ namespace UltimateFishBot.Classes.Helpers
 
             if (Properties.Settings.Default.ShiftLoot)
                 SendKeyboardAction(16, keyState.KEYUP);
+        }
+        public static void SendMouseDblRightClick(IntPtr Wow)
+        {
+            //long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
+            Rectangle wowRect = Win32.GetWowRectangle(Wow);
+            long dWord = MakeDWord( (wowRect.Width/2), (wowRect.Height/2) );
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
         }
 
         public static bool SendKeyboardAction(Keys key, keyState state)
