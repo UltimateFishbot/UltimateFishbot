@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
@@ -23,11 +24,39 @@ namespace UltimateFishBot.Classes.BodyParts
             this.Wow = wowWindow;
         }
 
+        class BobberLocation
+        {
+            public uint count;
+            public Point location;
+            public DateTime last;
+
+            public BobberLocation(Point location)
+            {
+                this.count = 0;
+                this.location = location;
+                Use();
+            }
+
+            public void Use()
+            {
+                this.count++;
+                this.last = DateTime.Now;
+                System.Console.Out.WriteLine("BobberLocation: ({0},{1}) x{2}", location.X, location.Y, count);
+            }
+        };
+        List<BobberLocation> listBobberLocations = new List<BobberLocation>();
+
+        public void ClearHistory()
+        {
+            listBobberLocations.Clear();
+            m_noFishCursor = new Win32.CursorInfo();
+        }
+
         public async Task<bool> LookForBobber(CancellationToken cancellationToken)
         {
             m_noFishCursor = Win32.GetNoFishCursor(this.Wow);
             wowRectangle = Win32.GetWowRectangle(this.Wow);
-
+            wowRectangle = Win32.GetWowRectangle();
             if (!Properties.Settings.Default.customScanArea)
             {
                 xPosMin = wowRectangle.Width / 4;
@@ -47,6 +76,20 @@ namespace UltimateFishBot.Classes.BodyParts
             System.Console.Out.WriteLine("Scanning area: " + xPosMin.ToString() + " , " + yPosMin.ToString() + " , " + xPosMax.ToString() + " , " + yPosMax.ToString() + " , ");
             try
             {
+                if (await CheckCursor(cancellationToken))
+                {
+                    System.Console.Out.WriteLine("BobberLocation move not required");
+                    return true;
+                }
+
+                if (m_noFishCursor.cbSize == 0)
+                {
+                    m_noFishCursor = Win32.GetNoFishCursor();
+                }
+
+                if (await LookForBobberRecent(cancellationToken))
+                    return true;
+
                 if (Properties.Settings.Default.AlternativeRoute)
                     await LookForBobberSpiralImpl(cancellationToken);
                 else
@@ -60,7 +103,19 @@ namespace UltimateFishBot.Classes.BodyParts
                 // Didn't find the fish
                 return false;
             }
+        }
 
+        private async Task<bool> LookForBobberRecent(CancellationToken cancellationToken)
+        {
+            foreach (BobberLocation bobberLocation in listBobberLocations)
+            {
+                if (await MoveMouseAndCheckCursor(bobberLocation.location.X, bobberLocation.location.Y, cancellationToken))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private async Task LookForBobberImpl(CancellationToken cancellationToken)
@@ -104,7 +159,6 @@ namespace UltimateFishBot.Classes.BodyParts
 
         private async Task LookForBobberSpiralImpl(CancellationToken cancellationToken)
         {
-
             int XPOSSTEP = (int)((xPosMax - xPosMin) / Properties.Settings.Default.ScanningSteps);
             int YPOSSTEP = (int)((yPosMax - yPosMin) / Properties.Settings.Default.ScanningSteps);
             int XOFFSET  = (int)(XPOSSTEP / Properties.Settings.Default.ScanningRetries);
@@ -212,12 +266,10 @@ namespace UltimateFishBot.Classes.BodyParts
             throw new NoFishFoundException(); // Will be catch in Manager:EyeProcess_RunWorkerCompleted
         }
 
-        private async Task<bool> MoveMouseAndCheckCursor(int x, int y, CancellationToken cancellationToken)
+        private async Task<bool> CheckCursor(CancellationToken cancellationToken)
         {
             if (cancellationToken.IsCancellationRequested)
                 throw new TaskCanceledException();
-
-            Win32.MoveMouse(x, y);
 
             // Pause (give the OS a chance to change the cursor)
             await Task.Delay(Properties.Settings.Default.ScanningDelay, cancellationToken);
@@ -233,8 +285,38 @@ namespace UltimateFishBot.Classes.BodyParts
                 if (!ImageCompare(Win32.GetCursorIcon(actualCursor), Properties.Resources.fishIcon35x35))
                     return false;
 
-            // We found a fish !
+            // We found a bobber!
             return true;
+        }
+
+        private async Task<bool> MoveMouseAndCheckCursor(int x, int y, CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+                throw new TaskCanceledException();
+
+            Win32.MoveMouse(x, y);
+
+            bool found = await CheckCursor(cancellationToken);
+
+            if (found)
+            {
+                Point point = new Point(x, y);
+                BobberLocation bobberLocation;
+                int index = listBobberLocations.FindIndex(o => (o.location == point));
+                if (index >= 0)
+                {
+                    bobberLocation = listBobberLocations[index];
+                    listBobberLocations.RemoveAt(index);
+                    bobberLocation.Use();
+                }
+                else
+                {
+                    bobberLocation = new BobberLocation(point);
+                }
+                listBobberLocations.Insert(0, bobberLocation);
+            }
+
+            return found;
         }
 
         private bool ImageCompare(Bitmap firstImage, Bitmap secondImage)
