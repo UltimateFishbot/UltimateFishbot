@@ -75,9 +75,10 @@
             this.Label2Desc.Name = "Label2Desc";
             this.Label2Desc.Size = new System.Drawing.Size(291, 52);
             this.Label2Desc.TabIndex = 10;
-            this.Label2Desc.Text = "* Walk to some lake/water\r\n* Zoom in as much as possible\r\n* Find a location with " +
-    "as little sound as possible\r\n* Avoid locations with anything that changes the mo" +
-    "use icon\r\n";
+            this.Label2Desc.Text =
+                "* Walk to some lake/water\r\n* Zoom in as much as possible\r\n* Find a location with " +
+                "as little sound as possible\r\n* Avoid locations with anything that changes the mouse " +
+                "icon\r\n";
             // 
             // Label2Title
             // 
@@ -128,7 +129,6 @@
             this.Load += new System.EventHandler(this.frmDirections_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
