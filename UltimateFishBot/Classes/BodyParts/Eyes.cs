@@ -56,7 +56,6 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             m_noFishCursor = Win32.GetNoFishCursor(this.Wow);
             wowRectangle = Win32.GetWowRectangle(this.Wow);
-            wowRectangle = Win32.GetWowRectangle();
             if (!Properties.Settings.Default.customScanArea)
             {
                 xPosMin = wowRectangle.Width / 4;
@@ -84,7 +83,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
                 if (m_noFishCursor.cbSize == 0)
                 {
-                    m_noFishCursor = Win32.GetNoFishCursor();
+                    m_noFishCursor = Win32.GetNoFishCursor(this.Wow);
                 }
 
                 if (await LookForBobberRecent(cancellationToken))
