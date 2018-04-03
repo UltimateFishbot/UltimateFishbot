@@ -57,7 +57,7 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public async Task Loot()
         {
-            Win32.SendMouseClick();
+            Win32.SendMouseClick(this.Wow);
             await Task.Delay(Properties.Settings.Default.LootingDelay);
         }
 
