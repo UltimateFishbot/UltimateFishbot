@@ -62,7 +62,7 @@ namespace UltimateFishBot.Classes.Helpers
         private static extern bool SetCursorPos(int X, int Y);
 
         [DllImport("user32.dll")]
-        private static extern bool GetCursorInfo(ref CursorInfo pci);
+        private static extern bool GetCursorInfo(out CursorInfo pci);
 
         [DllImport("user32.dll")]
         private static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
@@ -162,17 +162,18 @@ namespace UltimateFishBot.Classes.Helpers
             Win32.MoveMouse((WoWRect.X + 10), (WoWRect.Y + 45));
             LastRectX = WoWRect.X;
             LastRectY = WoWRect.Y;
-            Thread.Sleep(Properties.Settings.Default.ScanningDelay);
-            return GetCurrentCursor();
+            Thread.Sleep(15);
+            CursorInfo myInfo = new CursorInfo();
+            myInfo.cbSize = Marshal.SizeOf(myInfo);
+            GetCursorInfo(out myInfo);
+            return myInfo;
         }
 
         public static CursorInfo GetCurrentCursor()
         {
             CursorInfo myInfo = new CursorInfo();
             myInfo.cbSize = Marshal.SizeOf(myInfo);
-            GetCursorInfo(ref myInfo);
-            // GetCursorInfo clears the cbSize for some reason.
-            myInfo.cbSize = Marshal.SizeOf(myInfo);
+            GetCursorInfo(out myInfo);
             return myInfo;
         }
 

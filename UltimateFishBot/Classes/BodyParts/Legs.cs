@@ -26,7 +26,6 @@ namespace UltimateFishBot.Classes.BodyParts
                     break;
                 case Path.JUMP:
                     await MovePath(new Keys[] { Keys.Space }, cancellationToken);
-                    await Task.Delay(1000, cancellationToken);
                     break;
                 default:
                     await MovePath(new Keys[] { Keys.Left, Keys.Right }, cancellationToken);

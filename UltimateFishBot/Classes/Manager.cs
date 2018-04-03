@@ -56,8 +56,8 @@ namespace UltimateFishBot.Classes
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
 
-        private const int MILLISECONDS_PER_SECOND = 1000;
-        private const int MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
+        private const int SECOND = 1000;
+        private const int MINUTE = 60 * SECOND;
 
         private IntPtr WowWindowPointer;
 
@@ -225,7 +225,6 @@ namespace UltimateFishBot.Classes
             m_CharmTimer.Enabled       = false;
             m_BaitTimer.Enabled        = false;
             m_HearthStoneTimer.Enabled = false;
-            m_eyes.ClearHistory();
         }
 
         private bool IsStoppedOrPaused()
@@ -253,21 +252,26 @@ namespace UltimateFishBot.Classes
 
         private void ResetTimers()
         {
-            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MILLISECONDS_PER_MINUTE + Properties.Settings.Default.FishWait;
-            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime * MILLISECONDS_PER_MINUTE;
-            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime * MILLISECONDS_PER_MINUTE;
-            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime * MILLISECONDS_PER_MINUTE;
-            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MILLISECONDS_PER_MINUTE;
-            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MILLISECONDS_PER_MINUTE;
+            m_LureTimer.Interval        = Properties.Settings.Default.LureTime * MINUTE + 22 * SECOND;
+            m_RaftTimer.Interval        = Properties.Settings.Default.RaftTime * MINUTE;
+            m_CharmTimer.Interval       = Properties.Settings.Default.CharmTime * MINUTE;
+            m_BaitTimer.Interval        = Properties.Settings.Default.BaitTime * MINUTE;
+            m_HearthStoneTimer.Interval = Properties.Settings.Default.HearthTime * MINUTE;
+            m_AntiAfkTimer.Interval     = Properties.Settings.Default.AntiAfkTime * MINUTE;
         }
 
-        private Random random = new Random();
         private async Task Fish(CancellationToken cancellationToken)
         {
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
             await m_hands.Cast(cancellationToken);
 
-            bool foundBobber = false;
+            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
+            bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
+            if (!didFindFish)
+            {
+                m_fishingStats.RecordBobberNotFound();
+                return;
+            }
 
             // Update UI with wait status            
             var uiUpdateCancelTokenSource =
@@ -275,38 +279,22 @@ namespace UltimateFishBot.Classes
             var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
             var progress = new Progress<long>(msecs =>
             {
-                if (foundBobber)
+                if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
                 {
-                    if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
-                    {
-                        m_mouth.Say(Translate.GetTranslate(
-                            "manager",
-                            "LABEL_WAITING",
-                            msecs / MILLISECONDS_PER_SECOND,
-                            Properties.Settings.Default.FishWait / MILLISECONDS_PER_SECOND));
-                    }
+                    m_mouth.Say(Translate.GetTranslate(
+                        "manager",
+                        "LABEL_WAITING",
+                        msecs / SECOND,
+                        Properties.Settings.Default.FishWait / SECOND));
                 }
             });
             var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
                 uiUpdateCancelToken);
 
-            Task<bool> listening = m_ears.Listen(
+            bool fishHeard = await m_ears.Listen(
                 Properties.Settings.Default.FishWait,
                 cancellationToken);
-
-            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-            foundBobber = await m_eyes.LookForBobber(cancellationToken);
-            if (!foundBobber)
-            {
-                m_fishingStats.RecordBobberNotFound();
-                return;
-            }
-
-            bool fishHeardEarly = listening.IsCompleted;
-
-            bool fishHeard = await listening;
-
             uiUpdateCancelTokenSource.Cancel();
             try
             {
@@ -327,30 +315,9 @@ namespace UltimateFishBot.Classes
                 return;
             }
 
-            // If the splash occurred before bobber was found, instantly
-            // loot rather than waiting for splash to complete.
-            if (!fishHeardEarly)
-            {
-                // Wait for splash to complete before looting
-                // so that loot sound can be detected for stats.
-                await Task.Delay(2000, cancellationToken);
-
-                // Add a bit of randomness to "user" responsiveness.
-                await Task.Delay(random.Next() % 1000, cancellationToken);
-            }
-
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
-            Task<bool> listeningForLoot = m_ears.Listen(1000, cancellationToken);
             await m_hands.Loot();
-            await listeningForLoot;
-            if (listeningForLoot.Result)
-            {
-                m_fishingStats.RecordSuccess();
-            }
-            else
-            {
-                m_fishingStats.RecordNotLooted();
-            }
+            m_fishingStats.RecordSuccess();
         }
 
         private async Task UpdateUIWhileWaitingToHearFish(
@@ -363,7 +330,7 @@ namespace UltimateFishBot.Classes
             while (!uiUpdateCancelToken.IsCancellationRequested)
             {
                 progress.Report(stopwatch.ElapsedMilliseconds);
-                await Task.Delay(MILLISECONDS_PER_SECOND / 10, uiUpdateCancelToken);
+                await Task.Delay(SECOND / 10, uiUpdateCancelToken);
             }
             uiUpdateCancelToken.ThrowIfCancellationRequested();
         }

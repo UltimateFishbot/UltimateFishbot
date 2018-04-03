@@ -42,11 +42,14 @@ namespace UltimateFishBot.Forms
             this.TransparencyKey = System.Drawing.Color.White;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
+
         }
 
         #endregion
 
         private Timer clickTimer;
+
+
     }
 }
 

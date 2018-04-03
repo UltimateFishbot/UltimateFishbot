@@ -4,15 +4,13 @@
     {
         public int totalSuccessFishing { get; private set; }
         public int totalNotFoundFish { get; private set; }
-        public int totalNotHeardFish { get; private set; }
-        public int totalNotLootedFish { get; private set; }
+        public int totalNotEaredFish { get; private set; }
 
         public void Reset()
         {
             totalSuccessFishing = 0;
             totalNotFoundFish   = 0;
-            totalNotHeardFish   = 0;
-            totalNotLootedFish  = 0;
+            totalNotEaredFish   = 0;
         }
 
         public void RecordSuccess()
@@ -27,17 +25,12 @@
 
         public void RecordNotHeard()
         {
-            ++totalNotHeardFish;
-        }
-
-        public void RecordNotLooted()
-        {
-            ++totalNotLootedFish;
+            ++totalNotEaredFish;
         }
 
         public int Total()
         {
-            return totalSuccessFishing + totalNotFoundFish + totalNotHeardFish + totalNotLootedFish;
+            return totalSuccessFishing + totalNotFoundFish + totalNotEaredFish;
         }
     }
 }
