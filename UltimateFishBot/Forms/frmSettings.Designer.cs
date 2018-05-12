@@ -105,6 +105,8 @@
             this.LabelDelayCastDesc = new System.Windows.Forms.Label();
             this.LabelDelayCast = new System.Windows.Forms.Label();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.ccHotKey = new System.Windows.Forms.TextBox();
+            this.ccHotKeyLabel = new System.Windows.Forms.Label();
             this.LabelMaxXY = new System.Windows.Forms.Label();
             this.txtMaxXY = new System.Windows.Forms.TextBox();
             this.txtMinXY = new System.Windows.Forms.TextBox();
@@ -913,6 +915,8 @@
             // 
             // TabPage1
             // 
+            this.TabPage1.Controls.Add(this.ccHotKey);
+            this.TabPage1.Controls.Add(this.ccHotKeyLabel);
             this.TabPage1.Controls.Add(this.LabelMaxXY);
             this.TabPage1.Controls.Add(this.txtMaxXY);
             this.TabPage1.Controls.Add(this.txtMinXY);
@@ -940,6 +944,25 @@
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ccHotKey
+            // 
+            this.ccHotKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ccHotKey.Location = new System.Drawing.Point(337, 241);
+            this.ccHotKey.Name = "ccHotKey";
+            this.ccHotKey.Size = new System.Drawing.Size(160, 20);
+            this.ccHotKey.TabIndex = 54;
+            // 
+            // ccHotKeyLabel
+            // 
+            this.ccHotKeyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ccHotKeyLabel.AutoSize = true;
+            this.ccHotKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ccHotKeyLabel.Location = new System.Drawing.Point(189, 245);
+            this.ccHotKeyLabel.Name = "ccHotKeyLabel";
+            this.ccHotKeyLabel.Size = new System.Drawing.Size(142, 13);
+            this.ccHotKeyLabel.TabIndex = 55;
+            this.ccHotKeyLabel.Text = "Cursor capture Hotkey :";
             // 
             // LabelMaxXY
             // 
@@ -1340,5 +1363,7 @@
         private System.Windows.Forms.CheckBox chkTxt2speech;
         private System.Windows.Forms.CheckBox cbSoundAvg;
         internal System.Windows.Forms.CheckBox cbDblRclickCast;
+        internal System.Windows.Forms.TextBox ccHotKey;
+        internal System.Windows.Forms.Label ccHotKeyLabel;
     }
 }

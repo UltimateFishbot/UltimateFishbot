@@ -23,7 +23,8 @@ namespace UltimateFishBot
 
         public enum HotKey
         {
-            StartStop = 0
+            StartStop = 0,
+            CursorCapture = 1
         }
 
         public frmMain()
@@ -110,43 +111,37 @@ namespace UltimateFishBot
         {
             base.WndProc(ref m);
 
-            if (m.Msg == WM_HOTKEY)
-            {
+            if (m.Msg == WM_HOTKEY) {
                 Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);                  // The key of the hotkey that was pressed.
                 KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);       // The modifier of the hotkey that was pressed.
                 int id = m.WParam.ToInt32();                                        // The id of the hotkey that was pressed.
 
-                if (id == (int)HotKey.StartStop)
-                {
-                    Task.Factory.StartNew(async () =>
-                    {
-                        try
-                        {
+                if (id == (int)HotKey.StartStop) {
+                    Task.Factory.StartNew(async () => {
+                        try {
                             await m_manager.StartOrStop();
-                        }
-                        catch (TaskCanceledException)
-                        {
+                        } catch (TaskCanceledException) {
                             // Do nothing, cancellations are to be expected
                         }
                     },
                     System.Threading.CancellationToken.None,
                     TaskCreationOptions.None,
                     TaskScheduler.FromCurrentSynchronizationContext());
+                } else if (id == (int)HotKey.CursorCapture) {
+                    m_manager.CaptureCursor();
                 }
             }
         }
 
-        public void ReloadHotkeys()
-        {
+        public void ReloadHotkeys() {
             UnregisterHotKeys();
 
-            foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey)))
-            {
+            foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey))) {
                 Keys key = Keys.None;
 
-                switch (hotKey)
-                {
+                switch (hotKey) {
                     case HotKey.StartStop: key = Properties.Settings.Default.StartStopHotKey; break;
+                    case HotKey.CursorCapture: key = Properties.Settings.Default.CursorCaptureHotKey; break;
                     default: continue;
                 }
 
@@ -155,15 +150,13 @@ namespace UltimateFishBot
             }
         }
 
-        private void UnregisterHotKeys()
-        {
+        public void UnregisterHotKeys() {
             // Unregister all hotkeys before closing the form.
             foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey)))
                 Win32.UnregisterHotKey(this.Handle, (int)hotKey);
         }
 
-        private KeyModifier RemoveAndReturnModifiers(ref Keys key)
-        {
+        private KeyModifier RemoveAndReturnModifiers(ref Keys key) {
             KeyModifier modifiers = KeyModifier.None;
 
             modifiers |= RemoveAndReturnModifier(ref key, Keys.Shift, KeyModifier.Shift);

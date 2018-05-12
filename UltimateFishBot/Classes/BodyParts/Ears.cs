@@ -80,33 +80,21 @@ namespace UltimateFishBot.Classes.BodyParts
             // Get the current level
             int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
             int avgVol = GetAverageVolume();
-
-            m_volumeQueue.Enqueue(currentVolumnLevel);
-            // Keep a running queue of the last X sounds as a reference point
-            if (m_volumeQueue.Count >= MAX_VOLUME_QUEUE_LENGTH)
-                m_volumeQueue.Dequeue();
+            bool hear = false;
 
             // Determine if the current level is high enough to be a fish
             if (currentVolumnLevel - avgVol >= Properties.Settings.Default.SplashLimit) {
                 Serilog.Log.Information("Hear: {av},{cvl},{queue}", avgVol, currentVolumnLevel, m_volumeQueue);
-                return true;
+                hear = true;
             }
 
-            return false;
+            m_volumeQueue.Enqueue(currentVolumnLevel);
+            // Keep a running queue of the last X sounds as a reference point
+            if (m_volumeQueue.Count >= MAX_VOLUME_QUEUE_LENGTH) { 
+                m_volumeQueue.Dequeue();
+            }
+            return hear;
 
-            // Debug code
-            //if (m_manager.IsStoppedOrPaused() == false)
-            //{
-            //    Debug.WriteLine("Average volume: " + avgVol);
-            //    Debug.WriteLine("Current volume: " + currentVolumnLevel);
-            //    Debug.WriteLine("Queue values: ");
-            //    foreach (int v in m_volumeQueue)
-            //    {
-            //        Debug.WriteLine("> " + v);
-            //    }
-            //    Debug.WriteLine("Splash limit: " + Properties.Settings.Default.SplashLimit);
-            //    Debug.WriteLine("______________________");
-            //}
         }
 
         private int GetAverageVolume()
