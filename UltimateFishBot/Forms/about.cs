@@ -10,7 +10,7 @@ namespace UltimateFishBot.Forms
     partial class about : Form
     {
         private string webLink = "http://fishbot.net/";
-        private string gitLink = "https://github.com/UltimateFishbot/UltimateFishbot";
+        private string gitLink = "https://github.com/Szabka/UltimateFishbot";
         private static about inst;
         public static about GetForm
         {
@@ -29,7 +29,7 @@ namespace UltimateFishBot.Forms
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
+            this.labelCompanyName.Text = gitLink;
             this.textBoxDescription.Text = AssemblyDescription;
         }
 

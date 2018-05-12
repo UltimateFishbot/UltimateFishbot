@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,16 +11,19 @@ using UltimateFishBot.Classes.Helpers;
 
 namespace UltimateFishBot.Classes.BodyParts
 {
-    class NoFishFoundException : Exception { }
+    
     class Eyes
     {
         private Win32.CursorInfo m_noFishCursor;
         private IntPtr Wow;
         private Bitmap capturedCursorIcon;
+        private Dictionary<Win32.Point, int> bobberPosDict;
 
         public Eyes(IntPtr wowWindow)
         {
             this.Wow = wowWindow;
+            bobberPosDict = new Dictionary<Win32.Point, int>();
+
         }
 
         public async Task<Win32.Point> LookForBobber(CancellationToken cancellationToken)
@@ -36,24 +40,44 @@ namespace UltimateFishBot.Classes.BodyParts
                 scanArea.Right = wowRectangle.X + wowRectangle.Width / 5 * 4;
                 scanArea.Top = wowRectangle.Y + wowRectangle.Height / 4;
                 scanArea.Bottom = wowRectangle.Y + wowRectangle.Height / 4 * 3;
-                Log.Information("Using default area");
+                //Log.Information("Using default area");
             } else {
                 scanArea.Left = Properties.Settings.Default.minScanXY.X;
                 scanArea.Top = Properties.Settings.Default.minScanXY.Y;
                 scanArea.Right = Properties.Settings.Default.maxScanXY.X;
                 scanArea.Bottom = Properties.Settings.Default.maxScanXY.Y;
-                Log.Information("Using custom area");
+                //Log.Information("Using custom area");
             }
-            Log.Information("Scanning area: " + scanArea.Left.ToString() + " , " + scanArea.Top.ToString() + " , " + scanArea.Right.ToString() + " , " + scanArea.Bottom.ToString());
+            Log.Information("Scanning area: " + scanArea.Left.ToString() + " , " + scanArea.Top.ToString() + " , " + scanArea.Right.ToString() + " , " + scanArea.Bottom.ToString() + " cs: " + bobberPosDict.Keys.Count.ToString());
             Win32.Point bobberPos;
             bobberPos.x = 0;
             bobberPos.y = 0;
-            if (Properties.Settings.Default.AlternativeRoute)
-                bobberPos = await LookForBobberSpiralImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
-            else
-                bobberPos = await LookForBobberImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
+            // utilize previous hits
+            foreach (KeyValuePair<Win32.Point, int> pos in System.Linq.Enumerable.OrderBy(bobberPosDict, (key => key.Value))) {
+                // do something with item.Key and item.Value
+                if (await MoveMouseAndCheckCursor(pos.Key.x, pos.Key.y, cancellationToken)) {
+                    bobberPos = pos.Key;
+                    Log.Information("Bobber position cache hit. ({bx},{by})", bobberPos.x, bobberPos.y);
+                    break;
+                }
+            }
+            if (bobberPos.x == 0 && bobberPos.y == 0) { 
+                if (Properties.Settings.Default.AlternativeRoute)
+                    bobberPos = await LookForBobberSpiralImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
+                else
+                    bobberPos = await LookForBobberImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
+            }
+            if (bobberPos.x != 0 && bobberPos.y != 0) {
+                int hitcount = 1;
+                if (bobberPosDict.ContainsKey(bobberPos)) {
+                    bobberPosDict.TryGetValue(bobberPos, out hitcount);
+                    hitcount++;
+                    bobberPosDict.Remove(bobberPos);
+                }
+                bobberPosDict.Add(bobberPos, hitcount);
+            }
 
-            Log.Information("Bobber scan end. ({bx},{by})", bobberPos.x, bobberPos.y);
+            Log.Information("Bobber scan finished. ({bx},{by})", bobberPos.x, bobberPos.y);
             return bobberPos;
 
         }

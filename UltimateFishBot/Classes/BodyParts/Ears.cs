@@ -13,7 +13,7 @@ namespace UltimateFishBot.Classes.BodyParts
     {
         private MMDevice SndDevice;
         private Queue<int> m_volumeQueue;
-        private int tickrate = 100; //ms pause between sound checks
+        private int tickrate = 50; //ms pause between sound checks
 
         private const int MAX_VOLUME_QUEUE_LENGTH = 5;
 
@@ -28,57 +28,40 @@ namespace UltimateFishBot.Classes.BodyParts
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             MMDeviceEnumerator SndDevEnum = new MMDeviceEnumerator();
-            if (Properties.Settings.Default.AudioDevice != "")
+            if (Properties.Settings.Default.AudioDevice != "") { 
                 SndDevice = SndDevEnum.GetDevice(Properties.Settings.Default.AudioDevice);
-            else
+            } else { 
                 SndDevice = SndDevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
-
+            }
             Func<bool> heardFish;
             if (Properties.Settings.Default.AverageSound)
                 heardFish = ListenTimerTickAvg;
             else
                 heardFish = ListenTimerTick;
 
-            while (stopwatch.ElapsedMilliseconds <= millisecondsToListen)
-            {
+            while (stopwatch.ElapsedMilliseconds <= millisecondsToListen) {
                 await Task.Delay(tickrate, cancellationToken);
-                if (heardFish())
-                {
+                if (heardFish()) {
                     return true;
                 }
             }
             return false;
         }
 
-        private bool ListenTimerTick()
-        {
+        private bool ListenTimerTick() {
             // Get the current level
-            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
+            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * 100);
 
             if (currentVolumnLevel >= Properties.Settings.Default.SplashLimit)
                 return true;
 
             return false;
-
-            // Debug code
-            //if (m_manager.IsStoppedOrPaused() == false)
-            //{
-            //    Debug.WriteLine("Average volume: " + avgVol);
-            //    Debug.WriteLine("Current volume: " + currentVolumnLevel);
-            //    Debug.WriteLine("Queue values: ");
-            //    foreach (int v in m_volumeQueue)
-            //    {
-            //        Debug.WriteLine("> " + v);
-            //    }
-            //    Debug.WriteLine("Splash limit: " + Properties.Settings.Default.SplashLimit);
-            //    Debug.WriteLine("______________________");
-            //}
         }
 
         private bool ListenTimerTickAvg()
         {
             // Get the current level
-            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
+            int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * 100);
             int avgVol = GetAverageVolume();
             bool hear = false;
 
