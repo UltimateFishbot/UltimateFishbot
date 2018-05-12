@@ -93,6 +93,7 @@
 
         <LABEL_CHECK_ICON>Cursor Icon überprüfen</LABEL_CHECK_ICON>
         <LABEL_CHECK_ICON_DESC>Soll der Bot das Icon überprüfen? Verhindert das klicken wenn es kein Schwimmer ist. Funktioniert nicht unbedingt auf jedem Computer. Schalte es ab wenn der Schwimmer nicht gefunden wird.</LABEL_CHECK_ICON_DESC>
+        <LABEL_CHECK_CAPTURE_ICON_DESC>Capture cursor Hotkey</LABEL_CHECK_CAPTURE_ICON_DESC>
 
         <LABEL_ALTERNATIVE_ROUTE>Spiralförmig</LABEL_ALTERNATIVE_ROUTE>
         <LABEL_ALTERNATIVE_ROUTE_DESC>Eine alternative Route um den Schwimmer zu finden.</LABEL_ALTERNATIVE_ROUTE_DESC>

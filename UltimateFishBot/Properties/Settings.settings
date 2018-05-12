@@ -152,5 +152,11 @@
     <Setting Name="AverageSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="CursorCaptureHotKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Ctrl+Shift+C</Value>
+    </Setting>
+    <Setting Name="RightClickCast" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

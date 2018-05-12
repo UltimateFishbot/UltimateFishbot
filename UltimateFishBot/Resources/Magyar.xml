@@ -96,6 +96,7 @@
 
     <LABEL_CHECK_ICON>Egérikon ellenőrzés</LABEL_CHECK_ICON>
     <LABEL_CHECK_ICON_DESC>Keresés előtt lementi az egérikont. Csak a horgos egérikonra hajlandó kattintani. Néhány számítógépen nem működik, tiltsd le ha a bot nem találja az úszót.</LABEL_CHECK_ICON_DESC>
+    <LABEL_CHECK_CAPTURE_ICON_DESC>Egérikon mentés gyorsgomb</LABEL_CHECK_CAPTURE_ICON_DESC>
 
     <LABEL_ALTERNATIVE_ROUTE>Spirális útvonal</LABEL_ALTERNATIVE_ROUTE>
     <LABEL_ALTERNATIVE_ROUTE_DESC>Alternatív úszókeresési útvonal.</LABEL_ALTERNATIVE_ROUTE_DESC>

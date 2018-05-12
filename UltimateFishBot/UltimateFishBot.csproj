@@ -171,6 +171,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Deutsch.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Magyar.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

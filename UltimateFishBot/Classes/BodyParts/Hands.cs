@@ -123,8 +123,9 @@ namespace UltimateFishBot.Classes.BodyParts
             }
 
             Win32.ActivateWow(this.Wow);
+            //await Task.Delay(100, cancellationToken);
             Win32.SendKey(actionKey);
-            await Task.Delay(sleepTime * 100, cancellationToken);
+            await Task.Delay(sleepTime * 1000, cancellationToken);
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.BodyParts;
+using UltimateFishBot.Classes.Helpers;
 
 namespace UltimateFishBot.Classes
 {
@@ -266,17 +268,14 @@ namespace UltimateFishBot.Classes
             await m_hands.Cast(cancellationToken);
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-            bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
-            if (!didFindFish)
-            {
-                m_fishingStats.RecordBobberNotFound();
-                return;
-            }
+            // Make bobber found async, so can check fishing sound in parallel, the result only important when we hear fish.
+            // The position used for repositioning.
+            Task<Win32.Point> eyeTask = Task.Run(async () => await m_eyes.LookForBobber(cancellationToken));
 
             // Update UI with wait status            
-            var uiUpdateCancelTokenSource =
+            CancellationTokenSource uiUpdateCancelTokenSource =
                 CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
+            CancellationToken uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
             var progress = new Progress<long>(msecs =>
             {
                 if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
@@ -296,29 +295,49 @@ namespace UltimateFishBot.Classes
                 Properties.Settings.Default.FishWait,
                 cancellationToken);
             uiUpdateCancelTokenSource.Cancel();
-            try
-            {
+            try {
                 uiUpdateTask.GetAwaiter().GetResult(); // Wait & Unwrap
                 // https://github.com/StephenCleary/AsyncEx/blob/dc54d22b06566c76db23af06afcd0727cac625ef/Source/Nito.AsyncEx%20(NET45%2C%20Win8%2C%20WP8%2C%20WPA81)/Synchronous/TaskExtensions.cs#L18
-            }
-            catch (TaskCanceledException)
-            {
-            }
-            finally
-            {
+            } catch (TaskCanceledException) {
+            } finally {
                 uiUpdateCancelTokenSource.Dispose();
             }
 
-            if (!fishHeard)
-            {
+            if (!fishHeard) {
                 m_fishingStats.RecordNotHeard();
                 return;
             }
 
-            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
-            await m_hands.Loot();
-            m_fishingStats.RecordSuccess();
+            // We heard the fish, let's check bobbers position
+            if (!eyeTask.IsCompleted) {
+                // the search is not finished yet, but fish is heard, we have 2 seconds left to find and hook it
+                eyeTask.Wait(2000, cancellationToken);
+            }
+
+            if (eyeTask.IsCompleted) {
+                // search is ended what's the result?
+                Win32.Point bobberPos = eyeTask.Result;
+                Log.Information("Bobber data: ({bx},{by})", bobberPos.x, bobberPos.y);
+
+                if (bobberPos.x != 0 && bobberPos.y != 0) {
+                    // bobber found
+                    if (await m_eyes.SetMouseToBobber(bobberPos, cancellationToken)) {
+                        // bobber is still there
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
+                        await m_hands.Loot();
+                        m_fishingStats.RecordSuccess();
+                        Log.Information("Fish success");
+                        return;
+                    }
+                }
+            }
+            m_fishingStats.RecordBobberNotFound();
         }
+
+        public void CaptureCursor() {
+            m_eyes.CaptureCursor();
+        }
+
 
         private async Task UpdateUIWhileWaitingToHearFish(
             IProgress<long> progress, 
