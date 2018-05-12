@@ -833,7 +833,7 @@
             // txtFishWait
             // 
             this.txtFishWait.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFishWait.Location = new System.Drawing.Point(153, 77);
+            this.txtFishWait.Location = new System.Drawing.Point(192, 73);
             this.txtFishWait.Name = "txtFishWait";
             this.txtFishWait.Size = new System.Drawing.Size(53, 20);
             this.txtFishWait.TabIndex = 3;
@@ -861,7 +861,7 @@
             // txtLootingDelay
             // 
             this.txtLootingDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLootingDelay.Location = new System.Drawing.Point(153, 141);
+            this.txtLootingDelay.Location = new System.Drawing.Point(192, 141);
             this.txtLootingDelay.Name = "txtLootingDelay";
             this.txtLootingDelay.Size = new System.Drawing.Size(53, 20);
             this.txtLootingDelay.TabIndex = 4;
@@ -888,7 +888,7 @@
             // txtCastDelay
             // 
             this.txtCastDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCastDelay.Location = new System.Drawing.Point(153, 12);
+            this.txtCastDelay.Location = new System.Drawing.Point(192, 12);
             this.txtCastDelay.Name = "txtCastDelay";
             this.txtCastDelay.Size = new System.Drawing.Size(53, 20);
             this.txtCastDelay.TabIndex = 2;
@@ -958,7 +958,7 @@
             this.ccHotKeyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ccHotKeyLabel.AutoSize = true;
             this.ccHotKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ccHotKeyLabel.Location = new System.Drawing.Point(189, 245);
+            this.ccHotKeyLabel.Location = new System.Drawing.Point(172, 245);
             this.ccHotKeyLabel.Name = "ccHotKeyLabel";
             this.ccHotKeyLabel.Size = new System.Drawing.Size(142, 13);
             this.ccHotKeyLabel.TabIndex = 55;

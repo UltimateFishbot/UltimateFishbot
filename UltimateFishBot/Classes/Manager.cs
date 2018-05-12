@@ -57,6 +57,7 @@ namespace UltimateFishBot.Classes
         private NeededAction m_neededActions;
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
+        private int m_fishErrorLength;
 
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
@@ -133,6 +134,7 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBot()
         {
+            m_fishErrorLength = 0;
             m_fishingState = FishingState.Fishing;
             _cancellationTokenSource = new CancellationTokenSource();
             var cancellationToken = _cancellationTokenSource.Token;
@@ -152,6 +154,9 @@ namespace UltimateFishBot.Classes
 
                     // If no other action required, we can cast !
                     await Fish(cancellationToken);
+                    if (m_fishErrorLength > 10 ) {
+                        Stop();
+                    }
                 }
 
             }
@@ -270,11 +275,12 @@ namespace UltimateFishBot.Classes
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
             // Make bobber found async, so can check fishing sound in parallel, the result only important when we hear fish.
             // The position used for repositioning.
-            Task<Win32.Point> eyeTask = Task.Run(async () => await m_eyes.LookForBobber(cancellationToken));
+            CancellationTokenSource eyeCancelTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            CancellationToken eyeCancelToken = eyeCancelTokenSource.Token;
+            Task<Win32.Point> eyeTask = Task.Run(async () => await m_eyes.LookForBobber(eyeCancelToken));
 
             // Update UI with wait status            
-            CancellationTokenSource uiUpdateCancelTokenSource =
-                CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            CancellationTokenSource uiUpdateCancelTokenSource =  CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             CancellationToken uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
             var progress = new Progress<long>(msecs =>
             {
@@ -294,6 +300,8 @@ namespace UltimateFishBot.Classes
             bool fishHeard = await m_ears.Listen(
                 Properties.Settings.Default.FishWait,
                 cancellationToken);
+            //Log.Information("Ear result: "+fishHeard.ToString());
+
             uiUpdateCancelTokenSource.Cancel();
             try {
                 uiUpdateTask.GetAwaiter().GetResult(); // Wait & Unwrap
@@ -305,6 +313,7 @@ namespace UltimateFishBot.Classes
 
             if (!fishHeard) {
                 m_fishingStats.RecordNotHeard();
+                m_fishErrorLength++;
                 return;
             }
 
@@ -312,26 +321,30 @@ namespace UltimateFishBot.Classes
             if (!eyeTask.IsCompleted) {
                 // the search is not finished yet, but fish is heard, we have 2 seconds left to find and hook it
                 eyeTask.Wait(2000, cancellationToken);
+                eyeCancelTokenSource.Cancel();
             }
+            eyeCancelTokenSource.Dispose();
 
             if (eyeTask.IsCompleted) {
                 // search is ended what's the result?
                 Win32.Point bobberPos = eyeTask.Result;
-                Log.Information("Bobber data: ({bx},{by})", bobberPos.x, bobberPos.y);
 
                 if (bobberPos.x != 0 && bobberPos.y != 0) {
                     // bobber found
                     if (await m_eyes.SetMouseToBobber(bobberPos, cancellationToken)) {
                         // bobber is still there
-                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
+                        Log.Information("Bobber databl: ({bx},{by})", bobberPos.x, bobberPos.y);
                         await m_hands.Loot();
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
                         m_fishingStats.RecordSuccess();
+                        m_fishErrorLength = 0;
                         Log.Information("Fish success");
                         return;
                     }
                 }
             }
             m_fishingStats.RecordBobberNotFound();
+            m_fishErrorLength++;
         }
 
         public void CaptureCursor() {
