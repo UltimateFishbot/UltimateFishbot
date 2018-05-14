@@ -82,6 +82,8 @@ namespace UltimateFishBot.Forms
             cmbCompareIcon.Text = Translate.GetTranslate("frmSettings", "LABEL_CHECK_ICON");
             LabelCheckCursorIcon.Text = Translate.GetTranslate("frmSettings", "LABEL_CHECK_ICON_DESC");
 
+            ccHotKeyLabel.Text = Translate.GetTranslate("frmSettings", "LABEL_CHECK_CAPTURE_ICON_DESC");
+
             cmbAlternativeRoute.Text = Translate.GetTranslate("frmSettings", "LABEL_ALTERNATIVE_ROUTE");
             LabelAlternativeRoute.Text = Translate.GetTranslate("frmSettings", "LABEL_ALTERNATIVE_ROUTE_DESC");
 
@@ -101,6 +103,7 @@ namespace UltimateFishBot.Forms
             cbSoundAvg.Text = Translate.GetTranslate("frmSettings", "CB_AVG_SND");
 
             /// Premium Settings
+            /// TODO: labelHotKey translation
 
             LabelCastKey.Text = Translate.GetTranslate("frmSettings", "LABEL_CAST_KEY");
             LabelLureKey.Text = Translate.GetTranslate("frmSettings", "LABEL_LURE_KEY");
@@ -161,6 +164,7 @@ namespace UltimateFishBot.Forms
             txtScanSteps.Text = Properties.Settings.Default.ScanningSteps.ToString();
             cmbCompareIcon.Checked = Properties.Settings.Default.CheckCursor;
             cmbAlternativeRoute.Checked = Properties.Settings.Default.AlternativeRoute;
+            ccHotKey.Text = new KeysConverter().ConvertToString(Properties.Settings.Default.CursorCaptureHotKey);
             customAreaCheckbox.Checked = Properties.Settings.Default.customScanArea;
             txtMinXY.Text = Properties.Settings.Default.minScanXY.ToString();
             txtMaxXY.Text = Properties.Settings.Default.maxScanXY.ToString();
@@ -221,6 +225,7 @@ namespace UltimateFishBot.Forms
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            m_mainForm.ReloadHotkeys();
             this.Close();
         }
 
@@ -239,6 +244,8 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.CheckCursor = cmbCompareIcon.Checked;
             Properties.Settings.Default.AlternativeRoute = cmbAlternativeRoute.Checked;
             Properties.Settings.Default.customScanArea = customAreaCheckbox.Checked;
+            Properties.Settings.Default.CursorCaptureHotKey = (Keys)new KeysConverter().ConvertFromString(ccHotKey.Text);
+            
 
             /// Hearing the Fish
             Properties.Settings.Default.SplashLimit = int.Parse(txtSplash.Text);
@@ -404,6 +411,7 @@ namespace UltimateFishBot.Forms
         {
             m_hotkey = Properties.Settings.Default.StartStopHotKey;
             txtHotKey.Text = new KeysConverter().ConvertToString(m_hotkey);
+            m_mainForm.UnregisterHotKeys();
         }
 
         private void SaveHotKeys()

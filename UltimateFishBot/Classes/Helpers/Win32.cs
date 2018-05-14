@@ -10,7 +10,7 @@ namespace UltimateFishBot.Classes.Helpers
 {
     class Win32
     {
-        private struct Rect
+        public struct Rect
         {
             public int Left;
             public int Top;

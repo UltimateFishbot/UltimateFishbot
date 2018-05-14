@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,13 +45,11 @@ namespace UltimateFishBot.Classes.BodyParts
         public async Task Cast(CancellationToken token)
         {
             Win32.ActivateWow(this.Wow);
-            if (Properties.Settings.Default.RightClickCast)
-            {
+            if (Properties.Settings.Default.RightClickCast)  {
                 Win32.SendMouseDblRightClick(this.Wow);
-            }
-            else
-            {
+            } else {
                 Win32.SendKey(Properties.Settings.Default.FishKey);
+                Log.Information("Sent key: " + Properties.Settings.Default.FishKey);
             }
             await Task.Delay(Properties.Settings.Default.CastingDelay, token);
         }
@@ -58,6 +57,7 @@ namespace UltimateFishBot.Classes.BodyParts
         public async Task Loot()
         {
             Win32.SendMouseClick(this.Wow);
+            Log.Information("Send Loot.");
             await Task.Delay(Properties.Settings.Default.LootingDelay);
         }
 
@@ -122,9 +122,12 @@ namespace UltimateFishBot.Classes.BodyParts
                     return;
             }
 
+            Log.Information("Send key start: " + actionKey);
             Win32.ActivateWow(this.Wow);
+            await Task.Delay(1000, cancellationToken);
             Win32.SendKey(actionKey);
-            await Task.Delay(sleepTime * 100, cancellationToken);
+            Log.Information("Sent key: "+actionKey);
+            await Task.Delay(sleepTime * 1000, cancellationToken);
         }
     }
 }
