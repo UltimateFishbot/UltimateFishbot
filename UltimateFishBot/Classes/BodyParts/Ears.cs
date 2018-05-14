@@ -20,6 +20,7 @@ namespace UltimateFishBot.Classes.BodyParts
         public Ears()
         {
             m_volumeQueue = new Queue<int>();
+            m_volumeQueue.Enqueue(0);
         }
 
         public async Task<bool> Listen(int millisecondsToListen, CancellationToken cancellationToken)
@@ -78,16 +79,18 @@ namespace UltimateFishBot.Classes.BodyParts
         {
             // Get the current level
             int currentVolumnLevel = (int)(SndDevice.AudioMeterInformation.MasterPeakValue * tickrate);
-            m_volumeQueue.Enqueue(currentVolumnLevel);
+            int avgVol = GetAverageVolume();
 
+            m_volumeQueue.Enqueue(currentVolumnLevel);
             // Keep a running queue of the last X sounds as a reference point
             if (m_volumeQueue.Count >= MAX_VOLUME_QUEUE_LENGTH)
                 m_volumeQueue.Dequeue();
 
             // Determine if the current level is high enough to be a fish
-            int avgVol = GetAverageVolume();
-            if (currentVolumnLevel - avgVol >= Properties.Settings.Default.SplashLimit)
+            if (currentVolumnLevel - avgVol >= Properties.Settings.Default.SplashLimit) {
+                Serilog.Log.Information("Hear: {av},{cvl},{queue}", avgVol, currentVolumnLevel, m_volumeQueue);
                 return true;
+            }
 
             return false;
 

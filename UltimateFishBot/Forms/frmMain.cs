@@ -58,7 +58,7 @@ namespace UltimateFishBot
 
             try
             {
-                string result = await (new WebClient()).DownloadStringTaskAsync("http://www.fishbot.net/status.txt");
+                string result = await (new WebClient().DownloadStringTaskAsync("http://www.robpaulson.com/fishbot/status.txt"));
                 if (result.ToLower().Trim() != "safe")
                 {
                     lblWarn.Text      = Translate.GetTranslate("frmMain", "LABEL_NO_LONGER_SAFE");
