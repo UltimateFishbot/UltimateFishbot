@@ -190,22 +190,6 @@ namespace UltimateFishBot.Classes.Helpers
             SendKeys.Send(sKeys);
         }
 
-        public static void SendMouseClick()
-        {
-            IntPtr Wow = FindWowWindow();
-            long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
-
-            if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYDOWN);
-
-            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
-
-            if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYUP);
-        }
-
         public static void SendMouseClick(IntPtr Wow)
         {
             long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));

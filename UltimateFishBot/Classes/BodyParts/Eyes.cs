@@ -21,9 +21,13 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public Eyes(IntPtr wowWindow)
         {
-            this.Wow = wowWindow;
+            setWow(wowWindow);
             bobberPosDict = new Dictionary<Win32.Point, int>();
 
+        }
+
+        public void setWow(IntPtr wowWindow) {
+            this.Wow = wowWindow;
         }
 
         public async Task<Win32.Point> LookForBobber(CancellationToken cancellationToken)
