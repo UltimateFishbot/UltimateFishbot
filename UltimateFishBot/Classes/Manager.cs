@@ -271,6 +271,7 @@ namespace UltimateFishBot.Classes
         private async Task Fish(CancellationToken cancellationToken)
         {
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
+            m_eyes.updateBackground();
             await m_hands.Cast(cancellationToken);
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
