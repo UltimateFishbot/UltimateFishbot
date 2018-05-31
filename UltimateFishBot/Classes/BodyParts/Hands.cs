@@ -28,7 +28,7 @@ namespace UltimateFishBot.Classes.BodyParts
             UpdateKeys();
         }
 
-        public void setWow(IntPtr wowWindow) {
+        public void SetWow(IntPtr wowWindow) {
             this.Wow = wowWindow;
         }
 
