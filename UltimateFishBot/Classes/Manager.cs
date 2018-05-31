@@ -117,8 +117,8 @@ namespace UltimateFishBot.Classes
         private async Task RunBotUntilCanceled()
         {
             IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow(); // update window pointer in case wow started after fishbot or restarted.
-            m_eyes.setWow(WowWindowPointer);
-            m_hands.setWow(WowWindowPointer);
+            m_eyes.SetWow(WowWindowPointer);
+            m_hands.SetWow(WowWindowPointer);
             ResetTimers();
             EnableTimers();
             m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STARTED"));

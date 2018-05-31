@@ -7,7 +7,7 @@ using System.Resources;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("UltimateFishBot")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("UltimateFishBot")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Source")]
 [assembly: AssemblyProduct("UltimateFishBot")]
@@ -33,6 +33,6 @@ using System.Resources;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.1.0.2")]
-[assembly: AssemblyFileVersion("4.1.0.2")]
+[assembly: AssemblyVersion("4.3.0.0")]
+[assembly: AssemblyFileVersion("4.3.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]

@@ -25,14 +25,18 @@ namespace UltimateFishBot.Classes.BodyParts
         private Rectangle wowRectangle;
 
         public Eyes(IntPtr wowWindow)  {
-            setWow(wowWindow);
+            SetWow(wowWindow);
             bobberPosDict = new Dictionary<Win32.Point, int>();
         }
 
-        public void setWow(IntPtr wowWindow) {
+        public void SetWow(IntPtr wowWindow) {
             this.Wow = wowWindow;
             m_noFishCursor = Win32.GetNoFishCursor(this.Wow);
             wowRectangle = Win32.GetWowRectangle(this.Wow);
+            if (System.IO.File.Exists("capturedcursor.bmp")) {
+                capturedCursorIcon = new Bitmap("capturedcursor.bmp", true);
+            }
+
         }
 
         // capture in grayscale
@@ -44,10 +48,6 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public async Task<Win32.Point> LookForBobber(CancellationToken cancellationToken)
         {
-            if (System.IO.File.Exists("capturedcursor.bmp")) {
-                capturedCursorIcon = new Bitmap("capturedcursor.bmp", true);
-            }
-
             Win32.Rect scanArea;
             if (!Properties.Settings.Default.customScanArea) {
                 scanArea.Left = wowRectangle.X + wowRectangle.Width / 5;
