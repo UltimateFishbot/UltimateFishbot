@@ -2,8 +2,6 @@ UltimateFishbot
 ===============
 A simple World of Warcraft fishbot written in C#.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/rjlp159797lfbf72?svg=true)](https://ci.appveyor.com/project/RobPaulson/ultimatefishbot)
-
 Introduction 
 
 I started this project during my freshman year of college…many, many years ago.
@@ -57,6 +55,23 @@ Updated in C#
 ===============================
 
 Updated by Pierre Ghiot (Mograine) in C#.
+
+Updated by daniel-widrick
+===============================
+
+Updated by Szabka
+===============================
+Ear optimisation
+Bobber finding and Hearing is parallel threads.
+Bobber finding searches differences between before cast and after cast screenshots, than previous bobber positions ordered by occurence.
+If bobber not found while fish hearing it searches 2 seconds more for bobber, so has a possibility to catch fish even instant fish hear on cast.
+Bobber recheck on hook, so if bobber moves a little it will find again.
+Has log file for debugging purposes.
+Can capture fishing cursor with hotkey for more precision bobber finding.
+Hungarian translation.
+Wow window handle searched when starts fishing(and not when fishbot starts).
+Hotkey actions disabled in settings screen.
+Stop fishing after 10 consequent fish failure.
 
 Happy Fishing!
 

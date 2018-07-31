@@ -59,6 +59,9 @@ namespace UltimateFishBot.Classes.Helpers
         private static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
 
         [DllImport("user32.dll")]
+        public static extern bool GetClientRect(IntPtr hWnd, out Rect lpRect);
+
+        [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
         [DllImport("user32.dll")]
@@ -85,11 +88,85 @@ namespace UltimateFishBot.Classes.Helpers
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
 
+        [DllImport("User32.Dll")]
+        public static extern bool ClientToScreen(IntPtr hWnd, ref Point point);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetWindowDC(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+
+        [DllImport("gdi32.dll")]
+        public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
+                                         int nWidth, int nHeight, IntPtr hObjectSource,
+                                         int nXSrc, int nYSrc, int dwRop);
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
+                                                           int nHeight);
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+        [DllImport("gdi32.dll")]
+        public static extern bool DeleteDC(IntPtr hDC);
+        [DllImport("gdi32.dll")]
+        public static extern bool DeleteObject(IntPtr hObject);
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+
         private const uint WM_LBUTTONDOWN = 513;
         private const uint WM_LBUTTONUP = 514;
 
         private const uint WM_RBUTTONDOWN = 516;
         private const uint WM_RBUTTONUP = 517;
+
+        public const int SRCCOPY = 0x00CC0020; // BitBlt dwRop parameter
+
+        /// <summary>
+        /// Creates an Image object containing a screen shot of a specific window
+        /// </summary>
+        /// <param name="handle">The handle to the window. (In windows forms, this is obtained by the Handle property)</param>
+        /// <returns></returns>
+        public static Bitmap CaptureWindow(IntPtr handle)
+        {
+            // get te hDC of the target window
+            IntPtr hdcSrc = GetWindowDC(handle);
+            // get the size
+            Rect windowRect = new Rect();
+            GetWindowRect(handle, ref windowRect);
+
+            Rect clientRect = new Rect();
+            GetClientRect(handle, out clientRect);
+
+
+            Point point = new Point { x = 0, y = 0 };
+            ClientToScreen(handle, ref point);
+
+            int x = point.x - windowRect.Left;
+            int y = point.y - windowRect.Top;
+            int width = (clientRect.Right - clientRect.Left);
+            int height = (clientRect.Bottom - clientRect.Top);
+
+
+            // create a device context we can copy to
+            IntPtr hdcDest = CreateCompatibleDC(hdcSrc);
+            // create a bitmap we can copy it to,
+            // using GetDeviceCaps to get the width/height
+            IntPtr hBitmap = CreateCompatibleBitmap(hdcSrc, width, height);
+            // select the bitmap object
+            IntPtr hOld = SelectObject(hdcDest, hBitmap);
+            // bitblt over
+            BitBlt(hdcDest, 0, 0, width, height, hdcSrc, x, y, SRCCOPY);
+            // restore selection
+            SelectObject(hdcDest, hOld);
+            // clean up
+            DeleteDC(hdcDest);
+            ReleaseDC(handle, hdcSrc);
+            // get a .NET image object for it
+            Bitmap img = Image.FromHbitmap(hBitmap);
+            // free up the Bitmap object
+            DeleteObject(hBitmap);
+            return img;
+        }
 
         public static Rectangle GetWowRectangle(IntPtr Wow)
         {
@@ -188,22 +265,6 @@ namespace UltimateFishBot.Classes.Helpers
             }
 
             SendKeys.Send(sKeys);
-        }
-
-        public static void SendMouseClick()
-        {
-            IntPtr Wow = FindWowWindow();
-            long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
-
-            if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYDOWN);
-
-            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
-
-            if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYUP);
         }
 
         public static void SendMouseClick(IntPtr Wow)

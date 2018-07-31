@@ -28,6 +28,10 @@ namespace UltimateFishBot.Classes.BodyParts
             UpdateKeys();
         }
 
+        public void SetWow(IntPtr wowWindow) {
+            this.Wow = wowWindow;
+        }
+
         public void UpdateKeys()
         {
             m_baitKeys = new string[7]

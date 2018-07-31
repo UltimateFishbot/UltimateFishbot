@@ -62,15 +62,13 @@ namespace UltimateFishBot.Classes
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
 
-        private IntPtr WowWindowPointer;
-
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
             m_managerEventHandler    = managerEventHandler;
-            this.WowWindowPointer = Helpers.Win32.FindWowWindow();
+            IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow();
 
-            m_eyes                   = new Eyes(this.WowWindowPointer);
-            m_hands                  = new Hands(this.WowWindowPointer);
+            m_eyes                   = new Eyes(WowWindowPointer);
+            m_hands                  = new Hands(WowWindowPointer);
             m_ears                   = new Ears();
             m_mouth                  = new Mouth(progressHandle);
             m_legs                   = new Legs();
@@ -118,6 +116,9 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBotUntilCanceled()
         {
+            IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow(); // update window pointer in case wow started after fishbot or restarted.
+            m_eyes.SetWow(WowWindowPointer);
+            m_hands.SetWow(WowWindowPointer);
             ResetTimers();
             EnableTimers();
             m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STARTED"));
@@ -270,6 +271,7 @@ namespace UltimateFishBot.Classes
         private async Task Fish(CancellationToken cancellationToken)
         {
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
+            m_eyes.updateBackground();
             await m_hands.Cast(cancellationToken);
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
