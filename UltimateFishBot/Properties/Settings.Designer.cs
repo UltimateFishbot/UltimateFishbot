@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Windows.Forms;
+
 namespace UltimateFishBot.Properties {
     
     
@@ -622,13 +625,20 @@ namespace UltimateFishBot.Properties {
                 this["AverageSound"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+C")]
         public global::System.Windows.Forms.Keys CursorCaptureHotKey {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
+                try
+                {
+                    return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
+                } catch (Exception ex)
+                {
+                    return Keys.ControlKey | Keys.ShiftKey | Keys.C;
+                }
+
             }
             set {
                 this["CursorCaptureHotKey"] = value;
