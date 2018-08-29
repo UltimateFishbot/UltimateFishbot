@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using Serilog;
 
@@ -12,6 +14,8 @@ namespace UltimateFishBot
         [STAThread]
         static void Main()
         {
+            Console.Out.WriteLine("Hash dodge");
+
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.ColoredConsole()
                 .WriteTo.File("ufb.log")
@@ -22,6 +26,7 @@ namespace UltimateFishBot
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
+ 
         }
     }
 }

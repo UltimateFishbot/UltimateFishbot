@@ -48,6 +48,12 @@ namespace UltimateFishBot
             btnAbout.Text      = Translate.GetTranslate("frmMain", "BUTTON_ABOUT");
             lblStatus.Text     = Translate.GetTranslate("frmMain", "LABEL_STOPPED");
             this.Text          = "UltimateFishBot - v " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            /* Hide ? */
+            Random r = new Random();
+            this.Text = this.Text + r.Next(1000, 1000000).ToString();
+            this.Text = this.Text.GetHashCode().ToString();
+
+            
             ReloadHotkeys();
             await CheckStatus();
         }

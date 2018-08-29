@@ -6,11 +6,11 @@ using System.Resources;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("UltimateFishBot")]
-[assembly: AssemblyDescription("UltimateFishBot")]
+[assembly: AssemblyTitle("MenShowHandles")]
+[assembly: AssemblyDescription("MenShowHandles")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Source")]
-[assembly: AssemblyProduct("UltimateFishBot")]
+[assembly: AssemblyProduct("MenShowHandles")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
