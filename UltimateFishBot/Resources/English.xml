@@ -1,7 +1,7 @@
 <translation>
     <frmCode>
         <TITLE>Thanks for using the UltimateFishBot</TITLE>
-        <LIBELLE_TITLE>Relax... It's still free !</LIBELLE_TITLE>
+        <LIBELLE_TITLE>Relax... It's still free!</LIBELLE_TITLE>
         <LIBELLE_DESC>You've used the Ultimate Fishbot {0} times. To continue using it; you need to visit the Fishbot website and enter the 3-5 digit code in the box below.  If a browser window didn't open, you can find it at www.fishbot.net/code.html - or click the link below.  I promise, it's quick and painless.</LIBELLE_DESC>
         <LIBELLE_TRY_AGAIN>Try again!</LIBELLE_TRY_AGAIN>
         <LIBELLE_ENTER>Enter</LIBELLE_ENTER>
@@ -36,7 +36,7 @@
         <BUTTON_STATISTICS>Statistics</BUTTON_STATISTICS>
         <BUTTON_HTU>How to Use</BUTTON_HTU>
         <BUTTON_EXIT>Exit</BUTTON_EXIT>
-		<BUTTON_ABOUT>About</BUTTON_ABOUT>
+	<BUTTON_ABOUT>About</BUTTON_ABOUT>
 
         <LABEL_STARTED>Started</LABEL_STARTED>
         <LABEL_RESUMED>Resumed</LABEL_RESUMED>
@@ -44,30 +44,30 @@
         <LABEL_STOPPED>Stopped</LABEL_STOPPED>
 
         <LABEL_CHECKING_STATUS>Checking Status...</LABEL_CHECKING_STATUS>
-        <LABEL_NO_LONGER_SAFE>This bot is no longer safe.  Do not use on public servers!</LABEL_NO_LONGER_SAFE>
-        <LABEL_COULD_NOT_CHECK_STATUS>Could Not Verify Status!  Use at own risk...</LABEL_COULD_NOT_CHECK_STATUS>
+        <LABEL_NO_LONGER_SAFE>This bot is no longer safe. Do not use on public servers!</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>Could not verify status! Use at own risk...</LABEL_COULD_NOT_CHECK_STATUS>
     </frmMain>
     <manager>
-        <LABEL_HEAR_FISH>I Hear a Fish !</LABEL_HEAR_FISH>
+        <LABEL_HEAR_FISH>I hear a fish!</LABEL_HEAR_FISH>
         <LABEL_CASTING>Casting...</LABEL_CASTING>
-        <LABEL_START_FINDING>Start Finding Bobber...</LABEL_START_FINDING>
-        <LABEL_FINDING>Finding Bobber...</LABEL_FINDING>
-        <LABEL_WAITING>Waiting for Fish ({0}/{1}s) ...</LABEL_WAITING>
+        <LABEL_START_FINDING>Start searching...</LABEL_START_FINDING>
+        <LABEL_FINDING>Searching...</LABEL_FINDING>
+        <LABEL_WAITING>Waiting for fish ({0}/{1}s) ...</LABEL_WAITING>
 
-        <LABEL_HEARTHSTONE>Done Fishing - Hearthing...</LABEL_HEARTHSTONE>
-        <LABEL_APPLY_LURE>Applying Lure...</LABEL_APPLY_LURE>
-        <LABEL_APPLY_CHARM> Applying Charm...</LABEL_APPLY_CHARM>
-        <LABEL_APPLY_RAFT>Applying Raft...</LABEL_APPLY_RAFT>
-        <LABEL_APPLY_BAIT>Applying Bait {0}...</LABEL_APPLY_BAIT>
+        <LABEL_HEARTHSTONE>Done fishing - Hearthing...</LABEL_HEARTHSTONE>
+        <LABEL_APPLY_LURE>Applying lure...</LABEL_APPLY_LURE>
+        <LABEL_APPLY_CHARM> Applying charm...</LABEL_APPLY_CHARM>
+        <LABEL_APPLY_RAFT>Applying raft...</LABEL_APPLY_RAFT>
+        <LABEL_APPLY_BAIT>Applying bait {0}...</LABEL_APPLY_BAIT>
     </manager>
     <frmSettings>
         <TITLE>Settings</TITLE>
 
         <!-- Tabs Titles -->
         <TAB_TITLE_GENERAL_FISHING>General Fishing</TAB_TITLE_GENERAL_FISHING>
-        <TAB_TITLE_FIND_CURSOR>Finding the Cursor</TAB_TITLE_FIND_CURSOR>
-        <TAB_TITLE_HEARING_FISH>Hearing the Fish</TAB_TITLE_HEARING_FISH>
-        <TAB_TITLE_PREMIUM>Premium Settings</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_FIND_CURSOR>Finding Cursor</TAB_TITLE_FIND_CURSOR>
+        <TAB_TITLE_HEARING_FISH>Hearing Fish</TAB_TITLE_HEARING_FISH>
+        <TAB_TITLE_PREMIUM>Key Binds</TAB_TITLE_PREMIUM>
         <TAB_TITLE_ANTI_AFK>Anti-Afk</TAB_TITLE_ANTI_AFK>
         <TAB_TITLE_LANGUAGE>Language</TAB_TITLE_LANGUAGE>
 
@@ -76,7 +76,7 @@
         <LABEL_DELAY_AFTER_CAST_DESC>The number of milliseconds to wait after the cast before searching. Too short and you'll skip the bobber, too long and you'll waste time.</LABEL_DELAY_AFTER_CAST_DESC>
 
         <LABEL_FISH_WAIT_LIMIT>Fish Wait Limit:</LABEL_FISH_WAIT_LIMIT>
-        <LABEL_FISH_WAIT_LIMIT_DESC>The number of milliseconds to listen for a fish before giving up. Too long decrease bots effectiveness, too short and you miss fish.</LABEL_FISH_WAIT_LIMIT_DESC>
+        <LABEL_FISH_WAIT_LIMIT_DESC>The number of milliseconds to listen for a fish before giving up. Too long - decreases bot's effectiveness, too short and you miss fish.</LABEL_FISH_WAIT_LIMIT_DESC>
 
         <LABEL_DELAY_AFTER_LOOTING>Delay After Looting:</LABEL_DELAY_AFTER_LOOTING>
         <LABEL_DELAY_AFTER_LOOTING_DESC>The number of milliseconds to wait after looting a fish.</LABEL_DELAY_AFTER_LOOTING_DESC>
@@ -84,16 +84,16 @@
         <!-- Finding the Cursor -->
 
         <LABEL_SCANNING_STEPS>Scanning Steps:</LABEL_SCANNING_STEPS>
-        <LABEL_SCANNING_STEPS_DESC>The greater number of steps, the less likely you are to miss the cursor; but the slower your scan will be.</LABEL_SCANNING_STEPS_DESC>
+        <LABEL_SCANNING_STEPS_DESC>The greater the number of steps, the less likely you are to miss the cursor, but the slower your scan will be.</LABEL_SCANNING_STEPS_DESC>
 
         <LABEL_SCANNING_DELAY>Scanning Delay:</LABEL_SCANNING_DELAY>
-        <LABEL_SCANNING_DELAY_DESC>The number of milliseconds to wait before checking if the cursor has changed.  To slow and you might not detect the bobber; but a bigger number goes slower.</LABEL_SCANNING_DELAY_DESC>
+        <LABEL_SCANNING_DELAY_DESC>The number of milliseconds to wait before checking if the cursor has changed. Too short and you might not detect the bobber, but a bigger number goes slower.</LABEL_SCANNING_DELAY_DESC>
 
         <LABEL_SCANNING_RETRIES>Scanning Retries:</LABEL_SCANNING_RETRIES>
-        <LABEL_SCANNING_RETRIES_DESC>How many times to run the search pattern.</LABEL_SCANNING_RETRIES_DESC>
+        <LABEL_SCANNING_RETRIES_DESC>How many times to run the search pattern, when the bobber has not been found.</LABEL_SCANNING_RETRIES_DESC>
 
         <LABEL_CHECK_ICON>Check Cursor Icon</LABEL_CHECK_ICON>
-        <LABEL_CHECK_ICON_DESC>Specify if the bot must check the icon before fishing. Avoid clicking when it's not a bobber. May not work on some computer, disable if the bot don't find your bobber.</LABEL_CHECK_ICON_DESC>
+        <LABEL_CHECK_ICON_DESC>Specify if the bot must check the icon before fishing. Avoid clicking when icon isn't a bobber. May not work on some computer, disable if the bot doesn't find the bobber.</LABEL_CHECK_ICON_DESC>
         <LABEL_CHECK_CAPTURE_ICON_DESC>Capture cursor Hotkey</LABEL_CHECK_CAPTURE_ICON_DESC>
 
         <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
@@ -101,8 +101,8 @@
 		
 		<LABEL_SCAN_AREA>Scanning Area (if disabled the scanning area will be calculated automatically):</LABEL_SCAN_AREA>
 		<SET_SCANNING_AREA>Set Scanning Area</SET_SCANNING_AREA>
-		<START_XY>Start X,Y:</START_XY>
-		<END_XY>End X,Y:</END_XY>
+		<START_XY>Start:</START_XY>
+		<END_XY>End:</END_XY>
 		<SCAN_TITLE>Select Area</SCAN_TITLE>
 		<SCAN_MESSAGE>Now an overlay will appear where you can select the scanning area. When you are done just double click the area or press ENTER. Click OK to continue...</SCAN_MESSAGE>
 		<AREA_SMALL>The Scanning area is too small!</AREA_SMALL>
@@ -110,12 +110,12 @@
         <!-- Hearing the Fish -->
 
         <LABEL_SPLASH_THRESHOLD>Splash Threshold:</LABEL_SPLASH_THRESHOLD>
-        <LABEL_SPLASH_THRESHOLD_DESC>Determines if a given sound is loud enough to be a fish or not.  Too low and the bot will mistake non-fish for fish.  Too high and the bot will ignore the real fish.</LABEL_SPLASH_THRESHOLD_DESC>
+        <LABEL_SPLASH_THRESHOLD_DESC>Determines if a given sound is loud enough to be a fish or not. Too low and the bot will mistake non-fish for fish. Too high and the bot will ignore the real fish.</LABEL_SPLASH_THRESHOLD_DESC>
 
         <LABEL_AUDIO_DEVICE>Audio Device:</LABEL_AUDIO_DEVICE>
         <LABEL_AUDIO_DEVICE_DESC>Select the audio device that WoW is Using.  If the bot cannot 'hear' the game, it will never catch any fish.  If you are unsure, play some music and select each device until you find the right one.</LABEL_AUDIO_DEVICE_DESC>
 
-        <CB_AVG_SND>Use averaging method (better in crowded areas, but less chance to catch a fish)</CB_AVG_SND>
+        <CB_AVG_SND>Use averaging method (better in crowded areas (Ogrimmar, etc...), but less chance to catch a fish)</CB_AVG_SND>
       
         <!-- Premium Settings -->
         <LABEL_CAST_KEY>Cast Key:</LABEL_CAST_KEY>
@@ -133,21 +133,21 @@
 
         <LABEL_CUSTOMIZE_DESC>Customize shortkeys to avoid rearranging your bars before/after fishing.</LABEL_CUSTOMIZE_DESC>
 
-        <CB_ALT_KEY>Use Alt-Key Modifer</CB_ALT_KEY>
-        <CB_AUTO_LURE>Apply Lure Every X minutes</CB_AUTO_LURE>
-        <CB_AUTO_HEARTHSTONE>Hearth To Inn After X Minutes:</CB_AUTO_HEARTHSTONE>
-        <CB_AUTO_RAFT>Refresh Raft Every X minutes</CB_AUTO_RAFT>
-        <CB_AUTO_CHARM>Refresh Charm Every X minutes</CB_AUTO_CHARM>
-        <CB_AUTO_BAIT>Apply Bait Every X minutes</CB_AUTO_BAIT>
+        <CB_ALT_KEY>Use Alt-Key modifer</CB_ALT_KEY>
+        <CB_AUTO_LURE>Apply lure every X minutes</CB_AUTO_LURE>
+        <CB_AUTO_HEARTHSTONE>Hearth to inn after X minutes:</CB_AUTO_HEARTHSTONE>
+        <CB_AUTO_RAFT>Refresh raft every X minutes</CB_AUTO_RAFT>
+        <CB_AUTO_CHARM>Refresh charm every X minutes</CB_AUTO_CHARM>
+        <CB_AUTO_BAIT>Apply bait every X minutes</CB_AUTO_BAIT>
         <CB_CYCLE_THROUGH_BAIT_LIST>Cycle through the 7 possibles baits</CB_CYCLE_THROUGH_BAIT_LIST>
-        <CB_SHIFT_LOOT>Shift-Loot? (If AutoLoot is Disabled, Enable This)</CB_SHIFT_LOOT>
+        <CB_SHIFT_LOOT>Shift-Loot? (If AutoLoot is Disabled, Enable this)</CB_SHIFT_LOOT>
 
         <LABEL_PROCESS_NAME>WoW Process Name:</LABEL_PROCESS_NAME>
         <LABEL_PROCESS_NAME_DESC>The name of the process to activate (this rarely changes) but has been updated with new expansions in the past.</LABEL_PROCESS_NAME_DESC>
 
         <!-- Anti-Afk  -->
         <CB_ANTI_AFK>Enable Anti-Afk every X minutes</CB_ANTI_AFK>
-        <CMB_ANTIAFK_MOVE>Front - Back</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Forwards - Backwards</CMB_ANTIAFK_MOVE>
         <CMB_ANTIAFK_MOVE>Left - Right</CMB_ANTIAFK_MOVE>
         <CMB_ANTIAFK_MOVE>Jump</CMB_ANTIAFK_MOVE>
 
@@ -158,11 +158,11 @@
           Language XML Files must be found in Resources folder.
         </LABEL_LANGUAGE_DESC>
         <TITLE_LANGUAGE_CHANGE>Restart Required.</TITLE_LANGUAGE_CHANGE>
-        <LABEL_LANGUAGE_CHANGE>The application will restart in order to apply the language change.</LABEL_LANGUAGE_CHANGE>
+        <LABEL_LANGUAGE_CHANGE>The application will restart to apply the language change.</LABEL_LANGUAGE_CHANGE>
 
       <!-- Other-->
       <RESET_TITLE>Reset Settings</RESET_TITLE>
-      <RESET_MESSAGE>Click OK to reset all settings to default values and restart the application.</RESET_MESSAGE>
+      <RESET_MESSAGE>Click OK to reset all settings and restart the application.</RESET_MESSAGE>
       
         <!-- Buttons -->
         <BUTTON_SAVE>Save</BUTTON_SAVE>
@@ -170,16 +170,16 @@
     </frmSettings>
     <frmStats>
         <TITLE>Statistics</TITLE>
-        <LABEL_SUCCESS>Successful Fishing :</LABEL_SUCCESS>
+        <LABEL_SUCCESS>Fished :</LABEL_SUCCESS>
         <LABEL_NOT_FOUND>Fish not found :</LABEL_NOT_FOUND>
-        <LABEL_NOT_EARED>Fish not eared :</LABEL_NOT_EARED>
+        <LABEL_NOT_EARED>Fish not heard :</LABEL_NOT_EARED>
         <LABEL_TOTAL>Total :</LABEL_TOTAL>
         <BUTTON_RESET>Reset</BUTTON_RESET>
         <BUTTON_CLOSE>Close</BUTTON_CLOSE>
 	</frmStats>	
     <frmAbout>
         <TITLE>About</TITLE>
-        <DESCRIPTION>If you are like me - you love playing World of Warcraft...but leveling your fishing and cooking skill isn't any fun.  You'd rather be *enjoying* the game than wasting hours doing what amounts to a chore. 
+        <DESCRIPTION>If you are like me - you love playing World of Warcraft, but leveling your fishing and cooking skill isn't any fun - you'd rather be *enjoying* the game rather than wasting hours doing what amounts to a chore. 
 		
 		Luckily, for both of us, I'm a computer programmer.  I've put together an application that will fish for you. 
 		
