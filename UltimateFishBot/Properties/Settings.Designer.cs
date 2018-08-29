@@ -595,7 +595,14 @@ namespace UltimateFishBot.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+S")]
         public global::System.Windows.Forms.Keys StartStopHotKey {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
+                try
+                {
+                    return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
+                }
+                catch (Exception ex)
+                {
+                    return Keys.ControlKey | Keys.ShiftKey | Keys.S;
+                }
             }
             set {
                 this["StartStopHotKey"] = value;
