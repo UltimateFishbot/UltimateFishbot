@@ -1,9 +1,10 @@
 UltimateFishbot
 ===============
+A simple World of Warcraft fishbot written in C#.
 
-A simple World of Warcraft fishbot written in VB.net
+[![Build status](https://ci.appveyor.com/api/projects/status/rjlp159797lfbf72?svg=true)](https://ci.appveyor.com/project/RobPaulson/ultimatefishbot)
 
-Introduction
+Introduction 
 
 I started this project during my freshman year of college…many, many years ago.
 It’s been years since I’ve played Wow and I no longer have the amounts of free
@@ -14,8 +15,8 @@ some value from this.
 
 Coding Overview
 
-This is written in VB.NET (I know, I know….) but you can get a free copy of 
-Visual Studio Express.
+This is originaly written in VB.NET (I know, I know….). It has been now ported
+in C#. You can get a free copy of Visual Studio Express.
 
 The general idea is that the bot works by ‘listening’ to the output from the
 game (whereas most bots at the time were reading pixels and trying to find the 
@@ -51,6 +52,11 @@ Updated for Warlords of Draenor
 ===============================
 
 Updated by Henrik Hermansen to support WoD bait.
+
+Updated in C#
+===============================
+
+Updated by Pierre Ghiot (Mograine) in C#.
 
 Happy Fishing!
 

@@ -1,0 +1,166 @@
+<translation>
+    <frmCode>
+        <TITLE>Merci d'utiliser l'UltimateFishBot</TITLE>
+        <LIBELLE_TITLE>Relax... C'est toujours gratuit !</LIBELLE_TITLE>
+        <LIBELLE_DESC>
+          Vous avez utilisé UltimateFishBot {0} fois.
+          Pour continuer à l'utiliser, vous devez visiter le site Fishbot et renseigner les 3 chiffres.
+          Si votre navigateur internet ne s'est pas ouvert, cliquez simplement sur le lien ci-dessous.
+          Ne vous inquietez pas, c'est est très rapide et sans douleur.
+        </LIBELLE_DESC>
+        <LIBELLE_TRY_AGAIN>Essaye encore !</LIBELLE_TRY_AGAIN>
+        <LIBELLE_ENTER>Entrer</LIBELLE_ENTER>
+    </frmCode>
+    <frmDirections>
+        <TITLE>Comment l'Utiliser</TITLE>
+        <LABEL_SETTING_WOW_TITLE>1.) Configurer WoW</LABEL_SETTING_WOW_TITLE>
+        <LABEL_SETTING_WOW_DESC>* Equipez votre canne à pêche
+          * Placez la compétence pêche dans le slot n°1 de votre barre d'action
+          * Augmentez le volume principal à 100%.
+          * Son à 100%, Musique à 0%, Ambiance à 0%, Discussion à 0%.
+          * Mettez WoW en mode fenêtré et rétrécissez l'écran autant que possible.
+        </LABEL_SETTING_WOW_DESC>
+        <LABEL_FIND_LOCATION_TITLE>2.) Trouver un Emplacement</LABEL_FIND_LOCATION_TITLE>
+        <LABEL_FIND_LOCATION_DESC>* Allez près d'un point d'eau.
+            * Zoomez le plus possible.
+            * Choisissez un emplacement avec le moins de bruit possible.
+            * Evitez les emplacements avec quoi que ce soit changeant l'icone de la souris.
+        </LABEL_FIND_LOCATION_DESC>
+        <LABEL_FISH_TITLE>3.) Pêchez !</LABEL_FISH_TITLE>
+        <LABEL_FISH_DESC>* Appuyez sur "Démarrer", asseyez-vous, et laissez le bot prendre les choses en main !</LABEL_FISH_DESC>
+    </frmDirections>
+    <frmMain>
+        <BUTTON_START>Démarrer</BUTTON_START>
+        <BUTTON_RESUME>Reprendre</BUTTON_RESUME>
+        <BUTTON_STOP>Stop</BUTTON_STOP>
+        <BUTTON_PAUSE>Pause</BUTTON_PAUSE>
+        <BUTTON_SETTINGS>Paramètres</BUTTON_SETTINGS>
+        <BUTTON_STATISTICS>Statistiques</BUTTON_STATISTICS>
+        <BUTTON_HTU>Mode d'Emploi</BUTTON_HTU>
+        <BUTTON_EXIT>Quitter</BUTTON_EXIT>
+
+        <LABEL_STARTED>Démarré</LABEL_STARTED>
+        <LABEL_RESUMED>Repris</LABEL_RESUMED>
+        <LABEL_PAUSED>En Pause</LABEL_PAUSED>
+        <LABEL_STOPPED>Arreté</LABEL_STOPPED>
+
+        <LABEL_CHECKING_STATUS>Vérification du Statut...</LABEL_CHECKING_STATUS>
+        <LABEL_NO_LONGER_SAFE>Ce bot n'est plus sûr. Ne pas utiliser sur les serveurs officiels !</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>Vérification du statut impossible.</LABEL_COULD_NOT_CHECK_STATUS>
+    </frmMain>
+    <manager>
+        <LABEL_HEAR_FISH>Poisson Entendu !</LABEL_HEAR_FISH>
+        <LABEL_CASTING>Casting...</LABEL_CASTING>
+        <LABEL_START_FINDING>Début recherche Flotteur...</LABEL_START_FINDING>
+        <LABEL_FINDING>Recherche Flotteur...</LABEL_FINDING>
+        <LABEL_WAITING>En attente du Poisson ({0}/{1}s) ...</LABEL_WAITING>
+
+        <LABEL_HEARTHSTONE>Pêche terminée - PDF...</LABEL_HEARTHSTONE>
+        <LABEL_APPLY_LURE>Application leurre...</LABEL_APPLY_LURE>
+        <LABEL_APPLY_CHARM>Application charme...</LABEL_APPLY_CHARM>
+        <LABEL_APPLY_RAFT>Application radeau...</LABEL_APPLY_RAFT>
+        <LABEL_APPLY_BAIT>Application appât {0}...</LABEL_APPLY_BAIT>
+    </manager>
+    <frmSettings>
+        <TITLE>Paramètres</TITLE>
+
+        <!-- Tabs Titles -->
+        <TAB_TITLE_GENERAL_FISHING>Général</TAB_TITLE_GENERAL_FISHING>
+        <TAB_TITLE_FIND_CURSOR>Recherche du Curseur</TAB_TITLE_FIND_CURSOR>
+        <TAB_TITLE_HEARING_FISH>Audio</TAB_TITLE_HEARING_FISH>
+        <TAB_TITLE_PREMIUM>Paramètres Premium</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_ANTI_AFK>Anti-Afk</TAB_TITLE_ANTI_AFK>
+        <TAB_TITLE_LANGUAGE>Langue</TAB_TITLE_LANGUAGE>
+
+        <!-- General Fishing -->
+        <LABEL_DELAY_AFTER_CAST>Delai après Cast :</LABEL_DELAY_AFTER_CAST>
+        <LABEL_DELAY_AFTER_CAST_DESC>Nombre de millisecondes à attendre après le cast avant de commencer à chercher. Trop court et vous manquerez le flotteur, trop long et vous perdrez du temps.</LABEL_DELAY_AFTER_CAST_DESC>
+
+        <LABEL_FISH_WAIT_LIMIT>Attente poisson max:</LABEL_FISH_WAIT_LIMIT>
+        <LABEL_FISH_WAIT_LIMIT_DESC>Nombre de millisecondes à attendre d'entendre un poisson avant d'abandonner. Trop long fait perdre de l'efficacité au bot, trop court et vous manquerez des poissons.</LABEL_FISH_WAIT_LIMIT_DESC>
+
+        <LABEL_DELAY_AFTER_LOOTING>Delai après Loot:</LABEL_DELAY_AFTER_LOOTING>
+        <LABEL_DELAY_AFTER_LOOTING_DESC>Nombre de millisecondes à attendre après avoir loot un poisson.</LABEL_DELAY_AFTER_LOOTING_DESC>
+
+        <!-- Finding the Cursor -->
+
+        <LABEL_SCANNING_STEPS>Etapes de Scan :</LABEL_SCANNING_STEPS>
+        <LABEL_SCANNING_STEPS_DESC>Un plus grand nombre d'étapes implique moins de chance de manquer le flotteur, mais ralenti le scan.</LABEL_SCANNING_STEPS_DESC>
+
+        <LABEL_SCANNING_DELAY>Délai de Scan :</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY_DESC>Le nombre de millisecondes à attendre avent de vérifier si le curseur a changé. Trop peu et vous risquez de ne pas détecter le flotteur; mais plus élevé le scan sera plus lent</LABEL_SCANNING_DELAY_DESC>
+
+        <LABEL_SCANNING_RETRIES>Tentatives de Scan :</LABEL_SCANNING_RETRIES>
+        <LABEL_SCANNING_RETRIES_DESC>Nombre de fois que le bot va effectuer une recherche complète.</LABEL_SCANNING_RETRIES_DESC>
+
+        <LABEL_CHECK_ICON>Vérifier l'icone du Curseur</LABEL_CHECK_ICON>
+        <LABEL_CHECK_ICON_DESC>Détermine si le bot doit vérifier l'icone avant de pecher. Permet d'éviter de cliquer autre part que sur le flotteur. Si votre flotteur n'est pas trouvé, essayer de désactiver cette option.</LABEL_CHECK_ICON_DESC>
+
+        <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
+        <LABEL_ALTERNATIVE_ROUTE_DESC>An alternative route for bobber searching.</LABEL_ALTERNATIVE_ROUTE_DESC>
+      
+        <!-- Hearing the Fish -->
+
+        <LABEL_SPLASH_THRESHOLD>Seuil de Splash :</LABEL_SPLASH_THRESHOLD>
+        <LABEL_SPLASH_THRESHOLD_DESC>Détermine si un son donné est assez fort pour être un poisson ou non. Trop faible et le bot confondra poisson et autres bruits. Trop élevé et le bot ignorera certains vrais poissons.</LABEL_SPLASH_THRESHOLD_DESC>
+
+        <LABEL_AUDIO_DEVICE>Périphérique Audio :</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE_DESC>Selectionnez le périphérique audio utilisé par WoW. Si le bot ne peut pas "entendre" le jeu, il ne trouvera aucun poisson. Si vous n'êtes pas sûr, lancez de la musique et séléctionnez tous les périphériques jusqu'à trouver le bon.</LABEL_AUDIO_DEVICE_DESC>
+
+        <!-- Premium Settings -->
+        <LABEL_CAST_KEY>Touche Cast:</LABEL_CAST_KEY>
+        <LABEL_LURE_KEY>Touche Leurre:</LABEL_LURE_KEY>
+        <LABEL_HEARTHSTONE_KEY>Touche PDF:</LABEL_HEARTHSTONE_KEY>
+        <LABEL_RAFT_KEY>Touche Radeau:</LABEL_RAFT_KEY>
+        <LABEL_CHARM_KEY>Touche Charme:</LABEL_CHARM_KEY>
+        <LABEL_BAIT_KEY_1>Touche Appât 1:</LABEL_BAIT_KEY_1>
+        <LABEL_BAIT_KEY_2>Touche Appât 2:</LABEL_BAIT_KEY_2>
+        <LABEL_BAIT_KEY_3>Touche Appât 3:</LABEL_BAIT_KEY_3>
+        <LABEL_BAIT_KEY_4>Touche Appât 4:</LABEL_BAIT_KEY_4>
+        <LABEL_BAIT_KEY_5>Touche Appât 5:</LABEL_BAIT_KEY_5>
+        <LABEL_BAIT_KEY_6>Touche Appât 6:</LABEL_BAIT_KEY_6>
+        <LABEL_BAIT_KEY_7>Touche Appât 7:</LABEL_BAIT_KEY_7>
+
+        <LABEL_CUSTOMIZE_DESC>Parametrez vos raccourcis pour éviter de ré-arranger vos barres avant/après la pêche.</LABEL_CUSTOMIZE_DESC>
+
+        <CB_ALT_KEY>Utiliser touche Alt</CB_ALT_KEY>
+        <CB_AUTO_LURE>Appliquer Leurre toutes les X minutes</CB_AUTO_LURE>
+        <CB_AUTO_HEARTHSTONE>Pierre de Foyer après X Minutes:</CB_AUTO_HEARTHSTONE>
+        <CB_AUTO_RAFT>Radeau toutes les X minutes</CB_AUTO_RAFT>
+        <CB_AUTO_CHARM>Charme toutes les X minutes</CB_AUTO_CHARM>
+        <CB_AUTO_BAIT>Appât toutes les X minutes</CB_AUTO_BAIT>
+        <CB_CYCLE_THROUGH_BAIT_LIST>Parcourir les 7 appâts l'un après l'autre</CB_CYCLE_THROUGH_BAIT_LIST>
+        <CB_SHIFT_LOOT>Shift-Loot? (Si AutoLoot désactivé, activez cette option)</CB_SHIFT_LOOT>
+
+        <LABEL_PROCESS_NAME>Nom processus WoW:</LABEL_PROCESS_NAME>
+        <LABEL_PROCESS_NAME_DESC>Le nom du processus à mettre au premier plan (change rarement mais a déjà été changé lors de nouvelles extensions par le passé).</LABEL_PROCESS_NAME_DESC>
+
+        <!-- Anti-Afk  -->
+        <CB_ANTI_AFK>Activer l'Anti-Afk toutes les X minutes</CB_ANTI_AFK>
+        <CMB_ANTIAFK_MOVE>Avant - Arrière</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Gauche - Droite</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Saut</CMB_ANTIAFK_MOVE>
+
+        <!-- Language  -->
+        <LABEL_LANGUAGE>Langue :</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE_DESC>
+          Choisissez la langue souhaitée.
+          Les fichiers de langue XML doivent se situer dans le répertoire "Resources".
+        </LABEL_LANGUAGE_DESC>
+        <TITLE_LANGUAGE_CHANGE>Redémarrage Requis</TITLE_LANGUAGE_CHANGE>
+        <LABEL_LANGUAGE_CHANGE>L'application va redémarrer afin prendre en compte le changement de langue.</LABEL_LANGUAGE_CHANGE>
+
+        <!-- Buttons -->
+        <BUTTON_SAVE>Sauvegarder</BUTTON_SAVE>
+        <BUTTON_CANCEL>Annuler</BUTTON_CANCEL>
+    </frmSettings>
+    <frmStats>
+        <TITLE>Statistiques</TITLE>
+        <LABEL_SUCCESS>Poissons pêchés :</LABEL_SUCCESS>
+        <LABEL_NOT_FOUND>Poissons non-trouvés :</LABEL_NOT_FOUND>
+        <LABEL_NOT_EARED>Poissons non-entendus :</LABEL_NOT_EARED>
+        <LABEL_TOTAL>Total :</LABEL_TOTAL>
+        <BUTTON_RESET>Reset</BUTTON_RESET>
+        <BUTTON_CLOSE>Fermer</BUTTON_CLOSE>
+    </frmStats>
+</translation>
