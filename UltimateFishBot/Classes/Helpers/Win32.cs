@@ -40,6 +40,14 @@ namespace UltimateFishBot.Classes.Helpers
             EXTENDEDKEY = 1,
             KEYUP = 2
         };
+        private enum ShowWindowEnum
+        {
+            Hide = 0,
+            ShowNormal = 1, ShowMinimized = 2, ShowMaximized = 3,
+            Maximize = 3, ShowNormalNoActivate = 4, Show = 5,
+            Minimize = 6, ShowMinNoActivate = 7, ShowNoActivate = 8,
+            Restore = 9, ShowDefault = 10, ForceMinimized = 11
+        };
 
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -71,15 +79,20 @@ namespace UltimateFishBot.Classes.Helpers
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
+        [DllImport("user32.dll")]
+        private static extern bool IsIconic(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
+
         private const uint WM_LBUTTONDOWN = 513;
         private const uint WM_LBUTTONUP = 514;
 
         private const uint WM_RBUTTONDOWN = 516;
         private const uint WM_RBUTTONUP = 517;
 
-        public static Rectangle GetWowRectangle()
+        public static Rectangle GetWowRectangle(IntPtr Wow)
         {
-            IntPtr Wow = FindWindow("GxWindowClass", "World Of Warcraft");
             Rect Win32ApiRect = new Rect();
             GetWindowRect(Wow, ref Win32ApiRect);
             Rectangle myRect = new Rectangle();
@@ -88,6 +101,19 @@ namespace UltimateFishBot.Classes.Helpers
             myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
             myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
             return myRect;
+        }
+
+        public static IntPtr FindWowWindow()
+        {
+            Process[] processlist = Process.GetProcesses();
+            foreach(Process process in processlist)
+            {
+                if(process.MainWindowTitle.ToUpper().Equals("WORLD OF WARCRAFT"))
+                {
+                    return process.MainWindowHandle;
+                }
+            }
+            return new IntPtr();
         }
 
         public static Bitmap GetCursorIcon(CursorInfo actualCursor, int width = 35, int height = 35)
@@ -106,20 +132,19 @@ namespace UltimateFishBot.Classes.Helpers
             return actualCursorIcon;
         }
 
-        static public void ActivateWow()
+        static public void ActivateWow(IntPtr Wow)
         {
-            ActivateApp(Properties.Settings.Default.ProcName);
-            ActivateApp(Properties.Settings.Default.ProcName + "-64");
-            ActivateApp("World Of Warcraft");
+            ActivateApp(Wow);
         }
 
-        static public void ActivateApp(string processName)
+        public static void ActivateApp(IntPtr Wow)
         {
-            Process[] p = Process.GetProcessesByName(processName);
-
-            // Activate the first application we find with this name
-            if (p.Count() > 0)
-                SetForegroundWindow(p[0].MainWindowHandle);
+            SetForegroundWindow(Wow);
+            //AllowSetForegroundWindow(Process.GetCurrentProcess().Id);
+            if (IsIconic(Wow))
+            {
+                ShowWindow(Wow, ShowWindowEnum.Restore);
+            }
         }
 
         public static void MoveMouse(int x, int y)
@@ -131,9 +156,9 @@ namespace UltimateFishBot.Classes.Helpers
             }
         }
 
-        public static CursorInfo GetNoFishCursor()
+        public static CursorInfo GetNoFishCursor(IntPtr Wow)
         {
-            Rectangle WoWRect = Win32.GetWowRectangle();
+            Rectangle WoWRect = Win32.GetWowRectangle(Wow);
             Win32.MoveMouse((WoWRect.X + 10), (WoWRect.Y + 45));
             LastRectX = WoWRect.X;
             LastRectY = WoWRect.Y;
@@ -167,7 +192,7 @@ namespace UltimateFishBot.Classes.Helpers
 
         public static void SendMouseClick()
         {
-            IntPtr Wow = FindWindow("GxWindowClass", "World Of Warcraft");
+            IntPtr Wow = FindWowWindow();
             long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
 
             if (Properties.Settings.Default.ShiftLoot)
@@ -179,6 +204,34 @@ namespace UltimateFishBot.Classes.Helpers
 
             if (Properties.Settings.Default.ShiftLoot)
                 SendKeyboardAction(16, keyState.KEYUP);
+        }
+
+        public static void SendMouseClick(IntPtr Wow)
+        {
+            long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
+
+            if (Properties.Settings.Default.ShiftLoot)
+                SendKeyboardAction(16, keyState.KEYDOWN);
+
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+
+            if (Properties.Settings.Default.ShiftLoot)
+                SendKeyboardAction(16, keyState.KEYUP);
+        }
+        public static void SendMouseDblRightClick(IntPtr Wow)
+        {
+            //long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
+            Rectangle wowRect = Win32.GetWowRectangle(Wow);
+            long dWord = MakeDWord( (wowRect.Width/2), (wowRect.Height/2) );
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(100);
+            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
         }
 
         public static bool SendKeyboardAction(Keys key, keyState state)
@@ -196,10 +249,10 @@ namespace UltimateFishBot.Classes.Helpers
             return (HiWord << 16) | (LoWord & 0xFFFF);
         }
 
-        static private int LastRectX;
-        static private int LastRectY;
+        private static int LastRectX;
+        private static int LastRectY;
 
-        static private int LastX;
-        static private int LastY;
+        private static int LastX;
+        private static int LastY;
     }
 }

@@ -251,6 +251,7 @@ namespace UltimateFishBot.Forms
             Properties.Settings.Default.AutoLure = cbAutoLure.Checked;
             Properties.Settings.Default.SwapGear = cbHearth.Checked;
             Properties.Settings.Default.UseAltKey = cbAlt.Checked;
+            Properties.Settings.Default.RightClickCast = cbDblRclickCast.Checked;
 
             Properties.Settings.Default.FishKey = txtFishKey.Text;
             Properties.Settings.Default.LureKey = txtLureKey.Text;
@@ -449,6 +450,7 @@ namespace UltimateFishBot.Forms
                 Application.Restart();
             }
         }
+
 
     }
 }

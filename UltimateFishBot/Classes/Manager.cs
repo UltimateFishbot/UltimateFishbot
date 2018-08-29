@@ -59,12 +59,15 @@ namespace UltimateFishBot.Classes
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
 
+        private IntPtr WowWindowPointer;
+
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
             m_managerEventHandler    = managerEventHandler;
+            this.WowWindowPointer = Helpers.Win32.FindWowWindow();
 
-            m_eyes                   = new Eyes();
-            m_hands                  = new Hands();
+            m_eyes                   = new Eyes(this.WowWindowPointer);
+            m_hands                  = new Hands(this.WowWindowPointer);
             m_ears                   = new Ears();
             m_mouth                  = new Mouth(progressHandle);
             m_legs                   = new Legs();
