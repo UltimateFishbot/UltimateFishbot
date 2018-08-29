@@ -138,15 +138,22 @@ namespace UltimateFishBot
 
             foreach (HotKey hotKey in (HotKey[])Enum.GetValues(typeof(HotKey))) {
                 Keys key = Keys.None;
+                try
+                {
+                    switch (hotKey)
+                    {
+                        case HotKey.StartStop: key = Properties.Settings.Default.StartStopHotKey; break;
+                        case HotKey.CursorCapture: key = Properties.Settings.Default.CursorCaptureHotKey; break;
+                        default: continue;
+                    }
 
-                switch (hotKey) {
-                    case HotKey.StartStop: key = Properties.Settings.Default.StartStopHotKey; break;
-                    case HotKey.CursorCapture: key = Properties.Settings.Default.CursorCaptureHotKey; break;
-                    default: continue;
+                    KeyModifier modifiers = RemoveAndReturnModifiers(ref key);
+                    Win32.RegisterHotKey(this.Handle, (int)hotKey, (int)modifiers, (int)key);
+
+                } catch(Exception ex)
+                {
+                    Console.WriteLine("Unable to load Hotkey:" + key);
                 }
-
-                KeyModifier modifiers = RemoveAndReturnModifiers(ref key);
-                Win32.RegisterHotKey(this.Handle, (int)hotKey, (int)modifiers, (int)key);
             }
         }
 

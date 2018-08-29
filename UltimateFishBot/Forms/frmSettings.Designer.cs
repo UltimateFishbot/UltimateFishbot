@@ -952,6 +952,7 @@
             this.ccHotKey.Name = "ccHotKey";
             this.ccHotKey.Size = new System.Drawing.Size(160, 20);
             this.ccHotKey.TabIndex = 54;
+            this.ccHotKey.Text = "C";
             // 
             // ccHotKeyLabel
             // 

@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Windows.Forms;
+
 namespace UltimateFishBot.Properties {
     
     
@@ -592,7 +595,14 @@ namespace UltimateFishBot.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+S")]
         public global::System.Windows.Forms.Keys StartStopHotKey {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
+                try
+                {
+                    return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
+                }
+                catch (Exception ex)
+                {
+                    return Keys.ControlKey | Keys.ShiftKey | Keys.S;
+                }
             }
             set {
                 this["StartStopHotKey"] = value;
@@ -622,13 +632,20 @@ namespace UltimateFishBot.Properties {
                 this["AverageSound"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+C")]
         public global::System.Windows.Forms.Keys CursorCaptureHotKey {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
+                try
+                {
+                    return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
+                } catch (Exception ex)
+                {
+                    return Keys.ControlKey | Keys.ShiftKey | Keys.C;
+                }
+
             }
             set {
                 this["CursorCaptureHotKey"] = value;
