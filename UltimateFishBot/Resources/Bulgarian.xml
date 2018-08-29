@@ -1,0 +1,197 @@
+<translation>
+    <frmCode>
+        <TITLE>Благодаря че използвате този бот</TITLE>
+        <LIBELLE_TITLE>Спокойно... Все още е безплатно!</LIBELLE_TITLE>
+        <LIBELLE_DESC>Използвали сте бота {0} пъти. За да продължите да го ползвате - посетете уебсайта и въведете 3-5 цифрения код по долу. Ако броузър не се отвори автоматично, посетете www.fishbot.net/code.html - или kликнете линка долу. Обещавам че е бързо и лесно.</LIBELLE_DESC>
+        <LIBELLE_TRY_AGAIN>Опитай пак!</LIBELLE_TRY_AGAIN>
+        <LIBELLE_ENTER>Въведи</LIBELLE_ENTER>
+    </frmCode>
+    <frmDirections>
+        <TITLE>Как се ползва</TITLE>
+        <LABEL_SETTING_WOW_TITLE>1.)  Настройване на WoW</LABEL_SETTING_WOW_TITLE>
+        <LABEL_SETTING_WOW_DESC>
+            * Екипирайте въдицата
+            * Поставете въдицата на #1 слота ви
+            * От настройките Мастър звука да е 100%. Звук да е Високо, Музика да е Ниско, Околност да е Ниско
+            * Настройте WoW да е Windowed mode и смалете прозореца възможно най много
+        </LABEL_SETTING_WOW_DESC>
+        <LABEL_FIND_LOCATION_TITLE>2.)  Намерете място</LABEL_FIND_LOCATION_TITLE>
+        <LABEL_FIND_LOCATION_DESC>
+            * Отидете до езеро/море/океан/река
+            * Приближете колкото се може повече (със скролиране на мишката)
+            * Намерете място където няма много околоен звук
+            * Избягвайте места които променят иконата на курсора
+        </LABEL_FIND_LOCATION_DESC>
+        <LABEL_FISH_TITLE>3.)  Ловете!</LABEL_FISH_TITLE>
+        <LABEL_FISH_DESC>
+            * Натисни Старт, отпуснете се, и оставете бота да се погрижи за всичко.
+        </LABEL_FISH_DESC>
+    </frmDirections>
+    <frmMain>
+        <BUTTON_START>Старт</BUTTON_START>
+        <BUTTON_RESUME>Продължи</BUTTON_RESUME>
+        <BUTTON_STOP>Спри</BUTTON_STOP>
+        <BUTTON_PAUSE>Пауза</BUTTON_PAUSE>
+        <BUTTON_SETTINGS>Настройки</BUTTON_SETTINGS>
+        <BUTTON_STATISTICS>Статистика</BUTTON_STATISTICS>
+        <BUTTON_HTU>Как се ползва</BUTTON_HTU>
+        <BUTTON_EXIT>Излез</BUTTON_EXIT>
+		<BUTTON_ABOUT>За бота</BUTTON_ABOUT>
+
+        <LABEL_STARTED>Започнато</LABEL_STARTED>
+        <LABEL_RESUMED>Продължено</LABEL_RESUMED>
+        <LABEL_PAUSED>Пауза</LABEL_PAUSED>
+        <LABEL_STOPPED>Спряно</LABEL_STOPPED>
+
+        <LABEL_CHECKING_STATUS>Проверява статус...</LABEL_CHECKING_STATUS>
+        <LABEL_NO_LONGER_SAFE>Ботът не е безопасен.  Моля не го ползвайте!</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>Не може да провери статус!  Ползвай на собствен риск...</LABEL_COULD_NOT_CHECK_STATUS>
+    </frmMain>
+    <manager>
+        <LABEL_HEAR_FISH>Чух рибка!</LABEL_HEAR_FISH>
+        <LABEL_CASTING>Хърлям въдицата...</LABEL_CASTING>
+        <LABEL_START_FINDING>Започвам да търся примамката...</LABEL_START_FINDING>
+        <LABEL_FINDING>Търся примамката...</LABEL_FINDING>
+        <LABEL_WAITING>Чакам за риба ({0}/{1}s) ...</LABEL_WAITING>
+
+        <LABEL_HEARTHSTONE>Рибене готово - използване на Хартстоун...</LABEL_HEARTHSTONE>
+        <LABEL_APPLY_LURE>Прилага се примака...</LABEL_APPLY_LURE>
+        <LABEL_APPLY_CHARM>Прилага се примака...</LABEL_APPLY_CHARM>
+        <LABEL_APPLY_RAFT>Прилага се примака...</LABEL_APPLY_RAFT>
+        <LABEL_APPLY_BAIT>Прилага се примака {0}...</LABEL_APPLY_BAIT>
+    </manager>
+    <frmSettings>
+        <TITLE>Настройки</TITLE>
+
+        <!-- Tabs Titles -->
+        <TAB_TITLE_GENERAL_FISHING>Общи</TAB_TITLE_GENERAL_FISHING>
+        <TAB_TITLE_FIND_CURSOR>Курсор</TAB_TITLE_FIND_CURSOR>
+        <TAB_TITLE_HEARING_FISH>Чуване на рибата</TAB_TITLE_HEARING_FISH>
+        <TAB_TITLE_PREMIUM>Други</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_ANTI_AFK>Anti-Afk</TAB_TITLE_ANTI_AFK>
+        <TAB_TITLE_LANGUAGE>Език</TAB_TITLE_LANGUAGE>
+
+        <!-- General Fishing -->
+        <LABEL_DELAY_AFTER_CAST>Чакане след хвърляне:</LABEL_DELAY_AFTER_CAST>
+        <LABEL_DELAY_AFTER_CAST_DESC>Число в милисекунди преди да се търси за примамката. Твърде малко и ще пропуснеш рибата, твърде голямо и ще хаби повече време.</LABEL_DELAY_AFTER_CAST_DESC>
+
+        <LABEL_FISH_WAIT_LIMIT>Лимит на чакане:</LABEL_FISH_WAIT_LIMIT>
+        <LABEL_FISH_WAIT_LIMIT_DESC>Число в милисекунди преди да се слуша за риба преди да се рестартира. Твърде дълго и бота работи по бавно, твърде малко и ще пропуснеш рибата.</LABEL_FISH_WAIT_LIMIT_DESC>
+
+        <LABEL_DELAY_AFTER_LOOTING>Чакане слд ограбване:</LABEL_DELAY_AFTER_LOOTING>
+        <LABEL_DELAY_AFTER_LOOTING_DESC>Число в милисекунди да се чака селд като риба бъде хваната.</LABEL_DELAY_AFTER_LOOTING_DESC>
+
+        <!-- Finding the Cursor -->
+
+        <LABEL_SCANNING_STEPS>Сканиращи стъпки:</LABEL_SCANNING_STEPS>
+        <LABEL_SCANNING_STEPS_DESC>Колкото повече толкова по-добре, но става по-бавно и рибата може да се пропусне.</LABEL_SCANNING_STEPS_DESC>
+
+        <LABEL_SCANNING_DELAY>Чакане за сканиране:</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY_DESC>Броя на милисекунди да се чака преди курсора да се провери. Твърде малко и ще пропуснеш рибата, но по голямо число губи време.</LABEL_SCANNING_DELAY_DESC>
+
+        <LABEL_SCANNING_RETRIES>Брой опити:</LABEL_SCANNING_RETRIES>
+        <LABEL_SCANNING_RETRIES_DESC>Колко пъти да се опита да намери примамката.</LABEL_SCANNING_RETRIES_DESC>
+
+        <LABEL_CHECK_ICON>Проверка на иконата на курсора</LABEL_CHECK_ICON>
+        <LABEL_CHECK_ICON_DESC>Дали бота допълнително да прверява иконата. Ао иконата не е кукичка не избирай тази опция. Може да не работи на някои компютри.</LABEL_CHECK_ICON_DESC>
+
+        <LABEL_ALTERNATIVE_ROUTE>Спиралово търсене</LABEL_ALTERNATIVE_ROUTE>
+        <LABEL_ALTERNATIVE_ROUTE_DESC>Друг начин по който да се търси примамката.</LABEL_ALTERNATIVE_ROUTE_DESC>
+		
+		<LABEL_SCAN_AREA>Сканирана площ (ако не е избрано, това ще бъде изчислено автоматично):</LABEL_SCAN_AREA>
+		<SET_SCANNING_AREA>Избери площ</SET_SCANNING_AREA>
+		<START_XY>Начало:</START_XY>
+		<END_XY>Край:</END_XY>
+		<SCAN_TITLE>Изберете площ</SCAN_TITLE>
+		<SCAN_MESSAGE>Сега ще се появи друг прозорец на който може да начертаете площа.Когато сте готови натиснете Ентър или кликнете два пъти. Натиснете ОК за да продължите...</SCAN_MESSAGE>
+		<AREA_SMALL>Площа е твърде малка!</AREA_SMALL>
+		
+        <!-- Hearing the Fish -->
+
+        <LABEL_SPLASH_THRESHOLD>Звуков праг:</LABEL_SPLASH_THRESHOLD>
+        <LABEL_SPLASH_THRESHOLD_DESC>Определя дали звука е достатъчно висок че да е риба.Ако е твърде малко бота ще смята всеки звук за риба. Твърде високо и никога няма да намира риба.</LABEL_SPLASH_THRESHOLD_DESC>
+
+        <LABEL_AUDIO_DEVICE>Звуково Устройство:</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE_DESC>Изберете устройството което WoW използва.  Ако бота не чува играта, риба не може да бъде намерена. Ако не сте сигурни, пуснете накаква музика за да проверите кое устройство е правилно.</LABEL_AUDIO_DEVICE_DESC>
+
+        <CB_AVG_SND>Изплозвай средно аритметичен метод (по-добре в шумни места (градове като огримар), но има по малък шанс да чуе рибата)</CB_AVG_SND>
+      
+        <!-- Premium Settings -->
+        <LABEL_CAST_KEY>Бутон въдица:</LABEL_CAST_KEY>
+        <LABEL_LURE_KEY>Бутон примака:</LABEL_LURE_KEY>
+        <LABEL_HEARTHSTONE_KEY>   Хартстоун:</LABEL_HEARTHSTONE_KEY>
+        <LABEL_RAFT_KEY>MoP примака:</LABEL_RAFT_KEY>
+        <LABEL_CHARM_KEY>MoP примака:</LABEL_CHARM_KEY>
+        <LABEL_BAIT_KEY_1>WoD примака 1:</LABEL_BAIT_KEY_1>
+        <LABEL_BAIT_KEY_2>WoD примака 2:</LABEL_BAIT_KEY_2>
+        <LABEL_BAIT_KEY_3>WoD примака 3:</LABEL_BAIT_KEY_3>
+        <LABEL_BAIT_KEY_4>WoD примака 4:</LABEL_BAIT_KEY_4>
+        <LABEL_BAIT_KEY_5>WoD примака 5:</LABEL_BAIT_KEY_5>
+        <LABEL_BAIT_KEY_6>WoD примака 6:</LABEL_BAIT_KEY_6>
+        <LABEL_BAIT_KEY_7>WoD примака 7:</LABEL_BAIT_KEY_7>
+
+        <LABEL_CUSTOMIZE_DESC>Персонализирайте бутоните за де не ви се налага да си пренареждате баровете.</LABEL_CUSTOMIZE_DESC>
+
+        <CB_ALT_KEY>Използвай с Alt-бутон</CB_ALT_KEY>
+        <CB_AUTO_LURE>Използвай (lure) всеки X минути</CB_AUTO_LURE>
+        <CB_AUTO_HEARTHSTONE>Хартстоун всеки X минути:</CB_AUTO_HEARTHSTONE>
+        <CB_AUTO_RAFT>Опресни (raft) всеки X минути</CB_AUTO_RAFT>
+        <CB_AUTO_CHARM>Опресни (charm) всеки X минути</CB_AUTO_CHARM>
+        <CB_AUTO_BAIT>Опресни (bait) всеки X минути</CB_AUTO_BAIT>
+        <CB_CYCLE_THROUGH_BAIT_LIST>Преминивай през всички 7 примамки</CB_CYCLE_THROUGH_BAIT_LIST>
+        <CB_SHIFT_LOOT>Shift-Loot? (Aко автоматично обиране не е включено, изберете това)</CB_SHIFT_LOOT>
+
+        <LABEL_PROCESS_NAME>WoW процес:</LABEL_PROCESS_NAME>
+        <LABEL_PROCESS_NAME_DESC>Име на процеса който да се активира (това рядко се променя) но може да се промени на нов експанжън.</LABEL_PROCESS_NAME_DESC>
+
+        <!-- Anti-Afk  -->
+        <CB_ANTI_AFK>Използвах Anti-Afk всеки X минути</CB_ANTI_AFK>
+        <CMB_ANTIAFK_MOVE>Напред - Назад</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Наляво - Надясно</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>Скок</CMB_ANTIAFK_MOVE>
+
+        <!-- Language  -->
+        <LABEL_LANGUAGE>Език :</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE_DESC>
+          Избери език който искате да ползвате.
+          Езиковите XML файлове трябва да се намират в Resources папката.
+        </LABEL_LANGUAGE_DESC>
+        <TITLE_LANGUAGE_CHANGE>Трябва да се рестартира.</TITLE_LANGUAGE_CHANGE>
+        <LABEL_LANGUAGE_CHANGE>За да се промени езика бота ще се рестартира.</LABEL_LANGUAGE_CHANGE>
+
+      <!-- Other-->
+      <RESET_TITLE>Нулирай настройки</RESET_TITLE>
+      <RESET_MESSAGE>Натисни ок за да нулираш всички промени и да рестартираш бота.</RESET_MESSAGE>
+      
+        <!-- Buttons -->
+        <BUTTON_SAVE>Запази</BUTTON_SAVE>
+        <BUTTON_CANCEL>Отмени</BUTTON_CANCEL>
+    </frmSettings>
+    <frmStats>
+        <TITLE>Статистика</TITLE>
+        <LABEL_SUCCESS>Успешни улова :</LABEL_SUCCESS>
+        <LABEL_NOT_FOUND>Не намерена риба :</LABEL_NOT_FOUND>
+        <LABEL_NOT_EARED>Не чута риба:</LABEL_NOT_EARED>
+        <LABEL_TOTAL>Общо :</LABEL_TOTAL>
+        <BUTTON_RESET>Нулирай</BUTTON_RESET>
+        <BUTTON_CLOSE>Затвори</BUTTON_CLOSE>
+	</frmStats>	
+    <frmAbout>
+        <TITLE>За бота</TITLE>
+        <DESCRIPTION>Ако си като мен - обичаш да играеш World of Warcraft... но смяташ че ловенето на риба е скучно и отнбема твърде дълго. Предпочиташ да се наслаждаваш на играта вместо да си губиш времето с дребни неща. 
+		
+		За щастие, и за двама ни, аз съм програмист.  Та реших да накодя тази програма която ще лови риба вместо теб. 
+		
+		За повече информация и FAQ отиди на www.fishbot.net 
+		
+		Автори: 
+		Rob ultimatefishbot@gmail.com, 
+		Mograine, 
+		henrikhermansen, 
+		и други... 
+    Превод от:
+    NaNraptor
+		икони от www.iconarchive.com и Google Image Search 
+		</DESCRIPTION>
+    </frmAbout>
+</translation>
