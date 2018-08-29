@@ -56,14 +56,14 @@ namespace UltimateFishBot.Classes.BodyParts
                 Win32.SendKey(Properties.Settings.Default.FishKey);
                 Log.Information("Sent key: " + Properties.Settings.Default.FishKey);
             }
-            await Task.Delay(rand.Next(0,Properties.Settings.Default.CastingDelay), token);
+            await Task.Delay(new Random().Next(0,Properties.Settings.Default.CastingDelay), token);
         }
 
         public async Task Loot()
         {
             Win32.SendMouseClick(this.Wow);
             Log.Information("Send Loot.");
-            await Task.Delay(rand.Next(0,Properties.Settings.Default.LootingDelay));
+            await Task.Delay(new Random().Next(0,Properties.Settings.Default.LootingDelay));
         }
 
         public void ResetBaitIndex()
