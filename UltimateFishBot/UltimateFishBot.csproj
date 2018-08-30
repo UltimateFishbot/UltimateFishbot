@@ -205,6 +205,9 @@
     <Content Include="Resources\Magyar.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Български.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\strip.png" />
     <None Include="Resources\online.png" />
     <None Include="Resources\offline.png" />

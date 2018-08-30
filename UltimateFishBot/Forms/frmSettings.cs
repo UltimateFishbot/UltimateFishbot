@@ -154,14 +154,19 @@ namespace UltimateFishBot.Forms
              */
 
             /// General
-            txtCastDelay.Text = Properties.Settings.Default.CastingDelay.ToString();
-            txtLootingDelay.Text = Properties.Settings.Default.LootingDelay.ToString();
-            txtFishWait.Text = Properties.Settings.Default.FishWait.ToString();
+            txtCastDelayLow.Text = Properties.Settings.Default.CastingDelayLow.ToString();
+            txtLootingDelayLow.Text = Properties.Settings.Default.LootingDelayLow.ToString();
+            txtFishWaitLow.Text = Properties.Settings.Default.FishWaitLow.ToString();
+            txtCastDelayHigh.Text = Properties.Settings.Default.CastingDelayHigh.ToString();
+            txtLootingDelayHigh.Text = Properties.Settings.Default.LootingDelayHigh.ToString();
+            txtFishWaitHigh.Text = Properties.Settings.Default.FishWaitHigh.ToString();
 
             /// Finding the Cursor
-            txtDelay.Text = Properties.Settings.Default.ScanningDelay.ToString();
+            txtDelayLow.Text = Properties.Settings.Default.ScanningDelayLow.ToString();
+            txtScanStepsLow.Text = Properties.Settings.Default.ScanningStepsLow.ToString();
+            txtDelayHigh.Text = Properties.Settings.Default.ScanningDelayHigh.ToString();
+            txtScanStepsHigh.Text = Properties.Settings.Default.ScanningStepsHigh.ToString();
             txtRetries.Text = Properties.Settings.Default.ScanningRetries.ToString();
-            txtScanSteps.Text = Properties.Settings.Default.ScanningSteps.ToString();
             cmbCompareIcon.Checked = Properties.Settings.Default.CheckCursor;
             cmbAlternativeRoute.Checked = Properties.Settings.Default.AlternativeRoute;
             ccHotKey.Text = new KeysConverter().ConvertToString(Properties.Settings.Default.CursorCaptureHotKey);
@@ -231,16 +236,21 @@ namespace UltimateFishBot.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Some changes may start working only after application restart.");
+            MessageBox.Show("Some changes may start working only after application restart."); //Needs translation support
             /// General
-            Properties.Settings.Default.CastingDelay = int.Parse(txtCastDelay.Text);
-            Properties.Settings.Default.LootingDelay = int.Parse(txtLootingDelay.Text);
-            Properties.Settings.Default.FishWait = int.Parse(txtFishWait.Text);
+            Properties.Settings.Default.CastingDelayLow = int.Parse(txtCastDelayLow.Text);
+            Properties.Settings.Default.LootingDelayLow = int.Parse(txtLootingDelayLow.Text);
+            Properties.Settings.Default.FishWaitLow = int.Parse(txtFishWaitLow.Text);
+            Properties.Settings.Default.CastingDelayHigh = int.Parse(txtCastDelayHigh.Text);
+            Properties.Settings.Default.LootingDelayHigh = int.Parse(txtLootingDelayHigh.Text);
+            Properties.Settings.Default.FishWaitHigh = int.Parse(txtFishWaitHigh.Text);
 
             /// Finding the Cursor
-            Properties.Settings.Default.ScanningDelay = int.Parse(txtDelay.Text);
+            Properties.Settings.Default.ScanningDelayLow = int.Parse(txtDelayLow.Text);
+            Properties.Settings.Default.ScanningDelayHigh = int.Parse(txtDelayHigh.Text);
+            Properties.Settings.Default.ScanningStepsLow = int.Parse(txtScanStepsLow.Text);
+            Properties.Settings.Default.ScanningStepsHigh = int.Parse(txtScanStepsHigh.Text);
             Properties.Settings.Default.ScanningRetries = int.Parse(txtRetries.Text);
-            Properties.Settings.Default.ScanningSteps = int.Parse(txtScanSteps.Text);
             Properties.Settings.Default.CheckCursor = cmbCompareIcon.Checked;
             Properties.Settings.Default.AlternativeRoute = cmbAlternativeRoute.Checked;
             Properties.Settings.Default.customScanArea = customAreaCheckbox.Checked;
@@ -458,7 +468,5 @@ namespace UltimateFishBot.Forms
                 Application.Restart();
             }
         }
-
-
     }
 }

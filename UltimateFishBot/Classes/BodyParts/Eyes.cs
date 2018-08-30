@@ -24,6 +24,9 @@ namespace UltimateFishBot.Classes.BodyParts
         private Bitmap background;
         private Rectangle wowRectangle;
 
+        private int a_ScanningSteps = 0;
+        private int a_ScanningDelay = 0;
+
         public Eyes(IntPtr wowWindow)  {
             SetWow(wowWindow);
             bobberPosDict = new Dictionary<Win32.Point, int>();
@@ -43,7 +46,6 @@ namespace UltimateFishBot.Classes.BodyParts
         public void updateBackground() {
             background = new Grayscale(0.3725, 0.6154, 0.0121).Apply(Win32.CaptureWindow(Wow));
             background = new Pixellate().Apply(background);
-
         }
 
         public async Task<Win32.Point> LookForBobber(CancellationToken cancellationToken)
@@ -84,11 +86,13 @@ namespace UltimateFishBot.Classes.BodyParts
                     }
                 }
             }
-            if (bobberPos.x == 0 && bobberPos.y == 0) { 
+            if (bobberPos.x == 0 && bobberPos.y == 0) {
+                Random rnd = new Random();
+                a_ScanningSteps = rnd.Next(Properties.Settings.Default.ScanningStepsLow, Properties.Settings.Default.ScanningStepsHigh);
                 if (Properties.Settings.Default.AlternativeRoute) {
-                    bobberPos = await LookForBobberSpiralImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
+                    bobberPos = await LookForBobberSpiralImpl(scanArea, bobberPos, a_ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
                 } else {
-                    bobberPos = await LookForBobberImpl(scanArea, bobberPos, Properties.Settings.Default.ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
+                    bobberPos = await LookForBobberImpl(scanArea, bobberPos, a_ScanningSteps, Properties.Settings.Default.ScanningRetries, cancellationToken);
                 }
             }
             if (bobberPos.x != 0 && bobberPos.y != 0) {
@@ -247,7 +251,9 @@ namespace UltimateFishBot.Classes.BodyParts
             Win32.MoveMouse(x, y);
 
             // Pause (give the OS a chance to change the cursor)
-            await Task.Delay(mpy*Properties.Settings.Default.ScanningDelay, cancellationToken);
+            Random rnd = new Random();
+            a_ScanningDelay = rnd.Next(Properties.Settings.Default.ScanningDelayLow, Properties.Settings.Default.ScanningDelayHigh);
+            await Task.Delay(mpy*a_ScanningDelay, cancellationToken);
 
             Win32.CursorInfo actualCursor = Win32.GetCurrentCursor();
 

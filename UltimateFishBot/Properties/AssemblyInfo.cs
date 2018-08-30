@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("cb7daccc-7a0f-4e3f-a70d-67d002151ac8")]
+//REMOVED FOR ANTI-ANTI-HACK PURPOSES
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
@@ -35,4 +35,4 @@ using System.Resources;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("4.3.0.0")]
 [assembly: AssemblyFileVersion("4.3.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: NeutralResourcesLanguage("en")]

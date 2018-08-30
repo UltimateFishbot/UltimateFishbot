@@ -8,14 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Windows.Forms;
-
 namespace UltimateFishBot.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -28,25 +25,25 @@ namespace UltimateFishBot.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int ScanningSteps {
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int ScanningStepsLow {
             get {
-                return ((int)(this["ScanningSteps"]));
+                return ((int)(this["ScanningStepsLow"]));
             }
             set {
-                this["ScanningSteps"] = value;
+                this["ScanningStepsLow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public int ScanningDelay {
+        [global::System.Configuration.DefaultSettingValueAttribute("23")]
+        public int ScanningDelayLow {
             get {
-                return ((int)(this["ScanningDelay"]));
+                return ((int)(this["ScanningDelayLow"]));
             }
             set {
-                this["ScanningDelay"] = value;
+                this["ScanningDelayLow"] = value;
             }
         }
         
@@ -65,33 +62,33 @@ namespace UltimateFishBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1500")]
-        public int CastingDelay {
+        public int CastingDelayLow {
             get {
-                return ((int)(this["CastingDelay"]));
+                return ((int)(this["CastingDelayLow"]));
             }
             set {
-                this["CastingDelay"] = value;
+                this["CastingDelayLow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
-        public int LootingDelay {
+        [global::System.Configuration.DefaultSettingValueAttribute("2600")]
+        public int LootingDelayLow {
             get {
-                return ((int)(this["LootingDelay"]));
+                return ((int)(this["LootingDelayLow"]));
             }
             set {
-                this["LootingDelay"] = value;
+                this["LootingDelayLow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public int SplashLimit {
+        public long SplashLimit {
             get {
-                return ((int)(this["SplashLimit"]));
+                return ((long)(this["SplashLimit"]));
             }
             set {
                 this["SplashLimit"] = value;
@@ -304,13 +301,13 @@ namespace UltimateFishBot.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("22000")]
-        public int FishWait {
+        [global::System.Configuration.DefaultSettingValueAttribute("21500")]
+        public int FishWaitLow {
             get {
-                return ((int)(this["FishWait"]));
+                return ((int)(this["FishWaitLow"]));
             }
             set {
-                this["FishWait"] = value;
+                this["FishWaitLow"] = value;
             }
         }
         
@@ -595,14 +592,7 @@ namespace UltimateFishBot.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+S")]
         public global::System.Windows.Forms.Keys StartStopHotKey {
             get {
-                try
-                {
-                    return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
-                }
-                catch (Exception ex)
-                {
-                    return Keys.ControlKey | Keys.ShiftKey | Keys.S;
-                }
+                return ((global::System.Windows.Forms.Keys)(this["StartStopHotKey"]));
             }
             set {
                 this["StartStopHotKey"] = value;
@@ -632,20 +622,13 @@ namespace UltimateFishBot.Properties {
                 this["AverageSound"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+C")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt+Shift+C")]
         public global::System.Windows.Forms.Keys CursorCaptureHotKey {
             get {
-                try
-                {
-                    return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
-                } catch (Exception ex)
-                {
-                    return Keys.ControlKey | Keys.ShiftKey | Keys.C;
-                }
-
+                return ((global::System.Windows.Forms.Keys)(this["CursorCaptureHotKey"]));
             }
             set {
                 this["CursorCaptureHotKey"] = value;
@@ -661,6 +644,66 @@ namespace UltimateFishBot.Properties {
             }
             set {
                 this["RightClickCast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1800")]
+        public int CastingDelayHigh {
+            get {
+                return ((int)(this["CastingDelayHigh"]));
+            }
+            set {
+                this["CastingDelayHigh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int LootingDelayHigh {
+            get {
+                return ((int)(this["LootingDelayHigh"]));
+            }
+            set {
+                this["LootingDelayHigh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("22200")]
+        public int FishWaitHigh {
+            get {
+                return ((int)(this["FishWaitHigh"]));
+            }
+            set {
+                this["FishWaitHigh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
+        public int ScanningDelayHigh {
+            get {
+                return ((int)(this["ScanningDelayHigh"]));
+            }
+            set {
+                this["ScanningDelayHigh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int ScanningStepsHigh {
+            get {
+                return ((int)(this["ScanningStepsHigh"]));
+            }
+            set {
+                this["ScanningStepsHigh"] = value;
             }
         }
     }

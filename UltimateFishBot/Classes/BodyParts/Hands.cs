@@ -15,6 +15,9 @@ namespace UltimateFishBot.Classes.BodyParts
         private IntPtr Wow;
         private Random rand;
 
+        private int a_CastingDelay = 0;
+        private int a_LootingDelay = 0;
+
         public Hands()
         {
             m_baitIndex = 0;
@@ -56,14 +59,18 @@ namespace UltimateFishBot.Classes.BodyParts
                 Win32.SendKey(Properties.Settings.Default.FishKey);
                 Log.Information("Sent key: " + Properties.Settings.Default.FishKey);
             }
-            await Task.Delay(new Random().Next(0,Properties.Settings.Default.CastingDelay), token);
+            Random rnd = new Random();
+            a_CastingDelay = rnd.Next(Properties.Settings.Default.CastingDelayLow, Properties.Settings.Default.CastingDelayHigh);
+            await Task.Delay(a_CastingDelay, token);
         }
 
         public async Task Loot()
         {
             Win32.SendMouseClick(this.Wow);
             Log.Information("Send Loot.");
-            await Task.Delay(new Random().Next(0,Properties.Settings.Default.LootingDelay));
+            Random rnd = new Random();
+            a_LootingDelay = rnd.Next(Properties.Settings.Default.LootingDelayLow, Properties.Settings.Default.LootingDelayHigh);
+            await Task.Delay(a_LootingDelay);
         }
 
         public void ResetBaitIndex()

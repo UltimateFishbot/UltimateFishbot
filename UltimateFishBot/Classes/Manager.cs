@@ -62,11 +62,22 @@ namespace UltimateFishBot.Classes
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
 
+        ///  average
+        private int a_FishWait = 0;
+
+
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
             m_managerEventHandler    = managerEventHandler;
             IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow();
-
+            DialogResult result = DialogResult.Cancel;
+            while (WowWindowPointer == new IntPtr())
+            {
+                result = MessageBox.Show("Could not find the the WoW process. Please make sure the game is running.", "Error - WoW not open", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Cancel)
+                    Environment.Exit(1);
+                WowWindowPointer = Helpers.Win32.FindWowWindow();
+            }
             m_eyes                   = new Eyes(WowWindowPointer);
             m_hands                  = new Hands(WowWindowPointer);
             m_ears                   = new Ears();
@@ -292,17 +303,19 @@ namespace UltimateFishBot.Classes
                         "manager",
                         "LABEL_WAITING",
                         msecs / SECOND,
-                        Properties.Settings.Default.FishWait / SECOND));
+                        a_FishWait / SECOND));
                 }
             });
             var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
                 uiUpdateCancelToken);
 
+            Random rnd = new Random();
+            a_FishWait = rnd.Next(Properties.Settings.Default.FishWaitLow, Properties.Settings.Default.FishWaitHigh);
             bool fishHeard = await m_ears.Listen(
-                Properties.Settings.Default.FishWait,
+                a_FishWait,
                 cancellationToken);
-            //Log.Information("Ear result: "+fishHeard.ToString());
+            //Log.Information("Ear result: "+a_FishWait.ToString());
 
             uiUpdateCancelTokenSource.Cancel();
             try {

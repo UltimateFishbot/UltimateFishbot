@@ -2,22 +2,22 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UltimateFishBot.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ScanningSteps" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+    <Setting Name="ScanningStepsLow" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
     </Setting>
-    <Setting Name="ScanningDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+    <Setting Name="ScanningDelayLow" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">23</Value>
     </Setting>
     <Setting Name="ScanningRetries" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="CastingDelay" Type="System.Int32" Scope="User">
+    <Setting Name="CastingDelayLow" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1500</Value>
     </Setting>
-    <Setting Name="LootingDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
+    <Setting Name="LootingDelayLow" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2600</Value>
     </Setting>
-    <Setting Name="SplashLimit" Type="System.Int32" Scope="User">
+    <Setting Name="SplashLimit" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="Startup" Type="System.Int32" Scope="User">
@@ -71,8 +71,8 @@
     <Setting Name="ShiftLoot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="FishWait" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">22000</Value>
+    <Setting Name="FishWaitLow" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">21500</Value>
     </Setting>
     <Setting Name="AudioDevice" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -153,10 +153,25 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CursorCaptureHotKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Ctrl+Shift+C</Value>
+      <Value Profile="(Default)">Alt+Shift+C</Value>
     </Setting>
     <Setting Name="RightClickCast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CastingDelayHigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1800</Value>
+    </Setting>
+    <Setting Name="LootingDelayHigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="FishWaitHigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">22200</Value>
+    </Setting>
+    <Setting Name="ScanningDelayHigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="ScanningStepsHigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
     </Setting>
   </Settings>
 </SettingsFile>

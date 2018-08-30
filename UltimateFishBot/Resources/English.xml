@@ -94,7 +94,7 @@
 
         <LABEL_CHECK_ICON>Check Cursor Icon</LABEL_CHECK_ICON>
         <LABEL_CHECK_ICON_DESC>Specify if the bot must check the icon before fishing. Avoid clicking when icon isn't a bobber. May not work on some computer, disable if the bot doesn't find the bobber.</LABEL_CHECK_ICON_DESC>
-        <LABEL_CHECK_CAPTURE_ICON_DESC>Capture cursor Hotkey</LABEL_CHECK_CAPTURE_ICON_DESC>
+        <LABEL_CHECK_CAPTURE_ICON_DESC>Capture cursor:</LABEL_CHECK_CAPTURE_ICON_DESC>
 
         <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
         <LABEL_ALTERNATIVE_ROUTE_DESC>An alternative route for bobber searching.</LABEL_ALTERNATIVE_ROUTE_DESC>
