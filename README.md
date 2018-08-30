@@ -56,16 +56,27 @@ Updated by Pierre Ghiot (Mograine) in C#.
 Updated by daniel-widrick & Szabka
 ===============================
 -Hearing optimisation.
+
 -Bobber finding and Hearing is put in parallel threads.
+
 -Bobber finding searches the differences between "before cast" and "after cast" screenshots, than previous bobber positions ordered by occurence.
+
 -If bobber is still not found when fish is heard, it searches 2 seconds more for bobber, so that it still has a possibility to catch fish.
+
 -Bobber recheck on hook, so if bobber moves a little it will find the fish again.
+
 -Has log file for debugging purposes.
+
 -Can capture fishing cursor with hotkey for more precision bobber finding.
+
 -Hungarian translation.
+
 -Bulgarian translation.
+
 -Wow window handle searched when starts fishing(and not when fishbot starts).
+
 -Hotkey actions disabled in settings screen.
+
 -Stop fishing after 10 consecutive fish failures.
 
 Happy Fishing!
