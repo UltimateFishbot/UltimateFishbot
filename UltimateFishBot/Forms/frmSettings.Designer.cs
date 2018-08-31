@@ -1,4 +1,4 @@
-﻿namespace UltimateFishBot.Forms
+namespace UltimateFishBot.Forms
 {
     partial class frmSettings
     {
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.LabelScanningDelayDesc = new System.Windows.Forms.Label();
-            this.txtScanSteps = new System.Windows.Forms.TextBox();
+            this.txtScanStepsLow = new System.Windows.Forms.TextBox();
             this.LabelScanningStepsDesc = new System.Windows.Forms.Label();
             this.LabelScanningSteps = new System.Windows.Forms.Label();
             this.TabPage3 = new System.Windows.Forms.TabPage();
@@ -92,19 +92,25 @@
             this.LabelScanningDelay = new System.Windows.Forms.Label();
             this.tmeAudio = new System.Windows.Forms.Timer(this.components);
             this.buttonSave = new System.Windows.Forms.Button();
-            this.txtDelay = new System.Windows.Forms.TextBox();
+            this.txtDelayLow = new System.Windows.Forms.TextBox();
             this.tabSettings = new System.Windows.Forms.TabControl();
             this.TabPage2 = new System.Windows.Forms.TabPage();
-            this.txtFishWait = new System.Windows.Forms.TextBox();
+            this.dash2 = new System.Windows.Forms.Label();
+            this.txtLootingDelayHigh = new System.Windows.Forms.TextBox();
+            this.txtFishWaitHigh = new System.Windows.Forms.TextBox();
+            this.txtCastDelayHigh = new System.Windows.Forms.TextBox();
+            this.txtFishWaitLow = new System.Windows.Forms.TextBox();
             this.LabelFishWaitDesc = new System.Windows.Forms.Label();
             this.LabelDelayLooting = new System.Windows.Forms.Label();
-            this.txtLootingDelay = new System.Windows.Forms.TextBox();
+            this.txtLootingDelayLow = new System.Windows.Forms.TextBox();
             this.LabelDelayLootingDesc = new System.Windows.Forms.Label();
             this.LabelFishWait = new System.Windows.Forms.Label();
-            this.txtCastDelay = new System.Windows.Forms.TextBox();
+            this.txtCastDelayLow = new System.Windows.Forms.TextBox();
             this.LabelDelayCastDesc = new System.Windows.Forms.Label();
             this.LabelDelayCast = new System.Windows.Forms.Label();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.ccHotKey = new System.Windows.Forms.TextBox();
+            this.ccHotKeyLabel = new System.Windows.Forms.Label();
             this.LabelMaxXY = new System.Windows.Forms.Label();
             this.txtMaxXY = new System.Windows.Forms.TextBox();
             this.txtMinXY = new System.Windows.Forms.TextBox();
@@ -131,6 +137,12 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.chkTxt2speech = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.dash1 = new System.Windows.Forms.Label();
+            this.dash0 = new System.Windows.Forms.Label();
+            this.txtScanStepsHigh = new System.Windows.Forms.TextBox();
+            this.txtDelayHigh = new System.Windows.Forms.TextBox();
+            this.dash3 = new System.Windows.Forms.Label();
+            this.dash4 = new System.Windows.Forms.Label();
             this.TabPage3.SuspendLayout();
             this.TabPage4.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -148,16 +160,16 @@
             this.LabelScanningDelayDesc.Name = "LabelScanningDelayDesc";
             this.LabelScanningDelayDesc.Size = new System.Drawing.Size(423, 51);
             this.LabelScanningDelayDesc.TabIndex = 13;
-            this.LabelScanningDelayDesc.Text = "The number of milliseconds to wait before checking if the cursor has changed.  To" +
+            this.LabelScanningDelayDesc.Text = "The number of milliseconds to wait before checking if the cursor has changed.  Too" +
     " slow and you might not detect the bobber; but a bigger number goes slower.";
             // 
-            // txtScanSteps
+            // txtScanStepsLow
             // 
-            this.txtScanSteps.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanSteps.Location = new System.Drawing.Point(129, 9);
-            this.txtScanSteps.Name = "txtScanSteps";
-            this.txtScanSteps.Size = new System.Drawing.Size(32, 20);
-            this.txtScanSteps.TabIndex = 2;
+            this.txtScanStepsLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanStepsLow.Location = new System.Drawing.Point(136, 9);
+            this.txtScanStepsLow.Name = "txtScanStepsLow";
+            this.txtScanStepsLow.Size = new System.Drawing.Size(32, 20);
+            this.txtScanStepsLow.TabIndex = 2;
             // 
             // LabelScanningStepsDesc
             // 
@@ -335,7 +347,7 @@
             this.TabPage4.Name = "TabPage4";
             this.TabPage4.Size = new System.Drawing.Size(527, 309);
             this.TabPage4.TabIndex = 3;
-            this.TabPage4.Text = "Premium Settings";
+            this.TabPage4.Text = "Key Bindings";
             this.TabPage4.UseVisualStyleBackColor = true;
             // 
             // cbDblRclickCast
@@ -784,13 +796,13 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // txtDelay
+            // txtDelayLow
             // 
-            this.txtDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelay.Location = new System.Drawing.Point(129, 58);
-            this.txtDelay.Name = "txtDelay";
-            this.txtDelay.Size = new System.Drawing.Size(32, 20);
-            this.txtDelay.TabIndex = 3;
+            this.txtDelayLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDelayLow.Location = new System.Drawing.Point(136, 58);
+            this.txtDelayLow.Name = "txtDelayLow";
+            this.txtDelayLow.Size = new System.Drawing.Size(32, 20);
+            this.txtDelayLow.TabIndex = 3;
             // 
             // tabSettings
             // 
@@ -811,13 +823,19 @@
             // 
             // TabPage2
             // 
-            this.TabPage2.Controls.Add(this.txtFishWait);
+            this.TabPage2.Controls.Add(this.dash0);
+            this.TabPage2.Controls.Add(this.dash1);
+            this.TabPage2.Controls.Add(this.dash2);
+            this.TabPage2.Controls.Add(this.txtLootingDelayHigh);
+            this.TabPage2.Controls.Add(this.txtFishWaitHigh);
+            this.TabPage2.Controls.Add(this.txtCastDelayHigh);
+            this.TabPage2.Controls.Add(this.txtFishWaitLow);
             this.TabPage2.Controls.Add(this.LabelFishWaitDesc);
             this.TabPage2.Controls.Add(this.LabelDelayLooting);
-            this.TabPage2.Controls.Add(this.txtLootingDelay);
+            this.TabPage2.Controls.Add(this.txtLootingDelayLow);
             this.TabPage2.Controls.Add(this.LabelDelayLootingDesc);
             this.TabPage2.Controls.Add(this.LabelFishWait);
-            this.TabPage2.Controls.Add(this.txtCastDelay);
+            this.TabPage2.Controls.Add(this.txtCastDelayLow);
             this.TabPage2.Controls.Add(this.LabelDelayCastDesc);
             this.TabPage2.Controls.Add(this.LabelDelayCast);
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
@@ -828,13 +846,46 @@
             this.TabPage2.Text = "General Fishing";
             this.TabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtFishWait
+            // dash2
             // 
-            this.txtFishWait.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFishWait.Location = new System.Drawing.Point(153, 77);
-            this.txtFishWait.Name = "txtFishWait";
-            this.txtFishWait.Size = new System.Drawing.Size(53, 20);
-            this.txtFishWait.TabIndex = 3;
+            this.dash2.AutoSize = true;
+            this.dash2.Location = new System.Drawing.Point(251, 144);
+            this.dash2.Name = "dash2";
+            this.dash2.Size = new System.Drawing.Size(13, 13);
+            this.dash2.TabIndex = 23;
+            this.dash2.Text = "--";
+            // 
+            // txtLootingDelayHigh
+            // 
+            this.txtLootingDelayHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLootingDelayHigh.Location = new System.Drawing.Point(268, 141);
+            this.txtLootingDelayHigh.Name = "txtLootingDelayHigh";
+            this.txtLootingDelayHigh.Size = new System.Drawing.Size(53, 20);
+            this.txtLootingDelayHigh.TabIndex = 22;
+            // 
+            // txtFishWaitHigh
+            // 
+            this.txtFishWaitHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFishWaitHigh.Location = new System.Drawing.Point(268, 73);
+            this.txtFishWaitHigh.Name = "txtFishWaitHigh";
+            this.txtFishWaitHigh.Size = new System.Drawing.Size(53, 20);
+            this.txtFishWaitHigh.TabIndex = 21;
+            // 
+            // txtCastDelayHigh
+            // 
+            this.txtCastDelayHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCastDelayHigh.Location = new System.Drawing.Point(268, 12);
+            this.txtCastDelayHigh.Name = "txtCastDelayHigh";
+            this.txtCastDelayHigh.Size = new System.Drawing.Size(53, 20);
+            this.txtCastDelayHigh.TabIndex = 20;
+            // 
+            // txtFishWaitLow
+            // 
+            this.txtFishWaitLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFishWaitLow.Location = new System.Drawing.Point(192, 73);
+            this.txtFishWaitLow.Name = "txtFishWaitLow";
+            this.txtFishWaitLow.Size = new System.Drawing.Size(53, 20);
+            this.txtFishWaitLow.TabIndex = 3;
             // 
             // LabelFishWaitDesc
             // 
@@ -856,13 +907,13 @@
             this.LabelDelayLooting.TabIndex = 18;
             this.LabelDelayLooting.Text = "Delay After Looting:";
             // 
-            // txtLootingDelay
+            // txtLootingDelayLow
             // 
-            this.txtLootingDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLootingDelay.Location = new System.Drawing.Point(153, 141);
-            this.txtLootingDelay.Name = "txtLootingDelay";
-            this.txtLootingDelay.Size = new System.Drawing.Size(53, 20);
-            this.txtLootingDelay.TabIndex = 4;
+            this.txtLootingDelayLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLootingDelayLow.Location = new System.Drawing.Point(192, 141);
+            this.txtLootingDelayLow.Name = "txtLootingDelayLow";
+            this.txtLootingDelayLow.Size = new System.Drawing.Size(53, 20);
+            this.txtLootingDelayLow.TabIndex = 4;
             // 
             // LabelDelayLootingDesc
             // 
@@ -883,13 +934,13 @@
             this.LabelFishWait.TabIndex = 15;
             this.LabelFishWait.Text = "Fish Wait Limit:";
             // 
-            // txtCastDelay
+            // txtCastDelayLow
             // 
-            this.txtCastDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCastDelay.Location = new System.Drawing.Point(153, 12);
-            this.txtCastDelay.Name = "txtCastDelay";
-            this.txtCastDelay.Size = new System.Drawing.Size(53, 20);
-            this.txtCastDelay.TabIndex = 2;
+            this.txtCastDelayLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCastDelayLow.Location = new System.Drawing.Point(192, 12);
+            this.txtCastDelayLow.Name = "txtCastDelayLow";
+            this.txtCastDelayLow.Size = new System.Drawing.Size(53, 20);
+            this.txtCastDelayLow.TabIndex = 2;
             // 
             // LabelDelayCastDesc
             // 
@@ -913,6 +964,12 @@
             // 
             // TabPage1
             // 
+            this.TabPage1.Controls.Add(this.dash4);
+            this.TabPage1.Controls.Add(this.dash3);
+            this.TabPage1.Controls.Add(this.txtDelayHigh);
+            this.TabPage1.Controls.Add(this.txtScanStepsHigh);
+            this.TabPage1.Controls.Add(this.ccHotKey);
+            this.TabPage1.Controls.Add(this.ccHotKeyLabel);
             this.TabPage1.Controls.Add(this.LabelMaxXY);
             this.TabPage1.Controls.Add(this.txtMaxXY);
             this.TabPage1.Controls.Add(this.txtMinXY);
@@ -927,10 +984,10 @@
             this.TabPage1.Controls.Add(this.txtRetries);
             this.TabPage1.Controls.Add(this.LabelScanningRetriesDesc);
             this.TabPage1.Controls.Add(this.LabelScanningRetries);
-            this.TabPage1.Controls.Add(this.txtDelay);
+            this.TabPage1.Controls.Add(this.txtDelayLow);
             this.TabPage1.Controls.Add(this.LabelScanningDelayDesc);
             this.TabPage1.Controls.Add(this.LabelScanningDelay);
-            this.TabPage1.Controls.Add(this.txtScanSteps);
+            this.TabPage1.Controls.Add(this.txtScanStepsLow);
             this.TabPage1.Controls.Add(this.LabelScanningStepsDesc);
             this.TabPage1.Controls.Add(this.LabelScanningSteps);
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
@@ -940,6 +997,26 @@
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Finding The Cursor";
             this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ccHotKey
+            // 
+            this.ccHotKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ccHotKey.Location = new System.Drawing.Point(337, 241);
+            this.ccHotKey.Name = "ccHotKey";
+            this.ccHotKey.Size = new System.Drawing.Size(160, 20);
+            this.ccHotKey.TabIndex = 54;
+            this.ccHotKey.Text = "C";
+            // 
+            // ccHotKeyLabel
+            // 
+            this.ccHotKeyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ccHotKeyLabel.AutoSize = true;
+            this.ccHotKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ccHotKeyLabel.Location = new System.Drawing.Point(235, 245);
+            this.ccHotKeyLabel.Name = "ccHotKeyLabel";
+            this.ccHotKeyLabel.Size = new System.Drawing.Size(79, 13);
+            this.ccHotKeyLabel.TabIndex = 55;
+            this.ccHotKeyLabel.Text = "Capture cursor:";
             // 
             // LabelMaxXY
             // 
@@ -1051,7 +1128,7 @@
             // txtRetries
             // 
             this.txtRetries.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRetries.Location = new System.Drawing.Point(129, 107);
+            this.txtRetries.Location = new System.Drawing.Point(136, 107);
             this.txtRetries.Name = "txtRetries";
             this.txtRetries.Size = new System.Drawing.Size(32, 20);
             this.txtRetries.TabIndex = 4;
@@ -1205,6 +1282,58 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // dash1
+            // 
+            this.dash1.AutoSize = true;
+            this.dash1.Location = new System.Drawing.Point(251, 76);
+            this.dash1.Name = "dash1";
+            this.dash1.Size = new System.Drawing.Size(13, 13);
+            this.dash1.TabIndex = 24;
+            this.dash1.Text = "--";
+            // 
+            // dash0
+            // 
+            this.dash0.AutoSize = true;
+            this.dash0.Location = new System.Drawing.Point(251, 15);
+            this.dash0.Name = "dash0";
+            this.dash0.Size = new System.Drawing.Size(13, 13);
+            this.dash0.TabIndex = 25;
+            this.dash0.Text = "--";
+            // 
+            // txtScanStepsHigh
+            // 
+            this.txtScanStepsHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanStepsHigh.Location = new System.Drawing.Point(191, 9);
+            this.txtScanStepsHigh.Name = "txtScanStepsHigh";
+            this.txtScanStepsHigh.Size = new System.Drawing.Size(32, 20);
+            this.txtScanStepsHigh.TabIndex = 56;
+            // 
+            // txtDelayHigh
+            // 
+            this.txtDelayHigh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDelayHigh.Location = new System.Drawing.Point(191, 58);
+            this.txtDelayHigh.Name = "txtDelayHigh";
+            this.txtDelayHigh.Size = new System.Drawing.Size(32, 20);
+            this.txtDelayHigh.TabIndex = 57;
+            // 
+            // dash3
+            // 
+            this.dash3.AutoSize = true;
+            this.dash3.Location = new System.Drawing.Point(173, 12);
+            this.dash3.Name = "dash3";
+            this.dash3.Size = new System.Drawing.Size(13, 13);
+            this.dash3.TabIndex = 58;
+            this.dash3.Text = "--";
+            // 
+            // dash4
+            // 
+            this.dash4.AutoSize = true;
+            this.dash4.Location = new System.Drawing.Point(173, 61);
+            this.dash4.Name = "dash4";
+            this.dash4.Size = new System.Drawing.Size(13, 13);
+            this.dash4.TabIndex = 59;
+            this.dash4.Text = "--";
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1240,7 +1369,7 @@
         #endregion
 
         internal System.Windows.Forms.Label LabelScanningDelayDesc;
-        internal System.Windows.Forms.TextBox txtScanSteps;
+        internal System.Windows.Forms.TextBox txtScanStepsLow;
         internal System.Windows.Forms.Label LabelScanningStepsDesc;
         internal System.Windows.Forms.Label LabelScanningSteps;
         internal System.Windows.Forms.TabPage TabPage3;
@@ -1293,16 +1422,16 @@
         internal System.Windows.Forms.Label LabelScanningDelay;
         internal System.Windows.Forms.Timer tmeAudio;
         internal System.Windows.Forms.Button buttonSave;
-        internal System.Windows.Forms.TextBox txtDelay;
+        internal System.Windows.Forms.TextBox txtDelayLow;
         internal System.Windows.Forms.TabControl tabSettings;
         internal System.Windows.Forms.TabPage TabPage2;
-        internal System.Windows.Forms.TextBox txtFishWait;
+        internal System.Windows.Forms.TextBox txtFishWaitLow;
         internal System.Windows.Forms.Label LabelFishWaitDesc;
         internal System.Windows.Forms.Label LabelDelayLooting;
-        internal System.Windows.Forms.TextBox txtLootingDelay;
+        internal System.Windows.Forms.TextBox txtLootingDelayLow;
         internal System.Windows.Forms.Label LabelDelayLootingDesc;
         internal System.Windows.Forms.Label LabelFishWait;
-        internal System.Windows.Forms.TextBox txtCastDelay;
+        internal System.Windows.Forms.TextBox txtCastDelayLow;
         internal System.Windows.Forms.Label LabelDelayCastDesc;
         internal System.Windows.Forms.Label LabelDelayCast;
         internal System.Windows.Forms.TabPage TabPage1;
@@ -1340,5 +1469,17 @@
         private System.Windows.Forms.CheckBox chkTxt2speech;
         private System.Windows.Forms.CheckBox cbSoundAvg;
         internal System.Windows.Forms.CheckBox cbDblRclickCast;
+        internal System.Windows.Forms.TextBox ccHotKey;
+        internal System.Windows.Forms.Label ccHotKeyLabel;
+        internal System.Windows.Forms.TextBox txtFishWaitHigh;
+        internal System.Windows.Forms.TextBox txtCastDelayHigh;
+        internal System.Windows.Forms.TextBox txtLootingDelayHigh;
+        private System.Windows.Forms.Label dash2;
+        private System.Windows.Forms.Label dash0;
+        private System.Windows.Forms.Label dash1;
+        internal System.Windows.Forms.TextBox txtDelayHigh;
+        internal System.Windows.Forms.TextBox txtScanStepsHigh;
+        private System.Windows.Forms.Label dash4;
+        private System.Windows.Forms.Label dash3;
     }
 }

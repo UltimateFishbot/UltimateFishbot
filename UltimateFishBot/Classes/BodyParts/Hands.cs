@@ -1,4 +1,5 @@
-﻿using System;
+using Serilog;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,11 +13,16 @@ namespace UltimateFishBot.Classes.BodyParts
         private int m_baitIndex;
         private string[] m_baitKeys;
         private IntPtr Wow;
+        private Random rand;
+
+        private int a_CastingDelay = 0;
+        private int a_LootingDelay = 0;
 
         public Hands()
         {
             m_baitIndex = 0;
             m_cursor    = new Cursor(Cursor.Current.Handle);
+            rand = new Random();
             UpdateKeys();
         }
         public Hands(IntPtr wowWindow)
@@ -25,6 +31,10 @@ namespace UltimateFishBot.Classes.BodyParts
             m_baitIndex = 0;
             m_cursor = new Cursor(Cursor.Current.Handle);
             UpdateKeys();
+        }
+
+        public void SetWow(IntPtr wowWindow) {
+            this.Wow = wowWindow;
         }
 
         public void UpdateKeys()
@@ -43,22 +53,24 @@ namespace UltimateFishBot.Classes.BodyParts
 
         public async Task Cast(CancellationToken token)
         {
-            Win32.ActivateWow(this.Wow);
-            if (Properties.Settings.Default.RightClickCast)
-            {
+            if (Properties.Settings.Default.RightClickCast)  {
                 Win32.SendMouseDblRightClick(this.Wow);
-            }
-            else
-            {
+            } else {
                 Win32.SendKey(Properties.Settings.Default.FishKey);
+                Log.Information("Sent key: " + Properties.Settings.Default.FishKey);
             }
-            await Task.Delay(Properties.Settings.Default.CastingDelay, token);
+            Random rnd = new Random();
+            a_CastingDelay = rnd.Next(Properties.Settings.Default.CastingDelayLow, Properties.Settings.Default.CastingDelayHigh);
+            await Task.Delay(a_CastingDelay, token);
         }
 
         public async Task Loot()
         {
-            Win32.SendMouseClick();
-            await Task.Delay(Properties.Settings.Default.LootingDelay);
+            Win32.SendMouseClick(this.Wow);
+            Log.Information("Send Loot.");
+            Random rnd = new Random();
+            a_LootingDelay = rnd.Next(Properties.Settings.Default.LootingDelayLow, Properties.Settings.Default.LootingDelayHigh);
+            await Task.Delay(a_LootingDelay);
         }
 
         public void ResetBaitIndex()
@@ -122,8 +134,11 @@ namespace UltimateFishBot.Classes.BodyParts
                     return;
             }
 
+            Log.Information("Send key start: " + actionKey);
             Win32.ActivateWow(this.Wow);
+            await Task.Delay(1000, cancellationToken);
             Win32.SendKey(actionKey);
+            Log.Information("Sent key: "+actionKey);
             await Task.Delay(sleepTime * 1000, cancellationToken);
         }
     }

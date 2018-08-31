@@ -1,9 +1,11 @@
-﻿using System;
+using Serilog;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.BodyParts;
+using UltimateFishBot.Classes.Helpers;
 
 namespace UltimateFishBot.Classes
 {
@@ -55,19 +57,29 @@ namespace UltimateFishBot.Classes
         private NeededAction m_neededActions;
         private FishingState m_fishingState;
         private FishingStats m_fishingStats;
+        private int m_fishErrorLength;
 
         private const int SECOND = 1000;
         private const int MINUTE = 60 * SECOND;
 
-        private IntPtr WowWindowPointer;
+        ///  average
+        private int a_FishWait = 0;
+
 
         public Manager(IManagerEventHandler managerEventHandler, IProgress<string> progressHandle)
         {
             m_managerEventHandler    = managerEventHandler;
-            this.WowWindowPointer = Helpers.Win32.FindWowWindow();
-
-            m_eyes                   = new Eyes(this.WowWindowPointer);
-            m_hands                  = new Hands(this.WowWindowPointer);
+            IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow();
+            DialogResult result = DialogResult.Cancel;
+            while (WowWindowPointer == new IntPtr())
+            {
+                result = MessageBox.Show("Could not find the the WoW process. Please make sure the game is running.", "Error - WoW not open", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Cancel)
+                    Environment.Exit(1);
+                WowWindowPointer = Helpers.Win32.FindWowWindow();
+            }
+            m_eyes                   = new Eyes(WowWindowPointer);
+            m_hands                  = new Hands(WowWindowPointer);
             m_ears                   = new Ears();
             m_mouth                  = new Mouth(progressHandle);
             m_legs                   = new Legs();
@@ -115,6 +127,9 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBotUntilCanceled()
         {
+            IntPtr WowWindowPointer = Helpers.Win32.FindWowWindow(); // update window pointer in case wow started after fishbot or restarted.
+            m_eyes.SetWow(WowWindowPointer);
+            m_hands.SetWow(WowWindowPointer);
             ResetTimers();
             EnableTimers();
             m_mouth.Say(Translate.GetTranslate("frmMain", "LABEL_STARTED"));
@@ -131,6 +146,7 @@ namespace UltimateFishBot.Classes
 
         private async Task RunBot()
         {
+            m_fishErrorLength = 0;
             m_fishingState = FishingState.Fishing;
             _cancellationTokenSource = new CancellationTokenSource();
             var cancellationToken = _cancellationTokenSource.Token;
@@ -150,6 +166,9 @@ namespace UltimateFishBot.Classes
 
                     // If no other action required, we can cast !
                     await Fish(cancellationToken);
+                    if (m_fishErrorLength > 10 ) {
+                        Stop();
+                    }
                 }
 
             }
@@ -263,20 +282,19 @@ namespace UltimateFishBot.Classes
         private async Task Fish(CancellationToken cancellationToken)
         {
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_CASTING"));
+            m_eyes.updateBackground();
             await m_hands.Cast(cancellationToken);
 
             m_mouth.Say(Translate.GetTranslate("manager", "LABEL_FINDING"));
-            bool didFindFish = await m_eyes.LookForBobber(cancellationToken);
-            if (!didFindFish)
-            {
-                m_fishingStats.RecordBobberNotFound();
-                return;
-            }
+            // Make bobber found async, so can check fishing sound in parallel, the result only important when we hear fish.
+            // The position used for repositioning.
+            CancellationTokenSource eyeCancelTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            CancellationToken eyeCancelToken = eyeCancelTokenSource.Token;
+            Task<Win32.Point> eyeTask = Task.Run(async () => await m_eyes.LookForBobber(eyeCancelToken));
 
             // Update UI with wait status            
-            var uiUpdateCancelTokenSource =
-                CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            var uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
+            CancellationTokenSource uiUpdateCancelTokenSource =  CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            CancellationToken uiUpdateCancelToken = uiUpdateCancelTokenSource.Token;
             var progress = new Progress<long>(msecs =>
             {
                 if (!uiUpdateCancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
@@ -285,40 +303,69 @@ namespace UltimateFishBot.Classes
                         "manager",
                         "LABEL_WAITING",
                         msecs / SECOND,
-                        Properties.Settings.Default.FishWait / SECOND));
+                        a_FishWait / SECOND));
                 }
             });
             var uiUpdateTask = Task.Run(
                 async () => await UpdateUIWhileWaitingToHearFish(progress, uiUpdateCancelToken),
                 uiUpdateCancelToken);
 
+            Random rnd = new Random();
+            a_FishWait = rnd.Next(Properties.Settings.Default.FishWaitLow, Properties.Settings.Default.FishWaitHigh);
             bool fishHeard = await m_ears.Listen(
-                Properties.Settings.Default.FishWait,
+                a_FishWait,
                 cancellationToken);
+            //Log.Information("Ear result: "+a_FishWait.ToString());
+
             uiUpdateCancelTokenSource.Cancel();
-            try
-            {
+            try {
                 uiUpdateTask.GetAwaiter().GetResult(); // Wait & Unwrap
                 // https://github.com/StephenCleary/AsyncEx/blob/dc54d22b06566c76db23af06afcd0727cac625ef/Source/Nito.AsyncEx%20(NET45%2C%20Win8%2C%20WP8%2C%20WPA81)/Synchronous/TaskExtensions.cs#L18
-            }
-            catch (TaskCanceledException)
-            {
-            }
-            finally
-            {
+            } catch (TaskCanceledException) {
+            } finally {
                 uiUpdateCancelTokenSource.Dispose();
             }
 
-            if (!fishHeard)
-            {
+            if (!fishHeard) {
                 m_fishingStats.RecordNotHeard();
+                m_fishErrorLength++;
                 return;
             }
 
-            m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
-            await m_hands.Loot();
-            m_fishingStats.RecordSuccess();
+            // We heard the fish, let's check bobbers position
+            if (!eyeTask.IsCompleted) {
+                // the search is not finished yet, but fish is heard, we have 2 seconds left to find and hook it
+                eyeTask.Wait(2000, cancellationToken);
+                eyeCancelTokenSource.Cancel();
+            }
+            eyeCancelTokenSource.Dispose();
+
+            if (eyeTask.IsCompleted) {
+                // search is ended what's the result?
+                Win32.Point bobberPos = eyeTask.Result;
+
+                if (bobberPos.x != 0 && bobberPos.y != 0) {
+                    // bobber found
+                    if (await m_eyes.SetMouseToBobber(bobberPos, cancellationToken)) {
+                        // bobber is still there
+                        Log.Information("Bobber databl: ({bx},{by})", bobberPos.x, bobberPos.y);
+                        await m_hands.Loot();
+                        m_mouth.Say(Translate.GetTranslate("manager", "LABEL_HEAR_FISH"));
+                        m_fishingStats.RecordSuccess();
+                        m_fishErrorLength = 0;
+                        Log.Information("Fish success");
+                        return;
+                    }
+                }
+            }
+            m_fishingStats.RecordBobberNotFound();
+            m_fishErrorLength++;
         }
+
+        public void CaptureCursor() {
+            m_eyes.CaptureCursor();
+        }
+
 
         private async Task UpdateUIWhileWaitingToHearFish(
             IProgress<long> progress, 

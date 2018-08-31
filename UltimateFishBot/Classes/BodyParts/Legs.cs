@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UltimateFishBot.Classes.Helpers;
@@ -26,6 +27,7 @@ namespace UltimateFishBot.Classes.BodyParts
                     break;
                 case Path.JUMP:
                     await MovePath(new Keys[] { Keys.Space }, cancellationToken);
+                    await Task.Delay(500, cancellationToken);
                     break;
                 default:
                     await MovePath(new Keys[] { Keys.Left, Keys.Right }, cancellationToken);
@@ -40,14 +42,14 @@ namespace UltimateFishBot.Classes.BodyParts
             foreach (Keys move in moves)
             {
                 await SingleMove(move, cancellationToken);
-                await Task.Delay(250, cancellationToken);
+                await Task.Delay(new Random().Next(100,500), cancellationToken);
             }
         }
 
         private async Task SingleMove(Keys move, CancellationToken cancellationToken)
         {
             Win32.SendKeyboardAction(move, Win32.keyState.KEYDOWN);
-            await Task.Delay(250, cancellationToken);
+            await Task.Delay(new Random().Next(100, 250), cancellationToken);
             Win32.SendKeyboardAction(move, Win32.keyState.KEYUP);
         }
     }

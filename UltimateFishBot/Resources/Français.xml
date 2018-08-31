@@ -95,7 +95,8 @@
 
         <LABEL_CHECK_ICON>Vérifier l'icone du Curseur</LABEL_CHECK_ICON>
         <LABEL_CHECK_ICON_DESC>Détermine si le bot doit vérifier l'icone avant de pecher. Permet d'éviter de cliquer autre part que sur le flotteur. Si votre flotteur n'est pas trouvé, essayer de désactiver cette option.</LABEL_CHECK_ICON_DESC>
-
+        <LABEL_CHECK_CAPTURE_ICON_DESC>Capture cursor Hotkey</LABEL_CHECK_CAPTURE_ICON_DESC>
+      
         <LABEL_ALTERNATIVE_ROUTE>Spiral route</LABEL_ALTERNATIVE_ROUTE>
         <LABEL_ALTERNATIVE_ROUTE_DESC>An alternative route for bobber searching.</LABEL_ALTERNATIVE_ROUTE_DESC>
       

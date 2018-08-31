@@ -2,7 +2,7 @@
     <frmCode>
         <TITLE>Благодаря че използвате този бот</TITLE>
         <LIBELLE_TITLE>Спокойно... Все още е безплатно!</LIBELLE_TITLE>
-        <LIBELLE_DESC>Използвали сте бота {0} пъти. За да продължите да го ползвате - посетете уебсайта и въведете 3-5 цифрения код по долу. Ако броузър не се отвори автоматично, посетете www.fishbot.net/code.html - или kликнете линка долу. Обещавам че е бързо и лесно.</LIBELLE_DESC>
+        <LIBELLE_DESC>Използвали сте бота {0} пъти. За да продължите да го ползвате - посетете уебсайта и въведете 3-5 цифрения код по-долу. Ако броузър не се отвори автоматично, посетете www.fishbot.net/code.html - или kликнете линка долу. Обещавам че е бързо и лесно.</LIBELLE_DESC>
         <LIBELLE_TRY_AGAIN>Опитай пак!</LIBELLE_TRY_AGAIN>
         <LIBELLE_ENTER>Въведи</LIBELLE_ENTER>
     </frmCode>
@@ -76,7 +76,7 @@
         <LABEL_DELAY_AFTER_CAST_DESC>Число в милисекунди преди да се търси за примамката. Твърде малко и ще пропуснеш рибата, твърде голямо и ще хаби повече време.</LABEL_DELAY_AFTER_CAST_DESC>
 
         <LABEL_FISH_WAIT_LIMIT>Лимит на чакане:</LABEL_FISH_WAIT_LIMIT>
-        <LABEL_FISH_WAIT_LIMIT_DESC>Число в милисекунди преди да се слуша за риба преди да се рестартира. Твърде дълго и бота работи по бавно, твърде малко и ще пропуснеш рибата.</LABEL_FISH_WAIT_LIMIT_DESC>
+        <LABEL_FISH_WAIT_LIMIT_DESC>Число в милисекунди преди да се слуша за риба преди да се рестартира. Твърде дълго и бота работи по-бавно, твърде малко и ще пропуснеш рибата.</LABEL_FISH_WAIT_LIMIT_DESC>
 
         <LABEL_DELAY_AFTER_LOOTING>Чакане слд ограбване:</LABEL_DELAY_AFTER_LOOTING>
         <LABEL_DELAY_AFTER_LOOTING_DESC>Число в милисекунди да се чака селд като риба бъде хваната.</LABEL_DELAY_AFTER_LOOTING_DESC>
@@ -87,13 +87,14 @@
         <LABEL_SCANNING_STEPS_DESC>Колкото повече толкова по-добре, но става по-бавно и рибата може да се пропусне.</LABEL_SCANNING_STEPS_DESC>
 
         <LABEL_SCANNING_DELAY>Чакане за сканиране:</LABEL_SCANNING_DELAY>
-        <LABEL_SCANNING_DELAY_DESC>Броя на милисекунди да се чака преди курсора да се провери. Твърде малко и ще пропуснеш рибата, но по голямо число губи време.</LABEL_SCANNING_DELAY_DESC>
+        <LABEL_SCANNING_DELAY_DESC>Броя на милисекунди да се чака преди курсора да се провери. Твърде малко и ще пропуснеш рибата, но по-голямо число губи време.</LABEL_SCANNING_DELAY_DESC>
 
         <LABEL_SCANNING_RETRIES>Брой опити:</LABEL_SCANNING_RETRIES>
         <LABEL_SCANNING_RETRIES_DESC>Колко пъти да се опита да намери примамката.</LABEL_SCANNING_RETRIES_DESC>
 
         <LABEL_CHECK_ICON>Проверка на иконата на курсора</LABEL_CHECK_ICON>
         <LABEL_CHECK_ICON_DESC>Дали бота допълнително да прверява иконата. Ао иконата не е кукичка не избирай тази опция. Може да не работи на някои компютри.</LABEL_CHECK_ICON_DESC>
+        <LABEL_CHECK_CAPTURE_ICON_DESC>Прихвани курсора: </LABEL_CHECK_CAPTURE_ICON_DESC>
 
         <LABEL_ALTERNATIVE_ROUTE>Спиралово търсене</LABEL_ALTERNATIVE_ROUTE>
         <LABEL_ALTERNATIVE_ROUTE_DESC>Друг начин по който да се търси примамката.</LABEL_ALTERNATIVE_ROUTE_DESC>
@@ -114,7 +115,7 @@
         <LABEL_AUDIO_DEVICE>Звуково Устройство:</LABEL_AUDIO_DEVICE>
         <LABEL_AUDIO_DEVICE_DESC>Изберете устройството което WoW използва.  Ако бота не чува играта, риба не може да бъде намерена. Ако не сте сигурни, пуснете накаква музика за да проверите кое устройство е правилно.</LABEL_AUDIO_DEVICE_DESC>
 
-        <CB_AVG_SND>Изплозвай средно аритметичен метод (по-добре в шумни места (градове като огримар), но има по малък шанс да чуе рибата)</CB_AVG_SND>
+        <CB_AVG_SND>Изплозвай средно аритметичен метод (по-добре в шумни места (градове като огримар), но има по-малък шанс да чуе рибата)</CB_AVG_SND>
       
         <!-- Premium Settings -->
         <LABEL_CAST_KEY>Бутон въдица:</LABEL_CAST_KEY>
