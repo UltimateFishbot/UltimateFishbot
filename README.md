@@ -53,7 +53,7 @@ Updated in C#
 
 Updated by Pierre Ghiot (Mograine) in C#.
 
-Updated by daniel-widrick & Szabka
+Updated by daniel-widrick , Szabka , NaNraptor
 ===============================
 -Hearing optimisation.
 
@@ -78,6 +78,10 @@ Updated by daniel-widrick & Szabka
 -Hotkey actions disabled in settings screen.
 
 -Stop fishing after 10 consecutive fish failures.
+
+-Randomised delay and cast times to avoid detection
+
+-Randomised window title on start
 
 Happy Fishing!
 
