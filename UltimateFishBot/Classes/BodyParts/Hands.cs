@@ -1,45 +1,37 @@
-using Serilog;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UltimateFishBot.Classes.Helpers;
+using Serilog;
+using UltimateFishBot.Helpers;
 
-namespace UltimateFishBot.Classes.BodyParts
+namespace UltimateFishBot.BodyParts
 {
-    class Hands
+    internal class Hands
     {
-        private Cursor m_cursor;
-        private int m_baitIndex;
-        private string[] m_baitKeys;
-        private IntPtr Wow;
-        private Random rand;
+        private Cursor _mCursor;
+        private int _mBaitIndex;
+        private string[] _mBaitKeys;
+        private IntPtr _wow;
 
-        private int a_CastingDelay = 0;
-        private int a_LootingDelay = 0;
+        private int _aCastingDelay;
+        private int _aLootingDelay;
 
-        public Hands()
-        {
-            m_baitIndex = 0;
-            m_cursor    = new Cursor(Cursor.Current.Handle);
-            rand = new Random();
-            UpdateKeys();
-        }
         public Hands(IntPtr wowWindow)
         {
-            this.Wow = wowWindow;
-            m_baitIndex = 0;
-            m_cursor = new Cursor(Cursor.Current.Handle);
+            _wow = wowWindow;
+            _mBaitIndex = 0;
+            if (Cursor.Current != null) _mCursor = new Cursor(Cursor.Current.Handle);
             UpdateKeys();
         }
 
         public void SetWow(IntPtr wowWindow) {
-            this.Wow = wowWindow;
+            _wow = wowWindow;
         }
 
-        public void UpdateKeys()
+        private void UpdateKeys()
         {
-            m_baitKeys = new string[7]
+            _mBaitKeys = new[]
             {
                 Properties.Settings.Default.BaitKey1,
                 Properties.Settings.Default.BaitKey2,
@@ -54,78 +46,78 @@ namespace UltimateFishBot.Classes.BodyParts
         public async Task Cast(CancellationToken token)
         {
             if (Properties.Settings.Default.RightClickCast)  {
-                Win32.SendMouseDblRightClick(this.Wow);
+                Win32.SendMouseDblRightClick(_wow);
             } else {
                 Win32.SendKey(Properties.Settings.Default.FishKey);
                 Log.Information("Sent key: " + Properties.Settings.Default.FishKey);
             }
-            Random rnd = new Random();
-            a_CastingDelay = rnd.Next(Properties.Settings.Default.CastingDelayLow, Properties.Settings.Default.CastingDelayHigh);
-            await Task.Delay(a_CastingDelay, token);
+            var rnd = new Random();
+            _aCastingDelay = rnd.Next(Properties.Settings.Default.CastingDelayLow, Properties.Settings.Default.CastingDelayHigh);
+            await Task.Delay(_aCastingDelay, token);
         }
 
         public async Task Loot()
         {
-            Win32.SendMouseClick(this.Wow);
+            Win32.SendMouseClick(_wow);
             Log.Information("Send Loot.");
             Random rnd = new Random();
-            a_LootingDelay = rnd.Next(Properties.Settings.Default.LootingDelayLow, Properties.Settings.Default.LootingDelayHigh);
-            await Task.Delay(a_LootingDelay);
+            _aLootingDelay = rnd.Next(Properties.Settings.Default.LootingDelayLow, Properties.Settings.Default.LootingDelayHigh);
+            await Task.Delay(_aLootingDelay);
         }
 
         public void ResetBaitIndex()
         {
-            m_baitIndex = 0;
+            _mBaitIndex = 0;
         }
 
-        public async Task DoAction(Manager.NeededAction action, Mouth mouth, CancellationToken cancellationToken)
+        public async Task DoAction(NeededAction action, Mouth mouth, CancellationToken cancellationToken)
         {
             string actionKey = "";
             int sleepTime = 0;
 
             switch (action)
             {
-                case Manager.NeededAction.HearthStone:
+                case NeededAction.HearthStone:
                     {
                         actionKey = Properties.Settings.Default.HearthKey;
                         mouth.Say(Translate.GetTranslate("manager", "LABEL_HEARTHSTONE"));
                         sleepTime = 0;
                         break;
                     }
-                case Manager.NeededAction.Lure:
+                case NeededAction.Lure:
                     {
                         actionKey = Properties.Settings.Default.LureKey;
                         mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_LURE"));
                         sleepTime = 3;
                         break;
                     }
-                case Manager.NeededAction.Charm:
+                case NeededAction.Charm:
                     {
                         actionKey = Properties.Settings.Default.CharmKey;
                         mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_CHARM"));
                         sleepTime = 3;
                         break;
                     }
-                case Manager.NeededAction.Raft:
+                case NeededAction.Raft:
                     {
                         actionKey = Properties.Settings.Default.RaftKey;
                         mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_RAFT"));
                         sleepTime = 2;
                         break;
                     }
-                case Manager.NeededAction.Bait:
+                case NeededAction.Bait:
                     {
                         int baitIndex = 0;
 
                         if (Properties.Settings.Default.CycleThroughBaitList)
                         {
-                            if (m_baitIndex >= 6)
-                                m_baitIndex = 0;
+                            if (_mBaitIndex >= 6)
+                                _mBaitIndex = 0;
 
-                            baitIndex = m_baitIndex++;
+                            baitIndex = _mBaitIndex++;
                         }
 
-                        actionKey = m_baitKeys[baitIndex];
+                        actionKey = _mBaitKeys[baitIndex];
                         mouth.Say(Translate.GetTranslate("manager", "LABEL_APPLY_BAIT", baitIndex));
                         sleepTime = 3;
                         break;
@@ -135,7 +127,7 @@ namespace UltimateFishBot.Classes.BodyParts
             }
 
             Log.Information("Send key start: " + actionKey);
-            Win32.ActivateWow(this.Wow);
+            Win32.ActivateWow(_wow);
             await Task.Delay(1000, cancellationToken);
             Win32.SendKey(actionKey);
             Log.Information("Sent key: "+actionKey);

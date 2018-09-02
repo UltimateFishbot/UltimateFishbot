@@ -6,11 +6,11 @@ using System.Resources;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("ForceMenuOpen")]
-[assembly: AssemblyDescription("ForceMenuOpen")]
+[assembly: AssemblyTitle("Console Window Host")]
+[assembly: AssemblyDescription("Console Window Host")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Source")]
-[assembly: AssemblyProduct("ForceMenuOpen")]
+[assembly: AssemblyProduct("Console Window Host")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

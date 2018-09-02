@@ -2,12 +2,11 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
-using UltimateFishBot.Classes;
-using UltimateFishBot.Classes.BodyParts;
+using UltimateFishBot.BodyParts;
 
 namespace UltimateFishBot.Forms
 {
-    partial class about : Form
+    internal partial class about : Form
     {
         private string webLink = "http://fishbot.net/";
         private string gitLink = "https://github.com/Szabka/UltimateFishbot";

@@ -1,4 +1,4 @@
-﻿namespace UltimateFishBot
+﻿namespace UltimateFishBot.Forms
 {
     partial class frmMain
     {

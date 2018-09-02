@@ -1,15 +1,16 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace UltimateFishBot.Classes.Helpers
+namespace UltimateFishBot.Helpers
 {
-    class Win32
+    internal class Win32
     {
+        private static readonly Random Rnd = new Random();
+
         public struct Rect
         {
             public int Left;
@@ -34,11 +35,11 @@ namespace UltimateFishBot.Classes.Helpers
             public Point ptScreenPos;
         }
 
-        public enum keyState
+        public enum KeyState
         {
-            KEYDOWN = 0,
-            EXTENDEDKEY = 1,
-            KEYUP = 2
+            Keydown = 0,
+            Extendedkey = 1,
+            Keyup = 2
         };
         private enum ShowWindowEnum
         {
@@ -62,19 +63,19 @@ namespace UltimateFishBot.Classes.Helpers
         public static extern bool GetClientRect(IntPtr hWnd, out Rect lpRect);
 
         [DllImport("user32.dll")]
-        private static extern bool SetCursorPos(int X, int Y);
+        private static extern bool SetCursorPos(int x, int y);
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(out CursorInfo pci);
 
         [DllImport("user32.dll")]
-        private static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
+        private static extern bool DrawIcon(IntPtr hDc, int x, int y, IntPtr hIcon);
 
         [DllImport("user32.dll")]
         private static extern bool keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern bool SendNotifyMessage(IntPtr hWnd, uint Msg, UIntPtr wParam, IntPtr lParam);
+        private static extern bool SendNotifyMessage(IntPtr hWnd, uint msg, UIntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
         public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
@@ -86,7 +87,7 @@ namespace UltimateFishBot.Classes.Helpers
         private static extern bool IsIconic(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
+        private static extern bool ShowWindow(IntPtr hWnd, ShowWindowEnum flags);
 
         [DllImport("User32.Dll")]
         public static extern bool ClientToScreen(IntPtr hWnd, ref Point point);
@@ -95,31 +96,31 @@ namespace UltimateFishBot.Classes.Helpers
         public static extern IntPtr GetWindowDC(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+        public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDc);
 
         [DllImport("gdi32.dll")]
         public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
                                          int nWidth, int nHeight, IntPtr hObjectSource,
                                          int nXSrc, int nYSrc, int dwRop);
         [DllImport("gdi32.dll")]
-        public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
+        public static extern IntPtr CreateCompatibleBitmap(IntPtr hDc, int nWidth,
                                                            int nHeight);
         [DllImport("gdi32.dll")]
-        public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+        public static extern IntPtr CreateCompatibleDC(IntPtr hDc);
         [DllImport("gdi32.dll")]
-        public static extern bool DeleteDC(IntPtr hDC);
+        public static extern bool DeleteDC(IntPtr hDc);
         [DllImport("gdi32.dll")]
         public static extern bool DeleteObject(IntPtr hObject);
         [DllImport("gdi32.dll")]
-        public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+        public static extern IntPtr SelectObject(IntPtr hDc, IntPtr hObject);
 
-        private const uint WM_LBUTTONDOWN = 513;
-        private const uint WM_LBUTTONUP = 514;
+        private const uint WmLbuttondown = 513;
+        private const uint WmLbuttonup = 514;
 
-        private const uint WM_RBUTTONDOWN = 516;
-        private const uint WM_RBUTTONUP = 517;
+        private const uint WmRbuttondown = 516;
+        private const uint WmRbuttonup = 517;
 
-        public const int SRCCOPY = 0x00CC0020; // BitBlt dwRop parameter
+        public const int Srccopy = 0x00CC0020; // BitBlt dwRop parameter
 
         /// <summary>
         /// Creates an Image object containing a screen shot of a specific window
@@ -155,7 +156,7 @@ namespace UltimateFishBot.Classes.Helpers
             // select the bitmap object
             IntPtr hOld = SelectObject(hdcDest, hBitmap);
             // bitblt over
-            BitBlt(hdcDest, 0, 0, width, height, hdcSrc, x, y, SRCCOPY);
+            BitBlt(hdcDest, 0, 0, width, height, hdcSrc, x, y, Srccopy);
             // restore selection
             SelectObject(hdcDest, hOld);
             // clean up
@@ -168,16 +169,21 @@ namespace UltimateFishBot.Classes.Helpers
             return img;
         }
 
-        public static Rectangle GetWowRectangle(IntPtr Wow)
+        public static Rectangle GetWowRectangle(IntPtr wow)
         {
-            Rect Win32ApiRect = new Rect();
-            GetWindowRect(Wow, ref Win32ApiRect);
+            Rect win32ApiRect = new Rect();
+            GetWindowRect(wow, ref win32ApiRect);
             Rectangle myRect = new Rectangle();
-            myRect.X = Win32ApiRect.Left;
-            myRect.Y = Win32ApiRect.Top;
-            myRect.Width = (Win32ApiRect.Right - Win32ApiRect.Left);
-            myRect.Height = (Win32ApiRect.Bottom - Win32ApiRect.Top);
+            myRect.X = win32ApiRect.Left;
+            myRect.Y = win32ApiRect.Top;
+            myRect.Width = (win32ApiRect.Right - win32ApiRect.Left);
+            myRect.Height = (win32ApiRect.Bottom - win32ApiRect.Top);
             return myRect;
+        }
+
+        private static int GetRandomDelay(int baseDelay = 100)
+        {
+            return baseDelay + Rnd.Next(-1 * baseDelay / 5, baseDelay / 3);
         }
 
         public static IntPtr FindWowWindow()
@@ -209,18 +215,18 @@ namespace UltimateFishBot.Classes.Helpers
             return actualCursorIcon;
         }
 
-        static public void ActivateWow(IntPtr Wow)
+        static public void ActivateWow(IntPtr wow)
         {
-            ActivateApp(Wow);
+            ActivateApp(wow);
         }
 
-        public static void ActivateApp(IntPtr Wow)
+        public static void ActivateApp(IntPtr wow)
         {
-            SetForegroundWindow(Wow);
+            SetForegroundWindow(wow);
             //AllowSetForegroundWindow(Process.GetCurrentProcess().Id);
-            if (IsIconic(Wow))
+            if (IsIconic(wow))
             {
-                ShowWindow(Wow, ShowWindowEnum.Restore);
+                ShowWindow(wow, ShowWindowEnum.Restore);
             }
         }
 
@@ -228,17 +234,17 @@ namespace UltimateFishBot.Classes.Helpers
         {
             if (SetCursorPos(x, y))
             {
-                LastX = x;
-                LastY = y;
+                _lastX = x;
+                _lastY = y;
             }
         }
 
-        public static CursorInfo GetNoFishCursor(IntPtr Wow)
+        public static CursorInfo GetNoFishCursor(IntPtr wow)
         {
-            Rectangle WoWRect = Win32.GetWowRectangle(Wow);
-            Win32.MoveMouse((WoWRect.X + 10), (WoWRect.Y + 45));
-            LastRectX = WoWRect.X;
-            LastRectY = WoWRect.Y;
+            Rectangle woWRect = Win32.GetWowRectangle(wow);
+            Win32.MoveMouse((woWRect.X + 10), (woWRect.Y + 45));
+            _lastRectX = woWRect.X;
+            _lastRectY = woWRect.Y;
             Thread.Sleep(15);
             CursorInfo myInfo = new CursorInfo();
             myInfo.cbSize = Marshal.SizeOf(myInfo);
@@ -267,53 +273,53 @@ namespace UltimateFishBot.Classes.Helpers
             SendKeys.Send(sKeys);
         }
 
-        public static void SendMouseClick(IntPtr Wow)
+        public static void SendMouseClick(IntPtr wow)
         {
-            long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
+            long dWord = MakeDWord((_lastX - _lastRectX), (_lastY - _lastRectY));
 
             if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYDOWN);
+                SendKeyboardAction(16, KeyState.Keydown);
 
-            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+            SendNotifyMessage(wow, WmRbuttondown, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(GetRandomDelay());
+            SendNotifyMessage(wow, WmRbuttonup, (UIntPtr)1, (IntPtr)dWord);
 
             if (Properties.Settings.Default.ShiftLoot)
-                SendKeyboardAction(16, keyState.KEYUP);
+                SendKeyboardAction(16, KeyState.Keyup);
         }
-        public static void SendMouseDblRightClick(IntPtr Wow)
+        public static void SendMouseDblRightClick(IntPtr wow)
         {
             //long dWord = MakeDWord((LastX - LastRectX), (LastY - LastRectY));
-            Rectangle wowRect = Win32.GetWowRectangle(Wow);
+            Rectangle wowRect = Win32.GetWowRectangle(wow);
             long dWord = MakeDWord( (wowRect.Width/2), (wowRect.Height/2) );
-            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONDOWN, (UIntPtr)1, (IntPtr)dWord);
-            Thread.Sleep(100);
-            SendNotifyMessage(Wow, WM_RBUTTONUP, (UIntPtr)1, (IntPtr)dWord);
+            SendNotifyMessage(wow, WmRbuttondown, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(GetRandomDelay());
+            SendNotifyMessage(wow, WmRbuttonup, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(GetRandomDelay());
+            SendNotifyMessage(wow, WmRbuttondown, (UIntPtr)1, (IntPtr)dWord);
+            Thread.Sleep(GetRandomDelay());
+            SendNotifyMessage(wow, WmRbuttonup, (UIntPtr)1, (IntPtr)dWord);
         }
 
-        public static bool SendKeyboardAction(Keys key, keyState state)
+        public static bool SendKeyboardAction(Keys key, KeyState state)
         {
             return SendKeyboardAction((byte)key.GetHashCode(), state);
         }
 
-        public static bool SendKeyboardAction(byte key, keyState state)
+        public static bool SendKeyboardAction(byte key, KeyState state)
         {
             return keybd_event(key, 0, (uint)state, (UIntPtr)0);
         }
 
-        private static long MakeDWord(int LoWord, int HiWord)
+        private static long MakeDWord(int loWord, int hiWord)
         {
-            return (HiWord << 16) | (LoWord & 0xFFFF);
+            return (hiWord << 16) | (loWord & 0xFFFF);
         }
 
-        private static int LastRectX;
-        private static int LastRectY;
+        private static int _lastRectX;
+        private static int _lastRectY;
 
-        private static int LastX;
-        private static int LastY;
+        private static int _lastX;
+        private static int _lastY;
     }
 }

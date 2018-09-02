@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using UltimateFishBot.Classes;
 
 namespace UltimateFishBot.Forms
 {
@@ -55,13 +54,13 @@ namespace UltimateFishBot.Forms
 
         private void UpdateStats()
         {
-            UltimateFishBot.Classes.FishingStats stats = m_manager.GetFishingStats();
-            labelSuccessCount.Text = stats.totalSuccessFishing.ToString();
-            labelNotFoundCount.Text = stats.totalNotFoundFish.ToString();
-            labelNotEaredCount.Text = stats.totalNotEaredFish.ToString();
+            FishingStats stats = m_manager.GetFishingStats();
+            labelSuccessCount.Text = stats.TotalSuccessFishing.ToString();
+            labelNotFoundCount.Text = stats.TotalNotFoundFish.ToString();
+            labelNotEaredCount.Text = stats.TotalNotEaredFish.ToString();
             labelTotalCount.Text = stats.Total().ToString();
         }
 
-        Manager m_manager;
+        private Manager m_manager;
     }
 }

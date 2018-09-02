@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using UltimateFishBot.Classes;
 
 namespace UltimateFishBot.Forms
 {
@@ -70,9 +69,9 @@ namespace UltimateFishBot.Forms
         public int PrimMon = 0;
         public int showMon = 0;
 
-        Graphics g;
-        Pen MyPen = new Pen(Color.White, 1);
-        Pen EraserPen = new Pen(Color.FromArgb(0, 0, 0), 20);
+        private Graphics g;
+        private Pen MyPen = new Pen(Color.White, 1);
+        private Pen EraserPen = new Pen(Color.FromArgb(0, 0, 0), 20);
 
         protected override void OnMouseClick(MouseEventArgs e)
         {

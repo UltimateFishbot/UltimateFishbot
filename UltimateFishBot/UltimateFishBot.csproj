@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UltimateFishBot</RootNamespace>
-    <AssemblyName>AdviseSnowDireful</AssemblyName>
+    <AssemblyName>UltimateFishBot</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -111,9 +111,17 @@
     <Compile Include="Classes\BodyParts\Hands.cs" />
     <Compile Include="Classes\BodyParts\Legs.cs" />
     <Compile Include="Classes\BodyParts\Mouth.cs" />
+    <Compile Include="Classes\BodyParts\T2S.cs" />
+    <Compile Include="Classes\BotSession.cs" />
+    <Compile Include="Classes\Collections\LimitedCollection.cs" />
+    <Compile Include="Classes\Extensions\BitmapExt.cs" />
     <Compile Include="Classes\FishingStats.cs" />
+    <Compile Include="Classes\Fishing\BobbyLocation.cs" />
+    <Compile Include="Classes\Fishing\BobbyLocationStorage.cs" />
     <Compile Include="Classes\Helpers\Win32.cs" />
+    <Compile Include="Classes\IManagerEventHandler.cs" />
     <Compile Include="Classes\Manager.cs" />
+    <Compile Include="Classes\NeededAction.cs" />
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="Forms\about.cs">
       <SubType>Form</SubType>
