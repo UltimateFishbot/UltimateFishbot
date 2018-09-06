@@ -53,7 +53,7 @@ Updated in C#
 
 Updated by Pierre Ghiot (Mograine) in C#.
 
-Updated by daniel-widrick , Szabka , NaNraptor
+Updated by @daniel-widrick, @Szabka, @NaNraptor, @Lunat1q
 ===============================
 -Hearing optimisation.
 
