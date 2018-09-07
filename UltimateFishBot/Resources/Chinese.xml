@@ -1,0 +1,196 @@
+<translation>
+    <frmCode>
+        <TITLE>感谢使用UltimateFishBot</TITLE>
+        <LIBELLE_TITLE>放轻松。。。该软件仍然是免费的!</LIBELLE_TITLE>
+        <LIBELLE_DESC>您已经使用Ultimate Fishbot{0}次。 为了继续使用它，你需要访问Fishbot网站并输入下方的3-5位数字。如果浏览器窗口无法打开，请访问 www.fishbot.net/code.html - 或点击以下的链接。我保证，这一过程快速且无痛。</LIBELLE_DESC>
+        <LIBELLE_TRY_AGAIN>再试一次!</LIBELLE_TRY_AGAIN>
+        <LIBELLE_ENTER>输入</LIBELLE_ENTER>
+    </frmCode>
+    <frmDirections>
+        <TITLE>简明教程</TITLE>
+        <LABEL_SETTING_WOW_TITLE>1.)  设置魔兽世界</LABEL_SETTING_WOW_TITLE>
+        <LABEL_SETTING_WOW_DESC>
+            * 靠近水池
+            * 把钓鱼技能放到技能栏#1的位置
+            * 在系统-声音选项卡中，把主音量调整到100%，声音调高，音乐调低，环境音调低
+            * 把游戏改为窗口模式，并尽可能缩小游戏的画面
+        </LABEL_SETTING_WOW_DESC>
+        <LABEL_FIND_LOCATION_TITLE>2.)  寻找钓鱼地点</LABEL_FIND_LOCATION_TITLE>
+        <LABEL_FIND_LOCATION_DESC>
+            * 走到湖边/水边
+            * 尽可能放大人物角色的视角
+            * 找到一处环境音尽量小的地点
+            * 避免其他任何有可能改变光标的东西
+        </LABEL_FIND_LOCATION_DESC>
+        <LABEL_FISH_TITLE>3.)  开始钓鱼!</LABEL_FISH_TITLE>
+        <LABEL_FISH_DESC>
+            * 点击开始, 往后坐, 让Gorton's Fisherman处理一切！
+        </LABEL_FISH_DESC>
+    </frmDirections>
+    <frmMain>
+        <BUTTON_START>开始</BUTTON_START>
+        <BUTTON_RESUME>继续</BUTTON_RESUME>
+        <BUTTON_STOP>停止</BUTTON_STOP>
+        <BUTTON_PAUSE>暂停</BUTTON_PAUSE>
+        <BUTTON_SETTINGS>设置</BUTTON_SETTINGS>
+        <BUTTON_STATISTICS>统计</BUTTON_STATISTICS>
+        <BUTTON_HTU>简明教程</BUTTON_HTU>
+        <BUTTON_EXIT>退出</BUTTON_EXIT>
+	<BUTTON_ABOUT>关于</BUTTON_ABOUT>
+
+        <LABEL_STARTED>开始</LABEL_STARTED>
+        <LABEL_RESUMED>重新开始</LABEL_RESUMED>
+        <LABEL_PAUSED>暂停</LABEL_PAUSED>
+        <LABEL_STOPPED>停止</LABEL_STOPPED>
+
+        <LABEL_CHECKING_STATUS>检查状态...</LABEL_CHECKING_STATUS>
+        <LABEL_NO_LONGER_SAFE>该辅助已经不安全，请勿用于公开服务器!</LABEL_NO_LONGER_SAFE>
+        <LABEL_COULD_NOT_CHECK_STATUS>无法验证状态！使用者自担风险。。。</LABEL_COULD_NOT_CHECK_STATUS>
+    </frmMain>
+    <manager>
+        <LABEL_HEAR_FISH>我听到有鱼上钩!</LABEL_HEAR_FISH>
+        <LABEL_CASTING>钓鱼...</LABEL_CASTING>
+        <LABEL_START_FINDING>开始寻找...</LABEL_START_FINDING>
+        <LABEL_FINDING>搜索中...</LABEL_FINDING>
+        <LABEL_WAITING>等鱼上钩 ({0}/{1}s) ...</LABEL_WAITING>
+
+        <LABEL_HEARTHSTONE>完成钓鱼 - 炉石...</LABEL_HEARTHSTONE>
+        <LABEL_APPLY_LURE>使用诱饵...</LABEL_APPLY_LURE>
+        <LABEL_APPLY_CHARM>使用魅力...</LABEL_APPLY_CHARM>
+        <LABEL_APPLY_RAFT>使用木筏...</LABEL_APPLY_RAFT>
+        <LABEL_APPLY_BAIT>使用鱼饵 {0}...</LABEL_APPLY_BAIT>
+    </manager>
+    <frmSettings>
+        <TITLE>设置</TITLE>
+
+        <!-- Tabs Titles -->
+        <TAB_TITLE_GENERAL_FISHING>钓鱼</TAB_TITLE_GENERAL_FISHING>
+        <TAB_TITLE_FIND_CURSOR>鱼漂寻找</TAB_TITLE_FIND_CURSOR>
+        <TAB_TITLE_HEARING_FISH>钓鱼监听</TAB_TITLE_HEARING_FISH>
+        <TAB_TITLE_PREMIUM>按键绑定</TAB_TITLE_PREMIUM>
+        <TAB_TITLE_ANTI_AFK>防止Afk</TAB_TITLE_ANTI_AFK>
+        <TAB_TITLE_LANGUAGE>Language</TAB_TITLE_LANGUAGE>
+
+        <!-- General Fishing -->
+        <LABEL_DELAY_AFTER_CAST>释放钓鱼后延迟:</LABEL_DELAY_AFTER_CAST>
+        <LABEL_DELAY_AFTER_CAST_DESC>释放钓鱼后、开始搜寻鱼漂之前的等待时间（毫秒）。太短容易让你跳过浮漂，太长会浪费时间。</LABEL_DELAY_AFTER_CAST_DESC>
+
+        <LABEL_FISH_WAIT_LIMIT>钓鱼时间限制:</LABEL_FISH_WAIT_LIMIT>
+        <LABEL_FISH_WAIT_LIMIT_DESC>放弃钓鱼之前等待的时间（毫秒）。太长会降低程序的效率，太短会漏鱼。</LABEL_FISH_WAIT_LIMIT_DESC>
+
+        <LABEL_DELAY_AFTER_LOOTING>拾取延时:</LABEL_DELAY_AFTER_LOOTING>
+        <LABEL_DELAY_AFTER_LOOTING_DESC>拾取之前等待的时间（毫秒）。</LABEL_DELAY_AFTER_LOOTING_DESC>
+
+        <!-- Finding the Cursor -->
+
+        <LABEL_SCANNING_STEPS>扫描步数:</LABEL_SCANNING_STEPS>
+        <LABEL_SCANNING_STEPS_DESC>步数越大，丢失光标的可能性越低，但是速度越慢。</LABEL_SCANNING_STEPS_DESC>
+
+        <LABEL_SCANNING_DELAY>扫描延时:</LABEL_SCANNING_DELAY>
+        <LABEL_SCANNING_DELAY_DESC>检查光标法师变化之前等待的时间（毫秒），太短有可能找不到鱼漂，太长速度会慢。</LABEL_SCANNING_DELAY_DESC>
+
+        <LABEL_SCANNING_RETRIES>扫描重试次数:</LABEL_SCANNING_RETRIES>
+        <LABEL_SCANNING_RETRIES_DESC>扫描重试的次数，当找到鱼漂时停止。</LABEL_SCANNING_RETRIES_DESC>
+
+        <LABEL_CHECK_ICON>检查光标</LABEL_CHECK_ICON>
+        <LABEL_CHECK_ICON_DESC>指定机器人在钓鱼之前是否必须检查光标。当光标不是鱼漂时避免点击。可能无法在某些计算机上运行，如果程序找不到鱼漂则禁用。</LABEL_CHECK_ICON_DESC>
+        <LABEL_CHECK_CAPTURE_ICON_DESC>捕捉光标:</LABEL_CHECK_CAPTURE_ICON_DESC>
+
+        <LABEL_ALTERNATIVE_ROUTE>螺旋路径</LABEL_ALTERNATIVE_ROUTE>
+        <LABEL_ALTERNATIVE_ROUTE_DESC>鱼漂搜索的另一种途径。</LABEL_ALTERNATIVE_ROUTE_DESC>
+		
+		<LABEL_SCAN_AREA>扫描区域（如果禁用，扫描区域将自动计算）：</LABEL_SCAN_AREA>
+		<SET_SCANNING_AREA>设置扫描区域</SET_SCANNING_AREA>
+		<START_XY>开始:</START_XY>
+		<END_XY>结束:</END_XY>
+		<SCAN_TITLE>选择区域</SCAN_TITLE>
+		<SCAN_MESSAGE>现在将出现一个叠加层，您可以在其中选择扫描区域。完成后，只需双击该区域或按ENTER键。单击“确定”继续。。。</SCAN_MESSAGE>
+		<AREA_SMALL>扫描区域太小!</AREA_SMALL>
+		
+        <!-- Hearing the Fish -->
+
+        <LABEL_SPLASH_THRESHOLD>响声阈值:</LABEL_SPLASH_THRESHOLD>
+        <LABEL_SPLASH_THRESHOLD_DESC>确定给定的声音是否足够大。太低，程序会将非鱼类误认为是鱼；太高，程序会忽略真正的鱼。</LABEL_SPLASH_THRESHOLD_DESC>
+
+        <LABEL_AUDIO_DEVICE>音频设备:</LABEL_AUDIO_DEVICE>
+        <LABEL_AUDIO_DEVICE_DESC>选择魔兽世界正在使用的音频设备。如果程序无法“听到”游戏，它将永远不会捕获任何鱼。如果您不确定，请播放一些音乐并选择每个设备，直到找到合适的设备。</LABEL_AUDIO_DEVICE_DESC>
+
+        <CB_AVG_SND>使用平均法（在拥挤的地区（奥格瑞玛等）更好，但捕鱼的机会更少）</CB_AVG_SND>
+      
+        <!-- Premium Settings -->
+        <LABEL_CAST_KEY>施法键:</LABEL_CAST_KEY>
+        <LABEL_LURE_KEY>鱼饵键:</LABEL_LURE_KEY>
+        <LABEL_HEARTHSTONE_KEY>炉石键:</LABEL_HEARTHSTONE_KEY>
+        <LABEL_RAFT_KEY>MoP Raft Key:</LABEL_RAFT_KEY>
+        <LABEL_CHARM_KEY>MoP Charm Key:</LABEL_CHARM_KEY>
+        <LABEL_BAIT_KEY_1>WOD鱼饵1:</LABEL_BAIT_KEY_1>
+        <LABEL_BAIT_KEY_2>WOD鱼饵2:</LABEL_BAIT_KEY_2>
+        <LABEL_BAIT_KEY_3>WOD鱼饵3:</LABEL_BAIT_KEY_3>
+        <LABEL_BAIT_KEY_4>WOD鱼饵4:</LABEL_BAIT_KEY_4>
+        <LABEL_BAIT_KEY_5>WOD鱼饵5:</LABEL_BAIT_KEY_5>
+        <LABEL_BAIT_KEY_6>WOD鱼饵6:</LABEL_BAIT_KEY_6>
+        <LABEL_BAIT_KEY_7>WOD鱼饵7:</LABEL_BAIT_KEY_7>
+
+        <LABEL_CUSTOMIZE_DESC>自定义快捷方式，以避免在钓鱼之前/之后重新排列按键。</LABEL_CUSTOMIZE_DESC>
+
+        <CB_ALT_KEY>使用Alt键</CB_ALT_KEY>
+        <CB_AUTO_LURE>每隔 X 分钟使用鱼饵</CB_AUTO_LURE>
+        <CB_AUTO_HEARTHSTONE>X 分钟之后使用炉石:</CB_AUTO_HEARTHSTONE>
+        <CB_AUTO_RAFT>每隔 X 分钟更新木筏</CB_AUTO_RAFT>
+        <CB_AUTO_CHARM>每隔 X 分钟更新魅力</CB_AUTO_CHARM>
+        <CB_AUTO_BAIT>每隔 X 分钟使用鱼饵</CB_AUTO_BAIT>
+        <CB_CYCLE_THROUGH_BAIT_LIST>在7种可能的鱼饵中循环</CB_CYCLE_THROUGH_BAIT_LIST>
+        <CB_SHIFT_LOOT>Shift键拾取 (如果禁用了自动拾取，勾选这个)</CB_SHIFT_LOOT>
+
+        <LABEL_PROCESS_NAME>魔兽世界进程名称:</LABEL_PROCESS_NAME>
+        <LABEL_PROCESS_NAME_DESC>要激活的进程的名称（这很少更改），但过去已使用新的扩展进行了更新。</LABEL_PROCESS_NAME_DESC>
+
+        <!-- Anti-Afk  -->
+        <CB_ANTI_AFK>每隔 X 分钟启用Anti-Afk</CB_ANTI_AFK>
+        <CMB_ANTIAFK_MOVE>向前 - 向后</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>向左 - 向右</CMB_ANTIAFK_MOVE>
+        <CMB_ANTIAFK_MOVE>跳</CMB_ANTIAFK_MOVE>
+
+        <!-- Language  -->
+        <LABEL_LANGUAGE>语言:</LABEL_LANGUAGE>
+        <LABEL_LANGUAGE_DESC>
+          选择您想使用的语言、
+          语言XML文件必须在Resources文件夹下。
+        </LABEL_LANGUAGE_DESC>
+        <TITLE_LANGUAGE_CHANGE>需要重启。</TITLE_LANGUAGE_CHANGE>
+        <LABEL_LANGUAGE_CHANGE>应用程序将重新启动以应用语言更改。</LABEL_LANGUAGE_CHANGE>
+
+      <!-- Other-->
+      <RESET_TITLE>重置选项</RESET_TITLE>
+      <RESET_MESSAGE>单击确定以重置所有设置并重新启动应用程序。</RESET_MESSAGE>
+      
+        <!-- Buttons -->
+        <BUTTON_SAVE>保存</BUTTON_SAVE>
+        <BUTTON_CANCEL>取消</BUTTON_CANCEL>
+    </frmSettings>
+    <frmStats>
+        <TITLE>统计</TITLE>
+        <LABEL_SUCCESS>钓起的鱼:</LABEL_SUCCESS>
+        <LABEL_NOT_FOUND>没有找到鱼:</LABEL_NOT_FOUND>
+        <LABEL_NOT_EARED>没有听到鱼:</LABEL_NOT_EARED>
+        <LABEL_TOTAL>总计:</LABEL_TOTAL>
+        <BUTTON_RESET>重置</BUTTON_RESET>
+        <BUTTON_CLOSE>关闭</BUTTON_CLOSE>
+	</frmStats>	
+    <frmAbout>
+        <TITLE>About</TITLE>
+        <DESCRIPTION>If you are like me - you love playing World of Warcraft, but leveling your fishing and cooking skill isn't any fun - you'd rather be *enjoying* the game rather than wasting hours doing what amounts to a chore. 
+		
+		Luckily, for both of us, I'm a computer programmer.  I've put together an application that will fish for you. 
+		
+		For more info and FAQ go to www.fishbot.net 
+		
+		Authors: 
+		Rob ultimatefishbot@gmail.com, 
+		Mograine, 
+		henrikhermansen, 
+		and others... 
+		Icons from www.iconarchive.com and Google Image Search 
+		</DESCRIPTION>
+    </frmAbout>
+</translation>
