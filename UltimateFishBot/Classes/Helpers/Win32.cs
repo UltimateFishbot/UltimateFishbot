@@ -191,7 +191,7 @@ namespace UltimateFishBot.Helpers
             Process[] processlist = Process.GetProcesses();
             foreach(Process process in processlist)
             {
-                if(process.MainWindowTitle.ToUpper().Equals("WORLD OF WARCRAFT") || process.MainWindowTitle.ToUpper().Equals(@"魔兽世界".ToUpper()))
+                if(process.MainWindowTitle.ToUpper().Equals("WORLD OF WARCRAFT".ToUpper()) || process.MainWindowTitle.ToUpper().Equals(@"魔兽世界".ToUpper()))
                 {
                     return process.MainWindowHandle;
                 }
