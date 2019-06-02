@@ -1,3 +1,5 @@
+** CAUTION - USE AT YOUR OWN RISK!  A SIGNIFICANT NUMBER OF USERS HAVE BEEN BANNED **
+
 UltimateFishbot
 ===============
 A simple World of Warcraft fishbot written in C#.
